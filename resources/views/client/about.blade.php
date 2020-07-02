@@ -35,8 +35,15 @@
                             <p>Take look at our</p>
                             <h2>About our company</h2>
                         </div>
-                        <h6 class="mb-4">In vitae nisi aliquam, scelerisque leo a, volutpat sem. Viva mus rutrum dui fermentum eros hendrerit, id lobortis leo volutpat. </h6>
-                        <p class="mb-0">Sed ut iaculis elit, quis varius mauris. Integer ut ultricies orci, lobortis egestas sem. Duis non volutpat arcu. Sed ut iaculis elit, quis varius mauris. Integer ut ultricies orci, lobortis egestas sem. Duis non volutpat arcu. Pellentesque lobortis neque non sem dapibus, non rutrum dolor pretium.</p>
+                        <h6 class="mb-4">
+                            togethergloballyup is a simple to use web application that enables investment groups to
+                             manage all their group activities and communications </h6>
+                        <p class="mb-0">
+                            This cloud based solution enables group administrators
+                             to easily and efficiently track all contribution accounts within the group.
+                             These payments include contributions payments, penalty payments, customer payments, supplier payments, special deposits,
+                              member loan payments, bank loan payments. These payments are handled by the group administrators.
+                            </p>
                         <a href="#" class="btn credit-btn mt-50">Discover</a>
                     </div>
                 </div>
@@ -60,7 +67,13 @@
                 <p>Bold desing and beyound</p>
                 <h2>Some Milestones</h2>
             </div>
-            <h6 class="mb-0">Morbi ut dapibus dui. Sed ut iaculis elit, quis varius mauris. Integer ut ultricies orci, lobortis egestas sem. Duis non volutpat arcu, eu mollis tellus. Sed finibus aliquam neque sit amet sod ales. Maecenas sed magna tempor, efficitur maur is in, sollicitudin augue.</h6>
+            <h6 class="mb-0">
+                When it comes to managing your groups finances, one needs to choose tools
+that ease the work load, are accurate and accessible.We automates the operations of investment
+ groups, eliminating the need for complex spreadsheets and bulky write up, making the work of
+  financial book keeping within the group easier.
+
+            </h6>
 
             <div class="d-flex flex-wrap align-items-center justify-content-between">
                 <!-- Single Cool Facts -->
@@ -69,7 +82,7 @@
                         <i class="icon-piggy-bank"></i>
                     </div>
                     <div class="scf-text">
-                        <h2><span class="counter">8710</span></h2>
+                        <h2><span class="counter">710</span></h2>
                         <p>Clients</p>
                     </div>
                 </div>
@@ -108,8 +121,10 @@
                     <!-- Cta Content -->
                     <div class="cta-content d-flex flex-wrap align-items-center justify-content-between">
                         <div class="cta-text">
-                            <h4>Are you in need for a load? Get in touch with us.</h4>
-                            <p>Morbi ut dapibus dui. Sed ut iaculis elit, quis varius mauris. Integer ut ultricies orci, lobortis egestas sem.</p>
+                            <h4>Are you in need for investment? Get in touch with us.</h4>
+                            <p>The cloud based solution enables group administrators to easily and efficiently track all contribution accounts within the group.
+
+                            </p>
                         </div>
                         <div class="cta-btn">
                             <a href="#" class="btn credit-btn box-shadow">Read More</a>
@@ -122,7 +137,7 @@
     <!-- ##### Call To Action End ###### -->
 
     <!-- ##### Team Member Area Start ##### -->
-    <section class="team-area section-padding-100-0">
+    {{-- <section class="team-area section-padding-100-0">
         <div class="container">
             <div class="row">
                 <div class="col-12">
@@ -148,8 +163,8 @@
                             </div>
                         </div>
                         <div class="team-info">
-                            <h5>Janet Smith</h5>
-                            <h6>Loan Manager</h6>
+                            <h5>Abraham</h5>
+                            <h6>System Manager</h6>
                         </div>
                     </div>
                 </div>
@@ -207,7 +222,7 @@
 
             </div>
         </div>
-    </section>
+    </section> --}}
     <!-- ##### Team Member Area End ##### -->
 
 @endsection

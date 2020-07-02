@@ -28,39 +28,43 @@
         <div class="container">
             <div class="row">
                 <!-- Single Contact Area -->
-                <div class="col-12 col-lg-4">
+                <div class="col-12 col-lg-6">
                     <div class="single-contact-area mb-100">
                         <!-- Logo -->
                         <a href="#" class="d-block mb-50"><img src="assets/img/core-img/logo.png" alt=""></a>
-                        <p>Morbi ut dapibus dui. Sed ut iaculis elit, quis varius mauris. Integer ut ultricies orci, lobortis egestas sem. Tut dapibus dui. Sed ut iaculis elit, quis varius mauris. Integer ut ultricies orci, lobortis.</p>
+                        <p>Over the years, Chamasoft has proven to be helpful to financial investment groups,
+                            locally known as Chamas, by enhancing transparency and confidence among the members
+                            , allowing these groups to focus on investment rather than
+                            administration therefore saving time, and also facilitating structured investment
+                             group management.</p>
                     </div>
                 </div>
 
                 <!-- Single Contact Area -->
-                <div class="col-12 col-lg-4">
+                <div class="col-12 col-lg-6">
                     <div class="single-contact-area mb-100">
                         <div class="contact-advisor">
                             <h5>Contact an advisor</h5>
                             <!-- Single Advisor -->
                             <div class="single-advisor d-flex align-items-center">
                                 <div class="advisor-img">
-                                    <img src="assets/img/bg-img/25.jpg" alt="">
+                                    <img src=https://previews.123rf.com/images/kritchanut/kritchanut1410/kritchanut141000121/32814147-male-silhouette-icon-with-question-mark-sign-on-the-face-suspect-concept.jpg" alt="">
                                 </div>
                                 <div class="advisor-info">
-                                    <h6>James Smith</h6>
+                                Full Name here</h6>
                                     <span>Advisor</span>
-                                    <p>+456 347 53433</p>
+                                    <p>++245 70 432 5455</p>
                                 </div>
                             </div>
                             <!-- Single Advisor -->
                             <div class="single-advisor d-flex align-items-center">
                                 <div class="advisor-img">
-                                    <img src="assets/img/bg-img/26.jpg" alt="">
+                                    <img src="https://previews.123rf.com/images/kritchanut/kritchanut1410/kritchanut141000121/32814147-male-silhouette-icon-with-question-mark-sign-on-the-face-suspect-concept.jpg" alt="">
                                 </div>
                                 <div class="advisor-info">
-                                    <h6>Michael Williams</h6>
+                                    <h6>Full Name here</h6>
                                     <span>Advisor</span>
-                                    <p>+456 347 53433</p>
+                                    <p>+245 70 432 5455</p>
                                 </div>
                             </div>
                         </div>
@@ -68,7 +72,7 @@
                 </div>
 
                 <!-- Single Contact Area -->
-                <div class="col-12 col-lg-4">
+                {{-- <div class="col-12 col-lg-4">
                     <div class="single-contact-area mb-100">
                         <div class="contact--area contact-page">
                             <!-- Contact Content -->
@@ -107,14 +111,14 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> --}}
             </div>
         </div>
 
 
         <!-- ##### Google Maps ##### -->
         <div class="map-area">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d22236.40558254599!2d-118.25292394686001!3d34.057682914027104!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80c2c75ddc27da13%3A0xe22fdf6f254608f4!2z4Kay4Ka4IOCmj-CmnuCnjeCmnOCnh-CmsuCnh-CmuCwg4KaV4KeN4Kav4Ka-4Kay4Ka_4Kar4KeL4Kaw4KeN4Kao4Ka_4Kav4Ka84Ka-LCDgpq7gpr7gprDgp43gppXgpr_gpqgg4Kav4KeB4KaV4KeN4Kak4Kaw4Ka-4Ka34KeN4Kaf4KeN4Kaw!5e0!3m2!1sbn!2sbd!4v1532328708137" allowfullscreen></iframe>
+            <iframe src="3d3o4Ka_aw!5e0!3m2!1sbn!2sbd!4v1532328708137" allowfullscreen></iframe>
             <!-- Contact Area -->
             <div class="contact---area">
                 <div class="container">
