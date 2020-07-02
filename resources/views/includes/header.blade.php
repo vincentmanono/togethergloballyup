@@ -1,6 +1,6 @@
 <header class="header-area">
     <!-- Top Header Area -->
-    <div class="top-header-area">
+    {{-- <div class="top-header-area">
         <div class="container h-100">
             <div class="row h-100 align-items-center">
                 <div class="col-12 d-flex justify-content-between">
@@ -17,7 +17,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
 
     <!-- Navbar Area -->
     <div class="credit-main-menu" id="sticker">
@@ -44,31 +44,20 @@
                             <ul>
                                 <li><a href="/">Home</a></li>
                                 <li><a href="/about ">About Us</a></li>
-                                <li><a href="#">Pages</a>
+                                {{-- <li><a href="#">Pages</a>
                                     <ul class="dropdown">
                                         <li><a href="/ ">Home</a></li>
                                         <li><a href="about ">About Us</a></li>
-                                        <li><a href="/services ">Services</a></li>
-                                        <li><a href="/blog ">Post</a></li>
-                                        <li><a href="/single-post ">Single Post</a></li>
-                                        <li><a href="/contact ">Contact</a></li>
-                                        <li><a href="/elements ">Elements</a></li>
+                                        <li><a href="#">Services</a></li>
+                                        <li><a href="#">Testimonials</a></li>
+                                        <li><a href="/contact">Contact</a></li>
+                                        <li><a href="#">FAQ</a></li>
                                     </ul>
-                                </li>
-                                <li><a href="services ">Services</a></li>
-                                <li><a href="#">Portfolio</a>
-                                    <div class="dropdown">
-                                        <ul class="single-mega cn-col-4">
-                                            <li><a href="#">Portfolio 1</a></li>
-                                            <li><a href="#">Portfolio 2</a></li>
-
-
-                                        </ul>
-
-                                    </div>
-                                </li>
-                                <li><a href="/blog ">Blog</a></li>
-                                <li><a href="/contact ">Contact</a></li>
+                                </li> --}}
+                                <li><a href="#">Services</a></li>
+                                <li><a href="#">Testimonials</a></li>
+                                <li><a href="/contact">Contact</a></li>
+                                <li><a href="#">FAQ</a></li>
                             </ul>
                         </div>
                         <!-- Nav End -->
@@ -76,7 +65,8 @@
 
                     <!-- Contact -->
                     <div class="contact">
-                        <a href="#"><img src="assets/img/core-img/call2.png" alt=""> +800 49 900 900</a>
+                        <a></a>
+                        <a  href="tel:+245704325455"><img src="assets/img/core-img/call2.png" alt=""> +245 70 432 5455</a>
                     </div>
                 </nav>
             </div>

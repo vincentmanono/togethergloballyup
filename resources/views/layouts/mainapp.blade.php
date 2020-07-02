@@ -9,7 +9,7 @@
     <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
     <!-- Title -->
-    <title>Credit - Loan &amp; Credit Company HTML Template</title>
+    <title>togethergloballyup &amp; Merry-go-round company</title>
 
     <!-- Favicon -->
     <link rel="icon" href="assets/img/core-img/favicon.ico">
@@ -20,7 +20,7 @@
 </head>
 
 <body>
-  
+
     <!-- ##### Header Area Start ##### -->
    @include('includes.header')
     <!-- ##### Header Area End ##### -->
@@ -39,7 +39,7 @@
                             <input type="email" name="nl-email" id="nlemail" placeholder="Your e-mail">
                             <button type="submit">Subscribe</button>
                         </form>
-                        <p>Curabitur elit turpis, maximus quis ullamcorper sed, maximus eu neque. Cras ultrices erat nec auctor blandit.</p>
+                        <p>Be the first to know when we introduce new offers</p>
                     </div>
                 </div>
             </div>

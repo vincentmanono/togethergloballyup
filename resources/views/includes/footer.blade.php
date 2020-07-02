@@ -26,7 +26,7 @@
                     <!-- Nav -->
                     <nav>
                         <ul>
-                            <li><a href="#">Our Loans</a></li>
+                            <li><a href="#">Our Services</a></li>
                             <li><a href="#">Trading &amp; Commerce</a></li>
                             <li><a href="#">Banking &amp; Private Equity</a></li>
                             <li><a href="#">Industrial &amp; Factory</a></li>
@@ -36,7 +36,7 @@
                 </div>
             </div>
 
-            <!-- Single Footer Widget -->
+            {{-- <!-- Single Footer Widget -->
             <div class="col-12 col-sm-6 col-lg-3">
                 <div class="single-footer-widget mb-100">
                     <h5 class="widget-title">Our Loans</h5>
@@ -51,7 +51,7 @@
                         </ul>
                     </nav>
                 </div>
-            </div>
+            </div> --}}
 
             <!-- Single Footer Widget -->
             <div class="col-12 col-sm-6 col-lg-3">
@@ -64,7 +64,7 @@
                             <img src="assets/img/bg-img/7.jpg" alt="">
                         </div>
                         <div class="news-content">
-                            <a href="#">How to get the best loan?</a>
+                            <a href="#">How to get the highest profit ?</a>
                             <div class="news-meta">
                                 <a href="#" class="post-author"><img src="assets/img/core-img/pencil.png" alt=""> Jane Smith</a>
                                 <a href="#" class="post-date"><img src="assets/img/core-img/calendar.png" alt=""> April 26</a>
@@ -78,7 +78,7 @@
                             <img src="assets/img/bg-img/8.jpg" alt="">
                         </div>
                         <div class="news-content">
-                            <a href="#">A new way to get a loan</a>
+                            <a href="#">A new way to  highest profit </a>
                             <div class="news-meta">
                                 <a href="#" class="post-author"><img src="assets/img/core-img/pencil.png" alt=""> Jane Smith</a>
                                 <a href="#" class="post-date"><img src="assets/img/core-img/calendar.png" alt=""> April 26</a>
@@ -112,11 +112,12 @@
                 <div class="col-12">
                     <div class="copywrite-content d-flex flex-wrap justify-content-between align-items-center">
                         <!-- Footer Logo -->
-                        <a href="index.html" class="footer-logo"><img src="assets/img/core-img/logo.png" alt=""></a>
+                        {{-- <a href="index.html" class="footer-logo"><img src="assets/img/core-img/logo.png" alt=""></a> --}}
 
                         <!-- Copywrite Text -->
-                        <p class="copywrite-text"><a href="#"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                        <p class="copywrite-text justify-content-center "><a href="#"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved
+ {{-- | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a> --}}
 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
                     </div>
                 </div>
