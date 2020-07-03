@@ -21,6 +21,6 @@ Route::get('/services','PageController@services')->name('services');
 Route::get('/contact','PageController@contact')->name('contact');
 Route::get('/blog','PageController@blog')->name('blog');
 
-Auth::routes();
+Auth::routes(['register'=>false, 'login'=>false]);
 
 Route::get('/home', 'HomeController@index')->name('home');

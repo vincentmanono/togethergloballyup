@@ -147,7 +147,8 @@
     <!-- ##### Call To Action Start ###### -->
     <section class="cta-area d-flex flex-wrap">
         <!-- Cta Thumbnail -->
-        <div class="cta-thumbnail bg-img jarallax" style="background-image: url(assets/img/bg-img/5.jpg);"></div>
+        <div class="cta-thumbnail bg-img jarallax"
+         style="background-image: url(https://images.unsplash.com/photo-1588528022690-3d35ed25e4f9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60);"></div>
 
         <!-- Cta Content -->
         <div class="cta-content">
