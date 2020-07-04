@@ -1,5 +1,6 @@
 <?php
 
+use App\Testimony;
 use Illuminate\Database\Seeder;
 
 class TestimonySeeder extends Seeder
@@ -11,6 +12,6 @@ class TestimonySeeder extends Seeder
      */
     public function run()
     {
-        //
+        factory(Testimony::class,10)->create();
     }
 }

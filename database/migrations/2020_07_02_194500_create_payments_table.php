@@ -18,7 +18,12 @@ class CreatePaymentsTable extends Migration
             $table->string("user_id") ;
             $table->string("group_id") ;
             $table->string("phone") ;
-            $table->string("result");
+            $table->string("MerchantRequestID");
+            $table->string("CheckoutRequestID");
+            $table->string("ResponseCode");
+            $table->string("ResultDesc");
+            $table->string("ResponseDescription");
+            $table->string("ResultCode");
             $table->timestamps();
         });
     }

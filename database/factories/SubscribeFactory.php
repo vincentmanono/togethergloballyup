@@ -7,6 +7,6 @@ use Faker\Generator as Faker;
 
 $factory->define(Subscribe::class, function (Faker $faker) {
     return [
-        //
+        'email' =>$faker->email,
     ];
 });

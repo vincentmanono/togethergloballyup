@@ -1,5 +1,6 @@
 <?php
 
+use App\Payment;
 use Illuminate\Database\Seeder;
 
 class PaymentSeeder extends Seeder
@@ -11,6 +12,6 @@ class PaymentSeeder extends Seeder
      */
     public function run()
     {
-        //
+        factory(Payment::class,20)->create();
     }
 }

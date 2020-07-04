@@ -12,8 +12,9 @@ class Group extends Model
     {
         return $this->belongsTo(Chama::class);
     }
-    public function users()
+
+    public function user()
     {
-        return $this->hasMany(User::class);
+        return $this->belongsTo(User::class);
     }
 }

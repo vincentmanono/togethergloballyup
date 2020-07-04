@@ -1,5 +1,6 @@
 <?php
 
+use App\Chama;
 use Illuminate\Database\Seeder;
 
 class ChamaSeeder extends Seeder
@@ -11,6 +12,6 @@ class ChamaSeeder extends Seeder
      */
     public function run()
     {
-        //
+        factory(Chama::class,10)->create();
     }
 }

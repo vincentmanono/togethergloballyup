@@ -7,6 +7,8 @@ use Faker\Generator as Faker;
 
 $factory->define(Message::class, function (Faker $faker) {
     return [
-        //
+        'to' =>$faker->email,
+        'from' =>$faker->email,
+        'body'=>$faker->realText(100,4)
     ];
 });
