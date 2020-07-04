@@ -24,3 +24,10 @@ Route::get('/blog','PageController@blog')->name('blog');
 Auth::routes(['register'=>false, 'login'=>false]);
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::group(['middleware' => ['web']], function () {
+    Route::prefix('power')->group(function(){
+        Route::get('/', 'AdminPageController@dashboard')->name('admin.dashboard');
+    });
+});
+
