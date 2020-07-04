@@ -21,13 +21,20 @@ Route::get('/services','PageController@services')->name('services');
 Route::get('/contact','PageController@contact')->name('contact');
 Route::get('/blog','PageController@blog')->name('blog');
 
-Auth::routes(['register'=>false, 'login'=>false]);
+Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group(['middleware' => ['web']], function () {
     Route::prefix('power')->group(function(){
         Route::get('/', 'AdminPageController@dashboard')->name('admin.dashboard');
+        Route::get('/groups', 'AdminPageController@groups')->name('admin.groups');
+        Route::get('/mpesa-all-transactions', 'AdminPageController@mpesaAll')->name('admin.mpesa.all');
+        Route::get('/groups-admins', 'AdminPageController@groupsAdmins')->name('admin.groupsAdmins');
+        Route::get('/testimonies', 'AdminPageController@testimonies')->name('admin.testimonies');
     });
+
+    Route::resource('messages', 'MessageController');
+
 });
 
