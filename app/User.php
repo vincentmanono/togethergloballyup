@@ -36,15 +36,17 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-   public function chama()
+   public function chama() //for admins only
    {
        return $this->hasOne(Chama::class);
    }
-   public function group()
-   {
-       return $this->hasOne(Group::class);
-   }
-   public function payments()
+
+   public function subscribed() //for users to subscribe to chamas
+    {
+        return $this->belongsToMany('App\User')->using('App\ChamaUser');
+    }
+
+   public function payments() //payment to chama monthly payment
    {
        return $this->hasMany(Payment::class);
    }

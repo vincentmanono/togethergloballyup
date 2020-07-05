@@ -14,7 +14,7 @@
           <img src="{{ asset('admin/dist/img/user2-160x160.jpg') }}" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">Alexander Pierce</a>
+          <a href="#" class="d-block"> {{ auth()->user()->firstName }}</a>
         </div>
       </div>
 
@@ -33,11 +33,11 @@
 
           </li>
           <li class="nav-item">
-            <a href="{{ route('admin.groups') }}" class="nav-link">
+            <a href="{{ route('admin.chama') }}" class="nav-link">
 
               <i class="fa fa-object-group" aria-hidden="true"></i>
               <p>
-                Manage Groups
+                Manage Chamas
                 <span class="right badge badge-danger">New</span>
               </p>
             </a>
@@ -46,14 +46,14 @@
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-copy"></i>
               <p>
-                Group Admins
+                Chama Admins
                 <i class="fas fa-angle-left right"></i>
                 <span class="badge badge-info right">6</span>
               </p>
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{ route('admin.groupsAdmins') }}" class="nav-link">
+                <a href="{{ route('admin.chamaAdmins') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>View Admin</p>
                 </a>
@@ -96,7 +96,7 @@
               </li>  --}}
             </ul>
           </li>
-          <li class="nav-item has-treeview">
+          {{-- <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-tree"></i>
               <p>
@@ -120,7 +120,7 @@
               </li>
 
             </ul>
-          </li>
+          </li> --}}
           {{-- <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-edit"></i>

@@ -28,9 +28,10 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::group(['middleware' => ['web']], function () {
     Route::prefix('power')->group(function(){
         Route::get('/', 'AdminPageController@dashboard')->name('admin.dashboard');
-        Route::get('/groups', 'AdminPageController@groups')->name('admin.groups');
+        Route::get('/chamas', 'GroupController@index')->name('admin.chama');
+
         Route::get('/mpesa-all-transactions', 'AdminPageController@mpesaAll')->name('admin.mpesa.all');
-        Route::get('/groups-admins', 'AdminPageController@groupsAdmins')->name('admin.groupsAdmins');
+        Route::get('/chama-admins', 'AdminPageController@chamaAdmins')->name('admin.chamaAdmins');
         Route::get('/testimonies', 'AdminPageController@testimonies')->name('admin.testimonies');
     });
 

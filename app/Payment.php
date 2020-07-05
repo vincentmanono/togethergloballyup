@@ -13,8 +13,8 @@ class Payment extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function payment()
+    public function chama()
     {
-        return $this->belongsTo(Payment::class);
+        return $this->belongsTo(Chama::class);
     }
 }
