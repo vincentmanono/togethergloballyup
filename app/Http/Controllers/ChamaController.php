@@ -14,7 +14,8 @@ class ChamaController extends Controller
      */
     public function index()
     {
-        //
+        $chamas = Chama::all() ;
+        return view('admin.chama.chamas')->with('chamas',$chamas) ;
     }
 
     /**
@@ -46,7 +47,8 @@ class ChamaController extends Controller
      */
     public function show(Chama $chama)
     {
-        //
+        $chama = Chama::find($chama->name);
+        return $chama ;
     }
 
     /**

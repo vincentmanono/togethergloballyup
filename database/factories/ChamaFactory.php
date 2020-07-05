@@ -10,6 +10,7 @@ $factory->define(Chama::class, function (Faker $faker) {
     return [
         'user_id'=>function(){ return User::all()->random() ;},
         'name' =>$faker->word,
+        'amount' =>$faker->numberBetween(10,2000),
         'description'=>$faker->realText(100,4)
     ];
 });
