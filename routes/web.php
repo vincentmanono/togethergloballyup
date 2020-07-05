@@ -31,14 +31,13 @@ Route::group(['middleware' => ['web']], function () {
         Route::get('/chamas', 'GroupController@index')->name('admin.chama');
 
         Route::get('/mpesa-all-transactions', 'AdminPageController@mpesaAll')->name('admin.mpesa.all');
-<<<<<<< HEAD
+
         Route::get('/groups-admins', 'AdminPageController@groupsAdmins')->name('admin.groupsAdmins');
-      
-      
-=======
+
+
         Route::get('/chama-admins', 'AdminPageController@chamaAdmins')->name('admin.chamaAdmins');
         Route::get('/testimonies', 'AdminPageController@testimonies')->name('admin.testimonies');
->>>>>>> c7719ce41f39656a56c31acc1c0838c06bde44b5
+
     });
 
     Route::resource('messages', 'MessageController');

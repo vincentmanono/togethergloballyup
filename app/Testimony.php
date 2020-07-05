@@ -5,10 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 
 class Testimony extends Model
-{
-    protected $fillable = [
-        'body','user_id'
-    ];
+{ protected $guarded = [];
 
     public function user()
     {
