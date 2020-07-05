@@ -9,11 +9,8 @@ class AdminPageController extends Controller
     public function dashboard(){
         return view('admin.dashboard') ;
     }
-    public function groups(){
-        return view('admin.groups') ;
-    }
-    public function groupsAdmins(){
-        return view('admin.groupsAdmin') ;
+    public function chamaAdmins(){
+        return view('admin.chama.ChamaAdmin') ;
     }
     public function mpesaAll(){
         return view('admin.mpesa.alltransactions') ;

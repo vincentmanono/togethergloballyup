@@ -8,12 +8,19 @@ class Chama extends Model
 {
     protected $guarded = [];
 
-    public function user()
+
+    public function users()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsToMany('App\User')->using('App\ChamaUser');
     }
-    public function groups()
+
+    public function admin()
     {
-        return $this->hasMany(Group::class);
+        return $this->belongsTo('App\User', 'user_id');
     }
+    public function payments()
+    {
+        return $this->hasMany(Payment::class);
+    }
+
 }

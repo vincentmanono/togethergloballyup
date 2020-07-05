@@ -6,12 +6,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>All Groups Administrators</h1>
+                    <h1>All Groups</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Home</a></li>
-                        <li class="breadcrumb-item active">Groups admins</li>
+                        <li class="breadcrumb-item active">Groups</li>
                     </ol>
                 </div>
             </div>
@@ -38,8 +38,8 @@
                 <table id="example1" class="table table-bordered table-striped">
                     <thead>
                     <tr>
-                      <th>Rendering engine</th>
-                      <th>Browser</th>
+                      <th>Chama</th>
+                      <th></th>
                       <th>Platform(s)</th>
                       <th>Engine version</th>
                       <th>CSS grade</th>
