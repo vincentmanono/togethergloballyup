@@ -31,10 +31,12 @@ Route::group(['middleware' => ['web']], function () {
         Route::get('/groups', 'AdminPageController@groups')->name('admin.groups');
         Route::get('/mpesa-all-transactions', 'AdminPageController@mpesaAll')->name('admin.mpesa.all');
         Route::get('/groups-admins', 'AdminPageController@groupsAdmins')->name('admin.groupsAdmins');
-        Route::get('/testimonies', 'AdminPageController@testimonies')->name('admin.testimonies');
+      
+      
     });
 
     Route::resource('messages', 'MessageController');
+    Route::resource('/testimonies','TestimonyController');
 
 });
 

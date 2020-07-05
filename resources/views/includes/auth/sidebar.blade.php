@@ -159,7 +159,7 @@
 
           <li class="nav-header">Extra Staff</li>
           <li class="nav-item">
-            <a href="{{ route('admin.testimonies') }}" class="nav-link">
+            <a href="/testimonies" class="nav-link">
               <i class="nav-icon far fa-calendar-alt"></i>
               <p>
                 Testimonials

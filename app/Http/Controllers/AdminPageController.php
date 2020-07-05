@@ -19,7 +19,7 @@ class AdminPageController extends Controller
         return view('admin.mpesa.alltransactions') ;
     }
     public function testimonies(){
-        return view('admin.testimonies') ;
+        return view('admin/testimony.testimonies') ;
     }
 
 }

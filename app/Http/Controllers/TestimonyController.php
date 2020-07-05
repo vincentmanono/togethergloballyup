@@ -12,9 +12,15 @@ class TestimonyController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function index()
     {
-        //
+        $testimonies = Testimony::orderBy('id','DESC')->get();
+
+        return view('admin/testimony.index')->with('testimonies',$testimonies);
     }
 
     /**
@@ -24,7 +30,7 @@ class TestimonyController extends Controller
      */
     public function create()
     {
-        //
+       return view('admin/testimony.create');
     }
 
     /**
@@ -36,6 +42,20 @@ class TestimonyController extends Controller
     public function store(Request $request)
     {
         //
+        $this -> validate($request,[
+            'body'=>'required|string|max:1000'
+
+        ]);
+
+        $post = new Testimony();
+
+        $post->body=$request->input('body');
+
+        $validate=$post->save();
+
+        if($validate){
+            return redirect('/testimonies');
+        }
     }
 
     /**
@@ -44,9 +64,11 @@ class TestimonyController extends Controller
      * @param  \App\Testimony  $testimony
      * @return \Illuminate\Http\Response
      */
-    public function show(Testimony $testimony)
+    public function show( $id)
     {
-        //
+        $single = Testimony::findorfail($id);
+
+        return view('admin/testimony/edit')->with('single',$single);
     }
 
     /**
@@ -55,9 +77,11 @@ class TestimonyController extends Controller
      * @param  \App\Testimony  $testimony
      * @return \Illuminate\Http\Response
      */
-    public function edit(Testimony $testimony)
+    public function edit($id)
     {
-        //
+        $single = Testimony::findorfail($id);
+
+        return view('admin/testimony/edit')->with('single',$single);
     }
 
     /**
@@ -67,9 +91,23 @@ class TestimonyController extends Controller
      * @param  \App\Testimony  $testimony
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Testimony $testimony)
+    public function update(Request $request,$id)
     {
-        //
+        
+        $this -> validate($request,[
+            'body'=>'required|string|max:1000'
+
+        ]);
+
+        $post =  Testimony::find($id);
+
+        $post->body=$request->input('body');
+
+        $validate=$post->save();
+
+        if($validate){
+            return redirect('/testimonies');
+        }
     }
 
     /**
@@ -78,8 +116,12 @@ class TestimonyController extends Controller
      * @param  \App\Testimony  $testimony
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Testimony $testimony)
+    public function destroy($id)
     {
-        //
+        $data = Testimony::find($id);
+        $data->delete();
+
+        return redirect('/testimonies');
+
     }
 }
