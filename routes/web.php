@@ -32,11 +32,17 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/chamas/{chama}', 'ChamaController@show')->name('admin.chama.show');
         // Route::resource('chamas', 'ChamaController');
         Route::get('/mpesa-all-transactions', 'AdminPageController@mpesaAll')->name('admin.mpesa.all');
+
+        Route::get('/groups-admins', 'AdminPageController@groupsAdmins')->name('admin.groupsAdmins');
+
+
         Route::get('/chama-admins', 'AdminPageController@chamaAdmins')->name('admin.chamaAdmins');
         Route::get('/testimonies', 'AdminPageController@testimonies')->name('admin.testimonies');
+
     });
 
     Route::resource('messages', 'MessageController');
+    Route::resource('/testimonies','TestimonyController');
 
 });
 
