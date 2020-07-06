@@ -50,20 +50,25 @@
                     </div>
                 </div>
             </div>
+                @if ($testimonies->count() > 0)
+                @foreach ($testimonies as $testimony)
+                                  <!-- Single Service Area -->
+                            <div class="col-12 col-md-6 col-lg-4">
+                                <div class="single-service-area d-flex mb-100">
+                                    <div class="icon">
+                                        <i class="icon-coin"></i>
+                                    </div>
+                                    <div class="text">
+                                        <h5>st answer</h5>
+                                    <p>{{$testimony->body}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                @endforeach
+                            {{$testimonies->links()}}
+                @endif
 
-            <!-- Single Service Area -->
-            <div class="col-12 col-md-6 col-lg-4">
-                <div class="single-service-area d-flex mb-100">
-                    <div class="icon">
-                        <i class="icon-coin"></i>
-                    </div>
-                    <div class="text">
-                        <h5>Easy and fast answer</h5>
-                        <p>Morbi ut dapibus dui. Sed ut iaculis elit, quis varius mauris. Integer ut ultricies orci, lobortis egestas sem.</p>
-                    </div>
-                </div>
-            </div>
-
+{{--
             <!-- Single Service Area -->
             <div class="col-12 col-md-6 col-lg-4">
                 <div class="single-service-area d-flex mb-100">
@@ -114,7 +119,7 @@
                         <p>Morbi ut dapibus dui. Sed ut iaculis elit, quis varius mauris. Integer ut ultricies orci, lobortis egestas sem.</p>
                     </div>
                 </div>
-            </div>
+            </div> --}}
         </div>
     </div>
 </section>
