@@ -20,8 +20,6 @@ class CreateSubscriptionsTable extends Migration
             $table->float('amount');
             $table->integer('payment_id')->nullable();
             $table->integer('user_id');
-            // $table->integer('plan_id');
-            // $table->foreign('mpesa_id')->references('id')->on('mpesas');
 
             $table->timestamps();
         });

@@ -12,8 +12,17 @@ class ChamaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
+
+
         $chamas = Chama::all() ;
         return view('admin.chama.chamas')->with('chamas',$chamas) ;
     }
@@ -79,7 +88,7 @@ class ChamaController extends Controller
             'description'=>'nullable|min:5'
         ]);
 
-        if (true ) { //$chama->user_id == auth()->user()->id
+        if ($chama->user_id == auth()->user()->id || auth()->user()->role == 'super' ) { //
             $chama->name = $request->name ;
             $chama->amount = $request->amount ;
             $chama->description = $request->description ;
@@ -103,10 +112,13 @@ class ChamaController extends Controller
     public function destroy(Chama $chama)
     {
         $chama = Chama::findOrFail($chama->id);
-        if (  $chama->delete()) {
+        if ($chama->user_id == auth()->user()->id || auth()->user()->role == 'super') {
+            if (  $chama->delete()) {
             return redirect()->route('admin.chama') ->with('success','Chama details deleted successfully') ;
 
-     } else {
+     }
+        }
+        else {
          return back()->with('error','Error occurred') ;
      }
     }

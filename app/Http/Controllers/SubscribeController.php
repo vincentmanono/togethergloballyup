@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 
 class SubscribeController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +18,8 @@ class SubscribeController extends Controller
      */
     public function index()
     {
-        //
+        $subscriptions = Subscribe::orderBy('created_at', 'DESC')->paginate(100);
+        return view('admin.subscriptions.allSubscriptions',compact('subscriptions')) ;
     }
 
     /**

@@ -1,7 +1,10 @@
 <?php
 
 use App\User;
+use Carbon\Carbon;
+use Illuminate\Support\Str;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class UsersTableSeeder extends Seeder
 {
@@ -13,5 +16,28 @@ class UsersTableSeeder extends Seeder
     public function run()
     {
         factory(User::class,10)->create();
+
+        User::create(
+            [
+            'firstName'=>'John',
+            'lastName' =>'Doe',
+            'email' =>'info@paviham.com',
+            'role'=>'super',
+            'phone'=>'0707585566',
+            'email_verified_at' => now(),
+        'password' => Hash::make("password") ,
+        'remember_token' => Str::random(10),
+        ] );
+    User::create(  [
+            'firstName'=>'test',
+            'lastName' =>'Yahoo',
+            'email' =>'test@paviham.com',
+            'role'=>'super',
+            'phone'=>1234567890,
+            'email_verified_at' => now(),
+        'password' => Hash::make("password") ,
+        'remember_token' => Str::random(10),
+        ]
+    );
     }
 }

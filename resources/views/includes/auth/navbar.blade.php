@@ -42,12 +42,13 @@
             <span class="float-right text-muted text-sm">{{ auth()->user()->role }}</span>
           </a>
           <div class="dropdown-divider"></div>
-          <a href="#" id="logout" class="dropdown-item bg-gradient-danger" >
-            <i class="fa fa-sign-out" aria-hidden="true"></i> Logout
-          </a>
 
-          <form action="{{ route('logout') }}" id="logoutform" method="post">
+
+          <form  id="logout" class="dropdown-item " action="{{ route('logout') }}"  method="post">
         @csrf
+        <button type="submit" class="btn bg-gradient-danger btn-block ">
+            <i class="fa fa-sign-out" aria-hidden="true"></i> Logout
+        </button>
         </form>
           {{-- <div class="dropdown-divider"></div>
           <a href="#" class="dropdown-item">

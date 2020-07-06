@@ -18,6 +18,8 @@ class DatabaseSeeder extends Seeder
         $this->call(ChamaUserSeeder::class);
         $this->call(TestimonySeeder::class);
         $this->call(MessageSeeder::class);
+        $this->call(SubscribeSeeder::class);
+        $this->call(SubscriptionSeeder::class);
 
     }
 }

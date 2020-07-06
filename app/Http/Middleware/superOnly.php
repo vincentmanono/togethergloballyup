@@ -3,10 +3,9 @@
 namespace App\Http\Middleware;
 
 use Closure;
-use Illuminate\Contracts\Session\Session;
 use Illuminate\Support\Facades\Auth;
 
-class AdminOnly
+class superOnly
 {
     /**
      * Handle an incoming request.
@@ -18,7 +17,7 @@ class AdminOnly
     public function handle($request, Closure $next)
     {
         if (Auth::check() ) {
-            if (auth()->user()->role == 'admin' ) {
+            if (auth()->user()->role == 'super' ) {
                 return $next($request);
             } else {
                 $request->session()->flash('error', "You do not have privilagies to access, this routes");
