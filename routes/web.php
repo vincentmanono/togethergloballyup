@@ -30,7 +30,9 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/', 'AdminPageController@dashboard')->name('admin.dashboard');
         Route::get('/chamas', 'ChamaController@index')->name('admin.chama');
         Route::get('/chamas/{chama}', 'ChamaController@show')->name('admin.chama.show');
-        // Route::resource('chamas', 'ChamaController');
+        Route::put('/chamas/{chama}', 'ChamaController@update')->name('admin.chama.update');
+        Route::delete('/chamas/{chama}', 'ChamaController@destroy')->name('admin.chama.destroy');
+
         Route::get('/mpesa-all-transactions', 'AdminPageController@mpesaAll')->name('admin.mpesa.all');
 
         Route::get('/groups-admins', 'AdminPageController@groupsAdmins')->name('admin.groupsAdmins');

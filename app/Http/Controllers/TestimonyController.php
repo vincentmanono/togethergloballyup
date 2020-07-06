@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Testimony;
+use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\Request;
 
 class TestimonyController extends Controller
@@ -50,12 +51,15 @@ class TestimonyController extends Controller
         $post = new Testimony();
         $post->user_id=auth()->user()->id;
         $post->body=$request->input('body');
+<<<<<<< HEAD
 
 
+=======
+        $post->user_id = auth()->user()->id ;
+>>>>>>> 6c24e0ff4b33a7a6483202dd67839551b1c79c5f
         $validate=$post->save();
-
         if($validate){
-            return redirect('/testimonies');
+            return redirect('/testimonies')->with('success','Testimony created successfully') ;
         }
     }
 
@@ -101,13 +105,12 @@ class TestimonyController extends Controller
         ]);
 
         $post =  Testimony::find($id);
-
+        $post->user_id = auth()->user()->id ;
         $post->body=$request->input('body');
-
         $validate=$post->save();
 
         if($validate){
-            return redirect('/testimonies');
+            return redirect('/testimonies')->with('success','Testimony updated successfully') ;
         }
     }
 
@@ -122,7 +125,7 @@ class TestimonyController extends Controller
         $data = Testimony::find($id);
         $data->delete();
 
-        return redirect('/testimonies');
+        return redirect('/testimonies')->with('success','Testimony deleted successfully') ;
 
     }
 }
