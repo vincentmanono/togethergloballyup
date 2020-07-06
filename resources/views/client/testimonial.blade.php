@@ -39,17 +39,7 @@
 
         <div class="row">
             <!-- Single Service Area -->
-            <div class="col-12 col-md-6 col-lg-4">
-                <div class="single-service-area d-flex mb-100">
-                    <div class="icon">
-                        <i class="icon-coin"></i>
-                    </div>
-                    <div class="text">
-                        <h5>All the loans</h5>
-                        <p>Morbi ut dapibus dui. Sed ut iaculis elit, quis varius mauris. Integer ut ultricies orci, lobortis egestas sem.</p>
-                    </div>
-                </div>
-            </div>
+
                 @if ($testimonies->count() > 0)
                 @foreach ($testimonies as $testimony)
                                   <!-- Single Service Area -->
@@ -59,69 +49,21 @@
                                         <i class="icon-coin"></i>
                                     </div>
                                     <div class="text">
-                                        <h5>st answer</h5>
-                                    <p>{{$testimony->body}}</p>
+                                        <h5 class="text text-capitalize" >{{ $testimony->user->firstName . ' '. $testimony->user->lastName }}</h5>
+                                    <p class="text text-dark" >{{$testimony->body}}</p>
+                                    <div class="text text-bold text-center" >
+                                        created on {{  ( $testimony->created_at)->diffForHumans() }}
+                                    </div>
                                     </div>
                                 </div>
                             </div>
                 @endforeach
-                            {{$testimonies->links()}}
+                <div class="col-12 col-md-12 col-lg-12 text text-center mb-5 ">
+
+                     {{$testimonies->links()}}
+                </div>
+
                 @endif
-
-{{--
-            <!-- Single Service Area -->
-            <div class="col-12 col-md-6 col-lg-4">
-                <div class="single-service-area d-flex mb-100">
-                    <div class="icon">
-                        <i class="icon-coin"></i>
-                    </div>
-                    <div class="text">
-                        <h5>No additional papers</h5>
-                        <p>Morbi ut dapibus dui. Sed ut iaculis elit, quis varius mauris. Integer ut ultricies orci, lobortis egestas sem.</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Single Service Area -->
-            <div class="col-12 col-md-6 col-lg-4">
-                <div class="single-service-area d-flex mb-100">
-                    <div class="icon">
-                        <i class="icon-coin"></i>
-                    </div>
-                    <div class="text">
-                        <h5>Secure financial services</h5>
-                        <p>Morbi ut dapibus dui. Sed ut iaculis elit, quis varius mauris. Integer ut ultricies orci, lobortis egestas sem.</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Single Service Area -->
-            <div class="col-12 col-md-6 col-lg-4">
-                <div class="single-service-area d-flex mb-100">
-                    <div class="icon">
-                        <i class="icon-coin"></i>
-                    </div>
-                    <div class="text">
-                        <h5>Good investments</h5>
-                        <p>Morbi ut dapibus dui. Sed ut iaculis elit, quis varius mauris. Integer ut ultricies orci, lobortis egestas sem.</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Single Service Area -->
-            <div class="col-12 col-md-6 col-lg-4">
-                <div class="single-service-area d-flex mb-100">
-                    <div class="icon">
-                        <i class="icon-coin"></i>
-                    </div>
-                    <div class="text">
-                        <h5>Accumulation goals</h5>
-                        <p>Morbi ut dapibus dui. Sed ut iaculis elit, quis varius mauris. Integer ut ultricies orci, lobortis egestas sem.</p>
-                    </div>
-                </div>
-            </div> --}}
-        </div>
-    </div>
 </section>
 <!-- ##### Services Area End ###### -->
 
