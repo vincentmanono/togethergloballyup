@@ -48,8 +48,9 @@ class TestimonyController extends Controller
         ]);
 
         $post = new Testimony();
-
+        $post->user_id=auth()->user()->id;
         $post->body=$request->input('body');
+
 
         $validate=$post->save();
 
@@ -93,7 +94,7 @@ class TestimonyController extends Controller
      */
     public function update(Request $request,$id)
     {
-        
+
         $this -> validate($request,[
             'body'=>'required|string|max:1000'
 
