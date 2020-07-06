@@ -51,12 +51,12 @@ class TestimonyController extends Controller
         $post = new Testimony();
         $post->user_id=auth()->user()->id;
         $post->body=$request->input('body');
-<<<<<<< HEAD
 
 
-=======
+
+
         $post->user_id = auth()->user()->id ;
->>>>>>> 6c24e0ff4b33a7a6483202dd67839551b1c79c5f
+
         $validate=$post->save();
         if($validate){
             return redirect('/testimonies')->with('success','Testimony created successfully') ;
