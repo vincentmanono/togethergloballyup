@@ -55,9 +55,9 @@
                                     </ul>
                                 </li> --}}
                                 <li><a href="#">Services</a></li>
-                                <li><a href="#">Testimonials</a></li>
+                                <li><a href="/testimonial">Testimonials</a></li>
                                 <li><a href="/contact">Contact</a></li>
-                                <li><a href="#">FAQ</a></li>
+                                <li><a href="/faq">FAQ</a></li>
                             </ul>
                         </div>
                         <!-- Nav End -->

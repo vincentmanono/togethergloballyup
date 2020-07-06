@@ -24,4 +24,10 @@ class PageController extends Controller
     public function blog(){
         return view('client.blog');
     }
+    public function faq(){
+        return view('client.faq');
+    }
+    public function testimonial(){
+        return view ('client.testimonial');
+    }
 }

@@ -37,14 +37,14 @@
       <i class="fas fa-times"></i></button>
                 </div>
             </div>
-                        
-                <form action="{{route('testimonies.store')}}" method="POST" >
+
+                <form action="{{route('testimonies.store')}}" method="POST" style="margin-top:2%;margin-left:25%;" >
                     @csrf
                     <div >
-                    
+
                         <textarea name="body" rows="7" cols="70">  </textarea>
                     </div>
-                    <button class="btn btn-primary" type="submit">Post</button>
+                    <button class="btn btn-primary" type="submit" style="margin-left:30%; margin-top:2%;margin-bottom:5%;">Post</button>
                 </form>
                             <!-- /.card-body -->
             <div class="card-footer">

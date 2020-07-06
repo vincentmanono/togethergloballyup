@@ -45,7 +45,7 @@
                       <th>Id</th>
                       <th>Body</th>
                       <th>Options</th>
-                     
+
                     </tr>
                     </thead>
                     <tbody>
@@ -54,20 +54,20 @@
                     <td>{{$testimony->id}}</td>
                     <td>{{$testimony->body}}</td>
                     <td>
-                        <a class="btn btn-sm btn-primary" href="/testimonies/{{$testimony->id}}/edit">Edit</a>
-                        <form action="/testimonies/{{$testimony->id}}" method="POST">
+                        <a class="btn btn-sm btn-primary" href="/testimonies/{{$testimony->id}}/edit" style="float:left">Edit</a>
+                        <form action="/testimonies/{{$testimony->id}}" method="POST" >
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                            <button type="submit" class="btn btn-danger btn-sm" style="float:left; margin-left:4%">Delete</button>
 
-                       
+
                     </form>
                     </td>
                     </tr>
 
                         @endforeach
-                    
-                   
+
+
                     </tbody>
                     <tfoot>
                     <tr>
@@ -80,7 +80,7 @@
             </div>
             <!-- /.card-body -->
             <div class="card-footer">
-                Footer
+              Testimonies
             </div>
             <!-- /.card-footer-->
         </div>
@@ -89,4 +89,5 @@
     </section>
     <!-- /.content -->
 </div>
+
 @endsection

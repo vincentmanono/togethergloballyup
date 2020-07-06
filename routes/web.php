@@ -20,6 +20,8 @@ Route::get('/about','PageController@about')->name('about');
 Route::get('/services','PageController@services')->name('services');
 Route::get('/contact','PageController@contact')->name('contact');
 Route::get('/blog','PageController@blog')->name('blog');
+Route::get('/faq','PageController@faq')->name('faq');
+Route::get('/testimonial','PageController@testimonial')->name('testimonial');
 
 Auth::routes();
 
