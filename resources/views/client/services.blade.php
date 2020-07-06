@@ -165,7 +165,7 @@
         <div class="container">
             <div class="row">
                 <!-- FAQ Area -->
-                <div class="col-12 col-lg-6">
+                <div class="col-12 col-lg-12">
 
                     <div class="accordions mb-100" id="accordion" role="tablist" aria-multiselectable="true">
                         <!-- single accordian area -->
@@ -205,12 +205,7 @@
                     </div>
                 </div>
 
-                <!-- Add Area -->
-                <div class="col-12 col-md-6">
-                    <div class="add-area mb-100">
-                        <a href="#"><img src="assets/img/bg-img/add2.png" alt=""></a>
-                    </div>
-                </div>
+
             </div>
         </div>
     </section>

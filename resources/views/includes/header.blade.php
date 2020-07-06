@@ -54,7 +54,7 @@
                                         <li><a href="#">FAQ</a></li>
                                     </ul>
                                 </li> --}}
-                                <li><a href="#">Services</a></li>
+                                <li><a href="/services">Services</a></li>
                                 <li><a href="/testimonial">Testimonials</a></li>
                                 <li><a href="/contact">Contact</a></li>
                                 <li><a href="/faq">FAQ</a></li>
