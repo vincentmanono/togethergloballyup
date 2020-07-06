@@ -25,7 +25,7 @@ class ChamaController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.chama.create') ;
     }
 
     /**
@@ -36,7 +36,7 @@ class ChamaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
     }
 
     /**
@@ -47,8 +47,8 @@ class ChamaController extends Controller
      */
     public function show(Chama $chama)
     {
-        $chama = Chama::find($chama->name);
-        return $chama ;
+        $chama = Chama::find($chama->id);
+        return view('admin.chama.show',compact('chama')) ;
     }
 
     /**
@@ -71,7 +71,27 @@ class ChamaController extends Controller
      */
     public function update(Request $request, Chama $chama)
     {
-        //
+        $chama = Chama::findOrFail($chama->id);
+
+        $this -> validate($request,[
+            'name'=>'required|string|max:150',
+            'amount'=>'required|numeric',
+            'description'=>'nullable|min:5'
+        ]);
+
+        if (true ) { //$chama->user_id == auth()->user()->id
+            $chama->name = $request->name ;
+            $chama->amount = $request->amount ;
+            $chama->description = $request->description ;
+
+            if (  $chama->save()) {
+               return back()->with('success','Chama details updated successfully') ;
+            }
+            return back()->with('error','Error occurred Please try again') ;
+        } else {
+            return back()->with('error','You cant updated other people chama') ;
+        }
+
     }
 
     /**
@@ -82,6 +102,12 @@ class ChamaController extends Controller
      */
     public function destroy(Chama $chama)
     {
-        //
+        $chama = Chama::findOrFail($chama->id);
+        if (  $chama->delete()) {
+            return redirect()->route('admin.chama') ->with('success','Chama details deleted successfully') ;
+
+     } else {
+         return back()->with('error','Error occurred') ;
+     }
     }
 }

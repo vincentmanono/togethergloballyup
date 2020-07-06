@@ -56,7 +56,7 @@
 
                       <td> {{ ($chama->created_at)->diffForHumans() }} </td>
                       <td>
-                          <a name="chama" id="" class="btn btn-primary" href="{{ route('admin.chama.show',$chama->name) }}" role="button">
+                          <a name="chama" id="" class="btn btn-primary" href="{{ route('admin.chama.show',$chama->id) }}" role="button">
                               <i class="fa fa-eye-slash" aria-hidden="true"></i>
                                   View More
                               </i>

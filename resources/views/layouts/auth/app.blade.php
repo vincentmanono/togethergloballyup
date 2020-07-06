@@ -45,6 +45,7 @@
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
+    @include('includes.messages')
 
   <!-- Navbar -->
   @include('includes.auth.navbar')
@@ -129,13 +130,21 @@
         "responsive": true,
       });
 
-    });
+    });deletechama
 
     $("#logout").on("click",(event)=>{
 
         event.preventDefault();
           $("#logoutform").submit()
     })
+
+    $("#deletechama").on("click",(event)=>{
+
+        event.preventDefault();
+          $("#deletechamaform").submit()
+    })
+
+
 
   </script>
 
