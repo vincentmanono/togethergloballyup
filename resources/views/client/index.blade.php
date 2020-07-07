@@ -18,9 +18,9 @@
                         <div class="col-12 col-lg-9">
                             <div class="welcome-text text-center">
                                 <h6 data-animation="fadeInUp" data-delay="100ms">paramount Chama</h6>
-                                <h2 data-animation="fadeInUp" data-delay="300ms"> Don’t hesitate computerize your <span>marry-go-round</span> today </h2>
-                                <p data-animation="fadeInUp" data-delay="500ms"> TOgetherglobally up unites you with focused peoble like you
-                                    to add extra coin in your pocket . We make sure you we boost your investment goals to the next level.</p>
+                                <h2 data-animation="fadeInUp" data-delay="300ms"> Don’t hesitate computerize your <span>merry-go-round</span> today </h2>
+                                <p data-animation="fadeInUp" data-delay="500ms"> Togetherglobally up unites you with focused peoble like you
+                                    to add extra coin in your pocket . We make sure we boost your investment goals to the next level.</p>
                                 <a href="#" class="btn credit-btn mt-50" data-animation="fadeInUp" data-delay="700ms">Discover</a>
                             </div>
                         </div>

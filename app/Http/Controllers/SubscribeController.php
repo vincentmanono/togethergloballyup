@@ -33,9 +33,21 @@ class SubscribeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function subscribe(Request $request)
     {
-        //
+        $this->validate($request,[
+            'email'=>'required|email'
+        ]);
+
+
+            $post = new Subscribe();
+
+            $post->email=$request->input('email');
+
+            $validate=$post->save();
+            if($validate){
+                return redirect()->back()->with('success','You have successfuly subscribed to our newsletters.') ;
+            }
     }
 
     /**

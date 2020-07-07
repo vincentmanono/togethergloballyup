@@ -22,6 +22,7 @@ Route::get('/contact','PageController@contact')->name('contact');
 Route::get('/blog','PageController@blog')->name('blog');
 Route::get('/faq','PageController@faq')->name('faq');
 Route::get('/testimonial','PageController@testimonial')->name('testimonial');
+Route::post('/subscribe', 'SubscribeController@subscribe')->name('subscribe');
 
 Auth::routes();
 
