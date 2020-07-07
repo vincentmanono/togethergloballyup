@@ -61,6 +61,9 @@ class TestimonyController extends Controller
         if($validate){
             return redirect('/testimonies')->with('success','Testimony created successfully') ;
         }
+        else{
+            return redirect('/testimonies')->with('error','Testimony not added, please retry');
+        }
     }
 
     /**
