@@ -46,6 +46,7 @@
                                     <th>Name</th>
                                     <th>Amount</th>
                                     <th>Admin</th>
+                                    <th>Status</th>
                                     <th>Members</th>
                                     <th>Action</th>
                                 </tr>
@@ -55,19 +56,52 @@
                                         <td>{{  $chama->name  }}</td>
                                         <td scope="row">Ksh {{ number_format( $chama->amount,2,'.',',')  }}</td>
                                         <td>{{ $chama->admin->firstName . ' '. $chama->admin->lastName }}</td>
+                                        <td>
+                                            @if ($chama->activate)
+                                                <span class="text text-success text-bold " >Activated</span>
+                                            @else
+                                                <span class="text text-warning text-bold" >Not Activated</span>
+                                            @endif
+                                              </td>
+
                                         <td>{{ $chama->users->count() }}</td>
 
-                                        <td>
-                                             <a name=""  id="deletechama" class="btn btn-danger" href="#" role="button">Delete Chama</a>
+                                        <td class="row" >
 
-                                             <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modal-lg">
+
+                                              @can('update', $chama)
+                                                 <button type="button" class="btn btn-warning btn-sm col-6" data-toggle="modal" data-target="#modal-lg">
                                                 Edit Chama
                                               </button>
-
-                                              <form action="{{ route('admin.chama.destroy',$chama) }}" id="deletechamaform" method="post">
+                                              @elsecan('delete', $chama)
+                                                <form class="col-6" action="{{ route('admin.chama.destroy',$chama) }}" id="deletechamaform" method="post">
                                                 @method("DELETE")
                                                   @csrf
+                                                  <button type="submit"class="btn btn-danger">Delete Chama</button>
                                               </form>
+                                              @endcan
+
+
+
+                                        <form action="{{ route('user.chama.join') }}" method="post">
+                                            @csrf
+
+
+
+                                                <input type="hidden" class="form-control hidden "
+                                                name="chamaID" value="{{ $chama->id }}" >
+
+                                            @if ($chama->activate)
+                                                 <button type="submit" class="btn btn-primary">Join Chama</button>
+                                            @else
+                                            <button type="button" class="btn btn-primary disabled ">Join Chama</button>
+
+                                            @endif
+
+
+                                        </form>
+
+
 
 
                                          </td>

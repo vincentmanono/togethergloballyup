@@ -25,15 +25,24 @@ Route::get('/testimonial','PageController@testimonial')->name('testimonial');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('/home', 'HomeController@index')->name('home');
+    Route::get('/chamas', 'ChamaController@index')->name('admin.chama');
+    Route::get('/chamas/{chama}', 'ChamaController@show')->name('admin.chama.show');
+    Route::put('/chamas/{chama}', 'ChamaController@update')->name('admin.chama.update');
+    Route::get('/chama/create', 'ChamaController@create')->name('user.chama.create');
+    Route::post('/chama/store', 'ChamaController@store')->name('user.chama.store');
+    Route::post('join-chama', 'ChamaController@chamaJoin')->name('user.chama.join');
+
+});
 
 Route::group(['middleware' => ['auth','super']], function () {
 
+
+
     Route::prefix('power')->group(function(){
         Route::get('/', 'AdminPageController@dashboard')->name('admin.dashboard');
-        Route::get('/chamas', 'ChamaController@index')->name('admin.chama');
-        Route::get('/chamas/{chama}', 'ChamaController@show')->name('admin.chama.show');
-        Route::put('/chamas/{chama}', 'ChamaController@update')->name('admin.chama.update');
         Route::delete('/chamas/{chama}', 'ChamaController@destroy')->name('admin.chama.destroy');
         Route::get('/mpesa-all-transactions', 'AdminPageController@mpesaAll')->name('admin.mpesa.all');
         Route::get('/groups-admins', 'AdminPageController@groupsAdmins')->name('admin.groupsAdmins');

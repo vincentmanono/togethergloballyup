@@ -354,16 +354,16 @@
                                                         </button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    <form action="#" method="post">
+                                                    <form action="{{ route('register') }}" method="post">
                                                         @csrf
                                                         @method("POST")
 
                                                         <div class="form-group row">
 
                                                             <div class="col-md-6">
-                                                                <input id="firstname" type="text" placeholder="First Name" class="form-control @error('firstname') is-invalid @enderror" name="firstname" value="{{ old('firstname') }}" required autocomplete="firstname" autofocus>
+                                                                <input id="firstName" type="text" placeholder="First Name" class="form-control @error('firstName') is-invalid @enderror" name="firstName" value="{{ old('firstName') }}" required autocomplete="firstName" autofocus>
 
-                                                                @error('firstname')
+                                                                @error('firstName')
                                                                     <span class="invalid-feedback" role="alert">
                                                                         <strong>{{ $message }}</strong>
                                                                     </span>
@@ -371,9 +371,9 @@
                                                             </div>
 
                                                             <div class="col-md-6">
-                                                                <input id="lastname" type="text" placeholder="Last Name" class="form-control @error('lastname') is-invalid @enderror" name="lastname" value="{{ old('lastname') }}" required autocomplete="lastname" autofocus>
+                                                                <input id="lastName" type="text" placeholder="Last Name" class="form-control @error('lastName') is-invalid @enderror" name="lastName" value="{{ old('lastName') }}" required autocomplete="lastName" autofocus>
 
-                                                                @error('lastname')
+                                                                @error('lastName')
                                                                     <span class="invalid-feedback" role="alert">
                                                                         <strong>{{ $message }}</strong>
                                                                     </span>
@@ -391,6 +391,21 @@
                                                                 <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required placeholder="Email"  autocomplete="email">
 
                                                                 @error('email')
+                                                                    <span class="invalid-feedback" role="alert">
+                                                                        <strong>{{ $message }}</strong>
+                                                                    </span>
+                                                                @enderror
+
+                                                        </div>
+
+
+                                                        <div class="form-group ">
+                                                            <label for="phone" class=" col-form-label ">{{ __('Phone Number') }}</label>
+
+
+                                                                <input id="phone" type="phone" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone') }}" required placeholder="phone"  autocomplete="phone">
+
+                                                                @error('phone')
                                                                     <span class="invalid-feedback" role="alert">
                                                                         <strong>{{ $message }}</strong>
                                                                     </span>
@@ -419,13 +434,14 @@
                                                                 <input id="password-confirm" placeholder="Confirm Password" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
 
                                                         </div>
-                                                    </form>
+
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                    <button type="button" class="btn btn-primary">Save</button>
+                                                    <button type="button" class="btn btn-secondary text text-capitalize " data-dismiss="modal">Close</button>
+                                                    <button type="submit" class="btn btn-primary text text-capitalize ">Create Account</button>
                                                 </div>
                                             </div>
+                                         </form>
                                         </div>
                                     </div>
                                  </p>
@@ -459,7 +475,8 @@
                                                        </button>
                                                </div>
                                                <div class="modal-body">
-                                                   <form action="#" method="post">
+                                                   <form action="{{ route('login') }}" method="post">
+                                                    @csrf
                                                    <div class="form-group">
                                                      <label for="email">Your Email</label>
                                                      <input type="email" class="form-control" name="email" id="email"  placeholder="Your email">
@@ -472,7 +489,7 @@
                                                </div>
                                                <div class="modal-footer">
                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                   <button type="button" class="btn btn-primary">Login</button>
+                                                   <button type="submit" class="btn btn-primary">Login</button>
                                                </div>
                                             </form>
                                            </div>

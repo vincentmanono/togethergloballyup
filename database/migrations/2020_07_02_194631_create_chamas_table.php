@@ -19,6 +19,7 @@ class CreateChamasTable extends Migration
             $table->string("name") ;
             $table->double('amount') ;
             $table->longText("description")->nullable() ;
+            $table->boolean('activate') ->default(false) ;
             $table->timestamps();
         });
     }

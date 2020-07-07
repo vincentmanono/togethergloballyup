@@ -32,17 +32,70 @@
             </a>
 
           </li>
-          <li class="nav-item">
-            <a href="{{ route('admin.chama') }}" class="nav-link">
 
-              <i class="fa fa-object-group" aria-hidden="true"></i>
+
+
+
+
+
+
+
+          <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
+                <i class="fa fa-object-group" aria-hidden="true"></i>
               <p>
-                Manage Chamas
-                <span class="right badge badge-danger">New</span>
+                Chamas
+                <i class="right fas fa-angle-left"></i>
               </p>
             </a>
+            <ul class="nav nav-treeview">
+                <li class="nav-item">
+                    <a href="{{ route('admin.chama') }}" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>All Chamas</p>
+                    </a>
+                  </li>
+              <li class="nav-item">
+                <a href="{{ route('user.chama.create') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Create new Chama</p>
+                </a>
+              </li>
+               <li class="nav-item">
+                <a href="pages/charts/flot.html" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>My Subscribed Chama</p>
+                </a>
+              </li>
+              {{-- <li class="nav-item">
+                <a href="pages/charts/inline.html" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Inline</p>
+                </a>
+              </li>  --}}
+            </ul>
           </li>
-          <li class="nav-item has-treeview">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          @if (auth()->user()->role == 'super')
+               <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-copy"></i>
               <p>
@@ -61,6 +114,8 @@
 
             </ul>
           </li>
+          @endif
+
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
               <i class="fa fa-money" aria-hidden="true"></i>
