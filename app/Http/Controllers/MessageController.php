@@ -24,7 +24,7 @@ class MessageController extends Controller
      */
     public function create()
     {
-        return view();
+        return view('admin.messages.create');
     }
 
     /**

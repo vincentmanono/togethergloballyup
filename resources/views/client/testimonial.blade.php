@@ -52,7 +52,7 @@
                                         <h5 class="text text-capitalize" >{{ $testimony->user->firstName . ' '. $testimony->user->lastName }}</h5>
                                     <p class="text text-dark" >{{$testimony->body}}</p>
                                     <div class="text text-bold text-center" >
-                                        created on {{  ( $testimony->created_at)->diffForHumans() }}
+                                       posted  {{  ( $testimony->created_at)->diffForHumans() }}
                                     </div>
                                     </div>
                                 </div>
