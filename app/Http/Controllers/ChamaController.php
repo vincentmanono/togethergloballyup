@@ -48,6 +48,11 @@ class ChamaController extends Controller
         return view('admin.chama.subscribed')->with('chamas',$chamas) ;
     }
 
+    public function singleSubscribedChama(Chama $chama){
+        $chama = Chama::findOrFail($chama->id);
+        return view('admin.subscriptions.SingleChama',compact('chama')) ;
+    }
+
 
     public function index()
     {

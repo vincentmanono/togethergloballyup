@@ -28,7 +28,7 @@
                 <h3>Subscriptions | <small>List of all my Subscriptions.</small></h3>
                 <!-- Button trigger modal -->
                 <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#renew">
-                  New your Subscription
+                  Renew your Subscription
                 </button>
 
                 <!-- Modal -->
@@ -43,7 +43,8 @@
                             </div>
                             <div class="modal-body">
                                 <h3 class="text text-cyan text-center" >You can renew you Subscription with <span class="text text-success" > KSH 100 bob </span> only and access all our services</h3>
-                                <form action="" method="post">
+                        <form action="{{ route('user.renew.subscription') }}" method="post">
+                            @csrf
                                     <div class="form-group">
                                       <label for="">Phone Number</label>
                                       <input type="text" class="form-control" name="phone" id="phone" aria-describedby="helpId" placeholder="07********">

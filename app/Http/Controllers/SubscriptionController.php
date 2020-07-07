@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\payment\MpesaGateway;
 use App\Subscription;
 use Illuminate\Http\Request;
 
@@ -16,6 +17,7 @@ class SubscriptionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function index()
     {
         if ( auth()->user()->role == 'super' ) {
@@ -25,6 +27,18 @@ class SubscriptionController extends Controller
            $subscriptions = Subscription::where('user_id',auth()->user()->id)->orderBy('created_at', 'DESC')->paginate(100);
            return view('admin.subscriptions.mySubscription',compact('subscriptions'));
         }
+
+
+    }
+
+    public function renew(Request $request, MpesaGateway $mpesaGateway){
+        request()->validate(array( //|regex:/(^(\d+){1,10})/u
+            'phone' => 'required|numeric',
+        ));
+        $amount = 1;
+        $phone = $request->phone;
+
+      $response =   $mpesaGateway->make_payment($phone,$amount) ;
 
 
     }

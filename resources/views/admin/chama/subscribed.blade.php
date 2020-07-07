@@ -58,9 +58,12 @@
                                            <td> {{ $chama->amount }}</td>
                                            <td> {{ $chama->admin->firstName ." ".$chama->admin->lastName }}</td>
 
-                                           <td> {{ "one" }}</td>
-                                           <td>
-                                               <form action="{{ route('user.chama.exit') }}" method="post">
+                                           <td> {{ $chama->users->count() }}</td>
+                                           <td class="row" >
+                                               <a name="" id="" class="btn btn-primary col-6" href="{{ route('user.chama.subscribed.single',$chama) }}" role="button">
+                                                   <i class="fa fa-eye" aria-hidden="true"></i>
+                                                   View More</a>
+                                               <form action="{{ route('user.chama.exit') }}" class="col-6" method="post">
                                                    @csrf
                                                    <input type="hidden" name="chamaID" value="{{ $chama->id }}" >
                                                    <button type="submit" class="btn btn-danger">Unsubscribe</button>

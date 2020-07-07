@@ -37,8 +37,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('join-chama', 'ChamaController@chamaJoin')->name('user.chama.join');
     Route::post('exit-chama', 'ChamaController@exitChama')->name('user.chama.exit');
     Route::get('/subscribed-chama', 'ChamaController@subscribedChama')->name('user.chama.subscribed');
+    Route::get('/subscribed-chama/{chama}', 'ChamaController@singleSubscribedChama')->name('user.chama.subscribed.single');
     Route::get('all-subscription','SubscriptionController@index')->name('user.all.subscription') ;
-
+    Route::post('renew-subscription','SubscriptionController@renew')->name('user.renew.subscription') ;
+    Route::get('/token', 'SubscriptionController@token')->name('token');
 });
 
 Route::group(['middleware' => ['auth','super']], function () {
@@ -55,7 +57,6 @@ Route::group(['middleware' => ['auth','super']], function () {
         Route::get('all-subscription','SubscriptionController@index')->name('admin.all.subscription') ;
         Route::get('all-active-subscription','SubscriptionController@active')->name('admin.active.subscription') ;
     });
-
     Route::resource('messages', 'MessageController');
     Route::resource('/testimonies','TestimonyController');
 
