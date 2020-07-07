@@ -6,12 +6,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>All Chama</h1>
+                    <h1>All System Subscription</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Home</a></li>
-                        <li class="breadcrumb-item active">Chama</li>
+                        <li class="breadcrumb-item active">Subscriptions</li>
                     </ol>
                 </div>
             </div>
@@ -25,7 +25,7 @@
         <!-- Default box -->
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title">Groups and Admin name</h3>
+                <h3>Subscriptions | <small>List of all Subscriptions.</small></h3>
 
                 <div class="card-tools">
                     <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
@@ -38,43 +38,47 @@
                 <table id="example1" class="table table-bordered table-striped">
                     <thead>
                     <tr>
-                      <th>Chama</th>
-                      <th>Amount</th>
-                      <th>members</th>
-                      <th>Admin</th>
-                      <th>Created</th>
-                      <th>Action</th>
+                        <th>User Name</th>
+                        <th>Start Date</th>
+                        <th>Expiry Date</th>
+                        <th>Amount</th>
+                        <th>Phone</th>
+                        <th>Status</th>
                     </tr>
                     </thead>
                     <tbody>
-                        @foreach ($chamas as $chama)
+                        @forelse ($subscriptions as $sub)
                             <tr>
-                      <td>{{ $chama->name }}</td>
-                      <td> {{"Ksh ". $chama->amount }} </td>
-                      <td> {{ $chama->users->count()}}</td>
-                     <td>{{ $chama->admin->firstName . ' '. $chama->admin->lastName }}</td>
+                      <td>{{ $sub->user->firstName . '  '.$sub->user->lastName }}</td>
+                      <td>{{ date('l jS M, h:i a', strtotime($sub->start_date)) }}</td>
+                      <td>{{ date('l jS M, h:i a', strtotime($sub->expiry_date)) }}</td>
 
-                      <td> {{ ($chama->created_at)->diffForHumans() }} </td>
+                      <td>{{ number_format($sub->amount,2,'.',',') }} </td>
+                      <td>{{ $sub->user->phone }}</td>
                       <td>
-                          <a name="chama" id="" class="btn btn-primary" href="{{ route('admin.chama.show',$chama->id) }}" role="button">
-                              <i class="fa fa-eye-slash" aria-hidden="true"></i>
-                                  View More
-                              </i>
-                          </a>
-                      </td>
-                    </tr>
+                          @if ( $sub->expiry_date >= now() )
+                              <span class="text text-success" >Active</span>
+                          @else
+                              <span class="text text-danger" >Domant</span>
+                          @endif
 
-                        @endforeach
+                      </td>
+
+                        @empty
+                        <td>{{ "No data yet" }}</td>
+                        @endforelse
+                     </tr>
+
 
                     </tbody>
                     <tfoot>
                     <tr>
+                        <th>User Name</th>
+                        <th>Start Date</th>
+                        <th>Expiry Date</th>
                         <th>Chama</th>
                         <th>Amount</th>
-                        <th>Description</th>
-                        <th>Admin</th>
-                        <th>Created</th>
-                        <th>Action</th>
+                        <th>Phone</th>
                     </tr>
                     </tfoot>
                   </table>
@@ -91,3 +95,4 @@
     <!-- /.content -->
 </div>
 @endsection
+

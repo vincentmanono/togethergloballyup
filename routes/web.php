@@ -28,22 +28,20 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::group(['middleware' => ['auth']], function () {
+Route::group(['middleware' => ['auth','super']], function () {
+
     Route::prefix('power')->group(function(){
         Route::get('/', 'AdminPageController@dashboard')->name('admin.dashboard');
         Route::get('/chamas', 'ChamaController@index')->name('admin.chama');
         Route::get('/chamas/{chama}', 'ChamaController@show')->name('admin.chama.show');
         Route::put('/chamas/{chama}', 'ChamaController@update')->name('admin.chama.update');
         Route::delete('/chamas/{chama}', 'ChamaController@destroy')->name('admin.chama.destroy');
-
         Route::get('/mpesa-all-transactions', 'AdminPageController@mpesaAll')->name('admin.mpesa.all');
-
         Route::get('/groups-admins', 'AdminPageController@groupsAdmins')->name('admin.groupsAdmins');
-
-
         Route::get('/chama-admins', 'AdminPageController@chamaAdmins')->name('admin.chamaAdmins');
         Route::get('/testimonies', 'AdminPageController@testimonies')->name('admin.testimonies');
-
+        Route::get('all-subscription','SubscriptionController@index')->name('admin.all.subscription') ;
+        Route::get('all-active-subscription','SubscriptionController@active')->name('admin.active.subscription') ;
     });
 
     Route::resource('messages', 'MessageController');

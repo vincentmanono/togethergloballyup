@@ -46,7 +46,7 @@
                                     <th>Name</th>
                                     <th>Amount</th>
                                     <th>Admin</th>
-                                    <th>Status</th>
+                                    <th>Members</th>
                                     <th>Action</th>
                                 </tr>
                                 </thead>
@@ -55,7 +55,7 @@
                                         <td>{{  $chama->name  }}</td>
                                         <td scope="row">Ksh {{ number_format( $chama->amount,2,'.',',')  }}</td>
                                         <td>{{ $chama->admin->firstName . ' '. $chama->admin->lastName }}</td>
-                                        <td>{{ 'Active' }}</td>
+                                        <td>{{ $chama->users->count() }}</td>
 
                                         <td>
                                              <a name=""  id="deletechama" class="btn btn-danger" href="#" role="button">Delete Chama</a>

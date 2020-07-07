@@ -138,11 +138,12 @@
           $("#logoutform").submit()
     })
 
-    $("#deletechama").on("click",(event)=>{
+    // $("#deletechama").on("click",(event)=>{
 
-        event.preventDefault();
-          $("#deletechamaform").submit()
-    })
+    //     alert("test")
+    //     event.preventDefault();
+    //       $("#deletechamaform").submit()
+    // })
 
 
 
