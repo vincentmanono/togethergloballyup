@@ -23,22 +23,31 @@ class ChamaController extends Controller
 
     public function chamaJoin(Request $request){
         $user = auth()->user() ;
-
         $chama = Chama::find($request->input('chamaID'))  ;
+        $user->chamaSubscribed()->attach([$chama->id]);
+        $request->session()->flash('success', "You have successfully subscribed to " . $chama->name);
 
-        foreach ( $user->chamaSubscribed as $ch) {
-
-            if ( $ch->id == $chama->id ) {
-                $request->session()->flash('error', "You have already subscribed to this chama");
-                return back();
-            } else {
-                $user->chamaSubscribed()->attach($chama->id) ;
-            }
-
-        }
-        $request->session()->flash('success', "You have successfully subscribed to " , $chama->name);
         return back();
+
     }
+    public function exitChama(Request $request){
+        $user = auth()->user() ;
+        $chama = Chama::find($request->input('chamaID'))  ;
+        $user->chamaSubscribed()->detach([$chama->id]);
+        $request->session()->flash('success', "You have successfully exit from  " . $chama->name . " chama");
+
+        return back();
+
+    }
+
+
+    public function subscribedChama()
+    {
+        $chamas = auth()->user()->chamaSubscribed;
+
+        return view('admin.chama.subscribed')->with('chamas',$chamas) ;
+    }
+
 
     public function index()
     {

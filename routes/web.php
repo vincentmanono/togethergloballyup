@@ -35,6 +35,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/chama/create', 'ChamaController@create')->name('user.chama.create');
     Route::post('/chama/store', 'ChamaController@store')->name('user.chama.store');
     Route::post('join-chama', 'ChamaController@chamaJoin')->name('user.chama.join');
+    Route::post('exit-chama', 'ChamaController@exitChama')->name('user.chama.exit');
+    Route::get('/subscribed-chama', 'ChamaController@subscribedChama')->name('user.chama.subscribed');
+    Route::get('all-subscription','SubscriptionController@index')->name('user.all.subscription') ;
 
 });
 

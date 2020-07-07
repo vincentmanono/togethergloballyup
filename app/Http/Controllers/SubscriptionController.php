@@ -18,8 +18,15 @@ class SubscriptionController extends Controller
      */
     public function index()
     {
-        $subscriptions = Subscription::orderBy('created_at', 'DESC')->paginate(100);
-        return view('admin.subscriptions.allSubscriptions',compact('subscriptions')) ;
+        if ( auth()->user()->role == 'super' ) {
+            $subscriptions = Subscription::orderBy('created_at', 'DESC')->paginate(100);
+            return view('admin.subscriptions.allSubscriptions',compact('subscriptions')) ;
+        } else {
+           $subscriptions = Subscription::where('user_id',auth()->user()->id)->orderBy('created_at', 'DESC')->paginate(100);
+           return view('admin.subscriptions.mySubscription',compact('subscriptions'));
+        }
+
+
     }
 
 

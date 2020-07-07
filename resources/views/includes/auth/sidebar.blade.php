@@ -14,7 +14,7 @@
           <img src="{{ asset('admin/dist/img/user2-160x160.jpg') }}" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block"> {{ auth()->user()->firstName }}</a>
+          <a href="#" class="d-block"> {{ auth()->user()->firstName . ' '.auth()->user()->lastName }}</a>
         </div>
       </div>
 
@@ -24,7 +24,7 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item has-treeview menu-open">
-            <a href="#" class="nav-link active">
+            <a href="{{ route('home') }}" class="nav-link active">
               <i class="fa fa-home" aria-hidden="true"></i>
               <p>
                 Dashboard
@@ -62,7 +62,7 @@
                 </a>
               </li>
                <li class="nav-item">
-                <a href="pages/charts/flot.html" class="nav-link">
+                <a href="{{ route('user.chama.subscribed') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>My Subscribed Chama</p>
                 </a>
@@ -75,25 +75,6 @@
               </li>  --}}
             </ul>
           </li>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
           @if (auth()->user()->role == 'super')
                <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
@@ -162,20 +143,25 @@
               </p>
             </a>
             <ul class="nav nav-treeview">
-                <li class="nav-item">
-                    <a href="{{ route('admin.all.subscription') }}" class="nav-link">
-                        <i class="far fa-circle nav-icon"></i>
-                      <p>All Subscriptions</p>
-                    </a>
+
+                @if ( auth()->user()->role == 'super' )
+                   <li class="nav-item">
+
+                        <a href="{{ route('admin.all.subscription') }}" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                        <p>All Subscriptions</p>
+                        </a>
                   </li>
-              {{-- <li class="nav-item">
-                <a href="pages/charts/chartjs.html" class="nav-link">
+                @endif
+
+              <li class="nav-item">
+                <a href="{{ route('user.all.subscription') }}" class="nav-link">
 
                   <i class="fas fa-lock-open    "></i>
-                  <p>Active Subscribers</p>
+                  <p>My Subscription</p>
                 </a>
-              </li>
-               <li class="nav-item">
+               </li>
+              {{-- <li class="nav-item">
                 <a href="pages/charts/flot.html" class="nav-link">
                   <i class="fa fa-lock" aria-hidden="true"></i>
                   <p>Locked Subscribers</p>
