@@ -30,7 +30,7 @@ class MpesaGateway // extends AnotherClass implements Interface
         $access_token = $result->access_token;
         return $access_token;
     }
-    public function make_payment ( $phoneNumber, $amount,$reference = "Subscription Payment")
+    public function make_payment ( $phoneNumber, $amount,$reference = "Subscription Payment",$CallBackURL = "http://togethergloballyup.com")
     {
         $phoneNumber = intval($phoneNumber) ;
         $phoneNumber = '254' . $phoneNumber;
@@ -60,7 +60,7 @@ class MpesaGateway // extends AnotherClass implements Interface
             "PartyA" => $phoneNumber,
             "PartyB" => $shortcode,
             "PhoneNumber" => $phoneNumber,
-            "CallBackURL" =>  "http://togethergloballyup.com",
+            "CallBackURL" =>  $CallBackURL,
             "QueueTimeOutURL" => "http://togethergloballyup.com/",
             "AccountReference" => "Subscription Payment",
             "TransactionDesc" => "Subscription Payment"

@@ -2,9 +2,11 @@
 
 namespace App\Providers;
 
+use DateTime;
+use DateTimeZone;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
-use Schema;
-
+use Illuminate\Support\Facades\View;
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -24,6 +26,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        Schema::defaultStringLength(191);
+        Schema::defaultStringLength(191); //Solved by increasing StringLength
+        $dt = new DateTime("now", new DateTimeZone('Africa/Nairobi')); //first argument "must" be a string
+        $now = $dt->format('Y-m-d H:i:s');
+        View::share('current_time', $now);
     }
 }

@@ -62,3 +62,4 @@ Route::group(['middleware' => ['auth','super']], function () {
 
 });
 
+Route::any('/handle-result', 'SubscriptionController@handle_result')->name('handle_subscription_result_api');

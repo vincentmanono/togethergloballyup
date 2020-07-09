@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\payment\MpesaGateway;
+use App\User;
+use App\Payment;
 use App\Subscription;
 use Illuminate\Http\Request;
+use App\payment\MpesaGateway;
+use Illuminate\Support\Facades\Auth;
 
 class SubscriptionController extends Controller
 {
@@ -38,10 +41,73 @@ class SubscriptionController extends Controller
         $amount = 1;
         $phone = $request->phone;
 
-      $response =   $mpesaGateway->make_payment($phone,$amount) ;
+      $response =   $mpesaGateway->make_payment($phone,$amount,"Ubscription Payment",route('handle_subscription_result_api')) ;
+      $result = Payment::create([
+        'user_id' => Auth::user()->id,
+        'merchantRequestID' => $response['MerchantRequestID'],
+        'checkoutRequestID' => $response['CheckoutRequestID'],
+        'responseCode' => $response['ResponseCode'],
+        'responseDescription' => $response['ResponseDescription'],
+        'customerMessage' => $response['CustomerMessage'],
+        'phoneNumber' => $phone,
+        'amount' => $amount,
+    ]);
+    return redirect()->route('plans')->with('success', $result->customerMessage);
+    }
 
+
+    public function handle_result(Request $request)
+    {
+        $data = $request->all();
+        $data = $data['Body']['stkCallback'];
+        $result = Payment::where('checkoutRequestID', $data['CheckoutRequestID'])->where('active', true)->first();
+        $result->active = false;
+        $result->result = json_encode($data);
+        if($result == null || $result->merchantRequestID != $data['MerchantRequestID'])
+            return null;
+        $result->resultCode = $data['ResultCode'];
+        $result->resultDesc = $data['ResultDesc'];
+        $result->save();
+        if($result->resultCode == 0){
+            $items = $data['CallbackMetadata']['Item'];
+            foreach($items as $item){
+                if($item['Name'] == 'Amount' && array_key_exists('Value', $item))
+                    $result->amount = $item['Value'];
+                elseif($item['Name'] == 'MpesaReceiptNumber' && array_key_exists('Value', $item))
+                    $result->mpesaReceiptNumber = $item['Value'];
+                elseif($item['Name'] == 'Balance' && array_key_exists('Value', $item))
+                    $result->balance = $item['Value'];
+                elseif($item['Name'] == 'TransactionDate' && array_key_exists('Value', $item))
+                    $result->transactionDate = date('Y-m-d H:i:s', strtotime($item['Value']));
+            }
+            if($result->save()){
+                $user = User::find($result->user_id);
+                $days = 10;
+                $now = now()->format('Y-m-d H:i:s');
+                if($user->subscription_expiry != null && $user->subscription_expiry > $now){
+                    $start_date = $user->subscription_expiry;
+                    $user->subscription_expiry = date('Y-m-d H:i:s', strtotime('+' . $days . ' day', strtotime($user->subscription_expiry)));
+                }
+                else{
+                    $start_date = $now;
+                    $user->subscription_expiry = date('Y-m-d H:i:s', strtotime('+' . $days . ' day', strtotime($now)));
+                }
+                $user->save();
+                Subscription::create([
+                    'user_id' => $result->user_id,
+                    'amount' => $result->amount,
+                    'payment_id' => $result->id,
+                    'expiry_date' => $user->subscription_expiry,
+                    'start_date' => $start_date,
+                ]);
+            }
+        }
 
     }
+
+
+
+
 
 
     /**
