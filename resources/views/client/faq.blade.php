@@ -30,7 +30,7 @@
                 <div class="accordions mb-100" id="accordion" role="tablist" aria-multiselectable="true">
                     <!-- single accordian area -->
                     <div class="panel single-accordion">
-                        <h6><a role="button" class="" aria-expanded="true" aria-controls="collapseOne" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">Morbi ut dapibus dui. Sed ut iaculis elit, quis varius
+                        <h6><a role="button" class="" aria-expanded="true" aria-controls="collapseOne" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">How does the online merry-go-round work?
                                 <span class="accor-open"><i class="fa fa-plus" aria-hidden="true"></i></span>
                                 <span class="accor-close"><i class="fa fa-minus" aria-hidden="true"></i></span>
                                 </a></h6>
@@ -41,7 +41,7 @@
                     <!-- single accordian area -->
                     <div class="panel single-accordion">
                         <h6>
-                            <a role="button" class="collapsed" aria-expanded="true" aria-controls="collapseTwo" data-parent="#accordion" data-toggle="collapse" href="#collapseTwo">Ert dapibus dui. Sed ut iaculis elit, quis vgyu
+                            <a role="button" class="collapsed" aria-expanded="true" aria-controls="collapseTwo" data-parent="#accordion" data-toggle="collapse" href="#collapseTwo">What are the benefits of joining the online merry-go-round?
                                     <span class="accor-open"><i class="fa fa-plus" aria-hidden="true"></i></span>
                                     <span class="accor-close"><i class="fa fa-minus" aria-hidden="true"></i></span>
                                     </a>
@@ -53,7 +53,7 @@
                     <!-- single accordian area -->
                     <div class="panel single-accordion">
                         <h6>
-                            <a role="button" aria-expanded="true" aria-controls="collapseThree" class="collapsed" data-parent="#accordion" data-toggle="collapse" href="#collapseThree">Ert dapibus dui. Sed ut iaculis elit, quis vgyu
+                            <a role="button" aria-expanded="true" aria-controls="collapseThree" class="collapsed" data-parent="#accordion" data-toggle="collapse" href="#collapseThree">What is the mode of payment?"
                                     <span class="accor-open"><i class="fa fa-plus" aria-hidden="true"></i></span>
                                     <span class="accor-close"><i class="fa fa-minus" aria-hidden="true"></i></span>
                                 </a>
@@ -71,7 +71,7 @@
                 <div class="accordions mb-100" id="accordion" role="tablist" aria-multiselectable="true">
                     <!-- single accordian area -->
                     <div class="panel single-accordion">
-                        <h6><a role="button" class="" aria-expanded="true" aria-controls="collapseFour" data-toggle="collapse" data-parent="#accordion" href="#collapseFour">Morbi ut dapibus dui. Sed ut iaculis elit, quis varius
+                        <h6><a role="button" class="" aria-expanded="true" aria-controls="collapseFour" data-toggle="collapse" data-parent="#accordion" href="#collapseFour">What do i need to register?
                                 <span class="accor-open"><i class="fa fa-plus" aria-hidden="true"></i></span>
                                 <span class="accor-close"><i class="fa fa-minus" aria-hidden="true"></i></span>
                                 </a></h6>
@@ -82,7 +82,7 @@
                     <!-- single accordian area -->
                     <div class="panel single-accordion">
                         <h6>
-                            <a role="button" class="collapsed" aria-expanded="true" aria-controls="collapseFive" data-parent="#accordion" data-toggle="collapse" href="#collapseFive">Ert dapibus dui. Sed ut iaculis elit, quis vgyu
+                            <a role="button" class="collapsed" aria-expanded="true" aria-controls="collapseFive" data-parent="#accordion" data-toggle="collapse" href="#collapseFive">What are the qualifications for one to join a merry-go-round?
                                     <span class="accor-open"><i class="fa fa-plus" aria-hidden="true"></i></span>
                                     <span class="accor-close"><i class="fa fa-minus" aria-hidden="true"></i></span>
                                     </a>
@@ -94,7 +94,7 @@
                     <!-- single accordian area -->
                     <div class="panel single-accordion">
                         <h6>
-                            <a role="button" aria-expanded="true" aria-controls="collapseSix" class="collapsed" data-parent="#accordion" data-toggle="collapse" href="#collapseSix">Ert dapibus dui. Sed ut iaculis elit, quis vgyu
+                            <a role="button" aria-expanded="true" aria-controls="collapseSix" class="collapsed" data-parent="#accordion" data-toggle="collapse" href="#collapseSix">How much does one pay for registration?
                                     <span class="accor-open"><i class="fa fa-plus" aria-hidden="true"></i></span>
                                     <span class="accor-close"><i class="fa fa-minus" aria-hidden="true"></i></span>
                                 </a>
