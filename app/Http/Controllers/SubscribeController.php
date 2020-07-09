@@ -7,10 +7,7 @@ use Illuminate\Http\Request;
 
 class SubscribeController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
+
     /**
      * Display a listing of the resource.
      *
@@ -43,16 +40,20 @@ class SubscribeController extends Controller
         $this->validate($request,[
             'email'=>'required|email'
         ]);
+        $email = $request->input('email') ;
+       $check =  Subscribe::where('email',$email)->count();
+       if ( $check > 0) {
+           $request->session()->flash('error', "You already regestered to our news letter");
 
-
-            $post = new Subscribe();
-
-            $post->email=$request->input('email');
-
-            $validate=$post->save();
-            if($validate){
-                return redirect()->back()->with('success','You have successfuly subscribed to our newsletters.') ;
+       } else {
+           $subscribe = new Subscribe();
+            $subscribe->email=$request->input('email');
+            if($subscribe->save()){
+                $request->session()->flash('success','You have successfuly subscribed to our newsletters.') ;
             }
+       }
+
+       return back() ;
     }
 
     /**

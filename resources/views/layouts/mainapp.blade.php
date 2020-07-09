@@ -21,13 +21,6 @@
 @include('includes.messages')
 <body>
 
-    <!-- ##### Header Area Start ##### -->
-   @include('includes.header')
-
-   @include('includes.messages')
-    <!-- ##### Header Area End ##### -->
-{{-- content --}}
-
 @yield('content')
 {{-- end of content --}}
     <!-- ##### Newsletter Area Start ###### -->
