@@ -25,8 +25,8 @@
         <!-- Default box -->
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title">Groups and Admin name</h3>
-
+                <h3 class="card-title mr-3">Groups and Admin name</h3>
+                <a href="" class="btn btn-primary ml-4">Create Chama</a>
                 <div class="card-tools">
                     <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
       <i class="fas fa-minus"></i></button>
@@ -42,7 +42,8 @@
                       <th>Amount</th>
                       <th>members</th>
                       <th>Admin</th>
-                      <th>Created</th>
+                      <th>Status</th>
+
                       <th>Action</th>
                     </tr>
                     </thead>
@@ -54,7 +55,13 @@
                       <td> {{ $chama->users->count()}}</td>
                      <td>{{ $chama->admin->firstName . ' '. $chama->admin->lastName }}</td>
 
-                      <td> {{ ($chama->created_at)->diffForHumans() }} </td>
+                      <td>
+                          @if ($chama->activate)
+                              <span class="text text-success text-bold " >Activated</span>
+                          @else
+                              <span class="text text-warning text-bold" >Not Activated</span>
+                          @endif
+                            </td>
                       <td>
                           <a name="chama" id="" class="btn btn-primary" href="{{ route('admin.chama.show',$chama->id) }}" role="button">
                               <i class="fa fa-eye-slash" aria-hidden="true"></i>

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Chama;
+use App\Http\Requests\ChamaStoreRequest;
+use App\User;
 use Illuminate\Http\Request;
 
 class ChamaController extends Controller
@@ -19,10 +21,41 @@ class ChamaController extends Controller
         $this->middleware('auth');
     }
 
+    public function chamaJoin(Request $request){
+        $user = auth()->user() ;
+        $chama = Chama::find($request->input('chamaID'))  ;
+        $user->chamaSubscribed()->attach([$chama->id]);
+        $request->session()->flash('success', "You have successfully subscribed to " . $chama->name);
+
+        return back();
+
+    }
+    public function exitChama(Request $request){
+        $user = auth()->user() ;
+        $chama = Chama::find($request->input('chamaID'))  ;
+        $user->chamaSubscribed()->detach([$chama->id]);
+        $request->session()->flash('success', "You have successfully exit from  " . $chama->name . " chama");
+
+        return back();
+
+    }
+
+
+    public function subscribedChama()
+    {
+        $chamas = auth()->user()->chamaSubscribed;
+
+        return view('admin.chama.subscribed')->with('chamas',$chamas) ;
+    }
+
+    public function singleSubscribedChama(Chama $chama){
+        $chama = Chama::findOrFail($chama->id);
+        return view('admin.subscriptions.SingleChama',compact('chama')) ;
+    }
+
+
     public function index()
     {
-
-
         $chamas = Chama::all() ;
         return view('admin.chama.chamas')->with('chamas',$chamas) ;
     }
@@ -43,9 +76,17 @@ class ChamaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ChamaStoreRequest $request)
     {
-
+        $user = auth()->user() ;
+        $user->chama()->create([
+            'name'=>$request->input('name'),
+            'amount'=>$request->input('amount'),
+            'description'=>$request->input('description'),
+            'activate'=>false,
+        ]);
+        $request->session()->flash('success', "Your chama created successfully");
+      return  redirect()->route('admin.chama') ;
     }
 
     /**
@@ -80,6 +121,7 @@ class ChamaController extends Controller
      */
     public function update(Request $request, Chama $chama)
     {
+        $this->authorize('update',$chama) ;
         $chama = Chama::findOrFail($chama->id);
 
         $this -> validate($request,[
@@ -111,6 +153,7 @@ class ChamaController extends Controller
      */
     public function destroy(Chama $chama)
     {
+        $this->authorize('delete',$chama) ;
         $chama = Chama::findOrFail($chama->id);
         if ($chama->user_id == auth()->user()->id || auth()->user()->role == 'super') {
             if (  $chama->delete()) {

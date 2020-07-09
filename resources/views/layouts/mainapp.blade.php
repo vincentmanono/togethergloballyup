@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="assets/style.css">
 
 </head>
-
+@include('includes.messages')
 <body>
 
     <!-- ##### Header Area Start ##### -->

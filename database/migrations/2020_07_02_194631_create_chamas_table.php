@@ -18,7 +18,9 @@ class CreateChamasTable extends Migration
             $table->string("user_id") ;
             $table->string("name") ;
             $table->double('amount') ;
+            $table->dateTime('duration')->nullable() ->default(now()) ;
             $table->longText("description")->nullable() ;
+            $table->boolean('activate') ->default(false) ;
             $table->timestamps();
         });
     }

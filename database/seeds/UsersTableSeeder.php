@@ -39,5 +39,18 @@ class UsersTableSeeder extends Seeder
         'remember_token' => Str::random(10),
         ]
     );
+
+    User::create(  [
+        'firstName'=>'user',
+        'lastName' =>'Normal',
+        'email' =>'user@paviham.com',
+        'role'=>'user',
+        'phone'=>1234567899,
+        'email_verified_at' => now(),
+    'password' => Hash::make("password") ,
+    'remember_token' => Str::random(10),
+    ]
+);
+
     }
 }
