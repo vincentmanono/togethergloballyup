@@ -43,7 +43,7 @@ class User extends Authenticatable
 
    public function chamaSubscribed() //for users to subscribe to chamas
     {
-        return $this->belongsToMany('App\chama')->using('App\ChamaUser');
+        return $this->belongsToMany('App\Chama')->using('App\ChamaUser');
     }
 
     public function subscriptions()
