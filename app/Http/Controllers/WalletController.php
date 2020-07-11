@@ -3,36 +3,23 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use App\Wallet;
 use App\Payment;
-use App\Subscription;
 use Illuminate\Http\Request;
 use App\payment\MpesaGateway;
 use Illuminate\Support\Facades\Auth;
 
-class SubscriptionController extends Controller
+class WalletController extends Controller
 {
-
-    public function index()
+    public function deposite(Request $request , MpesaGateway $mpesa)
     {
-        if ( auth()->user()->role == 'super' ) {
-            $subscriptions = Subscription::orderBy('created_at', 'DESC')->paginate(100);
-            return view('admin.subscriptions.allSubscriptions',compact('subscriptions')) ;
-        } else {
-           $subscriptions = Subscription::where('user_id',auth()->user()->id)->orderBy('created_at', 'DESC')->paginate(100);
-           return view('admin.subscriptions.mySubscription',compact('subscriptions'));
-        }
-
-
-    }
-
-    public function renew(Request $request, MpesaGateway $mpesaGateway){
-        request()->validate(array( //|regex:/(^(\d+){1,10})/u
+        request()->validate(array(
             'phone' => 'required|numeric',
         ));
-        $amount = 1;
-        $phone = $request->phone;
+        $phone = $request->phone ;
+        $amount = $request->amount ;
+      $response =   $mpesa->make_payment($phone,$amount,"Deposite to wallet",route('handle_deposite_result_api'));
 
-      $response =   $mpesaGateway->make_payment($phone,$amount,"Subscription Payment",route('handle_subscription_result_api')) ;
       $result = Payment::create([
         'user_id' => Auth::user()->id,
         'merchantRequestID' => $response['MerchantRequestID'],
@@ -43,9 +30,9 @@ class SubscriptionController extends Controller
         'phoneNumber' => $phone,
         'amount' => $amount,
     ]);
-    return back()->with('success', $result->customerMessage);
-    }
 
+
+    }
 
     public function handle_result(Request $request)
     {
@@ -75,24 +62,24 @@ class SubscriptionController extends Controller
             }
             if($result->save()){
                 $user = User::find($result->user_id);
-                $days = 10;
-                $now = now()->format('Y-m-d H:i:s');
-                if($user->subscription_expiry != null && $user->subscription_expiry > $now){
-                    $start_date = $user->subscription_expiry;
-                    $user->subscription_expiry = date('Y-m-d H:i:s', strtotime('+' . $days . ' day', strtotime($user->subscription_expiry)));
+
+                $deposited_at = now()->format('Y-m-d H:i:s');
+
+                $wallet = Wallet::where('user_id',$user->id);
+                if ( $wallet->count() > 0 ) {
+                    # code...
+                    $wallet->amount  += $result->amount ;
+                $wallet->deposite_at = $deposited_at ;
+                $wallet->save();
+                } else {
+                    # code...
+                    $user->wallet()->create([
+                        'amount' => $result->amount ,
+                       'deposite_at' => $deposited_at
+                    ]);
                 }
-                else{
-                    $start_date = $now;
-                    $user->subscription_expiry = date('Y-m-d H:i:s', strtotime('+' . $days . ' day', strtotime($now)));
-                }
-                $user->save();
-                Subscription::create([
-                    'user_id' => $result->user_id,
-                    'amount' => $result->amount,
-                    'payment_id' => $result->id,
-                    'expiry_date' => $user->subscription_expiry,
-                    'start_date' => $start_date,
-                ]);
+
+
             }
         }
 
@@ -101,7 +88,15 @@ class SubscriptionController extends Controller
 
 
 
-
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        //
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -127,10 +122,10 @@ class SubscriptionController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Subscription  $subscription
+     * @param  \App\Wallet  $wallet
      * @return \Illuminate\Http\Response
      */
-    public function show(Subscription $subscription)
+    public function show(Wallet $wallet)
     {
         //
     }
@@ -138,10 +133,10 @@ class SubscriptionController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Subscription  $subscription
+     * @param  \App\Wallet  $wallet
      * @return \Illuminate\Http\Response
      */
-    public function edit(Subscription $subscription)
+    public function edit(Wallet $wallet)
     {
         //
     }
@@ -150,10 +145,10 @@ class SubscriptionController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Subscription  $subscription
+     * @param  \App\Wallet  $wallet
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Subscription $subscription)
+    public function update(Request $request, Wallet $wallet)
     {
         //
     }
@@ -161,10 +156,10 @@ class SubscriptionController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Subscription  $subscription
+     * @param  \App\Wallet  $wallet
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Subscription $subscription)
+    public function destroy(Wallet $wallet)
     {
         //
     }

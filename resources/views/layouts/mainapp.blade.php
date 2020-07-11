@@ -20,8 +20,9 @@
 </head>
 @include('includes.messages')
 <body>
-
+@include('includes.header')
 @yield('content')
+
 {{-- end of content --}}
     <!-- ##### Newsletter Area Start ###### -->
    @include('includes.newsletter')

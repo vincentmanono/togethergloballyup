@@ -17,3 +17,11 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+
+
+Route::any('/handle-result', 'SubscriptionController@handle_result')->name('handle_subscription_result_api');
+
+Route::any('/habdle-timeout', "SubscriptionController@edit")->name('handle_QueueTimeOutURL');
+
+Route::any('/handle-deposite-result', 'WalletController@handle_result')->name('handle_deposite_result_api');

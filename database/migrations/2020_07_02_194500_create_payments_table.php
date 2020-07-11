@@ -16,14 +16,13 @@ class CreatePaymentsTable extends Migration
         Schema::create('payments', function (Blueprint $table) {
             $table->id();
             $table->string("user_id") ->nullable();
-            $table->string("chama_id") ->nullable();
-            $table->string("phone") ->nullable();
-            $table->string("MerchantRequestID")->nullable();
-            $table->string("CheckoutRequestID")->nullable();
-            $table->string("ResponseCode")->nullable();
-            $table->string("ResultDesc")->nullable();
-            $table->string("ResponseDescription")->nullable();
-            $table->string("ResultCode")->nullable();
+            $table->string("result")->nullable() ;
+            $table->string("merchantRequestID")->nullable();
+            $table->string("checkoutRequestID")->nullable();
+            $table->string("responseCode")->nullable();
+            $table->string("resultDesc")->nullable();
+            $table->string("responseDescription")->nullable();
+            $table->string("resultCode")->nullable();
             $table->string('customerMessage')->nullable();
             $table->string('mpesaReceiptNumber')->nullable();
             $table->string('phoneNumber')->nullable();

@@ -23,4 +23,12 @@ class Chama extends Model
         return $this->hasMany(Payment::class);
     }
 
+
+
+    public function wallets()
+    {
+        return $this->hasManyThrough(Wallet::class, User::class);
+    }
+
+
 }

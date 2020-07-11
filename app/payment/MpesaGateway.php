@@ -60,8 +60,8 @@ class MpesaGateway // extends AnotherClass implements Interface
             "PartyA" => $phoneNumber,
             "PartyB" => $shortcode,
             "PhoneNumber" => $phoneNumber,
-            "CallBackURL" =>  $CallBackURL,
-            "QueueTimeOutURL" => "http://togethergloballyup.com/",
+            "CallBackURL" =>  route('handle_subscription_result_api') ,
+            "QueueTimeOutURL" =>route('handle_QueueTimeOutURL'),
             "AccountReference" => "Subscription Payment",
             "TransactionDesc" => "Subscription Payment"
         ];
@@ -75,7 +75,7 @@ class MpesaGateway // extends AnotherClass implements Interface
             "PartyA" => $phoneNumber,
             "PartyB" => $shortcode,
             "PhoneNumber" => $phoneNumber,
-            "CallBackURL" =>  "http://togethergloballyup.com",
+            "CallBackURL" =>  $CallBackURL,
             "AccountReference" =>$reference ,
             "TransactionDesc" => "Subscription Payment",
         ];
@@ -90,7 +90,7 @@ class MpesaGateway // extends AnotherClass implements Interface
             return  $response;
         } catch (\Throwable $th) {
 
-            return null;
+            return back()->with('error',"error occurred");
         }
     }
 }

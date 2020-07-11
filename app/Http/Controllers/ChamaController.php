@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Chama;
 use App\Http\Requests\ChamaStoreRequest;
 use App\User;
+use App\Wallet;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ChamaController extends Controller
 {
@@ -43,14 +45,18 @@ class ChamaController extends Controller
 
     public function subscribedChama()
     {
+
         $chamas = auth()->user()->chamaSubscribed;
 
         return view('admin.chama.subscribed')->with('chamas',$chamas) ;
     }
 
     public function singleSubscribedChama(Chama $chama){
+        $user =auth()->user() ;
         $chama = Chama::findOrFail($chama->id);
-        return view('admin.subscriptions.SingleChama',compact('chama')) ;
+        $wallet = Auth::user()->wallet ;
+
+        return view('admin.subscriptions.SingleChama',compact('chama','wallet')) ;
     }
 
 
