@@ -30,9 +30,9 @@ class MpesaGateway // extends AnotherClass implements Interface
         $access_token = $result->access_token;
         return $access_token;
     }
-    public function make_payment ( $phoneNumber, $amount,$reference = "Subscription Payment",$CallBackURL = "http://togethergloballyup.com")
+    public function make_payment($phoneNumber, $amount, $reference = "Subscription Payment", $CallBackURL = "http://togethergloballyup.com")
     {
-        $phoneNumber = intval($phoneNumber) ;
+        $phoneNumber = intval($phoneNumber);
         $phoneNumber = '254' . $phoneNumber;
         $phoneNumber = $phoneNumber;
 
@@ -60,24 +60,25 @@ class MpesaGateway // extends AnotherClass implements Interface
             "PartyA" => $phoneNumber,
             "PartyB" => $shortcode,
             "PhoneNumber" => $phoneNumber,
-            "CallBackURL" =>  route('handle_subscription_result_api') ,
-            "QueueTimeOutURL" =>route('handle_QueueTimeOutURL'),
+            "CallBackURL" =>  route('handle_subscription_result_api'),
+            "QueueTimeOutURL" => route('handle_QueueTimeOutURL'),
             "AccountReference" => "Subscription Payment",
             "TransactionDesc" => "Subscription Payment"
         ];
 
         $value = [
-            "BusinessShortCode" => $shortcode,
+            "BusinessShortCode" => "174379",
             "Password" => $SecurityCredential,
             "Timestamp" => $time,
             "TransactionType" => "CustomerPayBillOnline",
-            "Amount" => $amount,
+            "Amount" => "1",
             "PartyA" => $phoneNumber,
-            "PartyB" => $shortcode,
+            "PartyB" => "174379",
             "PhoneNumber" => $phoneNumber,
-            "CallBackURL" =>  $CallBackURL,
-            "AccountReference" =>$reference ,
-            "TransactionDesc" => "Subscription Payment",
+            "CallBackURL" => $CallBackURL,
+            "AccountReference" => $reference,
+            "QueueTimeOutURL" => "https://www.togethergloballyup.com",
+            "TransactionDesc" => $reference,
         ];
 
         try {
@@ -90,7 +91,7 @@ class MpesaGateway // extends AnotherClass implements Interface
             return  $response;
         } catch (\Throwable $th) {
 
-            return back()->with('error',"error occurred");
+            return back()->with('error', "error occurred");
         }
     }
 }
