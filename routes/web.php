@@ -44,6 +44,9 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::post('deposite-to-wallet', 'WalletController@deposite')->name('deposte.to.wallet');
 
+    Route::resource('profile', 'UserController');
+
+    Route::get('/vote', 'ChamaController@vote')->name('admin.vote');
 
 });
 

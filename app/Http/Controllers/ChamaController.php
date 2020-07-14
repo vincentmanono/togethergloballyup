@@ -59,6 +59,13 @@ class ChamaController extends Controller
         return view('admin.subscriptions.SingleChama',compact('chama','wallet')) ;
     }
 
+    public function vote(){
+        $chama =  Chama::find(8);
+        $members= $chama->users->pluck('id') ;
+        $now = now()->format('Y-m-d H:i:s');
+        return $members ;
+    }
+
 
     public function index()
     {

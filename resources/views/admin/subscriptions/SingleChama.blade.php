@@ -46,7 +46,7 @@
                                     <th>Name</th>
                                     <th>Amount</th>
                                     <th>Admin</th>
-                                    <th>Next Contribution</th>
+                                    <th>Duration in days </th>
                                     <th>Members</th>
                                     <th>Action</th>
                                 </tr>
@@ -62,7 +62,7 @@
 
                                                 </td>
                                            <td class="text text-bold" >
-                                            {{ date('l jS M, h:i a', strtotime($chama->duration)) }}
+                                            {{ ($chama->duration) .' days' }}
                                            </td>
 
                                            <td> {{ $chama->users->count() }}</td>
@@ -144,8 +144,8 @@
                                 <tbody>
                                     <tr>
                                         <td scope="row">Ksh {{ number_format($wallet->amount,2,'.',',' ) }}</td>
-                                        <td>{{  $wallet->deposite_at }}</td>
-                                        <td>{{ $wallet->withdraw_at }}</td>
+                                        <td>{{date('l jS M, h:i a', strtotime($wallet->deposite_at))  }}</td>
+                                        <td>{{date('l jS M, h:i a', strtotime($wallet->withdraw_at))  }}</td>
                                     </tr>
 
                                 </tbody>
