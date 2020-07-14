@@ -41,6 +41,13 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('all-subscription','SubscriptionController@index')->name('user.all.subscription') ;
     Route::post('renew-subscription','SubscriptionController@renew')->name('user.renew.subscription') ;
     Route::get('/token', 'SubscriptionController@token')->name('token');
+
+    Route::post('deposite-to-wallet', 'WalletController@deposite')->name('deposte.to.wallet');
+
+    Route::resource('profile', 'UserController');
+
+    Route::get('/vote', 'ChamaController@vote')->name('admin.vote');
+
 });
 
 Route::group(['middleware' => ['auth','super']], function () {
@@ -61,5 +68,3 @@ Route::group(['middleware' => ['auth','super']], function () {
     Route::resource('/testimonies','TestimonyController');
 
 });
-
-Route::any('/handle-result', 'SubscriptionController@handle_result')->name('handle_subscription_result_api');

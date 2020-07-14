@@ -10,13 +10,13 @@ use Faker\Generator as Faker;
 $factory->define(Payment::class, function (Faker $faker) {
     return [
         'user_id'=>function(){ return User::all()->random() ;},
-        'chama_id'=>function(){ return Chama::all()->random() ;},
-        'phone'=>$faker->phoneNumber,
-        'MerchantRequestID'=>$faker-> randomDigit(2,100) ,
-        'CheckoutRequestID'=>$faker-> randomDigit(2,100) ,
-        'ResponseCode'=>$faker-> randomDigit(1,5) ,
-        'ResultDesc'=>$faker-> realText(20,4) ,
-        'ResponseDescription'=>$faker->realText(20,4),
-        'ResultCode'=>$faker-> randomDigit(1,5)
+
+        'merchantRequestID'=>$faker-> randomDigit(2,100) ,
+        'checkoutRequestID'=>$faker-> randomDigit(2,100) ,
+        'responseCode'=>$faker-> randomDigit(1,5) ,
+        'resultDesc'=>$faker-> realText(20,4) ,
+        'responseDescription'=>$faker->realText(20,4),
+        'resultCode'=>$faker-> randomDigit(1,5),
+        'phoneNumber'=>$faker->phoneNumber,
     ];
 });

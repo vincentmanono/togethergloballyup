@@ -3,6 +3,7 @@
 namespace App\payment;
 
 use GuzzleHttp\Client;
+use Illuminate\Support\Facades\Http;
 
 class MpesaGateway // extends AnotherClass implements Interface
 {
@@ -14,25 +15,23 @@ class MpesaGateway // extends AnotherClass implements Interface
         $key_sec = $Consumer_Key . ":" . $Consumer_Secret;
         $url = 'https://sandbox.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials';
         $headers = ['Content-Type: application/json;charset=UTF-8'];
-        $curl = curl_init($url);
 
-        curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
-        curl_setopt($curl, CURLOPT_RETURNTRANSFER, TRUE);
+        $base64 = base64_encode($key_sec) ;
 
-        curl_setopt($curl, CURLOPT_HEADER, FALSE);
-        curl_setopt($curl, CURLOPT_USERPWD, $key_sec);
+        $headers =  [
+            'Host'=> 'sandbox.safaricom.co.ke',
+            'Authorization'=> 'Basic '.$base64,
+            'Content-Type'=> 'application/json'
+        ];
 
 
-
-        $result = curl_exec($curl);
-        $status = curl_getinfo($curl, CURLINFO_HTTP_CODE);
-        $result = json_decode($result);
-        $access_token = $result->access_token;
+        $response = Http::withHeaders($headers)->get($url) ;
+        $access_token = $response->json()['access_token'] ;
         return $access_token;
     }
-    public function make_payment ( $phoneNumber, $amount,$reference = "Subscription Payment",$CallBackURL = "http://togethergloballyup.com")
+    public function make_payment($phoneNumber, $amount, $reference = "Subscription Payment", $CallBackURL = "http://togethergloballyup.com")
     {
-        $phoneNumber = intval($phoneNumber) ;
+        $phoneNumber = intval($phoneNumber);
         $phoneNumber = '254' . $phoneNumber;
         $phoneNumber = $phoneNumber;
 
@@ -44,6 +43,9 @@ class MpesaGateway // extends AnotherClass implements Interface
         $shortcode = "174379";
         $LipaNaMpesaOnlinePassKey = "bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919";
         $SecurityCredential  = base64_encode($shortcode . $LipaNaMpesaOnlinePassKey . $time);
+
+
+
         $client = new Client();
         $headers = [
             'Authorization' => 'Bearer ' . $access_token,
@@ -60,24 +62,25 @@ class MpesaGateway // extends AnotherClass implements Interface
             "PartyA" => $phoneNumber,
             "PartyB" => $shortcode,
             "PhoneNumber" => $phoneNumber,
-            "CallBackURL" =>  $CallBackURL,
-            "QueueTimeOutURL" => "http://togethergloballyup.com/",
+            "CallBackURL" =>  route('handle_subscription_result_api'),
+            "QueueTimeOutURL" => route('handle_QueueTimeOutURL'),
             "AccountReference" => "Subscription Payment",
             "TransactionDesc" => "Subscription Payment"
         ];
 
         $value = [
-            "BusinessShortCode" => $shortcode,
+            "BusinessShortCode" => "174379",
             "Password" => $SecurityCredential,
             "Timestamp" => $time,
             "TransactionType" => "CustomerPayBillOnline",
-            "Amount" => $amount,
+            "Amount" => "1",
             "PartyA" => $phoneNumber,
-            "PartyB" => $shortcode,
+            "PartyB" => "174379",
             "PhoneNumber" => $phoneNumber,
-            "CallBackURL" =>  "http://togethergloballyup.com",
-            "AccountReference" =>$reference ,
-            "TransactionDesc" => "Subscription Payment",
+            "CallBackURL" => $CallBackURL,
+            "AccountReference" => $reference,
+            "QueueTimeOutURL" => "https://www.togethergloballyup.com",
+            "TransactionDesc" => $reference,
         ];
 
         try {
@@ -90,7 +93,7 @@ class MpesaGateway // extends AnotherClass implements Interface
             return  $response;
         } catch (\Throwable $th) {
 
-            return null;
+            return back()->with('error', "error occurred");
         }
     }
 }

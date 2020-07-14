@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Observers\UserObserver;
+use App\User;
 use DateTime;
 use DateTimeZone;
 use Illuminate\Support\Facades\Schema;
@@ -30,5 +32,7 @@ class AppServiceProvider extends ServiceProvider
         $dt = new DateTime("now", new DateTimeZone('Africa/Nairobi')); //first argument "must" be a string
         $now = $dt->format('Y-m-d H:i:s');
         View::share('current_time', $now);
+
+        User::observe(UserObserver::class);
     }
 }

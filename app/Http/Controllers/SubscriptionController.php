@@ -11,15 +11,6 @@ use Illuminate\Support\Facades\Auth;
 
 class SubscriptionController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
 
     public function index()
     {
@@ -41,7 +32,7 @@ class SubscriptionController extends Controller
         $amount = 1;
         $phone = $request->phone;
 
-      $response =   $mpesaGateway->make_payment($phone,$amount,"Ubscription Payment",route('handle_subscription_result_api')) ;
+      $response =   $mpesaGateway->make_payment($phone,$amount,"Subscription Payment",route('handle_subscription_result_api')) ;
       $result = Payment::create([
         'user_id' => Auth::user()->id,
         'merchantRequestID' => $response['MerchantRequestID'],
@@ -52,7 +43,7 @@ class SubscriptionController extends Controller
         'phoneNumber' => $phone,
         'amount' => $amount,
     ]);
-    return redirect()->route('plans')->with('success', $result->customerMessage);
+    return back()->with('success', $result->customerMessage);
     }
 
 
@@ -63,6 +54,8 @@ class SubscriptionController extends Controller
         $result = Payment::where('checkoutRequestID', $data['CheckoutRequestID'])->where('active', true)->first();
         $result->active = false;
         $result->result = json_encode($data);
+        $result->save();
+
         if($result == null || $result->merchantRequestID != $data['MerchantRequestID'])
             return null;
         $result->resultCode = $data['ResultCode'];

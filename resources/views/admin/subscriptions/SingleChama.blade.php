@@ -27,7 +27,7 @@
         <div class="card">
             <div class="card-header">
                 <h3 class="card-title"> View my Subscribed  Chama Details
-                    <a name="" id="" class="btn btn-primary" href="{{ route('admin.chama') }}" role="button">Back</a>
+                    <a name="" id="" class="btn btn-primary" href="{{ route('user.chama.subscribed') }}" role="button">Back</a>
                 </h3>
 
                 <div class="card-tools">
@@ -46,7 +46,7 @@
                                     <th>Name</th>
                                     <th>Amount</th>
                                     <th>Admin</th>
-                                    <th>Next Contribution</th>
+                                    <th>Duration in days </th>
                                     <th>Members</th>
                                     <th>Action</th>
                                 </tr>
@@ -62,14 +62,14 @@
 
                                                 </td>
                                            <td class="text text-bold" >
-                                            {{ date('l jS M, h:i a', strtotime($chama->duration)) }}
+                                            {{ ($chama->duration) .' days' }}
                                            </td>
 
                                            <td> {{ $chama->users->count() }}</td>
                                            <td>
                                                <!-- Button trigger modal -->
                                                <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modelId">
-                                                 Pay your money
+                                                 Deposite To wallet
                                                </button>
 
                                                <!-- Modal -->
@@ -77,24 +77,52 @@
                                                    <div class="modal-dialog" role="document">
                                                        <div class="modal-content">
                                                            <div class="modal-header">
-                                                               <h5 class="modal-title">My Contribution</h5>
+                                                               <h5 class="modal-title">Depositing to my wallet Wallet</h5>
                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                                        <span aria-hidden="true">&times;</span>
                                                                    </button>
                                                            </div>
                                                            <div class="modal-body">
-                                                               <form action="" method="post">
+                                                               <form action="{{ route('deposte.to.wallet') }}" method="post">
+                                                                   @csrf
+
                                                                    <div class="form-group">
-                                                                     <label for="phone">Phone Number</label>
-                                                                     <input type="text"
-                                                                       class="form-control" name="phone" id="phone" aria-describedby="phone" value="{{ auth()->user()->phone }}" placeholder="Phone number">
-                                                                     <small id="phone" class="form-text text-muted">Change if you do not want to use your number</small>
+                                                                     <label for="amount">Amount to deposite</label>
+                                                                     <input type="number" name="amount" id="amount"
+                                                                     class="form-control @error('phone') is-invalid @enderror"
+                                                                      placeholder="Amount to deposite"
+                                                                      value="{{ old('amount') }}"
+                                                                      autocomplete="amount" autofocus>
+
+                                                                      @error('amount')
+                                                                      <span class="invalid-feedback" role="alert">
+                                                                          <strong>{{ $message }}</strong>
+                                                                      </span>
+                                                                  @enderror
+
                                                                    </div>
+
+
+                                                                   <div class="form-group">
+                                                                    <input id="phone" type="number" aria-describedby="helpId"
+                                                                     class="form-control @error('phone') is-invalid @enderror"
+                                                                      name="phone"
+                                                                      value="{{ old('phone') }}" required
+                                                                      autocomplete="phone" autofocus>
+                                                                    <small   id="helpId"  class="form-text text-muted">Change if you do not want to 'use' your number</small>
+
+                                                                            @error('phone')
+                                                                                <span class="invalid-feedback" role="alert">
+                                                                                    <strong>{{ $message }}</strong>
+                                                                                </span>
+                                                                            @enderror
+
+                                                                </div>
 
                                                            </div>
                                                            <div class="modal-footer">
                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                               <button type="button" class="btn btn-primary">Pay out</button>
+                                                               <button type="submit" class="btn btn-primary">Deposite</button>
                                                            </div>
                                                         </form>
                                                        </div>
@@ -102,6 +130,23 @@
                                                </div>
                                            </td>
                                        </tr>
+
+                                </tbody>
+                        </table>
+                        <table class="table table-striped table-inverse table-responsive">
+                            <thead class="thead-inverse">
+                                <tr>
+                                    <th>Wallet Amount</th>
+                                    <th>Deposited On</th>
+                                    <th>Withdrawn on </th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td scope="row">Ksh {{ number_format($wallet->amount,2,'.',',' ) }}</td>
+                                        <td>{{date('l jS M, h:i a', strtotime($wallet->deposite_at))  }}</td>
+                                        <td>{{date('l jS M, h:i a', strtotime($wallet->withdraw_at))  }}</td>
+                                    </tr>
 
                                 </tbody>
                         </table>

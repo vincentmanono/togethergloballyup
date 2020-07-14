@@ -37,7 +37,7 @@
         <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
           <span class="dropdown-item dropdown-header">{{ auth()->user()->phone }} </span>
           <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
+          <a href="{{ route('profile.show',auth()->user()->email) }}" class="dropdown-item">
             <i class="fa fa-user-md" aria-hidden="true"></i> My Profile
             <span class="float-right text-muted text-sm">{{ auth()->user()->role }}</span>
           </a>

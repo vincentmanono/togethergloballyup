@@ -11,7 +11,7 @@ $factory->define(Chama::class, function (Faker $faker) {
         'user_id'=>function(){ return User::all()->random() ;},
         'name' =>$faker->word,
         'amount' =>$faker->numberBetween(10,2000),
-        'duration'=> $faker->dateTimeBetween('-30 days', '+30 days'),
+        'duration'=> $faker->numberBetween(30,90),
         'description'=>$faker->realText(100,4),
         'activate'=>$faker->boolean()
     ];

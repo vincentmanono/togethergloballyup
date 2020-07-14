@@ -3,12 +3,13 @@
 namespace App;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
-    use Notifiable;
+    use Notifiable , SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
@@ -16,8 +17,9 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'firstName', 'lastName','role','phone',  'email', 'password',
+        'firstName', 'lastName','role','phone','email', 'password','image','subscription_expiry'
     ];
+
 
     /**
      * The attributes that should be hidden for arrays.
@@ -43,7 +45,7 @@ class User extends Authenticatable
 
    public function chamaSubscribed() //for users to subscribe to chamas
     {
-        return $this->belongsToMany('App\chama')->using('App\ChamaUser');
+        return $this->belongsToMany('App\Chama')->using('App\ChamaUser');
     }
 
     public function subscriptions()
@@ -67,4 +69,10 @@ class User extends Authenticatable
    {
        return $this->hasMany(Message::class);
    }
+
+   public function wallet()
+   {
+       return $this->hasOne(Wallet::class);
+   }
+
 }
