@@ -35,11 +35,10 @@ class MessageController extends Controller
      */
     public function store(Request $request)
     {
-<<<<<<< HEAD
-       
-=======
+
+
         // $mails = Mail::
->>>>>>> e5e1826f4f0a314900773bcc795d381a960e9b92
+
     }
 
     /**
