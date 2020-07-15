@@ -35,7 +35,8 @@
                                 <span class="accor-close"><i class="fa fa-minus" aria-hidden="true"></i></span>
                                 </a></h6>
                         <div id="collapseOne" class="accordion-content collapse show">
-                            <p>Morbi ut dapibus dui. Sed ut iaculis elit, quis varius mauris. Integer ut ultricies orci, lobortis egestas sem. Morbi ut dapibus dui. Sed ut iaculis elit, quis varius mauris. Integer ut ultricies orci, lobortis egestas sem. </p>
+                            <p>TogetherGloballyUp offers you with a platform where you can join an online merry-go-round chama. The first thing you are supposed to do is to signup then from there you will be in a position to view
+                                 the available chamas that contribute different amounts. Select the chama of your choice then you will be prompted to pay a registration fee which will allow you to now join a chama-group and view members and contribution activities taking place and how it operates. </p>
                         </div>
                     </div>
                     <!-- single accordian area -->
@@ -47,7 +48,8 @@
                                     </a>
                         </h6>
                         <div id="collapseTwo" class="accordion-content collapse">
-                            <p>Morbi ut dapibus dui. Sed ut iaculis elit, quis varius mauris. Integer ut ultricies orci, lobortis egestas sem. Morbi ut dapibus dui. Sed ut iaculis elit, quis varius mauris. Integer ut ultricies orci, lobortis egestas sem. </p>
+                            <p>One of the benefits is that you can do be in a chama adnd transact wherever you are. It is convinient for record keeping as this shall be done by the
+                                 system and all the details are backed up. </p>
                         </div>
                     </div>
                     <!-- single accordian area -->
@@ -59,7 +61,7 @@
                                 </a>
                         </h6>
                         <div id="collapseThree" class="accordion-content collapse">
-                            <p>Morbi ut dapibus dui. Sed ut iaculis elit, quis varius mauris. Integer ut ultricies orci, lobortis egestas sem. Morbi ut dapibus dui. Sed ut iaculis elit, quis varius mauris. Integer ut ultricies orci, lobortis egestas sem. </p>
+                            <p>Our mode of payment at the moment is through MPESA. </p>
                         </div>
                     </div>
                 </div>
@@ -76,7 +78,7 @@
                                 <span class="accor-close"><i class="fa fa-minus" aria-hidden="true"></i></span>
                                 </a></h6>
                         <div id="collapseFour" class="accordion-content collapse show">
-                            <p>Morbi ut dapibus dui. Sed ut iaculis elit, quis varius mauris. Integer ut ultricies orci, lobortis egestas sem. Morbi ut dapibus dui. Sed ut iaculis elit, quis varius mauris. Integer ut ultricies orci, lobortis egestas sem. </p>
+                            <p>You just need to provide your personal details as per the registration form and a membership payment of Ksh. 150/=. </p>
                         </div>
                     </div>
                     <!-- single accordian area -->
@@ -88,7 +90,7 @@
                                     </a>
                         </h6>
                         <div id="collapseFive" class="accordion-content collapse">
-                            <p>Morbi ut dapibus dui. Sed ut iaculis elit, quis varius mauris. Integer ut ultricies orci, lobortis egestas sem. Morbi ut dapibus dui. Sed ut iaculis elit, quis varius mauris. Integer ut ultricies orci, lobortis egestas sem. </p>
+                            <p>You have to be 18 years and above. </p>
                         </div>
                     </div>
                     <!-- single accordian area -->
@@ -100,7 +102,7 @@
                                 </a>
                         </h6>
                         <div id="collapseSix" class="accordion-content collapse">
-                            <p>Morbi ut dapibus dui. Sed ut iaculis elit, quis varius mauris. Integer ut ultricies orci, lobortis egestas sem. Morbi ut dapibus dui. Sed ut iaculis elit, quis varius mauris. Integer ut ultricies orci, lobortis egestas sem. </p>
+                            <p>The registration fee is Ksh 150/= which is paid during the process of joining a chama where you will be prompted via mpesa to pay the amount. </p>
                         </div>
                     </div>
                 </div>
