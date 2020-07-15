@@ -38,6 +38,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('exit-chama', 'ChamaController@exitChama')->name('user.chama.exit');
     Route::get('/subscribed-chama', 'ChamaController@subscribedChama')->name('user.chama.subscribed');
     Route::get('/subscribed-chama/{chama}', 'ChamaController@singleSubscribedChama')->name('user.chama.subscribed.single');
+
+    Route::get('/subscribed-chama/{chama}/vote', 'ChamaController@takevote')->name('user.chama.subscribed.vote');
+    Route::post('/subscribed-chama/{chama}/vote/{user}', 'TikectController@voted')->name('user.chama.subscribed.voted');
+
     Route::get('all-subscription','SubscriptionController@index')->name('user.all.subscription') ;
     Route::post('renew-subscription','SubscriptionController@renew')->name('user.renew.subscription') ;
     Route::get('/token', 'SubscriptionController@token')->name('token');
@@ -46,7 +50,6 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::resource('profile', 'UserController');
 
-    Route::get('/vote', 'ChamaController@vote')->name('admin.vote');
 
 });
 

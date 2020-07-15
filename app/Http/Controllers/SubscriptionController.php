@@ -32,7 +32,7 @@ class SubscriptionController extends Controller
         $amount = 1;
         $phone = $request->phone;
 
-      $response =   $mpesaGateway->make_payment($phone,$amount,"Subscription Payment",route('handle_subscription_result_api')) ;
+      $response =   $mpesaGateway->pay_subcription($phone,$amount,"Subscription Payment",route('handle_subscription_result_api')) ;
       $result = Payment::create([
         'user_id' => Auth::user()->id,
         'merchantRequestID' => $response['MerchantRequestID'],
@@ -95,6 +95,16 @@ class SubscriptionController extends Controller
                 ]);
             }
         }
+
+    }
+
+
+    public function time_out_url(Request $request)
+    {
+        $result = Payment::create([
+           'result' =>$request
+
+        ]);
 
     }
 

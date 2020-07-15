@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Chama;
+use App\ChamaUser;
 use App\Http\Requests\ChamaStoreRequest;
 use App\User;
 use App\Wallet;
@@ -26,6 +27,11 @@ class ChamaController extends Controller
     public function chamaJoin(Request $request){
         $user = auth()->user() ;
         $chama = Chama::find($request->input('chamaID'))  ;
+        $asthischama= ChamaUser::where('user_id',$user->id)->where('chama_id',$chama->id)->count() ;
+        if ($asthischama ) {
+            $request->session()->flash('error', "You are member in this chama");
+           return back() ;
+        }
         $user->chamaSubscribed()->attach([$chama->id]);
         $request->session()->flash('success', "You have successfully subscribed to " . $chama->name);
 
@@ -57,6 +63,13 @@ class ChamaController extends Controller
         $wallet = Auth::user()->wallet ;
 
         return view('admin.subscriptions.SingleChama',compact('chama','wallet')) ;
+    }
+
+    public function takevote($chama_id)
+    {
+        $chama = Chama::where('id',$chama_id)->first();
+        return view('admin/chama/tikects/teckvote', compact('chama') );
+
     }
 
     public function vote(){
@@ -91,15 +104,21 @@ class ChamaController extends Controller
      */
     public function store(ChamaStoreRequest $request)
     {
-        $user = auth()->user() ;
-        $user->chama()->create([
-            'name'=>$request->input('name'),
-            'amount'=>$request->input('amount'),
-            'description'=>$request->input('description'),
-            'activate'=>false,
-        ]);
-        $request->session()->flash('success', "Your chama created successfully");
-      return  redirect()->route('admin.chama') ;
+        $user = User::find(auth()->user()->id) ;
+        $chama = new Chama();
+        $chama->name= $request->input('name');
+        $chama->amount= $request->input('amount');
+        $chama->description = $request->input('description');
+        $chama->user_id = $user->id ;
+        if ($chama->save() ) {
+            $user->role = 'admin';
+            $user->save();
+             $request->session()->flash('success', "Your chama created successfully");
+             return redirect()->route('admin.chama.show',$chama->id) ;
+        } else {
+            $request->session()->flash('error', "Error occurred please try again");
+            return back();
+        }
     }
 
     /**

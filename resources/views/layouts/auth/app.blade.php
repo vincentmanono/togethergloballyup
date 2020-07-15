@@ -11,6 +11,8 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
+
+
     <!-- Scripts -->
 
   <!-- Tell the browser to be responsive to screen width -->
@@ -23,8 +25,8 @@
   <link rel="stylesheet" href="{{ asset('admin/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css') }}">
   <!-- iCheck -->
   <link rel="stylesheet" href="{{ asset('admin/plugins/icheck-bootstrap/icheck-bootstrap.min.css') }}">
-  <!-- JQVMap -->
-  <link rel="stylesheet" href="{{ asset('admin/plugins/jqvmap/jqvmap.min.css') }}">
+  {{--  <!-- JQVMap -->
+  <link rel="stylesheet" href="{{ asset('admin/plugins/jqvmap/jqvmap.min.css') }}">  --}}
   <!-- Theme style -->
   <link rel="stylesheet" href="{{ asset('admin/dist/css/adminlte.min.css') }}">
   <!-- overlayScrollbars -->
@@ -39,6 +41,8 @@
     <link rel="stylesheet" href="{{ asset('admin/plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
 
 
+    <link rel="stylesheet" href="{{ asset('admin/css/custome.css')  }}">
+    {{--  <link rel="stylesheet" href=" {{ asset('css/app.css') }} ">  --}}
 
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
@@ -87,9 +91,9 @@
 <script src="{{ asset('admin/plugins/chart.js/Chart.min.js') }}"></script>
 <!-- Sparkline -->
 <script src="{{ asset('admin/plugins/sparklines/sparkline.js') }}"></script>
-<!-- JQVMap -->
+{{--  <!-- JQVMap -->
 <script src="{{ asset('admin/plugins/jqvmap/jquery.vmap.min.js') }}"></script>
-<script src="{{ asset('admin/plugins/jqvmap/maps/jquery.vmap.usa.js') }}"></script>
+<script src="{{ asset('admin/plugins/jqvmap/maps/jquery.vmap.usa.js') }}"></script>  --}}
 <!-- jQuery Knob Chart -->
 <script src="{{ asset('admin/plugins/jquery-knob/jquery.knob.min.js') }}"></script>
 <!-- daterangepicker -->
@@ -108,11 +112,14 @@
 <!-- AdminLTE for demo purposes -->
 <script src="{{ asset('admin/dist/js/demo.js') }}"></script>
 
+{{--  <script src="{{ asset('js/app.js') }}"></script>  --}}
+
 <!-- DataTables -->
 <script src="{{ asset('admin/plugins/datatables/jquery.dataTables.min.js') }}"></script>
-<script src="{{ asset('plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
-<script src="{{ asset('plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
-<script src="{{ asset('plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
+<script src="{{ asset('admin/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
+<script src="{{ asset('admin/plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
+<script src="{{ asset('admin/plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
+<script src="{{ asset('admin/js/app.js') }}"></script>
 <script>
     $(function () {
       $("#example1").DataTable({

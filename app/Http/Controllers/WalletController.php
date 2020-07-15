@@ -18,7 +18,7 @@ class WalletController extends Controller
         ));
         $phone = $request->phone ;
         $amount = $request->amount ;
-      $response =   $mpesa->make_payment($phone,$amount,"Deposite to wallet",route('handle_deposite_result_api'));
+      $response =   $mpesa->wallet($phone,$amount);
 
       $result = Payment::create([
         'user_id' => Auth::user()->id,

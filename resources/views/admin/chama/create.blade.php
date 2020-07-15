@@ -84,7 +84,7 @@
                                   @enderror
 
 
-                                  <label for="Name">Amount </label>
+                                  <label for="amount">Amount </label>
                                   <input id="amount" type="text" placeholder="Amount Members will be contributing"
                                    class="form-control @error('amount') is-invalid @enderror" name="amount" value="{{ old('amount') }}"
                                     required autocomplete="amount" autofocus>
@@ -95,12 +95,28 @@
 
                                           </span>
                                       @enderror
+                                      <div class="form-group">
+
+                                     <label for="duration">duration </label>
+                                      <input id="amount" type="number" placeholder="Duration in days"
+                                       class="form-control @error('duration') is-invalid @enderror" name="duration" value="{{ old('duration') }}"
+                                        required autocomplete="duration" autofocus>
+
+                                      @error('duration')
+                                              <span class="invalid-feedback" role="alert">
+                                                  <strong>{{ $message }}</strong>
+
+                                              </span>
+                                          @enderror
+                                      </div>
+
+
+
+
 
                                       <div class="form-group">
                                         <label for="description">Description</label>
-                                        <textarea  class="form-control @error('description') is-invalid @enderror" class="form-control" placeholder="Write something about the chama" name="description" id="description" rows="3">
-                                            "{{ old('description') }}
-                                        </textarea>
+                                        <textarea  class="form-control @error('description') is-invalid @enderror" class="form-control" placeholder="Write something about the chama" name="description" id="description" rows="3">{{ old('description') }}</textarea>
                                         @error('description')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>

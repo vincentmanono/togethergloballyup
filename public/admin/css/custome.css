@@ -1,0 +1,20 @@
+
+
+.tikect{
+    border-radius: 4px;
+    border: 2px solid black ;
+    width: 60px auto;
+    height: 50px auto;
+    background-color: rgb(104, 26, 107);
+    padding: 10px;
+    /* position: relative; */
+}
+
+.tikect > .tikectvalue{
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 17px;
+    text-align: center;
+    color: black;
+    text-transform: capitalize;
+    /* padding: 10px; */
+}

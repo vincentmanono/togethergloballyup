@@ -53,6 +53,11 @@ class User extends Authenticatable
         return $this->hasMany(Subscription::class);
     }
 
+    public function tikect()
+    {
+        return $this->hasOne(Chama::class);
+    }
+
 
 
 

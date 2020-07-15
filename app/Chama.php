@@ -8,6 +8,11 @@ class Chama extends Model
 {
     protected $guarded = [];
 
+    public function tikects()
+    {
+        return $this->hasMany(Tikect::class);
+    }
+
 
     public function users()
     {

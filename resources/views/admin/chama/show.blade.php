@@ -11,7 +11,7 @@
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Home</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
                         <li class="breadcrumb-item active">chama</li>
                     </ol>
                 </div>
@@ -28,6 +28,50 @@
             <div class="card-header">
                 <h3 class="card-title"> View Chama Details
                     <a name="" id="" class="btn btn-primary" href="{{ route('admin.chama') }}" role="button">Back</a>
+                    <!-- Button trigger modal -->
+                    @if (auth()->user()->role == "admin"  && ($chama->activate == 0) && ($chama->user_id == auth()->user()->id) )
+                        <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#activatechama">
+                        Activate chama
+                       </button>
+
+                       <!-- Modal -->
+                       <div class="modal fade" id="activatechama" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+                           <div class="modal-dialog" role="document">
+                               <div class="modal-content">
+                                   <div class="modal-header">
+                                       <h5 class="modal-title">Activate {{ $chama->name }}</h5>
+                                           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                               <span aria-hidden="true">&times;</span>
+                                           </button>
+                                   </div>
+                                   <div class="modal-body">
+                                      <div class="text text-dark" >
+                                          You are required to pay <span class="text text-success" >Ksh 150 only</span> to activate your account
+                                      </div>
+                                      <form action="" method="post">
+                                          <div class="form-group">
+                                            <label for="phone">Phone number</label>
+                                            <input type="tel" name="phone" id="phone" class="form-control"  required placeholder="07********"
+
+                                            aria-describedby="helpPhone">
+                                            <small id="helpPhone" class="text-muted">Enter your mobile number here</small>
+                                          </div>
+
+                                   </div>
+                                   <div class="modal-footer">
+                                       <button type="button" class="btn btn-secondary pull-left" data-dismiss="modal">Close</button>
+                                       <button type="submit" class="btn btn-primary pull-right">Pay</button>
+                                   </div>
+                                </form>
+                               </div>
+                           </div>
+                       </div>
+
+
+                    @endif
+
+
+
                 </h3>
 
                 <div class="card-tools">
