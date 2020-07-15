@@ -33,7 +33,7 @@
             <div class="card-body box-profile">
               <div class="text-center">
                 <img class="profile-user-img img-fluid img-circle"
-                     src="{{ asset('admin/dist/img/user4-128x128.jpg') }}"
+                     src="{{ '/storage/users/'.$user->avatar }}"
                      alt="User profile picture">
               </div>
 
@@ -235,34 +235,64 @@
                     <div class="form-group row">
                       <label for="firstame" class="col-sm-2 col-form-label">First Name</label>
                       <div class="col-sm-10">
-                        <input type="text" class="form-control" id="firstame"  name="firstname"
+                        <input type="text"   class="form-control @error('firstName') is-invalid @enderror"   id="firstame"  name="firstname"
                          value="{{ $user->firstName }}" placeholder="Your firstname">
+                         @error('firstname')
+                         <span class="invalid-feedback" role="alert">
+                             <strong>{{ $message }}</strong>
+                         </span>
+                     @enderror
+
                       </div>
                     </div>
                     <div class="form-group row">
                         <label for="lastname" class="col-sm-2 col-form-label">User Names</label>
                         <div class="col-sm-10">
-                          <input type="text" class="form-control" id="lastname" value="{{ $user->lastName }}" name="lastname" placeholder="Your Lastname">
+                          <input type="text" class="form-control @error('lastName') is-invalid @enderror"
+                           id="lastname" value="{{ $user->lastName }}" name="lastname" placeholder="Your Lastname">
+                           @error('lastname')
+                           <span class="invalid-feedback" role="alert">
+                               <strong>{{ $message }}</strong>
+                           </span>
+                       @enderror
                         </div>
                       </div>
 
                     <div class="form-group row">
                       <label for="email" class="col-sm-2 col-form-label">Email</label>
                       <div class="col-sm-10">
-                        <input type="email" class="form-control" id="email" name="email"  value="{{ $user->email }}" placeholder="Email">
+                        <input type="email" class="form-control @error('email') is-invalid @enderror"
+                         id="email" name="email"  value="{{ $user->email }}" placeholder="Email">
+                         @error('email')
+                           <span class="invalid-feedback" role="alert">
+                               <strong>{{ $message }}</strong>
+                           </span>
+                       @enderror
                       </div>
                     </div>
                     <div class="form-group row">
                       <label for="phone" class="col-sm-2 col-form-label">Phone</label>
                       <div class="col-sm-10">
-                        <input type="tel" class="form-control" id="phone" name="phone" value="{{ $user->phone }}"  placeholder="Your phone number">
+                        <input type="tel" class="form-control @error('phone') is-invalid @enderror"
+                         id="phone" name="phone" value="{{ $user->phone }}"  placeholder="Your phone number">
+                         @error('phone')
+                         <span class="invalid-feedback" role="alert">
+                             <strong>{{ $message }}</strong>
+                         </span>
+                     @enderror
                       </div>
                     </div>
 
                     <div class="form-group row">
-                        <label for="image" class="col-sm-2 col-form-label">Picture</label>
+                        <label for="avatar" class="col-sm-2 col-form-label">Picture</label>
                         <div class="col-sm-10">
-                          <input type="file" class="form-control-file" id="image" name="image"  placeholder="Update profile">
+                          <input type="file" class="form-control-file @error('avatar') is-invalid @enderror"
+                          id="avatar" name="avatar"  placeholder="Update profile">
+                          @error('avatar')
+                          <span class="invalid-feedback" role="alert">
+                              <strong>{{ $message }}</strong>
+                          </span>
+                      @enderror
                         </div>
                     </div>
 
@@ -271,33 +301,42 @@
                     <hr>
 
                     <div class="form-group row">
-                        <label for="image" class="col-sm-12 col-form-label">Update your Password</label>
+                        <label for="old_password" class="col-sm-12 col-form-label text-capitalize ">Input your password To Update your account</label>
 
                         <div class="col-sm-10">
-                          <input type="password" class="form-control " style="background-color: rgba(184, 120, 84, 0.5);color:black;"  id="image" name="oldpassword" placeholder="Previous Password">
+                          <input type="password"  class="form-control @error('old_password') is-invalid @enderror"
+
+                            style="background-color: rgba(184, 120, 84, 0.5);color:black;"  id="old_password"
+                           name="old_password" placeholder="Previous Password">
                         </div>
                     </div>
                     <div class="form-group row">
                         <div class="col-sm-6">
-                          <input type="password" class="form-control  " id="password" name="password" style="background-color: rgba(184, 120, 84, 0.5);color:black;"    placeholder="New Password">
+                          <input id="password" type="password"
+                           placeholder="Password" style="background-color: rgba(184, 120, 84, 0.5);color:black;"
+                           class="form-control @error('password') is-invalid @enderror" name="password"  autocomplete="new-password">
+                          @error('password')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
+
                         </div>
                         <div class="col-sm-6">
-                            <input type="password" class="form-control  " id="confirm" name="confirm" style="background-color: rgba(184, 120, 84, 0.5);color:black;"    placeholder="Confirm Password">
+                            <input id="password-confirm" style="background-color: rgba(184, 120, 84, 0.5);color:black;"
+                              type="password" placeholder="Confirm password" class="form-control" name="password_confirmation"
+                                autocomplete="new-password">
+                            @error('password_confirmation')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
                           </div>
                     </div>
 
 
                     <div class="form-group row">
-                      <div class="offset-sm-2 col-sm-10">
-                        <div class="checkbox">
-                          <label>
-                            <input type="checkbox"> I agree to the <a href="#">terms and conditions</a>
-                          </label>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="form-group row">
-                      <div class="offset-sm-2 col-sm-10">
+                      <div class="offset-sm-2 col-sm-8">
                         <button type="submit" class="btn btn-danger btn-block">Submit</button>
                       </div>
                     </div>

@@ -28,6 +28,9 @@
             <div class="card-header">
                 <h3 class="card-title"> View my Subscribed  Chama Details
                     <a name="" id="" class="btn btn-primary" href="{{ route('user.chama.subscribed') }}" role="button">Back</a>
+                    <button type="button" class="btn btn-dark pull-right" data-toggle="modal" data-target="#deposite">
+                        Deposite To wallet
+                      </button>
                 </h3>
 
                 <div class="card-tools">
@@ -68,12 +71,10 @@
                                            <td> {{ $chama->users->count() }}</td>
                                            <td>
                                                <!-- Button trigger modal -->
-                                               <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modelId">
-                                                 Deposite To wallet
-                                               </button>
+                                               <a name="" id="" class="btn btn-primary" href="{{ route('user.chama.subscribed.vote',$chama->id) }}" role="button">Vote</a>
 
                                                <!-- Modal -->
-                                               <div class="modal fade" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+                                               <div class="modal fade" id="deposite" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
                                                    <div class="modal-dialog" role="document">
                                                        <div class="modal-content">
                                                            <div class="modal-header">
