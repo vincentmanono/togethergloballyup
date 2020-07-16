@@ -28,7 +28,9 @@
             <div class="card-header">
                 <h3 class="card-title"> View my Subscribed  Chamas Details
                     <a name="" id="" class="btn btn-primary" href="{{ route('admin.chama') }}" role="button">Back</a>
-                    <a name="" id="" class="btn btn-primary" href="#" role="button">Exit From all Subscribed chamas</a>
+                    <button type="button" class="btn btn-dark pull-right" data-toggle="modal" data-target="#deposite">
+                        Deposite To wallet
+                      </button>
                 </h3>
 
                 <div class="card-tools">
@@ -89,4 +91,66 @@
 </section>
     <!-- /.content -->
 </div>
+
+
+
+<!-- Modal -->
+<div class="modal  fade wallet" id="deposite" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Depositing to my wallet </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+            </div>
+            <div class="modal-body">
+                <form action="{{ route('deposte.to.wallet') }}" method="post">
+                    @csrf
+
+                    <div class="form-group">
+                      <label for="amount">Amount to deposite</label>
+                      <input type="number" name="amount" id="amount"
+                      class="form-control @error('phone') is-invalid @enderror"
+                       placeholder="Amount to deposite"
+                       value="{{ old('amount') }}"
+                       autocomplete="amount" autofocus>
+
+                       @error('amount')
+                       <span class="invalid-feedback" role="alert">
+                           <strong>{{ $message }}</strong>
+                       </span>
+                   @enderror
+
+                    </div>
+
+
+                    <div class="form-group">
+                     <input id="phone" type="number" aria-describedby="helpId"
+                      class="form-control @error('phone') is-invalid @enderror"
+                       name="phone"
+                       placeholder="07********"
+                       value="{{ old('phone') }}" required
+                       autocomplete="phone" autofocus>
+                     <small   id="helpId"  class="form-text text-muted">Change if you do not want to 'use' your number</small>
+
+                             @error('phone')
+                                 <span class="invalid-feedback" role="alert">
+                                     <strong>{{ $message }}</strong>
+                                 </span>
+                             @enderror
+
+                 </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Deposite</button>
+            </div>
+         </form>
+        </div>
+    </div>
+</div>
+
+
 @endsection

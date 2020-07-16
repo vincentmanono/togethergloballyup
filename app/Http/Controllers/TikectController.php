@@ -12,8 +12,9 @@ class TikectController extends Controller
 {
 
 
-    public function voted(Request $request ,$chama_id,User $user)
+    public function voted(Request $request ,$chama_id)
     {
+        $user = auth()->user() ;
         $chama = Chama::where('id',$chama_id)->first();
 
         $tikect = Tikect::where('chama_id',$chama->id)->where('user_id',$user->id);

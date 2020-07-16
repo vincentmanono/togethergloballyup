@@ -32,10 +32,10 @@
         <a class="nav-link" data-toggle="dropdown" href="#">
 
           <i class="fa fa-user" aria-hidden="true"></i>
-          <span class=" ml-3 text text-bold text-capitalize" >{{ auth()->user()->firstName }}</span>
+          <span class=" ml-3 text text-bold text-capitalize" >{{ auth()->user()->firstName .' ' .auth()->user()->lastName  }}</span>
         </a>
         <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-          <span class="dropdown-item dropdown-header">{{ auth()->user()->phone }} </span>
+          <span class="dropdown-item dropdown-header text text-bold text-dark ">{{ "Ksh" . number_format(auth()->user()->wallet->amount,2,".",",")  }} </span>
           <div class="dropdown-divider"></div>
           <a href="{{ route('profile.show',auth()->user()->email) }}" class="dropdown-item">
             <i class="fa fa-user-md" aria-hidden="true"></i> My Profile

@@ -42,13 +42,13 @@
 
 
     <link rel="stylesheet" href="{{ asset('admin/css/custome.css')  }}">
-    {{--  <link rel="stylesheet" href=" {{ asset('css/app.css') }} ">  --}}
+     <link rel="stylesheet" href=" {{ asset('css/app.css') }} ">
 
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
-<div class="wrapper">
+<div class="wrapper" id="app" >
     @include('includes.messages')
 
   <!-- Navbar -->
@@ -112,7 +112,7 @@
 <!-- AdminLTE for demo purposes -->
 <script src="{{ asset('admin/dist/js/demo.js') }}"></script>
 
-{{--  <script src="{{ asset('js/app.js') }}"></script>  --}}
+ <script src="{{ asset('js/app.js') }}"></script>
 
 <!-- DataTables -->
 <script src="{{ asset('admin/plugins/datatables/jquery.dataTables.min.js') }}"></script>
@@ -137,7 +137,7 @@
         "responsive": true,
       });
 
-    });deletechama
+    });
 
     $("#logout").on("click",(event)=>{
 
