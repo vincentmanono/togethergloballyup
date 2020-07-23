@@ -8,9 +8,9 @@ class Chama extends Model
 {
     protected $guarded = [];
 
-    public function tikects()
+    public function tickets()
     {
-        return $this->hasMany(Tikect::class);
+        return $this->hasMany(Ticket::class);
     }
 
 

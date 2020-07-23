@@ -53,9 +53,9 @@ class User extends Authenticatable
         return $this->hasMany(Subscription::class);
     }
 
-    public function tikect()
+    public function ticket()
     {
-        return $this->hasOne(Chama::class);
+        return $this->hasOne(Ticket::class);
     }
 
 

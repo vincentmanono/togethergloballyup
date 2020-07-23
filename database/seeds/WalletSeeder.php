@@ -1,5 +1,7 @@
 <?php
 
+use App\User;
+use App\Wallet;
 use Illuminate\Database\Seeder;
 
 class WalletSeeder extends Seeder
@@ -11,7 +13,9 @@ class WalletSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\Wallet::class,3)->create();
+        // factory(User::class,3)->create()->each( function ($user){
+        //     $user->wallet()->save(factory(Wallet::class)->make());
+        // } ) ;
 
     }
 }

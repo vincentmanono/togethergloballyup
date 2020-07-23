@@ -40,7 +40,8 @@
             </div>
             <div class="card-body">
 
-               <tikect-component :chama="{{ $chama }}" :tikects="{{ $chama->tikects }}" ></tikect-component>
+
+               <tickets  :chama="{{ $chama }}" :user= "{{ auth()->user() }}" :tickets="{{ $chama->tickets }}" ></tickets>
             </div>
             <!-- /.card-body -->
             <div class="card-footer">

@@ -33,6 +33,9 @@ class ChamaController extends Controller
            return back() ;
         }
         $user->chamaSubscribed()->attach([$chama->id]);
+        $user->ticket()->create([
+            'chama_id' => $chama->id
+        ]);
         $request->session()->flash('success', "You have successfully subscribed to " . $chama->name);
 
         return back();
@@ -68,7 +71,8 @@ class ChamaController extends Controller
     public function takevote($chama_id)
     {
         $chama = Chama::where('id',$chama_id)->first();
-        return view('admin/chama/tikects/teckvote', compact('chama') );
+
+        return view( 'admin.chama.tikects.teckvote', compact('chama') );
 
     }
 

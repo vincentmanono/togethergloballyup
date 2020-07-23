@@ -1,6 +1,7 @@
 <?php
 
 use App\Chama;
+use App\Ticket;
 use Illuminate\Database\Seeder;
 
 class ChamaSeeder extends Seeder
@@ -13,5 +14,6 @@ class ChamaSeeder extends Seeder
     public function run()
     {
         factory(Chama::class,10)->create();
+        // factory(Ticket::class,5)->create();
     }
 }

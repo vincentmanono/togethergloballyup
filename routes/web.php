@@ -40,7 +40,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/subscribed-chama/{chama}', 'ChamaController@singleSubscribedChama')->name('user.chama.subscribed.single');
 
     Route::get('/subscribed-chama/{chama}/vote', 'ChamaController@takevote')->name('user.chama.subscribed.vote');
-    Route::post('/subscribed-chama/{chama}/vote', 'TikectController@voted')->name('user.chama.subscribed.voted');
+    // Route::post('/subscribed-chama/{chama}/vote', 'TicketController@voted')->name('user.chama.subscribed.voted');
 
     Route::get('all-subscription','SubscriptionController@index')->name('user.all.subscription') ;
     Route::post('renew-subscription','SubscriptionController@renew')->name('user.renew.subscription') ;
