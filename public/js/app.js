@@ -1935,6 +1935,18 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
  // import { shuffle } from '../../../public/admin/plugins/filterizr/utils';
 
 
@@ -1951,9 +1963,9 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       countTickets: "",
-      winTicket: 1,
-      nextTicket: 0,
-      response: ''
+      show: true,
+      response: '',
+      result: ''
     };
   },
   computed: {
@@ -1991,6 +2003,13 @@ __webpack_require__.r(__webpack_exports__);
       axios__WEBPACK_IMPORTED_MODULE_1___default.a.post(url, data).then(function (response) {
         console.log(response.message);
         _this.response = response.data.message;
+        _this.show = false;
+        _this.result = result;
+        $(document).ready(function () {
+          setTimeout(function () {
+            $(".flip-card .flip-card-inner").removeClass("voted");
+          }, 200);
+        });
       })["catch"](function (error) {
         alert(error);
         console.error(error);
@@ -2047,7 +2066,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\nbody {\n  font-family: Arial, Helvetica, sans-serif;\n}\n.flip-all {\n  background-color: wheat;\n  width: auto;\n  height: auto;\n  display: grid;\n  place-items: center;\n}\n.flip-col {\n  display: grid;\n  grid-gap: 1rem;\n  padding: 1rem;\n  max-width: 1024px;\n  margin: 0 auto;\n  font-family: var(--font-sans);\n\n  grid-template-columns: repeat(3, 1fr);\n}\n.flip-card {\n  background-color: transparent;\n  width: 300px;\n  height: 300px;\n  perspective: 1000px;\n\n  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1), 0 2px 2px rgba(0, 0, 0, 0.1),\n    0 4px 4px rgba(0, 0, 0, 0.1), 0 8px 8px rgba(0, 0, 0, 0.1),\n    0 16px 16px rgba(0, 0, 0, 0.1);\n}\n.flip-card-inner {\n  position: relative;\n  width: 100%;\n  height: 100%;\n  text-align: center;\n  transition: transform 0.6s;\n  transform-style: preserve-3d;\n  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);\n}\n\n/* .flip-card:hover .flip-card-inner {\n  transform: rotateY(180deg);\n} */\n.voted:hover{\n      transform: rotateY(180deg);\n}\n.flip-card-front,\n.flip-card-back {\n  position: absolute;\n  width: 100%;\n  height: 100%;\n  -webkit-backface-visibility: hidden;\n  backface-visibility: hidden;\n}\n.flip-card-front {\n  background-color: #bbb;\n  color: black;\n}\n.flip-card-back {\n\n  color: white;\n  transform: rotateY(180deg);\n}\n.win{\n    background-color: darkgrey;\n}\n.lose{\n    background-color: #2980b9;\n}\n\n/*\n*/\n", ""]);
+exports.push([module.i, "\nbody {\n  font-family: Arial, Helvetica, sans-serif;\n}\n.flip-all {\n  background-color: wheat;\n  width: auto;\n  height: auto;\n  display: grid;\n  place-items: center;\n}\n.flip-col {\n  display: grid;\n  grid-gap: 1rem;\n  padding: 1rem;\n  max-width: 1024px;\n  margin: 0 auto;\n  font-family: var(--font-sans);\n\n  grid-template-columns: repeat(3, 1fr);\n}\n.flip-card {\n  background-color: transparent;\n  width: 300px;\n  height: 300px;\n  perspective: 1000px;\n  cursor: pointer;\n\n  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1), 0 2px 2px rgba(0, 0, 0, 0.1),\n    0 4px 4px rgba(0, 0, 0, 0.1), 0 8px 8px rgba(0, 0, 0, 0.1),\n    0 16px 16px rgba(0, 0, 0, 0.1);\n}\n.flip-card-inner {\n  position: relative;\n  width: 100%;\n  height: 100%;\n  text-align: center;\n  transition: transform 0.6s;\n  transform-style: preserve-3d;\n  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);\n}\n\n/* .flip-card:hover .flip-card-inner {\n  transform: rotateY(180deg);\n} */\n.voted:hover{\n      transform: rotateY(180deg);\n}\n.flip-card-front,\n.flip-card-back {\n  position: absolute;\n  width: 100%;\n  height: 100%;\n  -webkit-backface-visibility: hidden;\n  backface-visibility: hidden;\n}\n.flip-card-front {\n  background-color: #bbb;\n  color: black;\n}\n.flip-card-back {\n\n  color: white;\n  transform: rotateY(180deg);\n}\n.win{\n    background-color: darkgrey;\n}\n.lose{\n    background-color: #2980b9;\n}\n.responce{\n    border: 1px solid rgba(0, 0, 0, 0.1);\n    border-radius: 10px;\n}\n\n/*\n*/\n", ""]);
 
 // exports
 
@@ -20378,78 +20397,96 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c("h1", {
-      staticClass: "text text-bold",
-      domProps: { innerHTML: _vm._s(_vm.response) }
-    }),
-    _vm._v(" "),
     _c("div", { staticClass: "flip-all" }, [
-      _c(
-        "div",
-        { staticClass: "flip-col" },
-        _vm._l(_vm.takevote(), function(vote, index) {
-          return _c(
+      _vm.show
+        ? _c(
             "div",
-            {
-              key: index,
-              staticClass: "flip-card",
-              on: {
-                click: function($event) {
-                  return _vm.voteone(vote)
-                }
-              }
-            },
-            [
-              _c("div", { staticClass: "flip-card-inner" }, [
-                _vm._m(0, true),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  {
-                    staticClass: "flip-card-back",
-                    class: [vote == "yes" ? "win" : "lose"]
-                  },
-                  [
-                    _c("h1", [_vm._v("Voting result")]),
-                    _vm._v(" "),
-                    vote == "yes"
-                      ? _c(
-                          "p",
-                          {
-                            staticClass:
-                              "text h1 text-success text-bold text-center"
-                          },
-                          [_vm._v(" Congradulations!! You  won this time ")]
-                        )
-                      : _c(
-                          "p",
-                          { staticClass: "h1 text text-warning text-bold" },
-                          [_vm._v(" You can try your lack next time ")]
-                        )
-                  ]
-                )
-              ])
-            ]
+            { staticClass: "flip-col" },
+            _vm._l(_vm.takevote(), function(vote, index) {
+              return _c(
+                "div",
+                {
+                  key: index,
+                  staticClass: "flip-card",
+                  on: {
+                    "~click": function($event) {
+                      return _vm.voteone(vote)
+                    }
+                  }
+                },
+                [
+                  _c("transition", { attrs: { name: "fade" } }, [
+                    _c("div", { staticClass: "flip-card-inner" }, [
+                      _c("div", { staticClass: "flip-card-front" }, [
+                        _c("img", {
+                          staticStyle: { width: "300px", height: "300px" },
+                          attrs: { src: "/assets/images.jpeg", alt: "Avatar" }
+                        })
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        {
+                          staticClass: "flip-card-back",
+                          class: [vote == "yes" ? "win" : "lose"]
+                        },
+                        [
+                          _c("h1", [_vm._v("Voting result")]),
+                          _vm._v(" "),
+                          vote == "yes"
+                            ? _c(
+                                "p",
+                                {
+                                  staticClass:
+                                    "text h1 text-success text-bold text-center"
+                                },
+                                [
+                                  _vm._v(
+                                    " Congradulations!! You  won this time "
+                                  )
+                                ]
+                              )
+                            : _c(
+                                "p",
+                                {
+                                  staticClass: "h1 text text-warning text-bold"
+                                },
+                                [_vm._v(" You can try your lack next time ")]
+                              )
+                        ]
+                      )
+                    ])
+                  ])
+                ],
+                1
+              )
+            }),
+            0
           )
-        }),
-        0
-      )
+        : _c("div", { staticClass: "col-8 offset-2 jumbotron center m-3" }, [
+            _c("div", {
+              staticClass: "responce text text-success text-center h1 ",
+              domProps: { innerHTML: _vm._s(_vm.response) }
+            }),
+            _vm._v(" "),
+            _c("div", { staticClass: "result" }, [
+              _vm.result == "yes"
+                ? _c(
+                    "p",
+                    {
+                      staticClass: "text h2 text-success text-bold text-center"
+                    },
+                    [_vm._v(" Congradulations!! You  won this time ")]
+                  )
+                : _c("p", { staticClass: "h2 text text-warning text-bold" }, [
+                    _vm._v(" You can try your lack next time ")
+                  ])
+            ])
+          ])
     ])
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "flip-card-front" }, [
-      _c("img", {
-        staticStyle: { width: "300px", height: "300px" },
-        attrs: { src: "/assets/images.jpeg", alt: "Avatar" }
-      })
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 

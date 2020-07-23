@@ -45,7 +45,7 @@
             </div>
             <!-- /.card-body -->
             <div class="card-footer">
-                <a name="" id="" class="btn btn-primary" href="{{ route('admin.chama') }}" role="button">Back</a>
+                <a name="" id="" class="btn btn-primary" href="{{ route('user.chama.subscribed') }}" role="button">Back</a>
 
             </div>
             <!-- /.card-footer-->

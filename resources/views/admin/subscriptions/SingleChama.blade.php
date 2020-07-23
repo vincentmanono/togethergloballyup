@@ -71,7 +71,10 @@
                                            <td> {{ $chama->users->count() }}</td>
                                            <td>
                                                <!-- Button trigger modal -->
-                                               <a name="" id="" class="btn btn-primary" href="{{ route('user.chama.subscribed.vote',$chama->id) }}" role="button">Vote</a>
+                                               @if ($shouldvote->given == 0 && $shouldvote->as_vote == 0 && $chama->openVote == 1 )
+                                                    <a name="" id="" class="btn btn-primary" href="{{ route('user.chama.subscribed.vote',$chama->id) }}" role="button">Vote</a>
+
+                                               @endif
 
                                                <!-- Modal -->
                                                <div class="modal fade wallet " id="deposite" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">

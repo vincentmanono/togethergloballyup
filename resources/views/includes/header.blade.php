@@ -63,10 +63,13 @@
                         <!-- Nav End -->
                     </div>
 
+
                     <!-- Contact -->
                     <div class="contact">
-                        <a></a>
-                        <a  href="tel:+245704325455"><img src="assets/img/core-img/call2.png" alt=""> +245 70 432 5455</a>
+                        <a name="" id="" href="{{ route('login') }}" class="login"  role="button">Login</a>
+                        <a name="" id="" href="{{ route('register') }}" class="signup"  role="button">Signup</a>
+                        {{-- <a></a>
+                        <a  href="tel:+245704325455"><img src="assets/img/core-img/call2.png" alt=""> +245 70 432 5455</a> --}}
                     </div>
                 </nav>
             </div>

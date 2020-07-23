@@ -27,7 +27,6 @@
         <div class="card">
             <div class="card-header">
                 <h3 class="card-title"> View my Subscribed  Chamas Details
-                    <a name="" id="" class="btn btn-primary" href="{{ route('admin.chama') }}" role="button">Back</a>
                     <button type="button" class="btn btn-dark pull-right" data-toggle="modal" data-target="#deposite">
                         Deposite To wallet
                       </button>

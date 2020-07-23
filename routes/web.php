@@ -44,11 +44,20 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('all-subscription','SubscriptionController@index')->name('user.all.subscription') ;
     Route::post('renew-subscription','SubscriptionController@renew')->name('user.renew.subscription') ;
-    Route::get('/token', 'SubscriptionController@token')->name('token');
-
     Route::post('deposite-to-wallet', 'WalletController@deposite')->name('deposte.to.wallet');
 
     Route::resource('profile', 'UserController');
+
+    Route::group(['prefix' => 'admin'], function () {
+
+        Route::get('my-chamas', 'AdminChamaController@allmychama')->name('admin.allmychama');
+        Route::get('my-chamas/{chama}', 'AdminChamaController@show')->name('admin.allmychama.show');
+        Route::put('my-chamas/{chama}', 'AdminChamaController@openvoting')->name('admin.allmychama.openvoting');
+        Route::delete('/chamas/{chama}', 'ChamaController@destroy')->name('admin.chama.destroy');
+
+
+
+    });
 
 
 });
@@ -59,7 +68,6 @@ Route::group(['middleware' => ['auth','super']], function () {
 
     Route::prefix('power')->group(function(){
         Route::get('/', 'AdminPageController@dashboard')->name('admin.dashboard');
-        Route::delete('/chamas/{chama}', 'ChamaController@destroy')->name('admin.chama.destroy');
         Route::get('/mpesa-all-transactions', 'AdminPageController@mpesaAll')->name('admin.mpesa.all');
         Route::get('/groups-admins', 'AdminPageController@groupsAdmins')->name('admin.groupsAdmins');
         Route::get('/chama-admins', 'AdminPageController@chamaAdmins')->name('admin.chamaAdmins');

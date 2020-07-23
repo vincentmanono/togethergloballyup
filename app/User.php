@@ -38,9 +38,9 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-   public function chama() //for admins only
+   public function allMyChama() //for admins only
    {
-       return $this->hasOne(Chama::class);
+       return $this->hasMany(Chama::class) ;
    }
 
    public function chamaSubscribed() //for users to subscribe to chamas
@@ -53,9 +53,9 @@ class User extends Authenticatable
         return $this->hasMany(Subscription::class);
     }
 
-    public function ticket()
+    public function tickets()
     {
-        return $this->hasOne(Ticket::class);
+        return $this->hasMany(Ticket::class);
     }
 
 

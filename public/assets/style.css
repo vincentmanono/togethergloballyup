@@ -749,6 +749,12 @@ img {
     font-weight: 700;
     line-height: 85px;
 }
+.login{
+    padding-right: 12px;
+}
+.signup{
+    padding-left: 3px;
+}
 
 .header-area .credit-main-menu .classy-navbar .contact a:hover {
     color: #ffffff;

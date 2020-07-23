@@ -6,10 +6,24 @@
     <section class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
-                <div class="col-sm-6">
-                    <h1>{{ $chama->name }}</h1>
+                <div class=" col-sm-8">
+
+                    @if (! $chama->activate)
+                          <div class="alert alert-danger alert-dismissible fade show " role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            <span class="sr-only">Close</span>
+                        </button>
+                        <strong>Status!</strong> Please activate your chama by paying <span class="text text-info" >Ksh 150.00 </span> only .
+                    </div>
+                    @endif
+
+
+
+
+
                 </div>
-                <div class="col-sm-6">
+                <div class="col-sm-2">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
                         <li class="breadcrumb-item active">chama</li>
@@ -27,7 +41,7 @@
         <div class="card">
             <div class="card-header">
                 <h3 class="card-title"> View Chama Details
-                    <a name="" id="" class="btn btn-primary" href="{{ route('admin.chama') }}" role="button">Back</a>
+                    <a name="" id="" class="btn btn-primary" href="{{ route('admin.allmychama') }}" role="button">Back</a>
                     <!-- Button trigger modal -->
                     @if (auth()->user()->role == "admin"  && ($chama->activate == 0) && ($chama->user_id == auth()->user()->id) )
                         <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#activatechama">
@@ -89,8 +103,9 @@
                                 <tr>
                                     <th>Name</th>
                                     <th>Amount</th>
-                                    <th>Admin</th>
-                                    <th>Status</th>
+                                    {{-- <th>Admin</th> --}}
+                                    <th>Duration</th>
+
                                     <th>Members</th>
                                     <th>Action</th>
                                 </tr>
@@ -99,52 +114,68 @@
                                     <tr>
                                         <td>{{  $chama->name  }}</td>
                                         <td scope="row">Ksh {{ number_format( $chama->amount,2,'.',',')  }}</td>
-                                        <td>{{ $chama->admin->firstName . ' '. $chama->admin->lastName }}</td>
-                                        <td>
+                                        {{-- <td>{{ $chama->admin->firstName . ' '. $chama->admin->lastName }}</td> --}}
+                                        {{-- <td>
                                             @if ($chama->activate)
                                                 <span class="text text-success text-bold " >Activated</span>
                                             @else
                                                 <span class="text text-warning text-bold" >Not Activated</span>
                                             @endif
-                                              </td>
+                                              </td> --}}
+                                              <td> {{ $chama->duration }} days </td>
 
                                         <td>{{ $chama->users->count() }}</td>
 
                                         <td class="row" >
+                                            <!-- Button trigger modal -->
+                                            <button type="button" class="btn btn-primary btn-sm ml-3 col-6 " data-toggle="modal" data-target="#openvoting">
+                                              Open Voting
+                                            </button>
 
 
-                                              @can('update', $chama)
-                                                 <button type="button" class="btn btn-warning btn-sm col-6" data-toggle="modal" data-target="#modal-lg">
-                                                Edit Chama
-                                              </button>
-                                              @endcan
-                                              @can('delete', $chama)
-                                                <form class="col-6" action="{{ route('admin.chama.destroy',$chama) }}" id="deletechamaform" method="post">
-                                                @method("DELETE")
-                                                  @csrf
-                                                  <button type="submit"class="btn btn-danger">Delete Chama</button>
-                                              </form>
-                                              @endcan
+                                        @can('update', $chama)
+                                            <button type="button" class="btn btn-warning btn-sm col-6" data-toggle="modal" data-target="#modal-lg">
+                                           Edit Chama
+                                         </button>
+                                         @endcan
 
 
 
-                                        <form action="{{ route('user.chama.join') }}" method="post">
-                                            @csrf
+                                            <!-- Modal -->
+                                            <div class="modal fade" id="openvoting" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                    <h5 class="modal-title">Activate Voting</h5>
+                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                            <span aria-hidden="true">&times;</span>
+                                                                        </button>
+                                                                </div>
+                                                        <div class="modal-body">
+                                                            <div class="container-fluid">
+                                                               <p>You are allowing members of this Chama to start voting</p>
+                                                               <form action="{{ route('admin.allmychama.openvoting',$chama->id) }}" method="post">
+                                                                   @csrf
+                                                                   @method("PUT")
+                                                                   <div class="form-group">
+                                                                       <input type="hidden" class="form-control" name="vote" >
+
+                                                                   </div>
+                                                                   <button type="submit" class="btn btn-primary"> <i class="fa fa-envelope-open" aria-hidden="true"></i> Open Voting</button>
+                                                               </form>
+                                                            </div>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
 
 
 
-                                                <input type="hidden" class="form-control hidden "
-                                                name="chamaID" value="{{ $chama->id }}" >
-
-                                            @if ($chama->activate)
-                                                 <button type="submit" class="btn btn-primary">Join Chama</button>
-                                            @else
-                                            <button type="button" class="btn btn-primary disabled ">Join Chama</button>
-
-                                            @endif
 
 
-                                        </form>
 
 
 
@@ -165,7 +196,13 @@
             </div>
             <!-- /.card-body -->
             <div class="card-footer">
-                Footer
+                @can('delete', $chama)
+                    <form class="col-6" action="{{ route('admin.chama.destroy',$chama) }}" id="deletechamaform" method="post">
+                            @method("DELETE")
+                          @csrf
+                        <button type="submit"class="btn btn-danger">Delete Chama</button>
+                    </form>
+                @endcan
             </div>
             <!-- /.card-footer-->
         </div>
@@ -189,7 +226,7 @@
                           <div class="form-group">
                             <label for="">Chama Name</label>
                             <input type="text" name="name" id="" value="{{ $chama->name }}" class="form-control" placeholder="Chama name" aria-describedby="chamaNamehelp">
-                            <small id="chamaNamehelp" class="text-muted"> unique Name</small>
+                            <small id="chamaNamehelp" class="text-muted">Us.e unique Name</small>
                           </div>
                           <div class="form-group">
                             <label for="">Amount</label>
@@ -200,7 +237,7 @@
                             <label for="description">Chama Description</label>
                             <textarea class="form-control" name="description" id="" rows="3">{{ $chama->description }}</textarea>
                           </div>
-                          <button type="submit" class="btn btn-primary btn-block">Save changes</button>
+                          <button type="submit" class="btn btn-primary">Save changes</button>
 
 
 
@@ -208,7 +245,7 @@
                 </div>
                 <div class="modal-footer justify-content-between">
                   <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                  {{-- <button type="submit" class="btn btn-primary">Save changes</button> --}}
+
                 </div>
             </form>
               </div>

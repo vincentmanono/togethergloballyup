@@ -19,6 +19,7 @@ class CreateTicketsTable extends Migration
             $table->integer('user_id')->unsigned();
             $table->boolean('pay')->nullable()->default(false);//will receive payment
             $table->boolean('given')->nullable()->default(false);//received money
+            $table->boolean('as_vote')->nullable()->default(false); //determin if user voted on given duration
             $table->timestamps();
         });
     }

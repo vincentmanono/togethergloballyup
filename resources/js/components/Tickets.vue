@@ -1,9 +1,10 @@
 <template>
   <div>
-      <h1 class="text text-bold" v-html="response" ></h1>
+
     <div class="flip-all">
-      <div class="flip-col">
-        <div v-for="(vote , index) in takevote()" :key="index" class="flip-card" @click="voteone(vote)" >
+      <div class="flip-col" v-if="show" >
+        <div  v-for="(vote , index) in takevote()" :key="index" class="flip-card" @click.once ="voteone(vote)"   >
+          <transition name="fade">
           <div class="flip-card-inner">
             <div class="flip-card-front">
               <img src="/assets/images.jpeg" alt="Avatar" style="width:300px;height:300px;" />
@@ -14,7 +15,18 @@
               <p v-else class="h1 text text-warning text-bold" > You can try your lack next time </p>
             </div>
           </div>
+        </transition>
         </div>
+      </div>
+      <div v-else class="col-8 offset-2 jumbotron center m-3" >
+          <div class="responce text text-success text-center h1 " v-html="response"> </div>
+          <div class="result">
+
+               <p v-if="result =='yes'" class="text h2 text-success text-bold text-center"  > Congradulations!! You  won this time </p>
+              <p v-else class="h2 text text-warning text-bold" > You can try your lack next time </p>
+          </div>
+
+
       </div>
     </div>
 
@@ -39,9 +51,9 @@ export default {
   data() {
     return {
       countTickets: "",
-      winTicket: 1,
-      nextTicket: 0,
-      response:''
+      show: true ,
+      response:'',
+      result:''
     };
   },
 
@@ -81,7 +93,22 @@ export default {
 
         Axios.post(url,data).then((response)=>{
            console.log(response.message)
-            this.response = response.data.message
+            this.response = response.data.message;
+
+            this.show = false ;
+            this.result = result ;
+
+
+        $(document).ready(function () {
+            setTimeout(() => {
+                 $(".flip-card .flip-card-inner").removeClass("voted")
+            }, 200);
+
+
+        });
+
+
+
         }).catch((error)=>{
             alert(error)
             console.error(error)
@@ -91,6 +118,7 @@ export default {
     }
 
   },
+
 
   mounted() {
     // console.log(this.Tickets);
@@ -108,6 +136,7 @@ body {
   height: auto;
   display: grid;
   place-items: center;
+
 }
 
 .flip-col {
@@ -126,6 +155,7 @@ body {
   width: 300px;
   height: 300px;
   perspective: 1000px;
+  cursor: pointer;
 
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1), 0 2px 2px rgba(0, 0, 0, 0.1),
     0 4px 4px rgba(0, 0, 0, 0.1), 0 8px 8px rgba(0, 0, 0, 0.1),
@@ -175,6 +205,12 @@ body {
 }
 .lose{
     background-color: #2980b9;
+}
+
+.responce{
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+
 }
 
 /*

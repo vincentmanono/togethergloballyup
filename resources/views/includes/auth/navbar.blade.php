@@ -43,20 +43,20 @@
           </a>
           <div class="dropdown-divider"></div>
 
+          <form action="{{ route('logout') }}" method="post">
+            @csrf
+            <button type="submit" class="btn bg-gradient-danger btn-block ">Logout</button>
+            </form>
 
-          <form  id="logout" class="dropdown-item " action="{{ route('logout') }}"  method="post">
-        @csrf
-        <button type="submit" class="btn bg-gradient-danger btn-block ">
-            <i class="fa fa-sign-out" aria-hidden="true"></i> Logout
-        </button>
-        </form>
+
+
           {{-- <div class="dropdown-divider"></div>
           <a href="#" class="dropdown-item">
             <i class="fas fa-file mr-2"></i> 3 new reports
             <span class="float-right text-muted text-sm">2 days</span>
           </a> --}}
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
+          {{-- <div class="dropdown-divider"></div> --}}
+          {{-- <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a> --}}
         </div>
       </li>
       <li class="nav-item">

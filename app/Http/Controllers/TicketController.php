@@ -23,12 +23,11 @@ class TicketController extends Controller
 
         Ticket::where('chama_id',$chama->id)
         ->where('user_id',$user->id)
-        ->update(['pay' => 1, 'given'=> 1 ]);
+        ->update(['pay' => true, 'given'=> true ,'as_vote'=>true]);
         }else {
             Ticket::where('chama_id',$chama->id)
             ->where('user_id',$user->id)
-            ->update(['pay' => 0 ]);
-
+            ->update(['pay' => 0 , 'as_vote'=>true ]);
         }
 
         return response()->json(
