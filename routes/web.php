@@ -55,6 +55,8 @@ Route::group(['middleware' => 'auth'], function () {
         Route::put('my-chamas/{chama}', 'AdminChamaController@openvoting')->name('admin.allmychama.openvoting');
         Route::delete('/chamas/{chama}', 'ChamaController@destroy')->name('admin.chama.destroy');
 
+        Route::post('my-chamas', 'AdminChamaController@removeUser')->name('admin.allmychama.removeUser');
+
 
 
     });

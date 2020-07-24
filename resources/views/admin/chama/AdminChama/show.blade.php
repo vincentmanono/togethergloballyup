@@ -105,6 +105,7 @@
                                     <th>Amount</th>
                                     {{-- <th>Admin</th> --}}
                                     <th>Duration</th>
+                                    <th>next Voting</th>
 
                                     <th>Members</th>
                                     <th>Action</th>
@@ -123,6 +124,9 @@
                                             @endif
                                               </td> --}}
                                               <td> {{ $chama->duration }} days </td>
+                                              <td>
+                                                {{ date('l jS M Y, h:i a', strtotime($chama->nextVote)) }}
+                                                    </td>
 
                                         <td>{{ $chama->users->count() }}</td>
 
@@ -190,6 +194,67 @@
 
                                 </tbody>
                         </table>
+                    </div>
+
+                    <div id="accordianId" role="tablist" aria-multiselectable="true">
+                        <div class="card">
+                            <div class="card-header" role="tab" id="section1HeaderId">
+                                <h5 class="mb-0">
+                                    <a data-toggle="collapse" data-parent="#accordianId" href="#section1ContentId" aria-expanded="true" aria-controls="section1ContentId">
+                                        Monitor Chama users
+                            </a>
+                                </h5>
+                            </div>
+                            <div id="section1ContentId" class="collapse in" role="tabpanel" aria-labelledby="section1HeaderId">
+                                <div class="card-body">
+                                    <table class="table table-hover table-inverse table-responsive">
+                                        <thead class="thead-inverse">
+                                            <tr>
+                                                <th> Name </th>
+                                                <th> Email</th>
+                                                <th> Wallet</th>
+
+                                                <th>Action</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach ($chama->users as $user)
+                                                     <tr>
+                                                    <td scope="row"> {{ $user->firstName . ' '.$user->lastName }}</td>
+                                                    <td> <a href="mailto:{{ $user->email }}">{{ $user->email }}</a> </td>
+                                                    <td> {{ $user->wallet->amount }} </td>
+                                                    <td>
+                                                        <form action="{{ route('admin.allmychama.removeUser') }}" method="post">
+                                                            @csrf
+                                                            <input type="hidden" name="userId" value="{{ $user->id }}" >
+                                                            <input type="hidden" name="chamaId" value="{{ $chama->id }}" >
+                                                            <button type="submit"  class="btn btn-danger" >Remove User</button>
+                                                        </form>
+
+                                                    </td>
+                                                     </tr>
+                                                @endforeach
+
+
+                                            </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header" role="tab" id="section2HeaderId">
+                                <h5 class="mb-0">
+                                    <a data-toggle="collapse" data-parent="#accordianId" href="#section2ContentId" aria-expanded="true" aria-controls="section2ContentId">
+                              Section 2
+                            </a>
+                                </h5>
+                            </div>
+                            <div id="section2ContentId" class="collapse in" role="tabpanel" aria-labelledby="section2HeaderId">
+                                <div class="card-body">
+                                    Section 2 content
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
                 </div>

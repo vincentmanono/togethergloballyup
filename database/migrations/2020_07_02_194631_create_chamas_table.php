@@ -18,9 +18,9 @@ class CreateChamasTable extends Migration
             $table->string("user_id") ;
             $table->string("name") ;
             $table->double('amount') ;
-
             $table->integer('duration')->unsigned()->nullable()->default(30);
             $table->boolean('openVote')->nullable() ->default(false) ;
+            $table->dateTime('nextVote')->nullable();
             $table->longText("description")->nullable() ;
             $table->boolean('activate') ->default(false) ;
             $table->timestamps();

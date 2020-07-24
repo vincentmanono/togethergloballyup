@@ -107,12 +107,6 @@ class ChamaController extends Controller
 
     }
 
-    public function vote(){
-        $chama =  Chama::find(8);
-        $members= $chama->users->pluck('id') ;
-        $now = now()->format('Y-m-d H:i:s');
-        return $members ;
-    }
 
 
 

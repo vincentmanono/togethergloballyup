@@ -46,7 +46,7 @@
                       <th>Amount</th>
                       <th>members</th>
 
-                      <th>Status</th>
+                      <th>next Voting</th>
 
                       <th>Action</th>
                     </tr>
@@ -59,11 +59,7 @@
                       <td> {{ $chama->users->count()}}</td>
 
                       <td>
-                          @if ($chama->activate)
-                              <span class="text text-success text-bold " >Activated</span>
-                          @else
-                              <span class="text text-warning text-bold" >Not Activated</span>
-                          @endif
+                        {{ date('l jS M Y, h:i a', strtotime($chama->nextVote)) }}
                             </td>
                       <td>
                           <a name="chama" id="" class="btn btn-primary" href="{{ route('admin.allmychama.show',$chama->id) }}" role="button">
