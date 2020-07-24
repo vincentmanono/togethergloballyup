@@ -40,8 +40,8 @@ class AdminChamaController extends Controller
         $days = $chama->duration;
         $now = now()->format('Y-m-d H:i:s');
         if($chama->nextVote != null && $chama->nextVote > $now){
-            Session::flash('error',"You can't Open Voting before end of set duration days ") ;
-            return back();
+            // Session::flash('error',"You can't Open Voting before end of set duration days ") ;
+            // return back();
         }
         else{
             $chama->nextVote = date('Y-m-d H:i:s', strtotime('+' . $days . ' day', strtotime($now)));

@@ -47,7 +47,7 @@ class VotingNotification extends Notification
         return (new MailMessage)
                     ->subject('Voting notification')
                     ->line('You can vote.')
-                    ->greeting('Hello' , $user->firstName  )
+                    ->greeting('Dear ' . $user->firstName  )
                     ->line('This is to notify you that you can cast your vote for '. $chama->name )
                     ->action('Click  to vote', url(route('user.chama.subscribed.single',$chama->id)))
                     ->line('Thank you for being with us!');
