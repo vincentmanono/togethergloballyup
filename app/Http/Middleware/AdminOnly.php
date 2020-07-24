@@ -3,8 +3,8 @@
 namespace App\Http\Middleware;
 
 use Closure;
-use Illuminate\Contracts\Session\Session;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class AdminOnly
 {
@@ -21,12 +21,12 @@ class AdminOnly
             if (auth()->user()->role == 'admin' ) {
                 return $next($request);
             } else {
-                $request->session()->flash('error', "You do not have privilagies to access, this routes");
+                Session::flash('error', "You do not have privilagies to access, this routes");
                 return back() ;
             }
 
         } else {
-            $request->session()->flash('error', "Please login to access this routes");
+            Session::flash('error', "Please login to access this routes");
             return back() ;
         }
 

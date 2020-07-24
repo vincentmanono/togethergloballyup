@@ -48,7 +48,10 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::resource('profile', 'UserController');
 
-    Route::group(['prefix' => 'admin'], function () {
+    Route::resource('messages', 'MessageController');
+    Route::resource('/testimonies','TestimonyController');
+
+    Route::group(['prefix' => 'admin','middleware'=>['admin']], function () {
 
         Route::get('my-chamas', 'AdminChamaController@allmychama')->name('admin.allmychama');
         Route::get('my-chamas/{chama}', 'AdminChamaController@show')->name('admin.allmychama.show');
@@ -77,7 +80,5 @@ Route::group(['middleware' => ['auth','super']], function () {
         Route::get('all-subscription','SubscriptionController@index')->name('admin.all.subscription') ;
         Route::get('all-active-subscription','SubscriptionController@active')->name('admin.active.subscription') ;
     });
-    Route::resource('messages', 'MessageController');
-    Route::resource('/testimonies','TestimonyController');
 
 });

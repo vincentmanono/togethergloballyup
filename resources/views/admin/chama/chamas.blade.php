@@ -26,7 +26,7 @@
         <div class="card">
             <div class="card-header">
                 <h3 class="card-title mr-3">Groups and Admin name</h3>
-                <a href="" class="btn btn-primary ml-4">Create Chama</a>
+                <a href="{{ route('user.chama.create') }}" class="btn btn-primary ml-4">Create Chama</a>
                 <div class="card-tools">
                     <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
       <i class="fas fa-minus"></i></button>

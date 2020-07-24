@@ -78,13 +78,21 @@ class ChamaController extends Controller
 
     public function takevote($chama_id)
     {
-        $chama = Chama::where('id',$chama_id) ->where('openVote',true)->get();
+        $chama = Chama::where('id',$chama_id) ->where('openVote',true)->first();
         $user =auth()->user() ;
+
+        if ( $user->wallet->amount < $chama->amount  ) {
+            $top = intval($chama->amount)  - intval($user->wallet->amount)  ;
+            Session::flash('error',"Please top Up your wallet  with KSH ". $top  . " to be able to vote ");
+            return back() ;
+        }
 
         if ( $chama->count() < 1 ) {
             Session::flash('error',"Please contact chama admin for more information ");
             return redirect()->route('user.chama.subscribed.single',$chama_id) ;
         }
+
+        // return $chama->id ;
 
 
         $shouldvote = Ticket::where('chama_id',$chama->id)->where('user_id',$user->id)->first();
@@ -238,7 +246,7 @@ class ChamaController extends Controller
          $this->authorize('delete',$chama) ;
         if ($chama->user_id == auth()->user()->id || auth()->user()->role == 'super') {
             if (  $chama->delete()) {
-            return redirect()->route('admin.chama') ->with('success','Chama details deleted successfully') ;
+            return redirect()->route('admin.allmychama') ->with('success','Chama details deleted successfully') ;
 
      }
         }
