@@ -73,11 +73,12 @@ class TestimonyController extends Controller
      * @param  \App\Testimony  $testimony
      * @return \Illuminate\Http\Response
      */
-    public function show( $id)
+    public function show( Testimony $testimony)
     {
-        $single = Testimony::findorfail($id);
+        $single = $testimony ;
+        $this->authorize('view',$testimony) ;
 
-        return view('admin/testimony/edit')->with('single',$single);
+        return view('admin/testimony/show')->with('single',$single);
     }
 
     /**
@@ -86,9 +87,11 @@ class TestimonyController extends Controller
      * @param  \App\Testimony  $testimony
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    { $single = Testimony::findorfail($id);
-        // $this->authorize('update',Testimony::class) ;
+    public function edit(Testimony $testimony)
+    {
+
+        $single = $testimony ;
+        $this->authorize('update',$testimony) ;
 
         if ( auth()->user()->id == $single->user_id ) {
             # code...
@@ -110,20 +113,25 @@ class TestimonyController extends Controller
      * @param  \App\Testimony  $testimony
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request,$id)
+    public function update(Request $request, Testimony $testimony )
     {
 
         $this -> validate($request,[
             'body'=>'required|string|max:1000'
 
         ]);
-        $post =  Testimony::find($id);
 
-        if (auth()->user()->role == "super" ||  auth()->user()->id != $post->user_id ) {
+
+
+        if (auth()->user()->role == "super" ||  auth()->user()->id != $testimony->user_id ) {
 
             Session::flash('error',"You cant edit other members testimony") ;
             return back();
         }
+
+        $this->authorize('update',$testimony) ;
+
+        $post = Testimony::findOrFail($testimony->id )  ;
 
 
         $post->user_id = auth()->user()->id ;
@@ -141,9 +149,11 @@ class TestimonyController extends Controller
      * @param  \App\Testimony  $testimony
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy( Testimony $testimony)
     {
-        $data = Testimony::find($id);
+        $this->authorize('delete',$testimony) ;
+        $data = Testimony::findOrFail($testimony->id )  ;
+
         if (auth()->user()->role == "super" ||  auth()->user()->id != $data->user_id ) {
 
             Session::flash('error',"You cant delete other members testimony") ;

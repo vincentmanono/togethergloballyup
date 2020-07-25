@@ -51,7 +51,7 @@
                 <table id="example1" class="table table-bordered table-striped">
                     <thead>
                     <tr>
-                      <th>Id</th>
+                      <th>Owner</th>
                       <th>Body</th>
                       <th>Options</th>
 
@@ -60,18 +60,14 @@
                     <tbody>
                         @foreach ($testimonies as $testimony)
                             <tr>
-                    <td>{{$testimony->id}}</td>
-                    <td>{{$testimony->body}}</td>
+                    <td class="text text-capitalize text-bold" >{{$testimony->user->firstName . ' '.$testimony->user->lastName }}</td>
+                    <td>{{ Str::limit($testimony->body , 60 , '...') }}</td>
                     <td class="row" >
+                        <a name="" id="" class="btn btn-primary btn-sm mr-2" href="{{ route('testimonies.show',$testimony) }}" role="button">Read More</a>
                         @if (auth()->user()->role == "super" || auth()->user()->id == $testimony->user_id )
-                              <a class="btn btn-sm btn-primary col " href="/testimonies/{{$testimony->id}}/edit" style="float:left">Edit</a>
-                                <form class="col" action="/testimonies/{{$testimony->id}}" method="POST" >
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-danger btn-sm" style="float:left; margin-left:4%">Delete</button>
+                              <a class="btn btn-sm btn-info col " href="{{ route('testimonies.edit',$testimony) }}"
+                              style="float:left"> <i class="fa fa-pencil" aria-hidden="true">Edit</i> </a>
 
-
-                    </form>
                         @endif
 
                     </td>
