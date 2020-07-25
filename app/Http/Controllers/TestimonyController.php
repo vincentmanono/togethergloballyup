@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Testimony;
-use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class TestimonyController extends Controller
 {
@@ -16,6 +16,7 @@ class TestimonyController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        // $this->authorizeResource(Testimony::class,'testimony') ;
     }
     public function index()
     {
@@ -86,10 +87,20 @@ class TestimonyController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
-    {
-        $single = Testimony::findorfail($id);
+    { $single = Testimony::findorfail($id);
+        // $this->authorize('update',Testimony::class) ;
 
-        return view('admin/testimony/edit')->with('single',$single);
+        if ( auth()->user()->id == $single->user_id ) {
+            # code...
+            return view('admin/testimony/edit')->with('single',$single);
+        } else {
+            Session::flash('error',"You cant edit other members testimony") ;
+            return back();
+        }
+
+
+
+
     }
 
     /**
@@ -106,8 +117,15 @@ class TestimonyController extends Controller
             'body'=>'required|string|max:1000'
 
         ]);
-
         $post =  Testimony::find($id);
+
+        if (auth()->user()->role == "super" ||  auth()->user()->id != $post->user_id ) {
+
+            Session::flash('error',"You cant edit other members testimony") ;
+            return back();
+        }
+
+
         $post->user_id = auth()->user()->id ;
         $post->body=$request->input('body');
         $validate=$post->save();
@@ -126,6 +144,11 @@ class TestimonyController extends Controller
     public function destroy($id)
     {
         $data = Testimony::find($id);
+        if (auth()->user()->role == "super" ||  auth()->user()->id != $data->user_id ) {
+
+            Session::flash('error',"You cant delete other members testimony") ;
+            return back();
+        }
         $data->delete();
 
         return redirect('/testimonies')->with('success','Testimony deleted successfully') ;

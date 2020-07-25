@@ -29,13 +29,15 @@
         <div class="card">
             <div>
 
+
             <form action="{{route('testimonies.update',$single->id)}}" method="post" style="margin-left:10%; margin-top:4%" >
                 @csrf
                 @method('PUT')
+                <div class="form-group">
+                  <textarea class="form-control" name="body"   rows="7" cols="70" >{{ $single->body }}</textarea>
+                </div>
 
                 <div >
-
-                    <textarea name="body" rows="7" cols="70">   {{ $single->body }}</textarea>
                 </div>
                 <button class="btn btn-primary" type="submit" style="margin-left:25%; margin-top:3%;">Update</button> <br><br><br><br>
             </form>
