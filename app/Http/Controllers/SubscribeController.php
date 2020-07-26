@@ -16,7 +16,7 @@ class SubscribeController extends Controller
     public function index()
     {
         $subscriptions = Subscribe::orderBy('created_at', 'DESC')->paginate(100);
-        return view('admin.subscriptions.allSubscriptions',compact('subscriptions')) ;
+        return view('admin.subscriptions.mySubscription',compact('subscriptions')) ;
     }
 
     /**
