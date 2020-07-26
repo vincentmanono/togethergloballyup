@@ -6,7 +6,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>My Subscription Details</h1>
+                    <h1>Subscribers to Newsletters</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -25,18 +25,18 @@
         <!-- Default box -->
         <div class="card">
             <div class="card-header">
-                <h3>Subscriptions | <small>List of all my Subscriptions.</small></h3>
+                <h3>Email| <small>Subscriptions.</small></h3>
                 <!-- Button trigger modal -->
-                <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#renew">
+                {{-- <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#renew">
                   Renew your Subscription
-                </button>
+                </button> --}}
 
                 <!-- Modal -->
-                <div class="modal fade" id="renew" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+                {{-- <div class="modal fade" id="renew" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title">Renew Subscription</h5>
+                                <h5 class="modal-title">Email Subscriptions</h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
@@ -58,7 +58,7 @@
                         </form>
                         </div>
                     </div>
-                </div>
+                </div> --}}
 
                 <div class="card-tools">
                     <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
@@ -73,6 +73,7 @@
                     <tr>
                         <th>Email</th>
                         <th>Created_At</th>
+                        <th>Edit</th>
 
                     </tr>
                     </thead>
@@ -81,6 +82,7 @@
                         <tr>
                         <td>{{ $sub->email}}</td>
                         <td>{{$sub->created_at}}</td>
+                        <td></td>
                             @endforeach
                         </tr>
                     </tbody>
@@ -88,6 +90,7 @@
                         <tr>
                             <th>Email</th>
                             <th>Created_At</th>
+                            <th>Edit</th>
 
                         </tr>
                     </tfoot>

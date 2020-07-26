@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Subscribe;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class SubscribeController extends Controller
 {
@@ -98,6 +99,17 @@ class SubscribeController extends Controller
      */
     public function destroy(Subscribe $subscribe)
     {
-        //
+        
+        // $this->authorize('delete',$subscribe) ;
+        // $data = Subscribe::findOrFail($subscribe->email )  ;
+
+        // if (auth()->user()->role == "super" ||  auth()->user()->id != $data->user_id ) {
+
+        //     Session::flash('error',"You cant delete the email if you are not the super admin") ;
+        //     return back();
+        // }
+        // $data->delete();
+
+        // return redirect('/mysubscriptions')->with('success','Email deleted successfully') ;
     }
 }

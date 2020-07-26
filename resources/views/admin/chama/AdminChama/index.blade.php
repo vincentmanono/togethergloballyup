@@ -60,7 +60,7 @@
 
                       <td>
                         {{ date('l jS M Y, h:i a', strtotime($chama->nextVote)) }}
-                            </td>
+                            </td> 
                       <td>
                           <a name="chama" id="" class="btn btn-primary" href="{{ route('admin.allmychama.show',$chama->id) }}" role="button">
                               <i class="fa fa-eye-slash" aria-hidden="true"></i>
