@@ -71,10 +71,13 @@
                                            <td> {{ $chama->users->count() }}</td>
                                            <td>
                                                <!-- Button trigger modal -->
-                                               <a name="" id="" class="btn btn-primary" href="{{ route('user.chama.subscribed.vote',$chama->id) }}" role="button">Vote</a>
+                                               @if ($shouldvote->given == 0 && $shouldvote->as_vote == 0 && $chama->openVote == 1 )
+                                                    <a name="" id="" class="btn btn-primary" href="{{ route('user.chama.subscribed.vote',$chama->id) }}" role="button">Vote</a>
+
+                                               @endif
 
                                                <!-- Modal -->
-                                               <div class="modal fade" id="deposite" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+                                               <div class="modal fade wallet " id="deposite" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
                                                    <div class="modal-dialog" role="document">
                                                        <div class="modal-content">
                                                            <div class="modal-header">
@@ -108,6 +111,7 @@
                                                                     <input id="phone" type="number" aria-describedby="helpId"
                                                                      class="form-control @error('phone') is-invalid @enderror"
                                                                       name="phone"
+                                                                      placeholder="07********"
                                                                       value="{{ old('phone') }}" required
                                                                       autocomplete="phone" autofocus>
                                                                     <small   id="helpId"  class="form-text text-muted">Change if you do not want to 'use' your number</small>

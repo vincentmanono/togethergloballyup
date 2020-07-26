@@ -92,7 +92,7 @@
             </a>
             <ul class="nav nav-treeview">
                 <li class="nav-item">
-                    <a href="{{ route('admin.chama') }}" class="nav-link">
+                    <a href="{{ route('admin.allmychama') }}" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
                       <p>my Chamas</p>
                     </a>
@@ -242,11 +242,11 @@
             </ul>
           </li>
 
-          {{-- <li class="nav-item has-treeview">
+          <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
               <i class="fa fa-book" aria-hidden="true"></i>
               <p>
-                Document Reports
+                Logout
                <i class="fa fa-file-excel-o" aria-hidden="true"></i>
               </p>
             </a>
@@ -254,12 +254,15 @@
               <li class="nav-item">
                 <a href="pages/examples/login.html" class="nav-link">
 
-                  <p> View Files</p>
+                  <p> <form action="{{ route('logout') }}" method="post">
+                      @csrf
+                      <button type="submit" class="btn btn-danger">Logout</button>
+                      </form> </p>
                 </a>
               </li>
 
             </ul>
-          </li> --}}
+          </li>
 
         </ul>
       </nav>

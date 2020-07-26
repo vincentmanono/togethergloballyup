@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTikectsTable extends Migration
+class CreateTicketsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,13 @@ class CreateTikectsTable extends Migration
      */
     public function up()
     {
-        Schema::create('tikects', function (Blueprint $table) {
+        Schema::create('tickets', function (Blueprint $table) {
             $table->id();
-
             $table->integer('chama_id')->unsigned();
             $table->integer('user_id')->unsigned();
-            $table->boolean('pay')->nullable()->default(false);
-            $table->boolean('given')->nullable()->default(false);
+            $table->boolean('pay')->nullable()->default(false);//will receive payment
+            $table->boolean('given')->nullable()->default(false);//received money
+            $table->boolean('as_vote')->nullable()->default(false); //determin if user voted on given duration
             $table->timestamps();
         });
     }
@@ -31,6 +31,6 @@ class CreateTikectsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tikects');
+        Schema::dropIfExists('tickets');
     }
 }

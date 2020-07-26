@@ -32,10 +32,10 @@
         <a class="nav-link" data-toggle="dropdown" href="#">
 
           <i class="fa fa-user" aria-hidden="true"></i>
-          <span class=" ml-3 text text-bold text-capitalize" >{{ auth()->user()->firstName }}</span>
+          <span class=" ml-3 text text-bold text-capitalize" >{{ auth()->user()->firstName .' ' .auth()->user()->lastName  }}</span>
         </a>
         <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-          <span class="dropdown-item dropdown-header">{{ auth()->user()->phone }} </span>
+          <span class="dropdown-item dropdown-header text text-bold text-dark ">{{ "Ksh" . number_format(auth()->user()->wallet->amount,2,".",",")  }} </span>
           <div class="dropdown-divider"></div>
           <a href="{{ route('profile.show',auth()->user()->email) }}" class="dropdown-item">
             <i class="fa fa-user-md" aria-hidden="true"></i> My Profile
@@ -43,20 +43,20 @@
           </a>
           <div class="dropdown-divider"></div>
 
+          <form action="{{ route('logout') }}" method="post">
+            @csrf
+            <button type="submit" class="btn bg-gradient-danger btn-block ">Logout</button>
+            </form>
 
-          <form  id="logout" class="dropdown-item " action="{{ route('logout') }}"  method="post">
-        @csrf
-        <button type="submit" class="btn bg-gradient-danger btn-block ">
-            <i class="fa fa-sign-out" aria-hidden="true"></i> Logout
-        </button>
-        </form>
+
+
           {{-- <div class="dropdown-divider"></div>
           <a href="#" class="dropdown-item">
             <i class="fas fa-file mr-2"></i> 3 new reports
             <span class="float-right text-muted text-sm">2 days</span>
           </a> --}}
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
+          {{-- <div class="dropdown-divider"></div> --}}
+          {{-- <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a> --}}
         </div>
       </li>
       <li class="nav-item">

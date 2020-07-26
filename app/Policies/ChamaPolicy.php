@@ -54,7 +54,7 @@ class ChamaPolicy
      */
     public function update(User $user, Chama $chama)
     {
-        if ( $user->role =='super'  || $user->role =='admin' && $user->id === $chama->user_id ) {
+        if ( $user->role =='super'  || $user->role =='admin' && $user->id == $chama->user_id ) {
             return Response::allow();
         } else {
            return Response::deny("You are not allowed to update this chama") ;
@@ -71,7 +71,7 @@ class ChamaPolicy
      */
     public function delete(User $user, Chama $chama)
     {
-        if ( $user->role =='super'  || $user->role =='admin' && $user->id === $chama->user_id ) {
+        if ( $user->role =='super'  || $user->role =='admin' && $user->id == $chama->user_id ) {
             return Response::allow();
         } else {
             return Response::deny("You are not allowed to delete this chama") ;

@@ -52,5 +52,11 @@ class UsersTableSeeder extends Seeder
     ]
 );
 
+
+
+// factory(App\User::class,3)->create()->each( function ($user){
+//     $user->wallet()->save(factory(App\Wallet::class)->make());
+// } ) ;
+
     }
 }

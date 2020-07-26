@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Chama;
-use App\ChamaUser;
-use App\Http\Requests\ChamaStoreRequest;
 use App\User;
+use App\Chama;
+use App\Ticket;
 use App\Wallet;
+use App\ChamaUser;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
+use App\Http\Requests\ChamaStoreRequest;
 
 class ChamaController extends Controller
 {
@@ -25,7 +27,7 @@ class ChamaController extends Controller
     }
 
     public function chamaJoin(Request $request){
-        $user = auth()->user() ;
+        $user = User::find(auth()->user()->id)  ;
         $chama = Chama::find($request->input('chamaID'))  ;
         $asthischama= ChamaUser::where('user_id',$user->id)->where('chama_id',$chama->id)->count() ;
         if ($asthischama ) {
@@ -33,6 +35,12 @@ class ChamaController extends Controller
            return back() ;
         }
         $user->chamaSubscribed()->attach([$chama->id]);
+        $user->tickets()->create([
+            'chama_id' => $chama->id,
+            'given'=>false,
+            'as_vote'=>false
+
+        ]);
         $request->session()->flash('success', "You have successfully subscribed to " . $chama->name);
 
         return back();
@@ -61,28 +69,59 @@ class ChamaController extends Controller
         $user =auth()->user() ;
         $chama = Chama::findOrFail($chama->id);
         $wallet = Auth::user()->wallet ;
-
-        return view('admin.subscriptions.SingleChama',compact('chama','wallet')) ;
+        $shouldvote = Ticket::where('chama_id',$chama->id)->where('user_id',$user->id)->first();
+        // return $shouldvote->given ;
+        return view('admin.subscriptions.SingleChama',compact('chama','wallet','shouldvote')) ;
     }
+
+
 
     public function takevote($chama_id)
     {
-        $chama = Chama::where('id',$chama_id)->first();
-        return view('admin/chama/tikects/teckvote', compact('chama') );
+        $chama = Chama::where('id',$chama_id) ->where('openVote',true)->get();
+        $user =auth()->user() ;
+
+        if ( $chama->count() < 1 ) {
+            Session::flash('error',"Please contact chama admin for more information ");
+            return redirect()->route('user.chama.subscribed.single',$chama_id) ;
+        }
+
+
+        $shouldvote = Ticket::where('chama_id',$chama->id)->where('user_id',$user->id)->first();
+        // return $shouldvote->given ;
+        if ($shouldvote->given  == 1 ) {
+           Session::flash('error',"you can't vote until all members  win like you");
+           return redirect()->route('user.chama.subscribed.single',$chama->id) ;
+        } else if($shouldvote->as_vote == 1) {
+
+            Session::flash('error',"you have already voted . Wait for next round");
+            return redirect()->route('user.chama.subscribed.single',$chama->id) ;
+
+        }else{
+            return view( 'admin.chama.tikects.vote', compact('chama') );
+        }
+
+
+
+
 
     }
 
-    public function vote(){
-        $chama =  Chama::find(8);
-        $members= $chama->users->pluck('id') ;
-        $now = now()->format('Y-m-d H:i:s');
-        return $members ;
-    }
+
+
 
 
     public function index()
     {
-        $chamas = Chama::all() ;
+        $user = auth()->user()->role == "super" ;
+        if ($user ) {
+            $chamas = Chama::all() ;
+        } else {
+            $chamas = Chama::where('activate',true)->get();
+        }
+
+
+
         return view('admin.chama.chamas')->with('chamas',$chamas) ;
     }
 
@@ -113,6 +152,15 @@ class ChamaController extends Controller
         if ($chama->save() ) {
             $user->role = 'admin';
             $user->save();
+
+            $user->chamaSubscribed()->attach([$chama->id]);
+            $user->tickets()->create([
+                'chama_id' => $chama->id,
+                'given'=>false,
+                'as_vote'=>false
+
+            ]);
+
              $request->session()->flash('success', "Your chama created successfully");
              return redirect()->route('admin.chama.show',$chama->id) ;
         } else {
@@ -185,8 +233,9 @@ class ChamaController extends Controller
      */
     public function destroy(Chama $chama)
     {
-        $this->authorize('delete',$chama) ;
+
         $chama = Chama::findOrFail($chama->id);
+         $this->authorize('delete',$chama) ;
         if ($chama->user_id == auth()->user()->id || auth()->user()->role == 'super') {
             if (  $chama->delete()) {
             return redirect()->route('admin.chama') ->with('success','Chama details deleted successfully') ;

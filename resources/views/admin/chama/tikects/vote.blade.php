@@ -8,6 +8,8 @@
             <div class="row mb-2">
                 <div class="col-sm-6">
                     <h1>vote</h1>
+
+
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -37,22 +39,13 @@
                 </div>
             </div>
             <div class="card-body">
-                <div class="row">
-
-                    <div id="tikect" class="tikect col-md-3" data-id="one" data-user="{{ auth()->user() }}" >
-                    <div class="tikectvalue">Next Time</div>
-                   </div>
 
 
-
-                </div>
-
-
-
+               <tickets  :chama="{{ $chama }}" :user= "{{ auth()->user() }}" :tickets="{{ $chama->tickets }}" ></tickets>
             </div>
             <!-- /.card-body -->
             <div class="card-footer">
-                <a name="" id="" class="btn btn-primary" href="{{ route('admin.chama') }}" role="button">Back</a>
+                <a name="" id="" class="btn btn-primary" href="{{ route('user.chama.subscribed') }}" role="button">Back</a>
 
             </div>
             <!-- /.card-footer-->

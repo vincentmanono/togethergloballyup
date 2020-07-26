@@ -2,15 +2,17 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
-use App\User;
 use App\Chama;
-use App\Tikect;
+use App\User;
+use App\Ticket;
 use Faker\Generator as Faker;
 
-$factory->define(Tikect::class, function (Faker $faker) {
+$factory->define(Ticket::class, function (Faker $faker) {
     return [
         'user_id'=>function(){ return User::all()->random() ;},
         'chama_id'=>function(){ return Chama::all()->random() ;},
-        'pay'=>$faker->boolean(10)
+        // 'user_id'=>
+        'pay'=>$faker->boolean(20),
+        'given'=>$faker->boolean()
     ];
 });

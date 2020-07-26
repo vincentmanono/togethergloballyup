@@ -117,7 +117,8 @@
                                                  <button type="button" class="btn btn-warning btn-sm col-6" data-toggle="modal" data-target="#modal-lg">
                                                 Edit Chama
                                               </button>
-                                              @elsecan('delete', $chama)
+                                              @endcan
+                                              @can('delete', $chama)
                                                 <form class="col-6" action="{{ route('admin.chama.destroy',$chama) }}" id="deletechamaform" method="post">
                                                 @method("DELETE")
                                                   @csrf
@@ -188,7 +189,7 @@
                           <div class="form-group">
                             <label for="">Chama Name</label>
                             <input type="text" name="name" id="" value="{{ $chama->name }}" class="form-control" placeholder="Chama name" aria-describedby="chamaNamehelp">
-                            <small id="chamaNamehelp" class="text-muted">Use unique Name</small>
+                            <small id="chamaNamehelp" class="text-muted"> unique Name</small>
                           </div>
                           <div class="form-group">
                             <label for="">Amount</label>
@@ -199,6 +200,7 @@
                             <label for="description">Chama Description</label>
                             <textarea class="form-control" name="description" id="" rows="3">{{ $chama->description }}</textarea>
                           </div>
+                          <button type="submit" class="btn btn-primary btn-block">Save changes</button>
 
 
 
@@ -206,7 +208,7 @@
                 </div>
                 <div class="modal-footer justify-content-between">
                   <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                  <button type="submit" class="btn btn-primary">Save changes</button>
+                  {{-- <button type="submit" class="btn btn-primary">Save changes</button> --}}
                 </div>
             </form>
               </div>
