@@ -5,7 +5,7 @@
                 <!-- Section Heading -->
                 <div class="section-heading text-center mb-100 wow fadeInUp" data-wow-delay="100ms">
                     <div class="line"></div>
-                    <p>Take look at our</p>
+                    <p>Take a look at our Services</p>
                     <h2>Our services</h2>
                 </div>
             </div>
@@ -20,7 +20,7 @@
                     </div>
                     <div class="text">
                         <h5>Financial Management</h5>
-                        <p>We act as an online Chama. All one does is receive give you platform where you can add extra coin with fellow investors. </p>
+                        <p>We act as an online Chama. All one does is to signup and register for a chama and get access to a chama platform to do their transactionswith fellow investors. </p>
                     </div>
                 </div>
             </div>
@@ -32,8 +32,8 @@
                         <i class="icon-money-1"></i>
                     </div>
                     <div class="text">
-                        <h5>users management</h5>
-                        <p>Our platform is the most user friendly.It allow users to register
+                        <h5>User management</h5>
+                        <p>Our platform is the most user friendly. It allow users to register
                             and start monitoring their progress
                         </p>
                     </div>
@@ -48,7 +48,7 @@
                     </div>
                     <div class="text">
                         <h5>Financial Report</h5>
-                        <p>The system generates the following reports; Member Statements, Cashflow and Profit & Loss</p>
+                        <p>The system generates the  reports on member Statements, Cashflow and all the transactions carried out.</p>
                     </div>
                 </div>
             </div>
@@ -61,7 +61,7 @@
                     </div>
                     <div class="text">
                         <h5>Secure financial services</h5>
-                        <p>Togethergloballyup ensures your money is secure by following Mpesa and paypal terms and condition policies </p>
+                        <p>Togethergloballyup ensures your money is secure by following Mpesa and paypal terms and conditions. </p>
                     </div>
                 </div>
             </div>
@@ -74,7 +74,7 @@
                     </div>
                     <div class="text">
                         <h5>One Time Penalty Management</h5>
-                        <p>One can penalize members for issues such a late coming and
+                        <p>One can penalize members for issues such a late contribution or payment and
                              this will be reflected on the members' statement</p>
                     </div>
                 </div>

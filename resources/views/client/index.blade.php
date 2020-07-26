@@ -17,11 +17,11 @@
                     <div class="row h-100 align-items-center justify-content-center">
                         <div class="col-12 col-lg-9">
                             <div class="welcome-text text-center">
-                                <h6 data-animation="fadeInUp" data-delay="100ms">paramount Chama</h6>
-                                <h2 data-animation="fadeInUp" data-delay="300ms"> Don’t hesitate computerize your <span>merry-go-round</span> today </h2>
-                                <p data-animation="fadeInUp" data-delay="500ms"> Togetherglobally up unites you with focused peoble like you
-                                    to add extra coin in your pocket . We make sure we boost your investment goals to the next level.</p>
-                                <a href="#" class="btn credit-btn mt-50" data-animation="fadeInUp" data-delay="700ms">Discover</a>
+                                {{-- <h6 data-animation="fadeInUp" data-delay="100ms">mount Chama</h6> --}}
+                                <h2 data-animation="fadeInUp" data-delay="300ms"> Don’t hesitate Computerize your <span>merry-go-round</span> today. </h2>
+                                <p data-animation="fadeInUp" data-delay="500ms"> TogetherGloballyUp unites you with focused peoble like you
+                                    to add an extra coin in your pocket. We make sure we boost your investment goals to the next level.</p>
+                                <a href="/about" class="btn credit-btn mt-50" data-animation="fadeInUp" data-delay="700ms">Discover</a>
                             </div>
                         </div>
                     </div>
@@ -39,14 +39,14 @@
                     <div class="row h-100 align-items-center justify-content-center">
                         <div class="col-12 col-lg-9">
                             <div class="welcome-text text-center">
-                                <h6 data-animation="fadeInDown" data-delay="100ms">Few steps remaining you achieve your goal</h6>
+                                <h6 data-animation="fadeInDown" data-delay="100ms">Few steps remaining for you to achieve your goal.</h6>
                                 <h2 data-animation="fadeInDown" data-delay="300ms">
-                                    Do not wait<span> Automate </span> your chama now!
+                                    Don't wait!<span> Automate </span> your chama now!
                                 <p data-animation="fadeInDown" data-delay="500ms" >
-                                One Idea Can Change Your Life Forever How much longer will you keep begging for jobs? I don't know your dreams...but I know you have them! Your Dreams Inspire And Give You Strength
+                                One Idea Can Change Your Life Forever.I don't know your dreams...but I know you have them! Your Dreams Inspire And Give You Strength
                                 But You Will Never Know If You Are Strong Enough To Live Your Dreams
                                 Unless You Try!</p>
-                                <a href="#" class="btn credit-btn mt-50" data-animation="fadeInDown" data-delay="700ms">Discover</a>
+                                <a href="/about class="btn credit-btn mt-50" data-animation="fadeInDown" data-delay="700ms">Discover</a>
                             </div>
                         </div>
                     </div>
@@ -155,12 +155,12 @@
             <!-- Section Heading -->
             <div class="section-heading white">
                 <div class="line"></div>
-                <p>Bold desing and beyound</p>
-                <h2>Helping small businesses like yours</h2>
+                <p>Bold design and beyond.</p>
+                <h2>Helping small chamas like yours.</h2>
             </div>
-            <h6>togetherglobally is a simple to use web application that enables you to join
+            <h6>TogetherGloballyUp is a simple to use web application that enables you to join
                  online merry-go-round groups to manage all  activities and communications.
-                The cloud based solution enables group administrators to easily and
+                The online based solution enables group administrators to easily and
                  efficiently track all contribution accounts within the group..</h6>
             <div class="d-flex flex-wrap mt-50">
                 <!-- Single Skills Area -->
@@ -193,7 +193,7 @@
                     <p>resource</p>
                 </div>
             </div>
-            <a href="#" class="btn credit-btn box-shadow btn-2">Read More</a>
+            <a href="/services" class="btn credit-btn box-shadow btn-2">Read More</a>
         </div>
     </section>
     <!-- ##### Call To Action End ###### -->
@@ -209,7 +209,7 @@
                             <h4>Are you in need for a Help? Get in touch with us.</h4>
                         </div>
                         <div class="cta-btn">
-                            <a href="#" class="btn credit-btn box-shadow">Read More</a>
+                            <a href="/contact" class="btn credit-btn box-shadow">Read More</a>
                         </div>
                     </div>
                 </div>
