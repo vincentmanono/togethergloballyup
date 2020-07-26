@@ -71,48 +71,25 @@
                 <table id="example1" class="table table-bordered table-striped">
                     <thead>
                     <tr>
-                        <th>User Name</th>
-                        <th>Start Date</th>
-                        <th>Expiry Date</th>
-                        <th>Amount</th>
-                        <th>Phone</th>
-                        <th>Status</th>
+                        <th>Email</th>
+                        <th>Created_At</th>
+
                     </tr>
                     </thead>
                     <tbody>
-                        @forelse ($subscriptions as $sub)
-                            <tr>
-                      <td>{{ $sub->user->firstName . '  '.$sub->user->lastName }}</td>
-                      <td>{{ date('l jS M, h:i a', strtotime($sub->start_date)) }}</td>
-                      <td>{{ date('l jS M, h:i a', strtotime($sub->expiry_date)) }}</td>
-
-                      <td>{{ number_format($sub->amount,2,'.',',') }} </td>
-                      <td>{{ $sub->user->phone }}</td>
-                      <td>
-                          @if ( $sub->expiry_date >= now() )
-                              <span class="text text-success" >Active</span>
-                          @else
-                              <span class="text text-danger" >Domant</span>
-                          @endif
-
-                      </td>
-
-                        @empty
-                        <td>{{ "No data yet" }}</td>
-                        @endforelse
-                     </tr>
-
-
+                        @foreach ($subscriptions as $sub)
+                        <tr>
+                        <td>{{ $sub->email}}</td>
+                        <td>{{$sub->created_at}}</td>
+                            @endforeach
+                        </tr>
                     </tbody>
                     <tfoot>
-                    <tr>
-                        <th>User Name</th>
-                        <th>Start Date</th>
-                        <th>Expiry Date</th>
-                        <th>Chama</th>
-                        <th>Amount</th>
-                        <th>Phone</th>
-                    </tr>
+                        <tr>
+                            <th>Email</th>
+                            <th>Created_At</th>
+
+                        </tr>
                     </tfoot>
                   </table>
             </div>
