@@ -23,12 +23,18 @@ class Chama extends Model
     {
         return $this->belongsTo('App\User', 'user_id');
     }
-    public function payments()
+    // public function payments()
+    // {
+    //     return $this->hasMany(Payment::class);
+    // }
+
+     /**
+     * Get all of the chama's payments.
+     */
+    public function  payments()
     {
-        return $this->hasMany(Payment::class);
+        return $this->morphMany(Payment::class, 'paymentable');
     }
-
-
 
     public function wallets()
     {

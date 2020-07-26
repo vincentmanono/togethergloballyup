@@ -6,12 +6,14 @@
     <div class="content-header">
       <div class="container-fluid">
         <div class="row mb-2">
-          <div class="col-sm-6">
-            <h1 class="m-0 text-dark">CLient Dashboard</h1>
+          <div class="col-sm-6 justify-content-round  ">
+            <h1 class="m-0 text-dark"> Dashboard</h1>
+
+
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
               <li class="breadcrumb-item active">Dashboard</li>
             </ol>
           </div><!-- /.col -->
@@ -28,13 +30,23 @@
            <div class="row">
             <div class="col-12 col-sm-6 col-md-3">
               <div class="info-box">
-                <span class="info-box-icon bg-info elevation-1"><i class="fas fa-cog"></i></span>
+                <span class="info-box-icon bg-info elevation-1">
+                    <i class="fa fa-subscript" aria-hidden="true"></i>
+
+                    {{-- <i class="fas fa-cog"> --}}
+                        </i></span>
 
                 <div class="info-box-content">
-                  <span class="info-box-text">CPU Traffic</span>
+                  <span class="info-box-text">Subscription</span>
                   <span class="info-box-number">
-                    10
-                    <small>%</small>
+
+
+                        {!! auth()->user()->subscription_expiry >= now()->format('Y-m-d H:i:s')? 'Your subscription expires on: '
+                        . '<span style="color: green">' .
+                        date('l jS, M Y h:i a', strtotime(auth()->user()->subscription_expiry)) . '</span>' : '<span
+                            style="color: red">Subscription Expired</span>' !!}
+
+
                   </span>
                 </div>
                 <!-- /.info-box-content -->
@@ -44,11 +56,13 @@
             <!-- /.col -->
             <div class="col-12 col-sm-6 col-md-3">
               <div class="info-box mb-3">
-                <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-thumbs-up"></i></span>
+                <span class="info-box-icon bg-success elevation-1">
+                    <i class="fa fa-hourglass-end" aria-hidden="true"></i>
+                    </span>
 
                 <div class="info-box-content">
-                  <span class="info-box-text">Likes</span>
-                  <span class="info-box-number">41,410</span>
+                  <span class="info-box-text">Joined Chamas</span>
+                  <span class="info-box-number">{{auth()->user() ->chamaSubscribed->count() }}</span>
                 </div>
                 <!-- /.info-box-content -->
               </div>
@@ -61,11 +75,16 @@
 
             <div class="col-12 col-sm-6 col-md-3">
               <div class="info-box mb-3">
-                <span class="info-box-icon bg-success elevation-1"><i class="fas fa-shopping-cart"></i></span>
+                <span class="info-box-icon bg-dark elevation-1">
+
+                        <i class="fa fa-comment" aria-hidden="true"></i>
+                        </i></span>
 
                 <div class="info-box-content">
-                  <span class="info-box-text">Sales</span>
-                  <span class="info-box-number">760</span>
+                  <span class="info-box-text">Testimonies</span>
+                  <span class="info-box-number">
+                    {{auth()->user() ->testimonies->count() }}
+                  </span>
                 </div>
                 <!-- /.info-box-content -->
               </div>
@@ -74,11 +93,15 @@
             <!-- /.col -->
             <div class="col-12 col-sm-6 col-md-3">
               <div class="info-box mb-3">
-                <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-users"></i></span>
+                <span class="info-box-icon bg-secondary  elevation-1">
+                    <i class="fa fa-user" aria-hidden="true"></i>
+                   </span>
 
                 <div class="info-box-content">
-                  <span class="info-box-text">New Members</span>
-                  <span class="info-box-number">2,000</span>
+                  <span class="info-box-text">Wallet</span>
+                  <span class="info-box-number">
+                    {{ "Ksh " . number_format(auth()->user()->wallet->amount,2,".",",")  }}
+                  </span>
                 </div>
                 <!-- /.info-box-content -->
               </div>
@@ -92,7 +115,7 @@
         <!-- Main row -->
         <div class="row">
 
-          <div class="col-md-12">
+          <div class="col-md-3">
             <!-- Info Boxes Style 2 -->
             <div class="info-box mb-3 bg-warning">
               <span class="info-box-icon"><i class="fas fa-tag"></i></span>
@@ -166,7 +189,7 @@
                       <a href="javascript:void(0)" class="product-title">Bicycle
                         <span class="badge badge-info float-right">$700</span></a>
                       <span class="product-description">
-                        26" Mongoose Dolomite Men's 7-speed, Navy Blue.
+                        26" Mongoose Dolomite Mens 7-speed, Navy Blue.
                       </span>
                     </div>
                   </li>
@@ -210,10 +233,115 @@
             </div>
             <!-- /.card -->
           </div>
-          <!-- /.col -->
+          <div class="col-md-9" >
+            <div class="card">
+                <div class="card-header border-transparent">
+                  <h3 class="card-title">Latest Subscription Payments</h3>
+
+                  <div class="card-tools">
+                    <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                      <i class="fas fa-minus"></i>
+                    </button>
+                    <button type="button" class="btn btn-tool" data-card-widget="remove">
+                      <i class="fas fa-times"></i>
+                    </button>
+                  </div>
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body p-0">
+                  <div class="table-responsive">
+                    <table class="table m-0">
+                      <thead>
+                      <tr>
+                        <th>Amount</th>
+                        <th>Start date</th>
+                        <th>Expiry Date</th>
+                        <th>Phone</th>
+                        <th>Status</th>
+                      </tr>
+                      </thead>
+                      <tbody>
+                          @foreach ($subscriptions  as $sub)
+                                 <tr>
+
+                                    <td>
+                                        {{ "Ksh " . number_format($sub->amount,2,".",",")  }}
+                                    </td>
+                                    <td>{{ date('l jS M, h:i a', strtotime($sub->start_date)) }}</td>
+                                    <td>{{ date('l jS M, h:i a', strtotime($sub->expiry_date)) }}</td>
+                                    <td>
+                                        {{ $sub->payment->phoneNumber }}
+                                    </td>
+                                    <td>
+                                        @if ( $sub->expiry_date >= now() )
+                                            <span class="badge badge-success" >Active</span>
+                                        @else
+                                            <span class="badge badge-danger" >Expired</span>
+                                        @endif
+
+                                    </td>
+
+                                </tr>
+                          @endforeach
+
+                      </tbody>
+                    </table>
+                  </div>
+                  <!-- /.table-responsive -->
+                </div>
+                <!-- /.card-body -->
+                <div class="card-footer clearfix">
+                  <button type="button" class="btn btn-sm btn-info float-left" data-toggle="modal" data-target="#subscription">
+                    Renew Subscription
+                  </button>
+                  <a href="{{ route('user.all.subscription') }}" class="btn btn-sm btn-secondary float-right">View All Subscriptions</a>
+                </div>
+                <!-- /.card-footer -->
+              </div>
+          </div>
+
         </div>
+
+        <!-- Button trigger modal -->
+
+
+        <!-- Modal -->
+        <div class="modal fade" id="subscription" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Renew Subscription</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                    </div>
+                    <div class="modal-body">
+                        <h3 class="text text-cyan text-center" >You can renew you Subscription with <span class="text text-success" > KSH 100 bob </span> only and access all our services</h3>
+                <form action="{{ route('user.renew.subscription') }}" method="post">
+                    @csrf
+                            <div class="form-group">
+                              <label for="">Phone Number</label>
+                              <input type="text" class="form-control" name="phone" id="phone" aria-describedby="helpId" placeholder="07********">
+                              <small id="helpId" class="form-text text-muted">Type your Phone number here</small>
+                            </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Send </button>
+                    </div>
+                </form>
+                </div>
+            </div>
+        </div>
+
+
+
+
+          <!-- /.col -->
+    </div>
         <!-- /.row -->
-      </div><!--/. container-fluid -->
+
+      <!--/. container-fluid -->
     </section>
     <!-- /.content -->
   </div>

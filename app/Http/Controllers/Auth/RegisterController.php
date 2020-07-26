@@ -68,8 +68,8 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        $name =  $data['firstName'] .' '.$data['lastName'] ;
-        return User::create([
+        $name =  $data['firstName'] .' '.$data['lastName'] . now() ;
+        $user = User::create([
             'firstName' => $data['firstName'],
             'lastName' => $data['lastName'],
             'slug' => Str::slug($name) ,
@@ -78,6 +78,10 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
+
+        $user->slug = Str::slug($name) ;
+        $user->save();
+        return $user;
 
     }
 }

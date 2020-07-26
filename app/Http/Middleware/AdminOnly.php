@@ -18,7 +18,7 @@ class AdminOnly
     public function handle($request, Closure $next)
     {
         if (Auth::check() ) {
-            if (auth()->user()->role == 'admin' ) {
+            if (auth()->user()->role == 'admin' || auth()->user()->role == 'super') {
                 return $next($request);
             } else {
                 Session::flash('error', "You do not have privilagies to access, this routes");

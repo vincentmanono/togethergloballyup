@@ -22,6 +22,7 @@ class UsersTableSeeder extends Seeder
             'firstName'=>'John',
             'lastName' =>'Doe',
             'email' =>'info@togethergloballyup.com',
+            'slug'=> Str::slug( 'John Doe' ) ,
             'role'=>'super',
             'phone'=>'0707585566',
             'email_verified_at' => now(),
@@ -31,6 +32,7 @@ class UsersTableSeeder extends Seeder
     User::create(  [
             'firstName'=>'test',
             'lastName' =>'Yahoo',
+            'slug'=> Str::slug( 'test Yahoo' ) ,
             'email' =>'test@togethergloballyup.com',
             'role'=>'super',
             'phone'=>1234567890,
@@ -43,6 +45,7 @@ class UsersTableSeeder extends Seeder
     User::create(  [
         'firstName'=>'user',
         'lastName' =>'Normal',
+        'slug'=> Str::slug( 'user Normal' ) ,
         'email' =>'user@togethergloballyup.com',
         'role'=>'user',
         'phone'=>1234567899,
