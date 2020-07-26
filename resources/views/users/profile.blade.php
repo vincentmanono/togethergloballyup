@@ -230,116 +230,116 @@
 
                 <div class="tab-pane" id="settings">
                   <form action="{{ route('profile.update',$user->id) }}" method="POST" class="form-horizontal" enctype="multipart/form-data" >
-                      @csrf
-                      @method("put")
-                    <div class="form-group row">
-                      <label for="firstame" class="col-sm-2 col-form-label">First Name</label>
-                      <div class="col-sm-10">
-                        <input type="text"   class="form-control @error('firstName') is-invalid @enderror"   id="firstame"  name="firstname"
-                         value="{{ $user->firstName }}" placeholder="Your firstname">
-                         @error('firstname')
-                         <span class="invalid-feedback" role="alert">
-                             <strong>{{ $message }}</strong>
-                         </span>
-                     @enderror
+                            @csrf
+                            @method("put")
+                            <div class="form-group row">
+                            <label for="firstame" class="col-sm-2 col-form-label">First Name</label>
+                            <div class="col-sm-10">
+                                <input type="text"   class="form-control @error('firstName') is-invalid @enderror"   id="firstame"  name="firstname"
+                                value="{{ $user->firstName }}" placeholder="Your firstname">
+                                @error('firstname')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
 
-                      </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="lastname" class="col-sm-2 col-form-label">User Names</label>
-                        <div class="col-sm-10">
-                          <input type="text" class="form-control @error('lastName') is-invalid @enderror"
-                           id="lastname" value="{{ $user->lastName }}" name="lastname" placeholder="Your Lastname">
-                           @error('lastname')
-                           <span class="invalid-feedback" role="alert">
-                               <strong>{{ $message }}</strong>
-                           </span>
-                       @enderror
-                        </div>
-                      </div>
+                            </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="lastname" class="col-sm-2 col-form-label">User Names</label>
+                                <div class="col-sm-10">
+                                <input type="text" class="form-control @error('lastName') is-invalid @enderror"
+                                id="lastname" value="{{ $user->lastName }}" name="lastname" placeholder="Your Lastname">
+                                @error('lastname')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                                </div>
+                            </div>
 
-                    <div class="form-group row">
-                      <label for="email" class="col-sm-2 col-form-label">Email</label>
-                      <div class="col-sm-10">
-                        <input type="email" class="form-control @error('email') is-invalid @enderror"
-                         id="email" name="email"  value="{{ $user->email }}" placeholder="Email">
-                         @error('email')
-                           <span class="invalid-feedback" role="alert">
-                               <strong>{{ $message }}</strong>
-                           </span>
-                       @enderror
-                      </div>
-                    </div>
-                    <div class="form-group row">
-                      <label for="phone" class="col-sm-2 col-form-label">Phone</label>
-                      <div class="col-sm-10">
-                        <input type="tel" class="form-control @error('phone') is-invalid @enderror"
-                         id="phone" name="phone" value="{{ $user->phone }}"  placeholder="Your phone number">
-                         @error('phone')
-                         <span class="invalid-feedback" role="alert">
-                             <strong>{{ $message }}</strong>
-                         </span>
-                     @enderror
-                      </div>
-                    </div>
+                            <div class="form-group row">
+                            <label for="email" class="col-sm-2 col-form-label">Email</label>
+                            <div class="col-sm-10">
+                                <input type="email" class="form-control @error('email') is-invalid @enderror"
+                                id="email" name="email"  value="{{ $user->email }}" placeholder="Email">
+                                @error('email')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                            </div>
+                            </div>
+                            <div class="form-group row">
+                            <label for="phone" class="col-sm-2 col-form-label">Phone</label>
+                            <div class="col-sm-10">
+                                <input type="tel" class="form-control @error('phone') is-invalid @enderror"
+                                id="phone" name="phone" value="{{ $user->phone }}"  placeholder="Your phone number">
+                                @error('phone')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                            </div>
+                            </div>
 
-                    <div class="form-group row">
-                        <label for="avatar" class="col-sm-2 col-form-label">Picture</label>
-                        <div class="col-sm-10">
-                          <input type="file" class="form-control-file @error('avatar') is-invalid @enderror"
-                          id="avatar" name="avatar"  placeholder="Update profile">
-                          @error('avatar')
-                          <span class="invalid-feedback" role="alert">
-                              <strong>{{ $message }}</strong>
-                          </span>
-                      @enderror
-                        </div>
-                    </div>
+                            <div class="form-group row">
+                                <label for="avatar" class="col-sm-2 col-form-label">Picture</label>
+                                <div class="col-sm-10">
+                                <input type="file" class="form-control-file @error('avatar') is-invalid @enderror"
+                                id="avatar" name="avatar"  placeholder="Update profile">
+                                @error('avatar')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                                </div>
+                            </div>
 
 
 
-                    <hr>
+                            <hr>
 
-                    <div class="form-group row">
-                        <label for="old_password" class="col-sm-12 col-form-label text-capitalize ">Input your password To Update your account</label>
+                            <div class="form-group row">
+                                <label for="old_password" class="col-sm-12 col-form-label text-capitalize ">Input your password To Update your account</label>
 
-                        <div class="col-sm-10">
-                          <input type="password"  class="form-control @error('old_password') is-invalid @enderror"
+                                <div class="col-sm-10">
+                                <input type="password"  class="form-control @error('old_password') is-invalid @enderror"
 
-                            style="background-color: rgba(184, 120, 84, 0.5);color:black;"  id="old_password"
-                           name="old_password" placeholder="Previous Password">
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <div class="col-sm-6">
-                          <input id="password" type="password"
-                           placeholder="Password" style="background-color: rgba(184, 120, 84, 0.5);color:black;"
-                           class="form-control @error('password') is-invalid @enderror" name="password"  autocomplete="new-password">
-                          @error('password')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
-                @enderror
-
-                        </div>
-                        <div class="col-sm-6">
-                            <input id="password-confirm" style="background-color: rgba(184, 120, 84, 0.5);color:black;"
-                              type="password" placeholder="Confirm password" class="form-control" name="password_confirmation"
-                                autocomplete="new-password">
-                            @error('password_confirmation')
+                                    style="background-color: rgba(184, 120, 84, 0.5);color:black;"  id="old_password"
+                                name="old_password" placeholder="Previous Password">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-sm-6">
+                                <input id="password" type="password"
+                                placeholder="Password" style="background-color: rgba(184, 120, 84, 0.5);color:black;"
+                                class="form-control @error('password') is-invalid @enderror" name="password"  autocomplete="new-password">
+                                @error('password')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
                         @enderror
-                          </div>
-                    </div>
+
+                                </div>
+                                <div class="col-sm-6">
+                                    <input id="password-confirm" style="background-color: rgba(184, 120, 84, 0.5);color:black;"
+                                    type="password" placeholder="Confirm password" class="form-control" name="password_confirmation"
+                                        autocomplete="new-password">
+                                    @error('password_confirmation')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                                </div>
+                            </div>
 
 
-                    <div class="form-group row">
-                      <div class="offset-sm-2 col-sm-8">
-                        <button type="submit" class="btn btn-danger btn-block">Submit</button>
-                      </div>
-                    </div>
+                            <div class="form-group row">
+                            <div class="offset-sm-2 col-sm-8">
+                                <button type="submit" class="btn btn-danger btn-block">Submit</button>
+                            </div>
+                            </div>
                   </form>
                 </div>
                 <!-- /.tab-pane -->

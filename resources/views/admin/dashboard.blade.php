@@ -10,7 +10,7 @@
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
               <li class="breadcrumb-item active">Dashboard</li>
             </ol>
           </div><!-- /.col -->
@@ -27,10 +27,18 @@
           <div class="col-lg-3 col-6">
             <!-- small box -->
             <div class="small-box bg-info">
-              <div class="inner">
-                <h3>150</h3>
+              <div class="inner row">
+                  <div class="col-md-6" >
+                      <h3>{{ $admins }}</h3>
 
-                <p>New Orders</p>
+                <p>Admins</p>
+                  </div>
+                  <div class="col-md-6  border-left border-dark " >
+                    <h3>{{ $super }}</h3>
+
+                    <p>Super</p>
+                  </div>
+
               </div>
               <div class="icon">
                 <i class="ion ion-bag"></i>

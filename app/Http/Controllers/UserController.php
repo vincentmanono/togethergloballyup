@@ -101,7 +101,12 @@ class UserController extends Controller
         $user = User::find($id) ;
         $data = $request->all();
         if ( auth()->user()->role == "super"  ) {
-            $user->role = $request->input('role') ;
+            if ( $request->input('role') == "on") {
+                # code...
+                $user->role = 'super' ;
+            }
+
+
         }else{
              $this->validate($request, [
                 'old_password' => 'required',
@@ -144,19 +149,7 @@ class UserController extends Controller
                     return redirect()->back();
                 }
             }
-           /* if($request->has('avatar')){
-                $old_avatar = $user->avatar;
-                $avatar = $request->avatar;
-                if($old_avatar != 'uploads/users/avatar.png'){
-                    File::delete($old_avatar);
-                }
-                $avatar_name = time() . $avatar->getClientOriginalName();
-                $avatar_new_name = 'uploads/users/' . $avatar_name;
-                $new_avatar = Image::make($avatar->getRealPath())->resize(500, 500);
-                $new_avatar->save($avatar_new_name);
-                $avatar = $avatar_new_name;
-                $user->avatar = $avatar;
-            } */
+
 
 
             if ( file_exists($request->file('avatar')) ) {
@@ -189,7 +182,7 @@ class UserController extends Controller
             }
 
             if($user->role != 'user'){
-                if($request->super == 'on'){
+                if($request->role == 'on'){
                     $type = 'super';
                 }
                 else{
@@ -243,8 +236,34 @@ class UserController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function destroy(User $user)
+    public function destroy($slug)
     {
         //
+        try{
+            $user = User::where('slug', $slug)->first();
+        }
+        catch(QueryException $ex){
+            Session::flash('error', 'Admin/User could not be found!');
+            return redirect()->back();
+        }
+
+        if(Auth::user()->type == 'super' || Auth::user()->slug == $slug ||  (Auth::user()->is_admin && !$user->is_admin)){
+            if(User::where('type', 'super')->where('view', true)->count() == 1 && Auth::user()->type == 'super' && Auth::user()->slug == $user->slug){
+                Session::flash('error', 'Sorry, you are the ONLY REMAINING super admin! Make someone else a super admin then exit.');
+                return redirect()->back();
+            }
+            $avatar = $user->avatar;
+            // if($avatar != 'uploads/users/avatar.png'){
+            //     File::delete($avatar);
+            // }
+            $type = $user->type;
+            $user->forceDelete();
+            Session::flash('success', 'Admin/User removed successfully');
+            if($type == 'user')
+                return redirect()->route('users.index');
+            return redirect()->route('admin_index');
+        }
+        Session::flash('error', 'Admin/User could not be removed! Task only allowed to Super Admin!');
+        return redirect()->back();
     }
 }

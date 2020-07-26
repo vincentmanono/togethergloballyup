@@ -48,7 +48,10 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::resource('profile', 'UserController');
 
-    Route::group(['prefix' => 'admin'], function () {
+    Route::resource('messages', 'MessageController');
+    Route::resource('/testimonies','TestimonyController');
+
+    Route::group(['prefix' => 'admin','middleware'=>['admin']], function () {
 
         Route::get('my-chamas', 'AdminChamaController@allmychama')->name('admin.allmychama');
         Route::get('my-chamas/{chama}', 'AdminChamaController@show')->name('admin.allmychama.show');
@@ -70,14 +73,20 @@ Route::group(['middleware' => ['auth','super']], function () {
 
     Route::prefix('power')->group(function(){
         Route::get('/', 'AdminPageController@dashboard')->name('admin.dashboard');
-        Route::get('/mpesa-all-transactions', 'AdminPageController@mpesaAll')->name('admin.mpesa.all');
+        Route::get('/mpesa-all-transactions', 'PaymentController@transactions')->name('admin.mpesa.all');
+        Route::get('/mpesa-transactions/{mpesa}', 'PaymentController@show')->name('admin.mpesa.show');
+        Route::get('/mpesa/query-request', 'PaymentController@query_request')->name('admin.mpesa.query');
+        Route::get('/mpesa/completed', 'PaymentController@completed')->name('admin.mpesa.completed');
+        Route::get('/mpesa/cancelled', 'PaymentController@cancelled')->name('admin.mpesa.cancelled');
+
         Route::get('/groups-admins', 'AdminPageController@groupsAdmins')->name('admin.groupsAdmins');
         Route::get('/chama-admins', 'AdminPageController@chamaAdmins')->name('admin.chamaAdmins');
         Route::get('/testimonies', 'AdminPageController@testimonies')->name('admin.testimonies');
         Route::get('all-subscription','SubscriptionController@index')->name('admin.all.subscription') ;
         Route::get('all-active-subscription','SubscriptionController@active')->name('admin.active.subscription') ;
+
+        Route::get('/super-admins', 'AdminPageController@super')->name('admin.all.super');
+        Route::get('/super-admins/{email}', 'AdminPageController@supersingle')->name('admin.single.super');
     });
-    Route::resource('messages', 'MessageController');
-    Route::resource('/testimonies','TestimonyController');
 
 });

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Chama;
 use App\Notifications\VotingNotification;
+use App\Ticket;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Notification;
@@ -49,12 +50,22 @@ class AdminChamaController extends Controller
 
 
         if($chama->save()){
+
+            $tickets = Ticket::where('chama_id',$chama->id)->get() ;
+           foreach ($tickets as $key => $ti) {
+               $ticket = Ticket::find($ti->id) ;
+               $ticket->pay = false ;
+               $ticket->given = false ;
+               $ticket->as_vote = false ;
+               $ticket->save();
+           }
+
             Session::flash('success',"Now members can start to vote successfully");
             $users = $chama->users ;
-            foreach ($users as $key => $user) {
+            // foreach ($users as $key => $user) {
 
-                Notification::send($user , new VotingNotification($chama,$user)) ;
-            }
+            //     Notification::send($user , new VotingNotification($chama,$user)) ;
+            // }
 
         }else{
             Session::flash('error',"Error occurred try again");

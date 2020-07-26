@@ -84,7 +84,7 @@
                <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
 
-                <i class="fa fa-pencil" aria-hidden="true"></i>
+                <i class="fa fa-check" aria-hidden="true"></i>
               <p>
                Monitor My Chamas
                 <i class="right fas fa-angle-left"></i>
@@ -110,26 +110,37 @@
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-copy"></i>
               <p>
-                Chama Admins
+                 Administrators
                 <i class="fas fa-angle-left right"></i>
-                <span class="badge badge-info right">6</span>
               </p>
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
                 <a href="{{ route('admin.chamaAdmins') }}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>View Admin</p>
+                  {{-- <i class="far fa-circle nav-icon"></i> --}}
+                  <i class="fa fa-fire-extinguisher" aria-hidden="true"></i>
+                  <p>View chama Admins</p>
                 </a>
               </li>
 
             </ul>
+            <ul class="nav nav-treeview bg-info ">
+                <li class="nav-item">
+                  <a href="{{ route('admin.all.super') }}" class="nav-link">
+
+                    <i class="fa fa-fire" aria-hidden="true"></i>
+                    <p>View Super Admins</p>
+                  </a>
+                </li>
+
+              </ul>
           </li>
           @endif
 
-          <li class="nav-item has-treeview">
+          @if ( auth()->user()->role == 'super' )
+               <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
-              <i class="fa fa-money" aria-hidden="true"></i>
+              <i class="fa fa-google-wallet" aria-hidden="true"></i>
               <p>
                 Payments
                 <i class="right fas fa-angle-left"></i>
@@ -138,18 +149,18 @@
             <ul class="nav nav-treeview">
                 <li class="nav-item">
                     <a href="{{ route('admin.mpesa.all') }}" class="nav-link">
-                      <i class="far fa-circle nav-icon"></i>
+
                       <p>All Transactions</p>
                     </a>
                   </li>
               <li class="nav-item">
-                <a href="pages/charts/chartjs.html" class="nav-link">
+                <a href="{{ route('admin.mpesa.completed') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Mpesa Completed</p>
                 </a>
               </li>
                <li class="nav-item">
-                <a href="pages/charts/flot.html" class="nav-link">
+                <a href="{{ route('admin.mpesa.cancelled') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Mpesa Cancelled</p>
                 </a>
@@ -162,6 +173,9 @@
               </li>  --}}
             </ul>
           </li>
+          @endif
+
+
 
 
           <li class="nav-item has-treeview">

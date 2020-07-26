@@ -20,7 +20,8 @@ class WalletController extends Controller
         $amount = $request->amount ;
       $response =   $mpesa->wallet($phone,$amount);
 
-      $result = Payment::create([
+      $wallet = Wallet::where('user_id',auth()->user()->id)->first();
+      $$wallet->payments()->create([
         'user_id' => Auth::user()->id,
         'merchantRequestID' => $response['MerchantRequestID'],
         'checkoutRequestID' => $response['CheckoutRequestID'],
@@ -30,6 +31,14 @@ class WalletController extends Controller
         'phoneNumber' => $phone,
         'amount' => $amount,
     ]);
+
+
+
+
+
+
+
+
 
 
     }

@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Testimony;
-use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class TestimonyController extends Controller
 {
@@ -16,6 +16,7 @@ class TestimonyController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        // $this->authorizeResource(Testimony::class,'testimony') ;
     }
     public function index()
     {
@@ -72,11 +73,12 @@ class TestimonyController extends Controller
      * @param  \App\Testimony  $testimony
      * @return \Illuminate\Http\Response
      */
-    public function show( $id)
+    public function show( Testimony $testimony)
     {
-        $single = Testimony::findorfail($id);
+        $single = $testimony ;
+        $this->authorize('view',$testimony) ;
 
-        return view('admin/testimony/edit')->with('single',$single);
+        return view('admin/testimony/show')->with('single',$single);
     }
 
     /**
@@ -85,11 +87,23 @@ class TestimonyController extends Controller
      * @param  \App\Testimony  $testimony
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Testimony $testimony)
     {
-        $single = Testimony::findorfail($id);
 
-        return view('admin/testimony/edit')->with('single',$single);
+        $single = $testimony ;
+        $this->authorize('update',$testimony) ;
+
+        if ( auth()->user()->id == $single->user_id ) {
+            # code...
+            return view('admin/testimony/edit')->with('single',$single);
+        } else {
+            Session::flash('error',"You cant edit other members testimony") ;
+            return back();
+        }
+
+
+
+
     }
 
     /**
@@ -99,7 +113,7 @@ class TestimonyController extends Controller
      * @param  \App\Testimony  $testimony
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request,$id)
+    public function update(Request $request, Testimony $testimony )
     {
 
         $this -> validate($request,[
@@ -107,7 +121,19 @@ class TestimonyController extends Controller
 
         ]);
 
-        $post =  Testimony::find($id);
+
+
+        if (auth()->user()->role == "super" ||  auth()->user()->id != $testimony->user_id ) {
+
+            Session::flash('error',"You cant edit other members testimony") ;
+            return back();
+        }
+
+        $this->authorize('update',$testimony) ;
+
+        $post = Testimony::findOrFail($testimony->id )  ;
+
+
         $post->user_id = auth()->user()->id ;
         $post->body=$request->input('body');
         $validate=$post->save();
@@ -123,9 +149,16 @@ class TestimonyController extends Controller
      * @param  \App\Testimony  $testimony
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy( Testimony $testimony)
     {
-        $data = Testimony::find($id);
+        $this->authorize('delete',$testimony) ;
+        $data = Testimony::findOrFail($testimony->id )  ;
+
+        if (auth()->user()->role == "super" ||  auth()->user()->id != $data->user_id ) {
+
+            Session::flash('error',"You cant delete other members testimony") ;
+            return back();
+        }
         $data->delete();
 
         return redirect('/testimonies')->with('success','Testimony deleted successfully') ;

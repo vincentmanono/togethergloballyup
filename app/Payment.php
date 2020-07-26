@@ -8,13 +8,21 @@ class Payment extends Model
 {
     protected $guarded = [];
 
-    public function user()
+    // public function user()
+    // {
+    //     return $this->belongsTo(User::class);
+    // }
+
+    // public function chama()
+    // {
+    //     return $this->belongsTo(Chama::class);
+    // }
+
+    public function paymentable()
     {
-        return $this->belongsTo(User::class);
+        return $this->morphTo();
     }
 
-    public function chama()
-    {
-        return $this->belongsTo(Chama::class);
-    }
+
+
 }

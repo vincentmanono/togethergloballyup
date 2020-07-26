@@ -6,7 +6,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>All Groups Administrators</h1>
+                    <h1>System Super Administrators</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -25,7 +25,7 @@
         <!-- Default box -->
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title">Chama and Admin name</h3>
+                <h3 class="card-title">System super admins</h3>
 
                 <div class="card-tools">
                     <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
@@ -38,31 +38,30 @@
                 <table id="example1" class="table table-bordered table-striped">
                     <thead>
                     <tr>
-                      <th>Chama Name</th>
-                      <th>Admin Name</th>
-
+                      <th> Name</th>
                       <th>Phone </th>
                       <th>email</th>
-                      {{-- <th>Action</th> --}}
+                      <th>Action</th>
                     </tr>
                     </thead>
                     <tbody>
-                        @foreach ($chamas as $chama)
+                        @foreach ($supers as $super)
                              <tr>
-                      <td class="text text-capitalize text-bold" >{{ $chama->name }}</td>
-                      <td class="text text-capitalize text-bold" >{{ $chama->admin->firstName .' '. $chama->admin->lastName }}
+                      <td class="text text-capitalize text-bold" >{{ $super->firstName .' '. $super->lastName }}
                       </td>
-                      <td> {{ $chama->admin->phone }}</td>
-                      <td> <a href="mailto:{{ $chama->admin->email }}"></a> {{ $chama->admin->email }}</td>
-                      {{-- <td><button type="button" class="btn btn-primary">Delete</button> </td> --}}
+                      <td> {{ $super->phone }}</td>
+                      <td> <a href="mailto:{{ $super->email }}"></a> {{ $super->email }}</td>
+                      <td>
+                          <a name="" id="" class="btn btn-primary" href="{{ route('admin.single.super',$super->email) }}" role="button"> <i class="fa fa-eye-slash" aria-hidden="true"></i> View</a>
+                      </td>
                     </tr>
                         @endforeach
                     </tbody>
                     <tfoot>
-                        <th>Chama Name</th>
-                        <th>Admin Name</th>
-                        <th>Phone </th>
-                        <th>email</th>
+                        <th> Name</th>
+                      <th>Phone </th>
+                      <th>email</th>
+                      <th>Action</th>
                         {{-- <th>Action</th> --}}
                     </tfoot>
                   </table>
