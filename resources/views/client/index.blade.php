@@ -17,11 +17,11 @@
                     <div class="row h-100 align-items-center justify-content-center">
                         <div class="col-12 col-lg-9">
                             <div class="welcome-text text-center">
-                                <h6 data-animation="fadeInUp" data-delay="100ms">paramount Chama</h6>
-                                <h2 data-animation="fadeInUp" data-delay="300ms"> Don’t hesitate computerize your <span>merry-go-round</span> today </h2>
-                                <p data-animation="fadeInUp" data-delay="500ms"> Togetherglobally up unites you with focused peoble like you
-                                    to add extra coin in your pocket . We make sure we boost your investment goals to the next level.</p>
-                                <a href="#" class="btn credit-btn mt-50" data-animation="fadeInUp" data-delay="700ms">Discover</a>
+                                {{-- <h6 data-animation="fadeInUp" data-delay="100ms">mount Chama</h6> --}}
+                                <h2 data-animation="fadeInUp" data-delay="300ms"> Don’t hesitate Computerize your <span>merry-go-round</span> today. </h2>
+                                <p data-animation="fadeInUp" data-delay="500ms"> TogetherGloballyUp unites you with focused peoble like you
+                                    to add an extra coin in your pocket. We make sure we boost your investment goals to the next level.</p>
+                                <a href="/about" class="btn credit-btn mt-50" data-animation="fadeInUp" data-delay="700ms">Discover</a>
                             </div>
                         </div>
                     </div>
@@ -39,14 +39,14 @@
                     <div class="row h-100 align-items-center justify-content-center">
                         <div class="col-12 col-lg-9">
                             <div class="welcome-text text-center">
-                                <h6 data-animation="fadeInDown" data-delay="100ms">Few steps remaining you achieve your goal</h6>
+                                <h6 data-animation="fadeInDown" data-delay="100ms">Few steps remaining for you to achieve your goal.</h6>
                                 <h2 data-animation="fadeInDown" data-delay="300ms">
-                                    Do not wait<span> Automate </span> your chama now!
+                                    Don't wait!<span> Automate </span> your chama now!
                                 <p data-animation="fadeInDown" data-delay="500ms" >
-                                One Idea Can Change Your Life Forever How much longer will you keep begging for jobs? I don't know your dreams...but I know you have them! Your Dreams Inspire And Give You Strength
+                                One Idea Can Change Your Life Forever.I don't know your dreams...but I know you have them! Your Dreams Inspire And Give You Strength
                                 But You Will Never Know If You Are Strong Enough To Live Your Dreams
                                 Unless You Try!</p>
-                                <a href="#" class="btn credit-btn mt-50" data-animation="fadeInDown" data-delay="700ms">Discover</a>
+                                <a href="/about class="btn credit-btn mt-50" data-animation="fadeInDown" data-delay="700ms">Discover</a>
                             </div>
                         </div>
                     </div>
@@ -155,12 +155,12 @@
             <!-- Section Heading -->
             <div class="section-heading white">
                 <div class="line"></div>
-                <p>Bold desing and beyound</p>
-                <h2>Helping small businesses like yours</h2>
+                <p>Bold design and beyond.</p>
+                <h2>Helping small chamas like yours.</h2>
             </div>
-            <h6>togetherglobally is a simple to use web application that enables you to join
+            <h6>TogetherGloballyUp is a simple to use web application that enables you to join
                  online merry-go-round groups to manage all  activities and communications.
-                The cloud based solution enables group administrators to easily and
+                The online based solution enables group administrators to easily and
                  efficiently track all contribution accounts within the group..</h6>
             <div class="d-flex flex-wrap mt-50">
                 <!-- Single Skills Area -->
@@ -193,7 +193,7 @@
                     <p>resource</p>
                 </div>
             </div>
-            <a href="#" class="btn credit-btn box-shadow btn-2">Read More</a>
+            <a href="/services" class="btn credit-btn box-shadow btn-2">Read More</a>
         </div>
     </section>
     <!-- ##### Call To Action End ###### -->
@@ -209,7 +209,7 @@
                             <h4>Are you in need for a Help? Get in touch with us.</h4>
                         </div>
                         <div class="cta-btn">
-                            <a href="#" class="btn credit-btn box-shadow">Read More</a>
+                            <a href="/contact" class="btn credit-btn box-shadow">Read More</a>
                         </div>
                     </div>
                 </div>
@@ -219,103 +219,7 @@
     <!-- ##### Call To Action End ###### -->
 
     <!-- ##### Services Area Start ###### -->
-    <section class="services-area section-padding-100-0">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <!-- Section Heading -->
-                    <div class="section-heading text-center mb-100 wow fadeInUp" data-wow-delay="100ms">
-                        <div class="line"></div>
-                        <p>Take look at our</p>
-                        <h2>Our services</h2>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
-                <!-- Single Service Area -->
-                <div class="col-12 col-md-6 col-lg-4">
-                    <div class="single-service-area d-flex mb-100 wow fadeInUp" data-wow-delay="200ms">
-                        <div class="icon">
-                            <i class="icon-profits"></i>
-                        </div>
-                        <div class="text">
-                            <h5>Financial Management</h5>
-                            <p>We act as an online Chama. All one does is receive give you platform where you can add extra coin with fellow investors. </p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Single Service Area -->
-                <div class="col-12 col-md-6 col-lg-4">
-                    <div class="single-service-area d-flex mb-100 wow fadeInUp" data-wow-delay="300ms">
-                        <div class="icon">
-                            <i class="icon-money-1"></i>
-                        </div>
-                        <div class="text">
-                            <h5>users management</h5>
-                            <p>Our platform is the most user friendly.It allow users to register
-                                and start monitoring their progress
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Single Service Area -->
-                <div class="col-12 col-md-6 col-lg-4">
-                    <div class="single-service-area d-flex mb-100 wow fadeInUp" data-wow-delay="400ms">
-                        <div class="icon">
-                            <i class="icon-coin"></i>
-                        </div>
-                        <div class="text">
-                            <h5>Financial Report</h5>
-                            <p>The system generates the following reports; Member Statements, Cashflow and Profit & Loss</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Single Service Area -->
-                <div class="col-12 col-md-6 col-lg-4">
-                    <div class="single-service-area d-flex mb-100 wow fadeInUp" data-wow-delay="500ms">
-                        <div class="icon">
-                            <i class="icon-smartphone-1"></i>
-                        </div>
-                        <div class="text">
-                            <h5>Secure financial services</h5>
-                            <p>Togethergloballyup ensures your money is secure by following Mpesa and paypal terms and condition policies </p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Single Service Area -->
-                <div class="col-12 col-md-6 col-lg-4">
-                    <div class="single-service-area d-flex mb-100 wow fadeInUp" data-wow-delay="600ms">
-                        <div class="icon">
-                            <i class="icon-diamond"></i>
-                        </div>
-                        <div class="text">
-                            <h5>One Time Penalty Management</h5>
-                            <p>One can penalize members for issues such a late coming and
-                                 this will be reflected on the members' statement</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Single Service Area -->
-                <div class="col-12 col-md-6 col-lg-4">
-                    <div class="single-service-area d-flex mb-100 wow fadeInUp" data-wow-delay="700ms">
-                        <div class="icon">
-                            <i class="icon-piggy-bank"></i>
-                        </div>
-                        <div class="text">
-                            <h5>Accumulation goals</h5>
-                            <p>Togethergloballyup tracks each groups accumulation goals and gives out the statement when requested.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    @include('includes.services')
     <!-- ##### Services Area End ###### -->
 
     <!-- ##### Miscellaneous Area Start ###### -->

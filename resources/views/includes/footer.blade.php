@@ -12,7 +12,7 @@
                             <li><a href="/">Homepage</a></li>
                             <li><a href="/about">About Us</a></li>
                             <li><a href="/services">Services &amp; Offers</a></li>
-                            <li><a href="/portfolio">Portfolio Presentation</a></li>
+
                             <li><a href="/news">The News</a></li>
                         </ul>
                     </nav>
@@ -26,11 +26,10 @@
                     <!-- Nav -->
                     <nav>
                         <ul>
-                            <li><a href="#">Our Services</a></li>
-                            <li><a href="#">Trading &amp; Commerce</a></li>
-                            <li><a href="#">Banking &amp; Private Equity</a></li>
-                            <li><a href="#">Industrial &amp; Factory</a></li>
-                            <li><a href="#">Financial Solutions</a></li>
+                            <li><a href="/services">Our Services</a></li>
+                            <li><a href="/testimonial">Testimonial</a></li>
+                            <li><a href="/portfolio">Portfolio Presentation</a></li>
+                            <
                         </ul>
                     </nav>
                 </div>
@@ -56,7 +55,7 @@
             <!-- Single Footer Widget -->
             <div class="col-12 col-sm-6 col-lg-3">
                 <div class="single-footer-widget mb-100">
-                    <h5 class="widget-title">Latest News</h5>
+                    <h5 class="widget-title">Our Goal</h5>
 
                     <!-- Single News Area -->
                     <div class="single-latest-news-area d-flex align-items-center">
@@ -71,7 +70,8 @@
                             </div>
                         </div>
                     </div>
-
+                    <div class="single-footer-widget mb-100">
+                        <h5 class="widget-title">Our Mission</h5>
                     <!-- Single News Area -->
                     <div class="single-latest-news-area d-flex align-items-center">
                         <div class="news-thumbnail">
@@ -85,21 +85,6 @@
                             </div>
                         </div>
                     </div>
-
-                    <!-- Single News Area -->
-                    <div class="single-latest-news-area d-flex align-items-center">
-                        <div class="news-thumbnail">
-                            <img src="assets/img/bg-img/9.jpg" alt="">
-                        </div>
-                        <div class="news-content">
-                            <a href="#">Finance you home</a>
-                            <div class="news-meta">
-                                <a href="#" class="post-author"><img src="assets/img/core-img/pencil.png" alt=""> Jane Smith</a>
-                                <a href="#" class="post-date"><img src="assets/img/core-img/calendar.png" alt=""> April 26</a>
-                            </div>
-                        </div>
-                    </div>
-
                 </div>
             </div>
         </div>

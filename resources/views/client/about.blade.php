@@ -32,19 +32,19 @@
                         <!-- Section Heading -->
                         <div class="section-heading">
                             <div class="line"></div>
-                            <p>Take look at our</p>
+                            {{-- <p>Take look at our</p> --}}
                             <h2>About our company</h2>
                         </div>
                         <h6 class="mb-4">
-                            togethergloballyup is a simple to use web application that enables investment groups to
+                            TogetherGloballyUp is a simple to use web application that enables investment groups to
                              manage all their group activities and communications </h6>
                         <p class="mb-0">
-                            This cloud based solution enables group administrators
+                            This online based solution enables group administrators
                              to easily and efficiently track all contribution accounts within the group.
                              These payments include contributions payments, penalty payments, customer payments, supplier payments, special deposits,
                               member loan payments, bank loan payments. These payments are handled by the group administrators.
                             </p>
-                        <a href="#" class="btn credit-btn mt-50">Discover</a>
+                        <a href="/about" class="btn credit-btn mt-50">Discover</a>
                     </div>
                 </div>
                 <div class="col-12 col-md-6">
@@ -64,8 +64,8 @@
             <!-- Section Heading -->
             <div class="section-heading white">
                 <div class="line"></div>
-                <p>Bold desing and beyound</p>
-                <h2>Some Milestones</h2>
+                {{-- <p>Bold desing and beyound</p> --}}
+                <h2>Groups Management</h2>
             </div>
             <h6 class="mb-0">
                 When it comes to managing your groups finances, one needs to choose tools
@@ -122,12 +122,12 @@ that ease the work load, are accurate and accessible.We automates the operations
                     <div class="cta-content d-flex flex-wrap align-items-center justify-content-between">
                         <div class="cta-text">
                             <h4>Are you in need for investment? Get in touch with us.</h4>
-                            <p>The cloud based solution enables group administrators to easily and efficiently track all contribution accounts within the group.
+                            <p>This online based solution enables group administrators to easily and efficiently track all contribution accounts within the group.
 
                             </p>
                         </div>
                         <div class="cta-btn">
-                            <a href="#" class="btn credit-btn box-shadow">Read More</a>
+                            <a href="/contact" class="btn credit-btn box-shadow">Contact Us</a>
                         </div>
                     </div>
                 </div>
