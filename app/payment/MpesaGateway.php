@@ -7,6 +7,16 @@ use Illuminate\Support\Facades\Http;
 
 class MpesaGateway // extends AnotherClass implements Interface
 {
+    public function __construct()
+    {
+        $this->shortcode1 = "600231";
+        $this->InitiatorName = "testapi0231" ;
+        $this->SecurityCredential  = "Safcom231!"; //shortcode1
+        $this->TestMSISDN = "254708374149";
+        $this->shortcode = "174379"; //Lipa Na Mpesa Online Shortcode:
+        $this->LipaNaMpesaOnlinePassKey = "bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919";
+
+    }
 
     public function get_access_token()
     {
@@ -62,8 +72,9 @@ class MpesaGateway // extends AnotherClass implements Interface
             "PartyA" => $phoneNumber,
             "PartyB" => $shortcode,
             "PhoneNumber" => $phoneNumber,
-            "CallBackURL" =>  "https://togethergloballyup.com/api/handle-result",
-            "QueueTimeOutURL" => "https://togethergloballyup.com/api/handle-timeout ",
+            // "CallBackURL" =>  "https://togethergloballyup.com/api/handle-result",
+            "CallBackURL" => "https://39df02514e52.ngrok.io/api/handle-result" ,
+            "QueueTimeOutURL" => "https://39df02514e52.ngrok.io/api/handle-timeout ",
             "AccountReference" => "Subscription Payment",
             "TransactionDesc" => "Subscription Payment"
         ];
@@ -138,6 +149,107 @@ class MpesaGateway // extends AnotherClass implements Interface
 
             return back()->with('error', "error occurred");
         }
+    }
+    public function activate_chama($phoneNumber, $amount )
+    {
+        $phoneNumber = intval($phoneNumber);
+        $phoneNumber = '254' . $phoneNumber;
+        $phoneNumber = $phoneNumber;
+
+        // $api_url = "https://sandbox.safaricom.co.ke/mpesa/b2c/v1/paymentrequest";
+        $api_url = "https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest";
+        $access_token = $this->get_access_token();
+        // $Shortcode = "600620";
+        $time = date('YmdHis');
+        $shortcode = "174379";
+        $LipaNaMpesaOnlinePassKey = "bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919";
+        $SecurityCredential  = base64_encode($shortcode . $LipaNaMpesaOnlinePassKey . $time);
+
+
+
+        $client = new Client();
+        $headers = [
+            'Authorization' => 'Bearer ' . $access_token,
+            'Content-Type' => 'application/json',
+        ];
+
+
+        $data = [
+            "BusinessShortCode" => $shortcode,
+            "Password" => $SecurityCredential,
+            "Timestamp" => $time,
+            "TransactionType" => "CustomerPayBillOnline",
+            "Amount" => $amount,
+            "PartyA" => $phoneNumber,
+            "PartyB" => $shortcode,
+            "PhoneNumber" => $phoneNumber,
+
+            "CallBackURL" =>  "https://togethergloballyup.com/api/handle-chama-activate-result",
+            "QueueTimeOutURL" => "https://togethergloballyup.com/api/handle-timeout ",
+
+
+            "AccountReference" => "Chama Activation Payment",
+            "TransactionDesc" => "Chama Activation Payment"
+        ];
+
+        try {
+            $request = $client->request('POST', $api_url, [
+                'headers' => $headers,
+                'json' => $data,
+            ]);
+            $response = $request->getBody()->getContents();
+            $response = json_decode($response, true);
+            return  $response;
+        } catch (\Throwable $th) {
+
+            return back()->with('error', "error occurred");
+        }
+    }
+
+    public function withdraw($phoneNumber ,$amount)
+    {
+        $phoneNumber = intval($phoneNumber);
+        $phoneNumber = '254' . $phoneNumber;
+        // $phoneNumber = $phoneNumber;
+        $phoneNumber =  $this->TestMSISDN;
+        $api_url = "https://sandbox.safaricom.co.ke/mpesa/b2c/v1/paymentrequest";
+        $access_token = $this->get_access_token();
+        $InitiatorName =  $this->InitiatorName ;
+        $time = date('YmdHis');
+        $shortcode =$this->shortcode1 ;
+        $LipaNaMpesaOnlinePassKey =  $this->LipaNaMpesaOnlinePassKey  ;
+        $SecurityCredential  = base64_encode($shortcode . $LipaNaMpesaOnlinePassKey . $time);
+
+        $client = new Client();
+        $headers = [
+            'Host'=> 'sandbox.safaricom.co.ke',
+            'Authorization' => 'Bearer ' . $access_token,
+            'Content-Type' => 'application/json',
+        ];
+
+
+        $data = [
+            "InitiatorName"=> $InitiatorName,
+            "SecurityCredential"=>$SecurityCredential,
+            "CommandID"=> "BusinessPayment",
+            "Amount"=> $amount,
+            "PartyA"=> $shortcode,
+            "PartyB"=> $phoneNumber,
+            "Remarks"=> "Withdraw from wallet",
+            "QueueTimeOutURL" => "https://39df02514e52.ngrok.io/api/handle-timeout",
+            "ResultURL"=> "https://39df02514e52.ngrok.io/api/handle-withdraw-result",
+            "Occasion"=> " "
+
+        ];
+
+
+            $response = Http::withHeaders( $headers)->post($api_url,$data);
+            $response = $response->json();
+            // $response = json_decode($response, true);
+
+            return $response ;
+
+
     }
 
 

@@ -6,8 +6,10 @@ use App\User;
 use App\Chama;
 use App\Ticket;
 use App\Wallet;
+use App\Payment;
 use App\ChamaUser;
 use Illuminate\Http\Request;
+use App\payment\MpesaGateway;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use App\Http\Requests\ChamaStoreRequest;
@@ -70,8 +72,9 @@ class ChamaController extends Controller
         $chama = Chama::findOrFail($chama->id);
         $wallet = Auth::user()->wallet ;
         $shouldvote = Ticket::where('chama_id',$chama->id)->where('user_id',$user->id)->first();
+        $tickets = Ticket::where('chama_id',$chama->id)->get();
         // return $shouldvote->given ;
-        return view('admin.subscriptions.SingleChama',compact('chama','wallet','shouldvote')) ;
+        return view('admin.subscriptions.SingleChama',compact('chama','wallet','shouldvote','tickets')) ;
     }
 
 
@@ -112,6 +115,68 @@ class ChamaController extends Controller
 
 
 
+
+    }
+
+    public function activateChama(Request $request , $chama_id ,MpesaGateway $mpesaGateway )
+    {
+
+
+        request()->validate(array( //|regex:/(^(\d+){1,10})/u
+            'phone' => 'required|numeric',
+        ));
+        $amount = 1;
+        $phone = $request->phone;
+
+      $response =   $mpesaGateway->activate_chama($phone,$amount ) ;
+      $chama = Chama::find($chama_id) ;
+      $chama ->payments()->create([
+        'user_id' => Auth::user()->id,
+        'merchantRequestID' => $response['MerchantRequestID'],
+        'checkoutRequestID' => $response['CheckoutRequestID'],
+        'responseCode' => $response['ResponseCode'],
+        'responseDescription' => $response['ResponseDescription'],
+        'customerMessage' => $response['CustomerMessage'],
+        'phoneNumber' => $phone,
+        'amount' => $amount,
+    ]);
+    return back()->with('success',  $response['CustomerMessage']);
+
+    }
+
+    public function handle_result(Request $request)
+    {
+        $data = $request->all();
+        $data = $data['Body']['stkCallback'];
+        $result = Payment::where('checkoutRequestID', $data['CheckoutRequestID'])->where('active', true)->first();
+        $result->active = false;
+        $result->result = json_encode($data);
+        $result->save();
+
+        if($result == null || $result->merchantRequestID != $data['MerchantRequestID'])
+            return null;
+        $result->resultCode = $data['ResultCode'];
+        $result->resultDesc = $data['ResultDesc'];
+        $result->save();
+        if($result->resultCode == 0){
+            $items = $data['CallbackMetadata']['Item'];
+            foreach($items as $item){
+                if($item['Name'] == 'Amount' && array_key_exists('Value', $item))
+                    $result->amount = $item['Value'];
+                elseif($item['Name'] == 'MpesaReceiptNumber' && array_key_exists('Value', $item))
+                    $result->mpesaReceiptNumber = $item['Value'];
+                elseif($item['Name'] == 'Balance' && array_key_exists('Value', $item))
+                    $result->balance = $item['Value'];
+                elseif($item['Name'] == 'TransactionDate' && array_key_exists('Value', $item))
+                    $result->transactionDate = date('Y-m-d H:i:s', strtotime($item['Value']));
+            }
+            if($result->save()){
+                $chama = Chama::find($result->paymentable->id);
+                $chama->activate = true ;
+                $chama->save();
+
+            }
+        }
 
     }
 

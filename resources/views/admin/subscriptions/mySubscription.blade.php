@@ -47,15 +47,17 @@
                             @csrf
                                     <div class="form-group">
                                       <label for="">Phone Number</label>
-                                      <input type="text" class="form-control" name="phone" id="phone" aria-describedby="helpId" placeholder="07********">
+                                      <input type="text" class="form-control" value="{{ auth()->user()->phone }}"  name="phone" id="phone" aria-describedby="helpId" placeholder="07********">
                                       <small id="helpId" class="form-text text-muted">Type your Phone number here</small>
                                     </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <button type="submit" class="btn btn-primary">Send </button>
-                            </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        <button type="submit" class="btn btn-primary">Send </button>
+                                    </div>
                         </form>
+                            </div>
+
+
                         </div>
                     </div>
                 </div>

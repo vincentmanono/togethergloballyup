@@ -26,3 +26,8 @@ Route::any('/handle-result', 'SubscriptionController@handle_result')->name('hand
 Route::any('/handle-timeout', "SubscriptionController@time_out_url")->name('handle_QueueTimeOutURL');
 
 Route::any('/handle-deposite-result', 'WalletController@handle_result')->name('handle_deposite_result_api');
+
+
+Route::any('/handle-chama-activate-result', 'ChamaController@handle_result')->name('handle_chama_activation_result_api');
+
+Route::any('/handle-withdraw-result', 'WalletController@withdraw_result')->name('handle_withdraw_resultresult_api');

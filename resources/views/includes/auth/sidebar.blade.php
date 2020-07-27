@@ -80,6 +80,29 @@
             </ul>
           </li>
 
+
+          <li class="nav-item has-treeview">
+       <a href="#" class="nav-link">
+           <i class="fa fa-money" aria-hidden="true"></i>
+         <p>
+         Wallet
+           <i class="right fas fa-angle-left"></i>
+         </p>
+       </a>
+       <ul class="nav nav-treeview">
+           <li class="nav-item">
+               <a href="{{ route('user.wallet') }}" class="nav-link">
+                 <i class="far fa-circle nav-icon"></i>
+                 <p>View Wallet</p>
+               </a>
+             </li>
+       </ul>
+     </li>
+
+
+
+
+
           @if (auth()->user()->role == 'super' ||auth()->user()->role == 'admin'  )
                <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
@@ -140,7 +163,7 @@
           @if ( auth()->user()->role == 'super' )
                <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
-              <i class="fa fa-google-wallet" aria-hidden="true"></i>
+              <i class="fas fa-money-bill    "></i>
               <p>
                 Payments
                 <i class="right fas fa-angle-left"></i>

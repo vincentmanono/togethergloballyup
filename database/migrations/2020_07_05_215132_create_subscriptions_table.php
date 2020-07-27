@@ -18,7 +18,6 @@ class CreateSubscriptionsTable extends Migration
             $table->dateTime('start_date');
             $table->dateTime('expiry_date')->nullable();
             $table->float('amount');
-            $table->integer('payment_id')->nullable();
             $table->integer('user_id');
 
             $table->timestamps();

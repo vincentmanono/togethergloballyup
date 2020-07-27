@@ -32,8 +32,9 @@ class SubscriptionController extends Controller
         $amount = 1;
         $phone = $request->phone;
 
-      $response =   $mpesaGateway->pay_subcription($phone,$amount,"Subscription Payment",route('handle_subscription_result_api')) ;
-      $result = Payment::create([
+      $response =   $mpesaGateway->pay_subcription($phone,$amount) ;
+
+    $result = Payment::create([
         'user_id' => Auth::user()->id,
         'merchantRequestID' => $response['MerchantRequestID'],
         'checkoutRequestID' => $response['CheckoutRequestID'],
@@ -44,6 +45,7 @@ class SubscriptionController extends Controller
         'amount' => $amount,
     ]);
     return back()->with('success', $result->customerMessage);
+
     }
 
 

@@ -179,15 +179,33 @@
                                                         <tr>
                                                             <th>Name</th>
                                                             <th>Phone</th>
-                                                            <th>Rank</th>
+                                                            <th>Voted</th>
+                                                            <th> Won Vote </th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        @forelse ($chama->users as $user)
+                                                        @forelse ($tickets as  $ticket)
                                                              <tr>
-                                                            <td>{{ $user->firstName . ' '.$user->lastName }}</td>
-                                                            <td>{{ $user->phone }}</td>
-                                                            <td>{{ "Not Yet" }}</td>
+                                                            <td>{{ $ticket->user->firstName . ' '.$ticket->user->lastName }}</td>
+                                                            <td>{{ $ticket->user->phone }}</td>
+                                                            <td >
+
+                                                                @if (  $ticket->as_vote )
+                                                                    <span class="text text-success" >Yes </span>
+                                                                @else
+                                                                <span class="text text-danger" >Not Yet </span>
+                                                                @endif
+
+                                                            </td>
+                                                            <td >
+
+                                                                @if (  $ticket->given )
+                                                                    <span class="text text-success" >Yes </span>
+                                                                @else
+                                                                <span class="text text-danger" >No </span>
+                                                                @endif
+
+                                                            </td>
                                                         </tr>
                                                         @empty
 
@@ -198,7 +216,8 @@
                                                         <tr>
                                                             <th>Name</th>
                                                             <th>Phone</th>
-                                                            <th>Rank</th>
+                                                            <th>Voted</th>
+                                                            <th> Won Vote </th>
                                                         </tr>
                                                     </tfoot>
                                                 </table>

@@ -7,6 +7,7 @@ use App\Wallet;
 use App\Payment;
 use Illuminate\Http\Request;
 use App\payment\MpesaGateway;
+use App\Withdraw;
 use Illuminate\Support\Facades\Auth;
 
 class WalletController extends Controller
@@ -21,7 +22,7 @@ class WalletController extends Controller
       $response =   $mpesa->wallet($phone,$amount);
 
       $wallet = Wallet::where('user_id',auth()->user()->id)->first();
-      $$wallet->payments()->create([
+      $wallet->payments()->create([
         'user_id' => Auth::user()->id,
         'merchantRequestID' => $response['MerchantRequestID'],
         'checkoutRequestID' => $response['CheckoutRequestID'],
@@ -31,16 +32,6 @@ class WalletController extends Controller
         'phoneNumber' => $phone,
         'amount' => $amount,
     ]);
-
-
-
-
-
-
-
-
-
-
     }
 
     public function handle_result(Request $request)
@@ -91,6 +82,75 @@ class WalletController extends Controller
 
             }
         }
+
+    }
+
+    public function mywallet()
+    {
+        $user = auth()->user() ;
+        return view('users.wallet.index',compact('user')) ;
+
+    }
+
+    public function withdraw(Request $request, MpesaGateway $mpesaGateway)
+    {
+        request()->validate(array(
+            'amountW' => 'required|numeric|min:10|max:70000',
+        ));
+        $phone = auth()->user()->phone ;
+        $amount = $request->amountW ;
+        $user = auth()->user();
+        $wallet = Wallet::where('user_id',auth()->user()->id)->first();
+        if ( $wallet->amount < $amount  ) {
+            $request->session()->flash('error', "You have insufficient balance. Your current balance is KES ".$user->wallet->amount );
+            return back();
+        } else {
+            # code...
+            $response = $mpesaGateway->withdraw($phone,$amount) ;
+
+            Withdraw::create([
+              'user_id' => Auth::user()->id,
+              'ConversationID' => $response['ConversationID'],
+              'OriginatorConversationID' => $response['OriginatorConversationID'],
+              'ResponseCode' => $response['ResponseCode'],
+              'ResponseDescription' => $response['ResponseDescription'],
+              'amount' => $amount,
+          ]);
+
+          return back()->with('success', $response['ResponseDescription']);
+
+
+        }
+
+
+
+
+
+    }
+
+    public function withdraw_result(Request $request)
+    {
+        $data = $request->all();
+        $data = $data['result'];
+        $result = Withdraw::where('ConversationID', $data['ConversationID'])->first();
+        $result->result = json_encode($data);
+        $result->save();
+
+        if($result->ResultCode == 0){
+            $items = $data['ResultParameters']['ResultParameter'];
+            foreach($items as $item){
+                if($item['key'] == 'TransactionAmount' && array_key_exists('Value', $item))
+                    $result->amount = $item['Value'];
+                elseif($item['key'] == 'TransactionReceipt' && array_key_exists('Value', $item))
+                    $result->TransactionID = $item['Value'];
+                elseif($item['key'] == 'ReceiverPartyPublicName' && array_key_exists('Value', $item))
+                    $result->ReceiverPartyPublicName = $item['Value'];
+                elseif($item['key'] == 'TransactionCompletedDateTime' && array_key_exists('Value', $item))
+                    $result->TransactionCompletedDateTime = date('Y-m-d H:i:s', strtotime($item['Value']));
+            }
+            $result->save() ;
+        }
+
 
     }
 

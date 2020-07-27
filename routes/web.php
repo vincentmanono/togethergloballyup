@@ -42,6 +42,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/subscribed-chama/{chama}/vote', 'ChamaController@takevote')->name('user.chama.subscribed.vote');
     // Route::post('/subscribed-chama/{chama}/vote', 'TicketController@voted')->name('user.chama.subscribed.voted');
 
+    Route::get('/wallet', 'WalletController@mywallet')->name('user.wallet');
+    Route::post('/withdraw', 'WalletController@withdraw')->name('user.withdraw');
+
+
     Route::get('all-subscription','SubscriptionController@index')->name('user.all.subscription') ;
     Route::post('renew-subscription','SubscriptionController@renew')->name('user.renew.subscription') ;
     Route::post('deposite-to-wallet', 'WalletController@deposite')->name('deposte.to.wallet');
@@ -51,12 +55,15 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('messages', 'MessageController');
     Route::resource('/testimonies','TestimonyController');
 
+    Route::post('activate-chama/{chama}', 'ChamaController@activateChama')->name('admin.activate.chama');
+
     Route::group(['prefix' => 'admin','middleware'=>['admin']], function () {
 
         Route::get('my-chamas', 'AdminChamaController@allmychama')->name('admin.allmychama');
         Route::get('my-chamas/{chama}', 'AdminChamaController@show')->name('admin.allmychama.show');
         Route::put('my-chamas/{chama}', 'AdminChamaController@openvoting')->name('admin.allmychama.openvoting');
         Route::delete('/chamas/{chama}', 'ChamaController@destroy')->name('admin.chama.destroy');
+
 
         Route::post('my-chamas', 'AdminChamaController@removeUser')->name('admin.allmychama.removeUser');
 
