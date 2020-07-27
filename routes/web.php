@@ -91,7 +91,8 @@ Route::group(['middleware' => ['auth','super']], function () {
         Route::get('/testimonies', 'AdminPageController@testimonies')->name('admin.testimonies');
         Route::get('all-subscription','SubscriptionController@index')->name('admin.all.subscription') ;
         Route::get('all-active-subscription','SubscriptionController@active')->name('admin.active.subscription') ;
-
+        Route::get('/mysubscriptions', 'SubscribeController@index')->name('admin.mysubscriptions');
+        
         Route::get('/super-admins', 'AdminPageController@super')->name('admin.all.super');
         Route::get('/super-admins/{email}', 'AdminPageController@supersingle')->name('admin.single.super');
     });

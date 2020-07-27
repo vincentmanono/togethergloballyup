@@ -38,7 +38,7 @@
                 <table id="example1" class="table table-bordered table-striped">
                     <thead>
                     <tr>
-                        <th>User Name</th>
+                        <th>User Name</th>z
                         <th>Start Date</th>
                         <th>Expiry Date</th>
                         <th>Amount</th>

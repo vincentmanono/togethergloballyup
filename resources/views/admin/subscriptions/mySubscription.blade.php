@@ -6,7 +6,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>My Subscription Details</h1>
+                    <h1>Subscribers to Newsletters</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -25,18 +25,18 @@
         <!-- Default box -->
         <div class="card">
             <div class="card-header">
-                <h3>Subscriptions | <small>List of all my Subscriptions.</small></h3>
+                <h3>Email| <small>Subscriptions.</small></h3>
                 <!-- Button trigger modal -->
-                <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#renew">
+                {{-- <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#renew">
                   Renew your Subscription
-                </button>
+                </button> --}}
 
                 <!-- Modal -->
-                <div class="modal fade" id="renew" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+                {{-- <div class="modal fade" id="renew" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title">Renew Subscription</h5>
+                                <h5 class="modal-title">Email Subscriptions</h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
@@ -60,7 +60,7 @@
 
                         </div>
                     </div>
-                </div>
+                </div> --}}
 
                 <div class="card-tools">
                     <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
@@ -73,48 +73,28 @@
                 <table id="example1" class="table table-bordered table-striped">
                     <thead>
                     <tr>
-                        <th>User Name</th>
-                        <th>Start Date</th>
-                        <th>Expiry Date</th>
-                        <th>Amount</th>
-                        <th>Phone</th>
-                        <th>Status</th>
+                        <th>Email</th>
+                        <th>Created_At</th>
+                        <th>Edit</th>
+
                     </tr>
                     </thead>
                     <tbody>
-                        @forelse ($subscriptions as $sub)
-                            <tr>
-                      <td>{{ $sub->user->firstName . '  '.$sub->user->lastName }}</td>
-                      <td>{{ date('l jS M, h:i a', strtotime($sub->start_date)) }}</td>
-                      <td>{{ date('l jS M, h:i a', strtotime($sub->expiry_date)) }}</td>
-
-                      <td>{{ number_format($sub->amount,2,'.',',') }} </td>
-                      <td>{{ $sub->user->phone }}</td>
-                      <td>
-                          @if ( $sub->expiry_date >= now() )
-                              <span class="text text-success" >Active</span>
-                          @else
-                              <span class="text text-danger" >Domant</span>
-                          @endif
-
-                      </td>
-
-                        @empty
-                        <td>{{ "No data yet" }}</td>
-                        @endforelse
-                     </tr>
-
-
+                        @foreach ($subscriptions as $sub)
+                        <tr>
+                        <td>{{ $sub->email}}</td>
+                        <td>{{$sub->created_at}}</td>
+                        <td></td>
+                            @endforeach
+                        </tr>
                     </tbody>
                     <tfoot>
-                    <tr>
-                        <th>User Name</th>
-                        <th>Start Date</th>
-                        <th>Expiry Date</th>
-                        <th>Chama</th>
-                        <th>Amount</th>
-                        <th>Phone</th>
-                    </tr>
+                        <tr>
+                            <th>Email</th>
+                            <th>Created_At</th>
+                            <th>Edit</th>
+
+                        </tr>
                     </tfoot>
                   </table>
             </div>

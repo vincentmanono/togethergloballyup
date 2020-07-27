@@ -222,10 +222,10 @@
                 @endif
 
               <li class="nav-item">
-                <a href="{{ route('user.all.subscription') }}" class="nav-link">
+                <a href="{{ route('admin.mysubscriptions') }}" class="nav-link">
 
                   <i class="fas fa-lock-open    "></i>
-                  <p>My Subscription</p>
+                  <p>Email Subscriptions</p>
                 </a>
                </li>
               {{-- <li class="nav-item">
