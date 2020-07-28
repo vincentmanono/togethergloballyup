@@ -41,8 +41,8 @@ class AdminChamaController extends Controller
         $days = $chama->duration;
         $now = now()->format('Y-m-d H:i:s');
         if($chama->nextVote != null && $chama->nextVote > $now){
-            // Session::flash('error',"You can't Open Voting before end of set duration days ") ;
-            // return back();
+            Session::flash('error',"You can't Open Voting before end of set duration days ") ;
+            return back();
         }
         else{
             $chama->nextVote = date('Y-m-d H:i:s', strtotime('+' . $days . ' day', strtotime($now)));
@@ -62,10 +62,10 @@ class AdminChamaController extends Controller
 
             Session::flash('success',"Now members can start to vote successfully");
             $users = $chama->users ;
-            // foreach ($users as $key => $user) {
+            foreach ($users as $key => $user) {
 
-            //     Notification::send($user , new VotingNotification($chama,$user)) ;
-            // }
+                Notification::send($user , new VotingNotification($chama,$user)) ;
+            }
 
         }else{
             Session::flash('error',"Error occurred try again");

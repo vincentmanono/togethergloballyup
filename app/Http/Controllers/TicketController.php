@@ -35,7 +35,7 @@ class TicketController extends Controller
         $users = $chama->users ;
         foreach ($users as $key => $user) {
 
-            //Notification::send($user , new UserWon($chama,$user)) ;
+            Notification::send($user , new UserWon($chama,$user)) ;
         }
         //check users if they have enough amount to pay
 

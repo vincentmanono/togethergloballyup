@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,11 +25,11 @@ Route::get('/faq','PageController@faq')->name('faq');
 Route::get('/testimonial','PageController@testimonial')->name('testimonial');
 Route::post('/subscribe', 'SubscribeController@subscribe')->name('subscribe');
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 
 
-Route::group(['middleware' => 'auth'], function () {
-    Route::get('/home', 'HomeController@index')->name('home');
+Route::group(['middleware' => ['auth','verified']], function () {
+    Route::get('/home', 'HomeController@index')->name('home')->middleware('verified');
     Route::get('/chamas', 'ChamaController@index')->name('admin.chama');
     Route::get('/chamas/{chama}', 'ChamaController@show')->name('admin.chama.show');
     Route::put('/chamas/{chama}', 'ChamaController@update')->name('admin.chama.update');
@@ -92,7 +93,7 @@ Route::group(['middleware' => ['auth','super']], function () {
         Route::get('all-subscription','SubscriptionController@index')->name('admin.all.subscription') ;
         Route::get('all-active-subscription','SubscriptionController@active')->name('admin.active.subscription') ;
         Route::get('/mysubscriptions', 'SubscribeController@index')->name('admin.mysubscriptions');
-        
+
         Route::get('/super-admins', 'AdminPageController@super')->name('admin.all.super');
         Route::get('/super-admins/{email}', 'AdminPageController@supersingle')->name('admin.single.super');
     });
