@@ -2,17 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\Notifications\AccountCreatedNotification;
 use File;
 use Image;
 use App\User;
 use App\Subscription;
 
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\payment\MpesaGateway;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
 // use Session;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Database\QueryException;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 
@@ -30,6 +34,8 @@ class UserController extends Controller
     public function index()
     {
 
+        $users = User::where('role', 'user')->get();
+        return view('admin.users.index')->with('users', $users)->with('user_type', 'User')->with('param', 'All');
     }
 
     /**
@@ -39,7 +45,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return  view('admin.users.create') ;
     }
 
     /**
@@ -51,6 +57,42 @@ class UserController extends Controller
     public function store(Request $request)
     {
         //
+        $this->validate($request, [
+            'firstName' => 'required',
+            'lastName' => 'required',
+            'email' => 'required|email',
+            'phone' => "required|numeric"
+        ]);
+        $data = $request->all();
+        $check_email = User::where('email', $request->email)->count();
+        if($check_email > 0){
+            Session::flash('error', 'The email is already registered with us!');
+            return redirect()->back();
+        }
+        $name =  $data['firstName'] .' '.$data['lastName'] . now() ;
+        $slug =  Str::slug($name) ;
+        $check = User::withTrashed()->where('slug', $slug)->count();
+        $user = User::create([
+            'firstName' => $data['firstName'],
+            'lastName' => $data['lastName'],
+            'slug' => Str::slug($name) ,
+            'phone' => $data['phone'],
+            'role' => 'user', //user , admin, super
+            'email' => $data['email'],
+            'password' => Hash::make("@togetherbloballyup"),
+        ]);
+
+
+
+            $user->slug = Str::slug($name) ;
+            $user->save();
+
+            Notification::send($user,new AccountCreatedNotification($user) ) ;
+
+
+
+        return redirect()->route('admin.users.index')->with('success', 'You successfully added the user.');
+
     }
 
     /**

@@ -81,7 +81,7 @@
                         <th>Phone</th>
                     </tr>
                     </tfoot>
-                  </table>
+                </table>
             </div>
             <!-- /.card-body -->
             <div class="card-footer">

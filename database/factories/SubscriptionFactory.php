@@ -12,7 +12,6 @@ $factory->define(Subscription::class, function (Faker $faker) {
         'start_date' => $faker->dateTimeBetween('-30 days', '0 days'),
         'expiry_date' => $faker->dateTimeBetween('-30 days', '+30 days'),
         'amount' => $faker->numberBetween(100,1000) ,
-        'payment_id'=>function(){ return Payment::all()->random() ;},
         'user_id'=>function(){ return User::all()->random() ;},
     ];
 });

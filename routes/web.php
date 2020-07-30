@@ -96,6 +96,11 @@ Route::group(['middleware' => ['auth','super']], function () {
 
         Route::get('/super-admins', 'AdminPageController@super')->name('admin.all.super');
         Route::get('/super-admins/{email}', 'AdminPageController@supersingle')->name('admin.single.super');
+
+        Route::get('/all-users', 'UserController@index')->name('admin.users.index');
+        Route::get('/user/{email}', 'UserController@show')->name('admin.users.show');
+        Route::get('/users/create', 'UserController@create')->name('admin.users.create');
+        Route::post('/user/store', 'UserController@store')->name('admin.users.store');
     });
 
 });
