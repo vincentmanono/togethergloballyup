@@ -9,7 +9,7 @@
                     <!-- Nav -->
                     <nav>
                         <ul>
-                            <li><a href="/">Homepage</a></li>
+                            <li><a href="/">Home</a></li>
                             <li><a href="/about">About Us</a></li>
                             <li><a href="/services">Services &amp; Offers</a></li>
 
@@ -63,10 +63,10 @@
                             <img src="assets/img/bg-img/7.jpg" alt="">
                         </div>
                         <div class="news-content">
-                            <a href="#">How to get the highest profit ?</a>
+                            <a href="#">To digitize chama</a>
                             <div class="news-meta">
-                                <a href="#" class="post-author"><img src="assets/img/core-img/pencil.png" alt=""> Jane Smith</a>
-                                <a href="#" class="post-date"><img src="assets/img/core-img/calendar.png" alt=""> April 26</a>
+                                <a href="about" class="post-author"><img src="assets/img/core-img/pencil.png" alt=""> Togethergloballyup</a>
+                                <a href="about" class="post-date"><img src="assets/img/core-img/calendar.png" alt=""></a>
                             </div>
                         </div>
                     </div>
@@ -78,10 +78,10 @@
                             <img src="assets/img/bg-img/8.jpg" alt="">
                         </div>
                         <div class="news-content">
-                            <a href="#">A new way to  highest profit </a>
+                            <a href="#">Bring together chamas globally.</a>
                             <div class="news-meta">
-                                <a href="#" class="post-author"><img src="assets/img/core-img/pencil.png" alt=""> Jane Smith</a>
-                                <a href="#" class="post-date"><img src="assets/img/core-img/calendar.png" alt=""> April 26</a>
+                                <a href="about" class="post-author"><img src="assets/img/core-img/pencil.png" alt=""> Togethergloballyup</a>
+                                <a href="about" class="post-date"><img src="assets/img/core-img/calendar.png" alt=""> </a>
                             </div>
                         </div>
                     </div>

@@ -417,7 +417,7 @@
                               Selecting M-PESA, a user will have to check his phone for a prompt which will require him / her
                                to confirm the purchase process by giving out <span class="text text-capitalize text-bold text-success "> Ksh. 100/= </span>. If Paypal option is selected,
                                a 0.11$ will be required for purchase. Once the purchase is done, the account will be
-                                validated automtically.
+                                validated automatically.
                         </p>
                     </div>
                     </div>

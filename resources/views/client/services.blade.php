@@ -34,12 +34,12 @@
             <div class="feature-text">
                 <!-- Section Heading -->
                 <div class="section-heading white mb-50">
-                    <div class="line"></div>
-                    <p>Bold desing and beyound</p>
-                    <h2>Easy and Fast credits</h2>
+                    <div class=""></div>
+
+                    <h2>Easy and Fast access</h2>
                 </div>
-                <h6>Morbi ut dapibus dui. Sed ut iaculis elit, quis varius mauris. Integer ut ultricies orci, lobortis egestas sem. Duis non volutpat arcu, eu mollis tellus. Sed finibus aliquam neque sit amet sod ales. Maecenas sed magna tempor, efficitur maur is in, sollicitudin augue. Praesent pretium finibus quam.</h6>
-                <a href="#" class="btn credit-btn btn-2 box-shadow">Read More</a>
+                <h6>TogetherGloballyUp provides a web-based platform that is easy for chamas to register and use. It comes with a mobile friendly version where you can access the platform at any time and in a more convinient manner. It is a platform that is fast and readily available at just a click of a button.</h6>
+                <a href="register" class="btn credit-btn btn-2 box-shadow">Register Today</a>
             </div>
         </div>
         <!-- Special Feature Thumbnail -->
@@ -56,19 +56,19 @@
             <div class="feature-text">
                 <!-- Section Heading -->
                 <div class="section-heading white mb-50">
-                    <div class="line"></div>
-                    <p>Bold desing and beyound</p>
-                    <h2>$1000 non the spot</h2>
+                    <div class=""></div>
+                    {{-- <p>Bold desing and beyound</p> --}}
+                    <h2>Chamas</h2>
                 </div>
-                <h6>Morbi ut dapibus dui. Sed ut iaculis elit, quis varius mauris. Integer ut ultricies orci, lobortis egestas sem. Duis non volutpat arcu, eu mollis tellus. Sed finibus aliquam neque sit amet sod ales. Maecenas sed magna tempor, efficitur maur is in, sollicitudin augue. Praesent pretium finibus quam.</h6>
-                <a href="#" class="btn credit-btn box-shadow">Read More</a>
+                <h6>TogetherGloballyUP helps chamas transition to online platforms where they can do thier operations online. It is an easier to use platform and secure. At TogetherGloballyUp we help small chamas to venture into an online platform that will ensure the growth of the chama.</h6>
+                <a href="about" class="btn credit-btn box-shadow">Read More</a>
             </div>
         </div>
     </section>
     <!-- ##### Special Feature Area End ###### -->
 
     <!-- ##### FAQ Area Start ###### -->
-    <section class="credit-faq-area section-padding-100-0">
+    {{-- <section class="credit-faq-area section-padding-100-0">
         <div class="container">
             <div class="row">
                 <!-- FAQ Area -->
@@ -115,7 +115,7 @@
 
             </div>
         </div>
-    </section>
+    </section> --}}
     <!-- ##### FAQ Area End ###### -->
 
 @endsection
