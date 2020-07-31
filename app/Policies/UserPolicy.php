@@ -4,6 +4,7 @@ namespace App\Policies;
 
 use App\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
+use Illuminate\Support\Facades\Auth;
 
 class UserPolicy
 {
@@ -17,7 +18,10 @@ class UserPolicy
      */
     public function viewAny(User $user)
     {
-        //
+        if ( Auth::user()->role == "super") {
+            return true ;
+        }
+        return false ;
     }
 
     /**
