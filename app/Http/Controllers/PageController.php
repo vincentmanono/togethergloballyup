@@ -53,4 +53,5 @@ class PageController extends Controller
         $testimonies = Testimony::orderBy('id','Desc')->paginate(9);
         return view('client.testimonial')->with('testimonies',$testimonies);
     }
+    
 }

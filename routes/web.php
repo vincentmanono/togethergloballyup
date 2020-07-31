@@ -56,6 +56,7 @@ Route::group(['middleware' => ['auth','verified']], function () {
 
     Route::resource('messages', 'MessageController');
     Route::resource('/testimonies','TestimonyController');
+    //Route::resource('contact','PageController');
 
     Route::post('activate-chama/{chama}', 'ChamaController@activateChama')->name('admin.activate.chama');
 
