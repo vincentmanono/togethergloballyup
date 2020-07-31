@@ -31,7 +31,7 @@
                     <div class="about-content mb-100">
                         <!-- Section Heading -->
                         <div class="section-heading">
-                            <div class="line"></div>
+                            <div class=""></div>
                             {{-- <p>Take look at our</p> --}}
                             <h2>About our company</h2>
                         </div>
@@ -63,7 +63,7 @@
         <div class="cta-content">
             <!-- Section Heading -->
             <div class="section-heading white">
-                <div class="line"></div>
+                <div class=" "></div>
                 {{-- <p>Bold desing and beyound</p> --}}
                 <h2>Groups Management</h2>
             </div>

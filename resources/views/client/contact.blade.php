@@ -118,7 +118,7 @@
 
         <!-- ##### Google Maps ##### -->
         <div class="map-area">
-            <iframe src="3d3o4Ka_aw!5e0!3m2!1sbn!2sbd!4v1532328708137" allowfullscreen></iframe>
+            {{-- <iframe src="3d3o4Ka_aw!5e0!3m2!1sbn!2sbd!4v1532328708137" allowfullscreen></iframe> --}}
             <!-- Contact Area -->
             <div class="contact---area">
                 <div class="container">
