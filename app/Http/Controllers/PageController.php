@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\ContactMail;
 use App\Testimony;
+use App\User;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Mail;
 
 class PageController extends Controller
 {
@@ -22,6 +24,23 @@ class PageController extends Controller
 
     public function contact(){
         return view('client.contact');
+    }
+    public function send(Request $request)
+    {
+
+        $data = $request->all() ;
+
+        $users = User::where('role',"super")->get();
+        // return (new ContactMail($data) )->render() ;
+
+        foreach ($users as $user) {
+            Mail::to($user)
+            ->send(new ContactMail($data));
+
+        }
+            return back()->with("success","Contact send successfully") ;
+
+
     }
     public function blog(){
         return view('client.blog');

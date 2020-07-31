@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Message;
+use App\User;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 
 class MessageController extends Controller
@@ -14,7 +16,9 @@ class MessageController extends Controller
      */
     public function index()
     {
-        return view('admin.messages.inbox') ;
+        $messages = Message::where('to',auth()->user()->email)->get();
+        // $messages = Message::all();
+        return view('admin.messages.inbox',compact('messages')) ;
     }
 
     /**
@@ -23,8 +27,8 @@ class MessageController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
-        return view('admin.messages.create');
+    {$emails = User::pluck('email') ;
+        return view('admin.messages.create',compact('emails'));
     }
 
     /**
@@ -35,9 +39,21 @@ class MessageController extends Controller
      */
     public function store(Request $request)
     {
-
-
-        // $mails = Mail::
+        request()->validate(array(
+            'email' => 'required|email',
+            'subject'=>"required|string|max:150",
+            'body'=>"required|string|max:1500"
+        ));
+        $data = $request->all();
+        $message = Message::create([
+            'user_id' => auth()->user()->id ,
+            'from' => auth()->user()->email ,
+            'to' => $data['email'],
+            'subject'=>$data['subject'],
+            'slug'=> Str::slug($data['subject']) ,
+            'body'=>$data['body']
+        ]) ;
+        return back()->with('success',"send successfully") ;
 
     }
 
@@ -47,9 +63,12 @@ class MessageController extends Controller
      * @param  \App\Message  $message
      * @return \Illuminate\Http\Response
      */
-    public function show(Message $message)
+    public function show($slug)
     {
-        //
+
+        $message = Message::where('slug',$slug)->first();
+
+        return view('admin.messages.show',compact('message')) ;
     }
 
     /**
@@ -60,7 +79,7 @@ class MessageController extends Controller
      */
     public function edit(Message $message)
     {
-        //
+
     }
 
     /**
@@ -81,8 +100,12 @@ class MessageController extends Controller
      * @param  \App\Message  $message
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Message $message)
+    public function destroy($slug)
     {
-        //
+        $message = Message::where('slug',$slug)->first();
+        $message->delete();
+
+        return redirect()-> route('messages.index')->with('success',"deleted successfully") ;
+
     }
 }

@@ -12,7 +12,7 @@
                         <h2>Contact</h2>
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                <li class="breadcrumb-item"><a href="{{ route('index') }}">Home</a></li>
                                 <li class="breadcrumb-item active" aria-current="page">Contact</li>
                             </ol>
                         </nav>
@@ -128,26 +128,27 @@
                             <div class="contact-form-area contact-page">
                                 <h4 class="mb-50">Send a message</h4>
 
-                                <form action="#" method="post">
+                                <form action="{{ route('contact.send') }}" method="post">
+                                    @csrf
                                     <div class="row">
                                         <div class="col-lg-6">
                                             <div class="form-group">
-                                                <input type="text" class="form-control" id="name" placeholder="Your Name">
+                                                <input type="text" class="form-control" id="name" required name="name" placeholder="Your Name">
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
                                             <div class="form-group">
-                                                <input type="email" class="form-control" id="email" placeholder="Your E-mail">
+                                                <input type="email" class="form-control" id="email" required name="email" placeholder="Your E-mail">
                                             </div>
                                         </div>
                                         <div class="col-12">
                                             <div class="form-group">
-                                                <input type="text" class="form-control" id="subject" placeholder="Your Subject">
+                                                <input type="text" class="form-control" id="subject" required name="subject" placeholder="Your Subject">
                                             </div>
                                         </div>
                                         <div class="col-12">
                                             <div class="form-group">
-                                                <textarea name="message" class="form-control" id="message" cols="30" rows="10" placeholder="Your Message"></textarea>
+                                                <textarea name="message" name="message" required class="form-control text text-dark h3 " id="message" cols="30" rows="10" placeholder="Your Message"></textarea>
                                             </div>
                                         </div>
                                         <div class="col-12">

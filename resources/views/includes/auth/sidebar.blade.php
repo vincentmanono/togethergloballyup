@@ -210,11 +210,11 @@
                                 </a>
                             </li>
                             {{-- <li class="nav-item">
-                    <a href="pages/charts/inline.html" class="nav-link">
-                      <i class="far fa-circle nav-icon"></i>
-                      <p>Inline</p>
-                    </a>
-                  </li>  --}}
+                        <a href="pages/charts/inline.html" class="nav-link">
+                          <i class="far fa-circle nav-icon"></i>
+                          <p>Inline</p>
+                        </a>
+                      </li>  --}}
                         </ul>
                     </li>
                 @endif
@@ -238,6 +238,13 @@
                                 <a href="{{ route('admin.all.subscription') }}" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>All Subscriptions</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+
+                                <a href="{{ route('admin.active.subscription') }}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Active Subscriptions</p>
                                 </a>
                             </li>
                         @else
@@ -271,14 +278,18 @@
                         </p>
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a href="{{ route('admin.mysubscriptions') }}" class="nav-link">
-                        <i class="fa fa-envelope" aria-hidden="true"></i>
-                        <p>
-                            For news letters
-                        </p>
-                    </a>
-                </li>
+                @if(auth()->user()->role == 'super')
+                    <li class="nav-item">
+                        <a href="{{ route('admin.mysubscriptions') }}" class="nav-link">
+                            <i class="fa fa-envelope" aria-hidden="true"></i>
+                            <p>
+                                For news letters
+                            </p>
+                        </a>
+                    </li>
+                @endif
+
+
 
                 <li class="nav-item has-treeview disabled ">
                     <a href="#" class="nav-link">

@@ -31,6 +31,7 @@
                   <div class="col-md-6" >
                       <h3>{{ $admins }}</h3>
 
+
                 <p>Admins</p>
                   </div>
                   <div class="col-md-6  border-left border-dark " >
@@ -43,7 +44,7 @@
               <div class="icon">
                 <i class="ion ion-bag"></i>
               </div>
-              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="{{ route('admin.all.super') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->
@@ -51,14 +52,14 @@
             <!-- small box -->
             <div class="small-box bg-success">
               <div class="inner">
-                <h3>53<sup style="font-size: 20px">%</sup></h3>
+                <h3> {{ $users }}</h3>
 
-                <p>Bounce Rate</p>
+                <p>Users</p>
               </div>
               <div class="icon">
-                <i class="ion ion-stats-bars"></i>
+                <i class="fa fa-users" aria-hidden="true"></i>
               </div>
-              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="{{ route('admin.users.index') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->
@@ -66,29 +67,31 @@
             <!-- small box -->
             <div class="small-box bg-warning">
               <div class="inner">
-                <h3>44</h3>
+                <h3>{{ $active_subscribers }}</h3>
 
-                <p>User Registrations</p>
+                    <p>Users with active subscriptions.</p>
+
               </div>
               <div class="icon">
-                <i class="ion ion-person-add"></i>
+                <i class="fa fa-users" aria-hidden="true"></i>
               </div>
-              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="{{ route('admin.active.subscription') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->
           <div class="col-lg-3 col-6">
             <!-- small box -->
-            <div class="small-box bg-danger">
+            <div class="small-box bg-success">
               <div class="inner">
-                <h3>65</h3>
+                <h3>{{ $active_chamas }}</h3>
 
-                <p>Unique Visitors</p>
+                <p> Active Chamas </p>
               </div>
               <div class="icon">
                 <i class="ion ion-pie-graph"></i>
+
               </div>
-              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="{{ route('admin.chama') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->
@@ -97,7 +100,7 @@
         <!-- Main row -->
         <div class="row">
           <!-- Left col -->
-          <section class="col-lg-7 connectedSortable">
+          {{-- <section class="col-lg-7 connectedSortable">
             <!-- Custom tabs (Charts with tabs)-->
             <div class="card">
               <div class="card-header">
@@ -609,7 +612,7 @@
               <!-- /.card-body -->
             </div>
             <!-- /.card -->
-          </section>
+          </section> --}}
           <!-- right col -->
         </div>
         <!-- /.row (main row) -->

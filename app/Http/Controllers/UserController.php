@@ -33,9 +33,15 @@ class UserController extends Controller
      */
     public function index()
     {
-
+        if ( Auth::user()->role == "super") {
         $users = User::where('role', 'user')->get();
         return view('admin.users.index')->with('users', $users)->with('user_type', 'User')->with('param', 'All');
+        }
+
+        $user = User::where('email', Auth::user()->email)->first() ;
+        return view('users.profile',compact('user')) ;
+
+
     }
 
     /**
@@ -103,6 +109,13 @@ class UserController extends Controller
      */
     public function show($email)
     {
+
+        if ( Auth::user()->role !== "super" && $email != Auth::user()->email  ) {
+            $user = User::where('email', Auth::user()->email)->first() ;
+            return redirect()->route('profile.index') ;
+
+        }
+
          $user = User::where('email',$email)->first() ;
         return view('users.profile',compact('user')) ;
 

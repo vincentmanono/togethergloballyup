@@ -36,6 +36,11 @@ class ChamaController extends Controller
             $request->session()->flash('error', "You are member in this chama");
            return back() ;
         }
+        $members = ChamaUser::where('chama_id',$chama->id)->count();
+        if ( $members >= 20) {
+            $request->session()->flash('error', "This Chama as already maximum number of members !!");
+               return back() ;
+        }
         $user->chamaSubscribed()->attach([$chama->id]);
         $user->tickets()->create([
             'chama_id' => $chama->id,

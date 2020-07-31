@@ -136,7 +136,7 @@
                                                 <input type="hidden" class="form-control hidden "
                                                 name="chamaID" value="{{ $chama->id }}" >
 
-                                            @if ($chama->activate)
+                                            @if ($chama->activate && $chama->users->count() <= 20)
                                                  <button type="submit" class="btn btn-primary">Join Chama</button>
                                             @else
                                             <button type="button" class="btn btn-primary disabled ">Join Chama</button>

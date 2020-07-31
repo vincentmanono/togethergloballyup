@@ -16,14 +16,22 @@ class SubscriptionController extends Controller
     {
         if ( auth()->user()->role == 'super' ) {
             $subscriptions = Subscription::orderBy('created_at', 'DESC')->paginate(100);
-            return view('admin.subscriptions.allSubscriptions',compact('subscriptions')) ;
+            return view('admin.subscriptions.allSubscriptions',compact('subscriptions')) ->with('param', 'all');
         } else {
            $subscriptions = Subscription::where('user_id',auth()->user()->id)->orderBy('created_at', 'DESC')->paginate(100);
-           return view('admin.subscriptions.mySubscription',compact('subscriptions'));
+           return view('admin.subscriptions.mySubscription',compact('subscriptions'))->with('param', 'all');
         }
 
 
     }
+
+
+    public function active_subscriptions()
+    {
+        $subscriptions = Subscription::where('expiry_date', '>=', now()->format('Y-m-d H:i:s'))->orderBy('created_at', 'DESC')->paginate(100);
+        return view('admin.subscriptions.allSubscriptions',compact('subscriptions'))->with('param', 'Active');
+    }
+
 
     public function renew(Request $request, MpesaGateway $mpesaGateway){
         request()->validate(array( //|regex:/(^(\d+){1,10})/u

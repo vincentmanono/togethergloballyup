@@ -25,7 +25,11 @@
         <!-- Default box -->
         <div class="card">
             <div class="card-header">
-                <h3>Subscriptions | <small>List of all Subscriptions.</small></h3>
+                @if (isset($message))
+                <h3>{{ $param }} Subscriptions.<small>Search results: {{ $message }}</small></h3>
+            @else
+            <h3>Subscriptions | <small>List of  {{ $param }} Subscriptions.</small></h3>
+            @endif
 
                 <div class="card-tools">
                     <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
@@ -38,7 +42,7 @@
                 <table id="example1" class="table table-bordered table-striped">
                     <thead>
                     <tr>
-                        <th>User Name</th>z
+                        <th>User Name</th>
                         <th>Start Date</th>
                         <th>Expiry Date</th>
                         <th>Amount</th>

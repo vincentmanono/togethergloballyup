@@ -20,6 +20,7 @@ Route::get('/','PageController@index')->name('index');
 Route::get('/about','PageController@about')->name('about');
 Route::get('/services','PageController@services')->name('services');
 Route::get('/contact','PageController@contact')->name('contact');
+Route::post('/contact','PageController@send')->name('contact.send');
 Route::get('/blog','PageController@blog')->name('blog');
 Route::get('/faq','PageController@faq')->name('faq');
 Route::get('/testimonial','PageController@testimonial')->name('testimonial');
@@ -91,7 +92,7 @@ Route::group(['middleware' => ['auth','super']], function () {
         Route::get('/chama-admins', 'AdminPageController@chamaAdmins')->name('admin.chamaAdmins');
         Route::get('/testimonies', 'AdminPageController@testimonies')->name('admin.testimonies');
         Route::get('all-subscription','SubscriptionController@index')->name('admin.all.subscription') ;
-        Route::get('all-active-subscription','SubscriptionController@active')->name('admin.active.subscription') ;
+        Route::get('all-active-subscription','SubscriptionController@active_subscriptions')->name('admin.active.subscription') ;
         Route::get('/mysubscriptions', 'SubscribeController@index')->name('admin.mysubscriptions');
 
         Route::get('/super-admins', 'AdminPageController@super')->name('admin.all.super');
