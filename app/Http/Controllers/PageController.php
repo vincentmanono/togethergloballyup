@@ -34,7 +34,7 @@ class PageController extends Controller
         // return (new ContactMail($data) )->render() ;
 
         foreach ($users as $user) {
-            Mail::to($user)
+            Mail::to("abrahamKivosh@gmail.com")
             ->send(new ContactMail($data));
 
         }

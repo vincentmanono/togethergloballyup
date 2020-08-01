@@ -189,7 +189,7 @@ img {
 /* :: 3.4.0 Preloader */
 
 .preloader {
-    background-color: #003679;
+    background-color: #791c00;
     width: 100%;
     height: 100%;
     position: fixed;
@@ -212,7 +212,7 @@ img {
     width: 11px;
     height: 11px;
     border-radius: 50%;
-    background: #ffbb38;
+    background: #b6136d;
     animation-timing-function: cubic-bezier(0, 1, 1, 0);
 }
 
@@ -335,7 +335,7 @@ img {
     width: 25px;
     height: 5px;
     border-radius: 3px;
-    background-color: #ffbb38;
+    background-color: #49c939;
     margin-bottom: 20px;
 }
 
@@ -460,7 +460,7 @@ img {
 /* :: 3.6.0 ScrollUp */
 
 #scrollUp {
-    background-color: #003679;
+    background-color: green ;
     border-radius: 5px 0 0 5px;
     bottom: 70px;
     color: #ffffff;
@@ -484,7 +484,7 @@ img {
 }
 
 #scrollUp:hover {
-    background-color: #ffbb38;
+    background-color: #ff38ff;
     color: #ffffff;
 }
 
@@ -494,7 +494,7 @@ img {
 .credit-btn {
     -webkit-transition-duration: 500ms;
     transition-duration: 500ms;
-    background-color: #ffbb38;
+    background-color: #2124ce;
     position: relative;
     z-index: 1;
     display: inline-block;
@@ -513,12 +513,12 @@ img {
 .credit-btn:focus {
     font-size: 14px;
     font-weight: 700;
-    background-color: #003679;
+    background-color: #791200;
     color: #ffffff;
 }
 
 .credit-btn.btn-2 {
-    background-color: #003679;
+    background-color: #793700;
     color: #ffffff;
 }
 
@@ -530,8 +530,8 @@ img {
 
 .credit-btn.btn-3 {
     background-color: transparent;
-    color: #003679;
-    border: 2px solid #003679;
+    color: #abb5c0;
+    border: 2px solid #bb4334;
     line-height: 44px;
 }
 
@@ -559,12 +559,12 @@ img {
     background-color: #f2f4f6;
 }
 
-.header-area .top-header-area .top-contact-info {
+.header-area .top-header-area{
     position: relative;
     z-index: 1;
 }
 
-.header-area .top-header-area .top-contact-info a {
+.header-area .top-header-area  a {
     display: inline-block;
     color: #838383;
     font-size: 14px;
@@ -590,7 +590,7 @@ img {
 }
 
 .header-area .top-header-area .top-contact-info a:first-child {
-    margin-right: 30px;
+    margin-right: 0px;
 }
 
 .header-area .top-header-area .top-contact-info a:hover,
@@ -604,17 +604,17 @@ img {
     }
 }
 
-.header-area .credit-main-menu {
+/* .header-area .credit-main-menu {
     position: relative;
     width: 100%;
     z-index: 1;
-    background-color: #ffbb38;
+    background-color: #141416;
 }
 
 .header-area .credit-main-menu::after {
-    width: 50%;
+    width: 100%;
     height: 100%;
-    background-color: #003679;
+    background-color: #00795b;
     position: absolute;
     top: 0;
     left: 0;
@@ -629,7 +629,7 @@ img {
 .header-area .credit-main-menu .classy-navbar {
     height: 85px;
     padding: 0;
-    background-color: #003679;
+    background-color:  #00795b;
 }
 
 @media only screen and (max-width: 767px) {
@@ -648,7 +648,7 @@ img {
 
 .header-area .credit-main-menu .classy-navbar .classynav ul li a:hover,
 .header-area .credit-main-menu .classy-navbar .classynav ul li a:focus {
-    color: #ffbb38;
+    color: #ff6038;
 }
 
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
@@ -718,29 +718,39 @@ img {
     overflow-x: hidden;
 }
 
-.header-area .credit-main-menu .classy-navbar .contact::before {
-    width: 100%;
-    height: 200%;
-    content: '';
-    position: absolute;
-    top: 42%;
-    left: 0;
-    z-index: -1;
-    background-color: #ffbb38;
-    -webkit-transform: rotate(30deg);
-    transform: rotate(30deg);
+.header-area .credit-main-menu .classy-navbar .classynav ul li ul  .credetials {
+    float: right;
+    color: darkolivegreen;
+    border: 2px solid black;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+} */
+
+
+
+.credetials li a {
+    color: blanchedalmond;
+    font-size: 16px;
 }
 
-.header-area .credit-main-menu .classy-navbar .contact::after {
-    width: 1000%;
-    height: 100%;
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 62px;
-    z-index: -1;
-    background-color: #ffbb38;
+
+.credetials li {
+    background-color: blueviolet;
 }
+.credetials li a:hover{
+    background-color: black;
+    color: white;
+    font-size: 17px;
+}
+@media only screen and (min-width: 360) and (max-width: 591px) {
+     .navbar-nav .nav-item{
+        position: relative ;
+        align-items: center;
+        text-align: center;
+        background-color: black;
+    }
+}
+
+
 
 .header-area .credit-main-menu .classy-navbar .contact a {
     display: inline-block;
@@ -1059,7 +1069,7 @@ img {
     flex: 0 0 50%;
     max-width: 50%;
     width: 50%;
-    background-color: #ffbb38;
+    background-color: #10110fe7;
 }
 
 @media only screen and (max-width: 767px) {
@@ -1217,7 +1227,7 @@ img {
     flex: 0 0 50%;
     max-width: 50%;
     width: 50%;
-    background-color: #ffbb38;
+    background-color: #333c8f;
 }
 
 @media only screen and (min-width: 768px) and (max-width: 991px) {
@@ -1663,6 +1673,12 @@ img {
     line-height: 62px;
     font-size: 18px;
 }
+.about-area{
+    background-color: #2d302d;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    color: white;
+    font-weight: 800;
+}
 
 .single-team-member-area .team-thumb .view-more a:hover {
     background-color: #003679;
@@ -1706,7 +1722,7 @@ img {
 .footer-area {
     position: relative;
     z-index: 1;
-    background-color: #021c3c;
+    background-color: #000000;
 }
 
 .footer-area .single-footer-widget {
@@ -1716,7 +1732,7 @@ img {
 
 .footer-area .single-footer-widget .widget-title {
     font-size: 18px;
-    color: #ffbb38;
+    color: #38ff42;
     margin-bottom: 40px;
     font-weight: 400;
 }
@@ -1826,11 +1842,11 @@ img {
 }
 
 .breadcrumb-area .breadcrumb-content .breadcrumb .breadcrumb-item::before {
-    color: #ffffff;
+    color: #181717;
 }
 
 .breadcrumb-area .breadcrumb-content .breadcrumb .breadcrumb-item.active {
-    color: #ffbb38;
+    color: #ff38cd;
     font-size: 16px;
     font-weight: 600;
 }
@@ -1842,7 +1858,7 @@ img {
 }
 
 .breadcrumb-area .breadcrumb-content .breadcrumb .breadcrumb-item a:hover {
-    color: #ffbb38;
+    color: #38ff38;
 }
 
 .single-latest-news-area {
@@ -2254,6 +2270,9 @@ img {
 
 .comment_area .single_comment_area {
     margin-bottom: 30px;
+    color: black;
+    font-size: 16px;
+    font-family: 'Courier New', Courier, monospace;
 }
 
 .comment_area .single_comment_area:last-of-type {
@@ -2271,7 +2290,7 @@ img {
 .contact-advisor {
     position: relative;
     z-index: 1;
-    background-color: #ffbb38;
+    background-color: #1b2c79;
     padding: 35px;
 }
 
@@ -2335,7 +2354,6 @@ img {
     border-radius: 5px;
     padding: 15px 30px;
     font-weight: 500;
-    color: #aeaeae;
     -webkit-transition-duration: 500ms;
     transition-duration: 500ms;
 }
@@ -2455,12 +2473,12 @@ img {
 
 .single-service-area:hover .icon,
 .single-service-area:focus .icon {
-    background-color: #ffbb38;
+    background-color: #38ff49;
 }
 
 .single-service-area:hover .text h5,
 .single-service-area:focus .text h5 {
-    color: #ffbb38;
+    color: #38ff53;
 }
 
 .single-cool-fact {
@@ -2479,7 +2497,7 @@ img {
 }
 
 .single-cool-fact .scf-icon i {
-    color: #ffbb38;
+    color: #45973e;
     font-size: 65px;
 }
 
