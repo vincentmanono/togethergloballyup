@@ -15,7 +15,7 @@ class ShouldVote
      */
     public function handle($request, Closure $next)
     {
-        $user->wallet->amount
-        return $next($request);
+        // $user->wallet->amount
+        // return $next($request);
     }
 }
