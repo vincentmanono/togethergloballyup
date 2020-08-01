@@ -60,20 +60,20 @@
                 </li>
 
                 <li class="nav-item {{ request()->is('about') ? 'active' : '' }} ">
-                    <a   class="nav-link mynav "
+                    <a  style="color: #fff" class="nav-link mynav "
                         href="/about ">About Us</a></li>
 
                 <li class="nav-item {{ request()->is('services') ? 'active' : '' }} ">
-                    <a   class="nav-link mynav "
+                    <a  style="color: #fff" class="nav-link mynav "
                         href="/services">Services</a></li>
                 <li class="nav-item {{ request()->is('testimonial') ? 'active' : '' }}">
-                    <a   class="nav-link mynav "
+                    <a  style="color: #fff" class="nav-link mynav "
                         href="/testimonial">Testimonials</a></li>
                 <li class="nav-item {{ request()->is('contact') ? 'active' : '' }} ">
                     <a   class="nav-link mynav "
-                        href="/contact">Contact</a></li>
+                       style="color: #fff" href="/contact">Contact</a></li>
                 <li class="nav-item {{ request()->is('faq') ? 'active' : '' }} ">
-                    <a   class="nav-link mynav " href="/faq">FAQ</a>
+                    <a  style="color: #fff" class="nav-link mynav " href="/faq">FAQ</a>
                 </li>
             </ul>
             <ul class=" credetials text text-info list-inline ">
