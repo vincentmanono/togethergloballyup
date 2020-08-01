@@ -148,14 +148,14 @@
     <section class="cta-area d-flex flex-wrap">
         <!-- Cta Thumbnail -->
         <div class="cta-thumbnail bg-img jarallax"
-         style="background-image: url(https://images.unsplash.com/photo-1588528022690-3d35ed25e4f9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60);"></div>
+         style="background-image: url(assets/img/bg-img/mn.jpg);"></div>
 
         <!-- Cta Content -->
         <div class="cta-content">
             <!-- Section Heading -->
             <div class="section-heading white">
-                <div class="line"></div>
-                <p>Bold design and beyond.</p>
+                <div class=""></div>
+                <p> </p>
                 <h2>Helping small chamas like yours.</h2>
             </div>
             <h6>TogetherGloballyUp is a simple to use web application that enables you to join

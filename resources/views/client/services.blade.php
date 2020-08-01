@@ -43,14 +43,14 @@
             </div>
         </div>
         <!-- Special Feature Thumbnail -->
-        <div class="special-feature-thumbnail bg-img jarallax" style="background-image: url(assets/img/bg-img/20.jpg);"></div>
+        <div class="special-feature-thumbnail bg-img jarallax" style="background-image: url(assets/img/bg-img/mneycan.jpeg);"></div>
     </section>
     <!-- ##### Special Feature Area End ###### -->
 
     <!-- ##### Special Feature Area Start ###### -->
     <section class="special-feature-area style-2 d-flex flex-wrap">
         <!-- Special Feature Thumbnail -->
-        <div class="special-feature-thumbnail bg-img jarallax" style="background-image: url(assets/img/bg-img/21.jpg);"></div>
+        <div class="special-feature-thumbnail bg-img jarallax" style="background-image: url(assets/img/bg-img/moneyplant.jpeg);"></div>
         <!-- Special Feature Content -->
         <div class="special-feature-content section-padding-100">
             <div class="feature-text">

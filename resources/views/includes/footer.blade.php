@@ -63,7 +63,7 @@
                             <img src="assets/img/bg-img/7.jpg" alt="">
                         </div>
                         <div class="news-content">
-                            <a href="#">To digitize chama</a>
+                            <a href="#">Global Digitization of Chamas</a>
                             <div class="news-meta">
                                 <a href="about" class="post-author"><img src="assets/img/core-img/pencil.png" alt=""> Togethergloballyup</a>
                                 <a href="about" class="post-date"><img src="assets/img/core-img/calendar.png" alt=""></a>
