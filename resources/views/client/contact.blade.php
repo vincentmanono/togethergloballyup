@@ -29,7 +29,7 @@
             <div class="row">
                 <!-- Single Contact Area -->
                 <div class="col-12 col-lg-6">
-                    <div class="single-contact-area mb-100">
+                    <div class="single-contact-area text text-dark mb-100">
                         <!-- Logo -->
                         <a href="#" class="d-block mb-50"><img src="assets/img/core-img/logo.png" alt=""></a>
                         <p>Over the years, Chamasoft has proven to be helpful to financial investment groups,
@@ -48,7 +48,7 @@
                             <!-- Single Advisor -->
                             <div class="single-advisor d-flex align-items-center">
                                 <div class="advisor-img">
-                                    <img src=https://previews.123rf.com/images/kritchanut/kritchanut1410/kritchanut141000121/32814147-male-silhouette-icon-with-question-mark-sign-on-the-face-suspect-concept.jpg" alt="">
+                                    <img src="https://previews.123rf.com/images/kritchanut/kritchanut1410/kritchanut141000121/32814147-male-silhouette-icon-with-question-mark-sign-on-the-face-suspect-concept.jpg" alt="">
                                 </div>
                                 <div class="advisor-info">
                                 Full Name here</h6>

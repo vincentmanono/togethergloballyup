@@ -12,7 +12,7 @@
                         <h2>About us</h2>
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                <li class="breadcrumb-item"><a href="/home">Home</a></li>
                                 <li class="breadcrumb-item active" aria-current="page">About Us</li>
                             </ol>
                         </nav>
@@ -33,7 +33,7 @@
                         <div class="section-heading">
                             <div class=""></div>
                             {{-- <p>Take look at our</p> --}}
-                            <h2>About our company</h2>
+                            <h2 class="text text-info" >About our company</h2>
                         </div>
                         <h6 class="mb-4">
                             TogetherGloballyUp is a simple to use web application that enables investment groups to

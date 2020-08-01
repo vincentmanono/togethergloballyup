@@ -1,26 +1,5 @@
 <header class="header-area">
-    <!-- Top Header Area -->
-    {{-- <div class="top-header-area">
-        <div class="container h-100">
-            <div class="row h-100 align-items-center">
-                <div class="col-12 d-flex justify-content-between">
-                    <!-- Logo Area -->
-                    <div class="logo">
-                        <a href="/"><img src="assets/img/core-img/logo.png" alt=""></a>
-                    </div>
-
-                    <!-- Top Contact Info -->
-                    <div class="top-contact-info d-flex align-items-center">
-                        <a href="#" data-toggle="tooltip" data-placement="bottom" title="25 th Street Avenue, Los Angeles, CA"><img src="assets/img/core-img/placeholder.png" alt=""> <span>25 th Street Avenue, Los Angeles, CA</span></a>
-                        <a href="#" data-toggle="tooltip" data-placement="bottom" title="office@yourfirm.com"><img src="assets/img/core-img/message.png" alt=""> <span>office@yourfirm.com</span></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div> --}}
-
-    <!-- Navbar Area -->
-    <div class="credit-main-menu" id="sticker">
+    {{-- <div class="credit-main-menu" id="sticker">
         <div class="classy-nav-container breakpoint-off">
             <div class="container">
                 <!-- Menu -->
@@ -44,35 +23,66 @@
                             <ul>
                                 <li><a href="/">Home</a></li>
                                 <li><a href="/about ">About Us</a></li>
-                                {{-- <li><a href="#">Pages</a>
-                                    <ul class="dropdown">
-                                        <li><a href="/ ">Home</a></li>
-                                        <li><a href="about ">About Us</a></li>
-                                        <li><a href="#">Services</a></li>
-                                        <li><a href="#">Testimonials</a></li>
-                                        <li><a href="/contact">Contact</a></li>
-                                        <li><a href="#">FAQ</a></li>
-                                    </ul>
-                                </li> --}}
+
                                 <li><a href="/services">Services</a></li>
                                 <li><a href="/testimonial">Testimonials</a></li>
                                 <li><a href="/contact">Contact</a></li>
                                 <li><a href="/faq">FAQ</a></li>
+                                <li class="credetials text text-info " >
+                                    <li>
+                                        <a name="" id="" href="{{ route('login') }}" class="login"
+                                            role="button">Login</a>
+                                    </li>
+                                    <li>
+                                        <a name="" id="" href="{{ route('register') }}" class="signup"
+                                            role="button">Signup</a>
+                                    </li>
+                                </li>
                             </ul>
                         </div>
                         <!-- Nav End -->
                     </div>
-
-
-                    <!-- Contact -->
-                    <div class="contact">
-                        <a name="" id="" href="{{ route('login') }}" class="login"  role="button">Login</a>
-                        <a name="" id="" href="{{ route('register') }}" class="signup"  role="button">Signup</a>
-                        {{-- <a></a>
-                        <a  href="tel:+245704325455"><img src="assets/img/core-img/call2.png" alt=""> +245 70 432 5455</a> --}}
-                    </div>
                 </nav>
             </div>
         </div>
-    </div>
+    </div> --}}
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top  pt-4 pb-4 ">
+        <a class="navbar-brand" href="{{ route('index') }}">{{ config('app.name') }}</a>
+        <button class="navbar-toggler d-lg-none bg-dark " type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId"
+            aria-expanded="false" aria-label="Toggle navigation">
+            <i class="fa fa-pencil" aria-hidden="true"> more </i>
+        </button>
+        <div class="collapse navbar-collapse" id="collapsibleNavId">
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                <li class="nav-item {{ (request()->is('/') ) ? 'active' : '' }} ">
+                    <a class="nav-link" href="{{ route('index') }}">Home <span class="sr-only">(current)</span></a>
+                </li>
+
+                <li   class="nav-item {{ (request()->is('about') ) ? 'active' : '' }} " ><a class="nav-link" href="/about ">About Us</a></li>
+
+                <li   class="nav-item {{ (request()->is('services')  ) ? 'active' : '' }} " ><a  class="nav-link" href="/services">Services</a></li>
+                <li   class="nav-item {{ (request()->is('testimonial')  ) ? 'active' : '' }}" ><a  class="nav-link" href="/testimonial">Testimonials</a></li>
+                <li   class="nav-item {{ (request()->is( 'contact') ) ? 'active' : '' }} " ><a  class="nav-link" href="/contact">Contact</a></li>
+                <li   class="nav-item {{ (request()->is('faq') ) ? 'active' : '' }} " ><a  class="nav-link" href="/faq">FAQ</a></li>
+
+                {{-- <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
+                    <div class="dropdown-menu" aria-labelledby="dropdownId">
+                        <a class="dropdown-item" href="#">Action 1</a>
+                        <a class="dropdown-item" href="#">Action 2</a>
+                    </div>
+                </li> --}}
+            </ul>
+            <ul class=" credetials text text-info list-inline " >
+                <li  class="list-inline-item nav-item " >
+                    <a name="" id="" href="{{ route('login') }}" class="login nav-link "
+                        role="button">Login</a>
+                </li>
+                <li  class="list-inline-item nav-item " >
+                    <a name="" id="" href="{{ route('register') }}" class="signup nav-link "
+                        role="button">Signup</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
 </header>
