@@ -47,7 +47,7 @@
         </div>
     </div> --}}
     <nav class="navbar navbar-expand-lg navbar-dark navbarcontainer fixed-top  pt-4 pb-4 ">
-        <a class="navbar-brand" href="{{ route('index') }}">{{ config('app.name') }}</a>
+        {{-- <a class="navbar-brand" href="{{ route('index') }}">{{ config('app.name') }}</a> --}}
         <button class="navbar-toggler d-lg-none bg-dark " type="button" data-toggle="collapse"
             data-target="#collapsibleNavId" aria-controls="collapsibleNavId" aria-expanded="false"
             aria-label="Toggle navigation">
@@ -61,7 +61,7 @@
 
                 <li class="nav-item {{ request()->is('about') ? 'active' : '' }} ">
                     <a  style="color: #fff" class="nav-link mynav "
-                        href="/about ">About Us</a></li>
+                        href="/about ">About</a></li>
 
                 <li class="nav-item {{ request()->is('services') ? 'active' : '' }} ">
                     <a  style="color: #fff" class="nav-link mynav "

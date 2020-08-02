@@ -197,7 +197,8 @@
         </div>
     </section>
     <!-- ##### Call To Action End ###### -->
-<br />
+<br  />
+{{-- <hr style="color:#49c939" /> --}}
     <!-- ##### Call To Action Start ###### -->
     <section class="cta-2-area wow fadeInUp" data-wow-delay="100ms">
         <div class="container">

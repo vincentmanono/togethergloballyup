@@ -33,17 +33,17 @@
                         <div class="section-heading">
                             <div class=""></div>
                             {{-- <p>Take look at our</p> --}}
-                            <h2 class="text text-info" >About our company</h2>
+                            <h2  style="color: antiquewhite"  class="text" >About our company</h2>
                         </div>
-                        <h6 class="mb-4">
+                        <h6  style="color: antiquewhite"  class="mb-4">
                             TogetherGloballyUp is a simple to use web application that enables investment groups to
                              manage all their group activities and communications </h6>
-                        <p class="mb-0">
+                        <h6 style="color: antiquewhite" class="mb-0">
                             This online based solution enables group administrators
                              to easily and efficiently track all contribution accounts within the group.
                              These payments include contributions payments, penalty payments, customer payments, supplier payments, special deposits,
                               member loan payments, bank loan payments. These payments are handled by the group administrators.
-                            </p>
+                        </h6>
                         <a href="/about" class="btn credit-btn mt-50">Discover</a>
                     </div>
                 </div>
@@ -56,7 +56,7 @@
         </div>
     </section>
     <!-- ##### About Area End ###### -->
-
+<hr>
     <!-- ##### Call To Action Start ###### -->
     <section class="cta-area d-flex flex-wrap">
         <!-- Cta Content -->
@@ -112,7 +112,7 @@ that ease the work load, are accurate and accessible.We automates the operations
         <div class="cta-thumbnail bg-img jarallax" style="background-image:  url(assets/img/bg-img/19.jpg);"></div>
     </section>
     <!-- ##### Call To Action End ###### -->
-
+<hr />
     <!-- ##### Call To Action Start ###### -->
     <section class="cta-2-area">
         <div class="container">
