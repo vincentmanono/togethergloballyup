@@ -20,18 +20,18 @@ class CreateWithdrawsTable extends Migration
 
             $table->string('result')->nullable();
 
-            $table->string('ConversationID', 100)->nullable();
-            $table->string('OriginatorConversationID', 100)->nullable();
-            $table->string('ResponseCode', 100)->nullable();
-            $table->string('ResponseDescription', 100)->nullable();
-            $table->string('ResultType', 100)->nullable();
-            $table->string('ResultCode', 100)->nullable();
-            $table->string('ResultDesc', 100)->nullable();
-            $table->string('TransactionID', 100)->nullable();
-            $table->string('amount', 100)->nullable();
-            $table->string('ReceiverPartyPublicName', 100)->nullable();
-            $table->dateTime('TransactionCompletedDateTime', 100)->nullable();
-            $table->string('balance', 100)->nullable();
+            $table->string('ConversationID')->nullable();
+            $table->string('OriginatorConversationID')->nullable();
+            $table->string('ResponseCode')->nullable();
+            $table->string('ResponseDescription')->nullable();
+            $table->string('ResultType')->nullable();
+            $table->string('ResultCode')->nullable();
+            $table->string('ResultDesc')->nullable();
+            $table->string('TransactionID')->nullable();
+            $table->string('amount')->nullable();
+            $table->string('ReceiverPartyPublicName')->nullable();
+            $table->dateTime('TransactionCompletedDateTime')->nullable();
+            $table->string('balance')->nullable();
 
 
             $table->softDeletes();
