@@ -10,6 +10,8 @@
 
     <!-- Title -->
     <title>togethergloballyup &amp; Merry-go-round company</title>
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
+    @include('layouts.auth/googleTag')
 
     <!-- Favicon -->
     <link rel="icon" href="assets/img/core-img/favicon.ico">
@@ -19,17 +21,25 @@
 
 </head>
 @include('includes.messages')
-<body>
-@include('includes.header')
-@yield('content')
 
-{{-- end of content --}}
+<body>
+
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MHWCZ2L" height="0" width="0"
+            style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+
+    @include('includes.header')
+    @yield('content')
+
+    {{-- end of content --}}
     <!-- ##### Newsletter Area Start ###### -->
-   @include('includes.newsletter')
+    @include('includes.newsletter')
     <!-- ##### Newsletter Area End ###### -->
 
     <!-- ##### Footer Area Start ##### -->
-   @include('includes.footer')
+    @include('includes.footer')
     <!-- ##### Footer Area Start ##### -->
 
     <!-- ##### All Javascript Script ##### -->
@@ -43,6 +53,8 @@
     <script src="assets/js/plugins/plugins.js"></script>
     <!-- Active js -->
     <script src="assets/js/active.js"></script>
+    @yield('scripts')
+
 </body>
 
 </html>

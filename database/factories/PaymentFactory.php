@@ -37,7 +37,7 @@ $factory->define(Payment::class, function (Faker $faker) {
         'resultCode'=>$faker-> randomDigit(1,5),
         'phoneNumber'=>$faker->phoneNumber,
         'mpesaReceiptNumber' => $faker->phoneNumber,
-        'balance' => $faker->randomFloat(),
+        'balance' => $faker->numberBetween(100,12000) ,
         'active' => $faker->boolean,
         'transactionDate' => $faker->dateTimeBetween('-30 days', '+0 days'),
     ];

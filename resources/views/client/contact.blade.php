@@ -32,7 +32,11 @@
                     <div class="single-contact-area text text-dark mb-100">
                         <!-- Logo -->
                         <a href="#" class="d-block mb-50"><img src="assets/img/core-img/logo.png" alt=""></a>
+<<<<<<< HEAD
                         <p>TogetherGloballyUp is helpful to financial investment groups,
+=======
+                        <p>TogetherGloballyUp has proven to be helpful to financial investment groups,
+>>>>>>> be97ba522a4b08792814c1e195084cfe8d2f9785
                             locally known as Chamas, by enhancing transparency and confidence among the members
                             , allowing these groups to focus on investment rather than
                             administration therefore saving time, and also facilitating structured investment
@@ -128,22 +132,22 @@
                             <div class="contact-form-area contact-page">
                                 <h4 class="mb-50">Send a message</h4>
 
-                                <form action="{{ route('contact.send') }}" method="post">
+                                <form action="{{ route('contact.send') }}" id="contactus" method="post">
                                     @csrf
                                     <div class="row">
                                         <div class="col-lg-6">
                                             <div class="form-group">
-                                                <input type="text" class="form-control" id="name" required name="name" placeholder="Your Name">
+                                                <input type="text" class="form-control name " id="name" required name="name" placeholder="Your Name">
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
                                             <div class="form-group">
-                                                <input type="email" class="form-control" id="email" required name="email" placeholder="Your E-mail">
+                                                <input type="email" class="form-control email " id="email" required name="email" placeholder="Your E-mail">
                                             </div>
                                         </div>
                                         <div class="col-12">
                                             <div class="form-group">
-                                                <input type="text" class="form-control" id="subject" required name="subject" placeholder="Your Subject">
+                                                <input type="text" class="form-control subject " id="subject" required name="subject" placeholder="Your Subject">
                                             </div>
                                         </div>
                                         <div class="col-12">
@@ -152,7 +156,8 @@
                                             </div>
                                         </div>
                                         <div class="col-12">
-                                            <button class="btn credit-btn mt-30" type="submit">Send</button>
+                                            <button id="btnSubmit" class="btn credit-btn mt-30" type="submit">Send</button>
+                                            <p class="text-response h3" >Message sent</p>
                                         </div>
                                     </div>
                                 </form>
@@ -166,3 +171,9 @@
     <!-- ##### Contact Area End ##### -->
 
 @endsection
+
+
+@section('scripts')
+<script src="assets/js/contact.js"></script>
+@stop
+
