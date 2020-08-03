@@ -10,6 +10,7 @@
 
     <!-- Title -->
     <title>togethergloballyup &amp; Merry-go-round company</title>
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
     @include('layouts.auth/googleTag')
 
     <!-- Favicon -->
@@ -52,6 +53,7 @@
     <script src="assets/js/plugins/plugins.js"></script>
     <!-- Active js -->
     <script src="assets/js/active.js"></script>
+    @yield('scripts')
 
 </body>
 
