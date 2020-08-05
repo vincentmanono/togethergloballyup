@@ -13,7 +13,7 @@ class ChamaSeeder extends Seeder
      */
     public function run()
     {
-        factory(Chama::class,10)->create();
+        factory(Chama::class,4)->create();
         // factory(Ticket::class,5)->create();
     }
 }

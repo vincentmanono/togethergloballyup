@@ -12,6 +12,6 @@ class ChamaUserSeeder extends Seeder
      */
     public function run()
     {
-        factory(ChamaUser::class,10)->create();
+        factory(ChamaUser::class,5)->create();
     }
 }

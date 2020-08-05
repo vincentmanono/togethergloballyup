@@ -7,6 +7,7 @@ use App\Payment;
 use App\Subscription;
 use Illuminate\Http\Request;
 use App\payment\MpesaGateway;
+use App\Wallet;
 use Illuminate\Support\Facades\Auth;
 
 class SubscriptionController extends Controller
@@ -96,6 +97,14 @@ class SubscriptionController extends Controller
                     $user->subscription_expiry = date('Y-m-d H:i:s', strtotime('+' . $days . ' day', strtotime($now)));
                 }
                 $user->save();
+                //Deposite subscription amount to info wallet
+                $deposited_at = now()->format('Y-m-d H:i:s');
+                $infoAcc = User::where('email','info@togethergloballyup.com')->first();
+                $infoWallet = Wallet::where('user_id',$infoAcc->id)->first();
+                $infoWallet->amount += $result->amount;
+                $infoWallet->deposite_at = $deposited_at ;
+                $infoWallet->save();
+
                 Subscription::create([
                     'user_id' => $result->user_id,
                     'amount' => $result->amount,
