@@ -34,7 +34,7 @@
                                 <span class="accor-open"><i class="fa fa-plus" aria-hidden="true"></i></span>
                                 <span class="accor-close"><i class="fa fa-minus" aria-hidden="true"></i></span>
                                 </a></h6>
-                        <div id="collapseOne" class="accordion-content collapse show">
+                        <div id="collapseOne" class="accordion-content collapse ">
                             <p>TogetherGloballyUp offers you with a platform where you can join an online merry-go-round chama. The first thing you are supposed to do is to signup then from there you will be in a position to view
                                  the available chamas that contribute different amounts. Select the chama of your choice then you will be prompted to pay a registration fee which will allow you to now join a chama-group and view members and contribution activities taking place and how it operates. </p>
                         </div>
@@ -77,7 +77,7 @@
                                 <span class="accor-open"><i class="fa fa-plus" aria-hidden="true"></i></span>
                                 <span class="accor-close"><i class="fa fa-minus" aria-hidden="true"></i></span>
                                 </a></h6>
-                        <div id="collapseFour" class="accordion-content collapse show">
+                        <div id="collapseFour" class="accordion-content collapse ">
                             <p>You just need to provide your personal details as per the registration form and a membership payment of Ksh. 150/=. </p>
                         </div>
                     </div>
@@ -90,7 +90,7 @@
                                     </a>
                         </h6>
                         <div id="collapseFive" class="accordion-content collapse">
-                            <p>You have to be 18 years and above. </p>
+                            <p>You have to be 18 years and above. Should have a valid Identification Card </p>
                         </div>
                     </div>
                     <!-- single accordian area -->

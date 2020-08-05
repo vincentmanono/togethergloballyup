@@ -32,7 +32,13 @@
                     <div class="single-contact-area text text-dark mb-100">
                         <!-- Logo -->
                         <a href="#" class="d-block mb-50"><img src="assets/img/core-img/logo.png" alt=""></a>
+
                         <p class="text text-dark h4" >TogetherGloballyUp has proven to be helpful to financial investment groups,
+
+                        <p>TogetherGloballyUp is helpful to financial investment groups,
+
+                        <p>TogetherGloballyUp has proven to be helpful to financial investment groups,
+
                             locally known as Chamas, by enhancing transparency and confidence among the members
                             , allowing these groups to focus on investment rather than
                             administration therefore saving time, and also facilitating structured investment
