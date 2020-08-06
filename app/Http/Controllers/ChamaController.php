@@ -23,44 +23,44 @@ class ChamaController extends Controller
      */
 
 
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
 
-    public function chamaJoin(Request $request){
-        $user = User::find(auth()->user()->id)  ;
-        $chama = Chama::find($request->input('chamaID'))  ;
-        $asthischama= ChamaUser::where('user_id',$user->id)->where('chama_id',$chama->id)->count() ;
-        if ($asthischama ) {
+    public function chamaJoin(Request $request)
+    {
+        $user = User::find(auth()->user()->id);
+        $chama = Chama::find($request->input('chamaID'));
+        $asthischama = ChamaUser::where('user_id', $user->id)->where('chama_id', $chama->id)->count();
+        if ($asthischama) {
             $request->session()->flash('error', "You are member in this chama");
-           return back() ;
+            return back();
         }
-        $members = ChamaUser::where('chama_id',$chama->id)->count();
-        if ( $members >= 20) {
+        if (auth()->user()->subscription_expiry < now() && auth()->user()->role != "super") {
+            Session::flash('error', "Please renew your subscription !!!");
+            return back();
+        }
+        $members = ChamaUser::where('chama_id', $chama->id)->count();
+        if ($members >= 20) {
             $request->session()->flash('error', "This Chama as already maximum number of members !!");
-               return back() ;
+            return back();
         }
         $user->chamaSubscribed()->attach([$chama->id]);
         $user->tickets()->create([
             'chama_id' => $chama->id,
-            'given'=>false,
-            'as_vote'=>false
+            'given' => false,
+            'as_vote' => false
 
         ]);
         $request->session()->flash('success', "You have successfully subscribed to " . $chama->name);
 
         return back();
-
     }
-    public function exitChama(Request $request){
-        $user = auth()->user() ;
-        $chama = Chama::find($request->input('chamaID'))  ;
+    public function exitChama(Request $request)
+    {
+        $user = auth()->user();
+        $chama = Chama::find($request->input('chamaID'));
         $user->chamaSubscribed()->detach([$chama->id]);
         $request->session()->flash('success', "You have successfully exit from  " . $chama->name . " chama");
 
         return back();
-
     }
 
 
@@ -69,61 +69,60 @@ class ChamaController extends Controller
 
         $chamas = auth()->user()->chamaSubscribed;
 
-        return view('admin.chama.subscribed')->with('chamas',$chamas) ;
+        return view('admin.chama.subscribed')->with('chamas', $chamas);
     }
 
-    public function singleSubscribedChama(Chama $chama){
-        $user =auth()->user() ;
+    public function singleSubscribedChama(Chama $chama)
+    {
+        $user = auth()->user();
         $chama = Chama::findOrFail($chama->id);
-        $wallet = Auth::user()->wallet ;
-        $shouldvote = Ticket::where('chama_id',$chama->id)->where('user_id',$user->id)->first();
-        $tickets = Ticket::where('chama_id',$chama->id)->get();
+        $wallet = Auth::user()->wallet;
+        $shouldvote = Ticket::where('chama_id', $chama->id)->where('user_id', $user->id)->first();
+        $tickets = Ticket::where('chama_id', $chama->id)->get();
         // return $shouldvote->given ;
-        return view('admin.subscriptions.SingleChama',compact('chama','wallet','shouldvote','tickets')) ;
+        return view('admin.subscriptions.SingleChama', compact('chama', 'wallet', 'shouldvote', 'tickets'));
     }
 
 
 
     public function takevote($chama_id)
     {
-        $chama = Chama::where('id',$chama_id) ->where('openVote',true)->first();
-        $user =auth()->user() ;
+        $chama = Chama::where('id', $chama_id)->where('openVote', true)->first();
+        $user = auth()->user();
 
-        if ( $user->wallet->amount < $chama->amount  ) {
-            $top = intval($chama->amount)  - intval($user->wallet->amount)  ;
-            Session::flash('error',"Please top Up your wallet  with KSH ". $top  . " to be able to vote ");
-            return back() ;
+        if ($user->wallet->amount < $chama->amount) {
+            $top = intval($chama->amount)  - intval($user->wallet->amount);
+            Session::flash('error', "Please top Up your wallet  with KSH " . $top  . " to be able to vote ");
+            return back();
+        }
+        if (auth()->user()->subscription_expiry < now() && auth()->user()->role != "super") {
+            Session::flash('error', "Please renew your subscription first do be able to vote ");
+            return back();
         }
 
-        if ( $chama->count() < 1 ) {
-            Session::flash('error',"Please contact chama admin for more information ");
-            return redirect()->route('user.chama.subscribed.single',$chama_id) ;
+        if ($chama->count() < 1) {
+            Session::flash('error', "Please contact chama admin for more information ");
+            return redirect()->route('user.chama.subscribed.single', $chama_id);
         }
 
         // return $chama->id ;
 
 
-        $shouldvote = Ticket::where('chama_id',$chama->id)->where('user_id',$user->id)->first();
+        $shouldvote = Ticket::where('chama_id', $chama->id)->where('user_id', $user->id)->first();
         // return $shouldvote->given ;
-        if ($shouldvote->given  == 1 ) {
-           Session::flash('error',"you can't vote until all members  win like you");
-           return redirect()->route('user.chama.subscribed.single',$chama->id) ;
-        } else if($shouldvote->as_vote == 1) {
+        if ($shouldvote->given  == 1) {
+            Session::flash('error', "you can't vote until all members  win like you");
+            return redirect()->route('user.chama.subscribed.single', $chama->id);
+        } else if ($shouldvote->as_vote == 1) {
 
-            Session::flash('error',"you have already voted . Wait for next round");
-            return redirect()->route('user.chama.subscribed.single',$chama->id) ;
-
-        }else{
-            return view( 'admin.chama.tikects.vote', compact('chama') );
+            Session::flash('error', "you have already voted . Wait for next round");
+            return redirect()->route('user.chama.subscribed.single', $chama->id);
+        } else {
+            return view('admin.chama.tikects.vote', compact('chama'));
         }
-
-
-
-
-
     }
 
-    public function activateChama(Request $request , $chama_id ,MpesaGateway $mpesaGateway )
+    public function activateChama(Request $request, $chama_id, MpesaGateway $mpesaGateway)
     {
 
 
@@ -133,21 +132,26 @@ class ChamaController extends Controller
         $amount = 1;
         $phone = $request->phone;
 
-      $response =   $mpesaGateway->activate_chama($phone,$amount ) ;
-      $chama = Chama::find($chama_id) ;
-      $chama ->payments()->create([
-        'user_id' => Auth::user()->id,
-        'merchantRequestID' => $response['MerchantRequestID'],
-        'checkoutRequestID' => $response['CheckoutRequestID'],
-        'responseCode' => $response['ResponseCode'],
-        'responseDescription' => $response['ResponseDescription'],
-        'customerMessage' => $response['CustomerMessage'],
-        'phoneNumber' => $phone,
-        'amount' => $amount,
-    ]);
-    return back()->with('success',  $response['CustomerMessage']);
+        try {
 
+            $response =   $mpesaGateway->activate_chama($phone, $amount);
+            $chama = Chama::find($chama_id);
+            $chama->payments()->create([
+                'user_id' => Auth::user()->id,
+                'merchantRequestID' => $response['MerchantRequestID'],
+                'checkoutRequestID' => $response['CheckoutRequestID'],
+                'responseCode' => $response['ResponseCode'],
+                'responseDescription' => $response['ResponseDescription'],
+                'customerMessage' => $response['CustomerMessage'],
+                'phoneNumber' => $phone,
+                'amount' => $amount,
+            ]);
+            return back()->with('success',  $response['CustomerMessage']);
+        } catch (\Throwable $th) {
+            return  back()->with('error', $response['errorMessage']);
+        }
     }
+
 
     public function handle_result(Request $request)
     {
@@ -158,31 +162,29 @@ class ChamaController extends Controller
         $result->result = json_encode($data);
         $result->save();
 
-        if($result == null || $result->merchantRequestID != $data['MerchantRequestID'])
+        if ($result == null || $result->merchantRequestID != $data['MerchantRequestID'])
             return null;
         $result->resultCode = $data['ResultCode'];
         $result->resultDesc = $data['ResultDesc'];
         $result->save();
-        if($result->resultCode == 0){
+        if ($result->resultCode == 0) {
             $items = $data['CallbackMetadata']['Item'];
-            foreach($items as $item){
-                if($item['Name'] == 'Amount' && array_key_exists('Value', $item))
+            foreach ($items as $item) {
+                if ($item['Name'] == 'Amount' && array_key_exists('Value', $item))
                     $result->amount = $item['Value'];
-                elseif($item['Name'] == 'MpesaReceiptNumber' && array_key_exists('Value', $item))
+                elseif ($item['Name'] == 'MpesaReceiptNumber' && array_key_exists('Value', $item))
                     $result->mpesaReceiptNumber = $item['Value'];
-                elseif($item['Name'] == 'Balance' && array_key_exists('Value', $item))
+                elseif ($item['Name'] == 'Balance' && array_key_exists('Value', $item))
                     $result->balance = $item['Value'];
-                elseif($item['Name'] == 'TransactionDate' && array_key_exists('Value', $item))
+                elseif ($item['Name'] == 'TransactionDate' && array_key_exists('Value', $item))
                     $result->transactionDate = date('Y-m-d H:i:s', strtotime($item['Value']));
             }
-            if($result->save()){
-                $chama = Chama::find($result->paymentable->id);
-                $chama->activate = true ;
-                $chama->save();
 
-            }
+            $result->save();
+            $chama = Chama::where('user_id', $result->user_id)->where('id', $result->paymentable_id)->first();
+            $chama->activate = true;
+            $chama->save();
         }
-
     }
 
 
@@ -191,16 +193,16 @@ class ChamaController extends Controller
 
     public function index()
     {
-        $user = auth()->user()->role == "super" ;
-        if ($user ) {
-            $chamas = Chama::all() ;
+        $user = auth()->user()->role == "super";
+        if ($user) {
+            $chamas = Chama::all();
         } else {
-            $chamas = Chama::where('activate',true)->get();
+            $chamas = Chama::where('activate', true)->get();
         }
 
 
 
-        return view('admin.chama.chamas')->with('chamas',$chamas) ;
+        return view('admin.chama.chamas')->with('chamas', $chamas);
     }
 
     /**
@@ -210,7 +212,12 @@ class ChamaController extends Controller
      */
     public function create()
     {
-        return view('admin.chama.create') ;
+        if (auth()->user()->subscription_expiry < now() && auth()->user()->role != "super") {
+            Session::flash('error', "Please renew your subscription !!!");
+            return back();
+        } else {
+            return view('admin.chama.create');
+        }
     }
 
     /**
@@ -221,26 +228,34 @@ class ChamaController extends Controller
      */
     public function store(ChamaStoreRequest $request)
     {
-        $user = User::find(auth()->user()->id) ;
+        if (auth()->user()->subscription_expiry < now() && auth()->user()->role != "super") {
+            Session::flash('error', "Please renew your subscription !!!");
+            return back();
+        }
+
+        $user = User::find(auth()->user()->id);
         $chama = new Chama();
-        $chama->name= $request->input('name');
-        $chama->amount= $request->input('amount');
+        $chama->name = $request->input('name');
+        $chama->amount = $request->input('amount');
         $chama->description = $request->input('description');
-        $chama->user_id = $user->id ;
-        if ($chama->save() ) {
-            $user->role = 'admin';
-            $user->save();
+        $chama->user_id = $user->id;
+        if ($chama->save()) {
+            if ($user->role != "super") {
+                $user->role = 'admin';
+                $user->save();
+            }
+
 
             $user->chamaSubscribed()->attach([$chama->id]);
             $user->tickets()->create([
                 'chama_id' => $chama->id,
-                'given'=>false,
-                'as_vote'=>false
+                'given' => false,
+                'as_vote' => false
 
             ]);
 
-             $request->session()->flash('success', "Your chama created successfully");
-             return redirect()->route('admin.chama.show',$chama->id) ;
+            $request->session()->flash('success', "Your chama created successfully");
+            return redirect()->route('admin.chama.show', $chama->id);
         } else {
             $request->session()->flash('error', "Error occurred please try again");
             return back();
@@ -256,7 +271,7 @@ class ChamaController extends Controller
     public function show(Chama $chama)
     {
         $chama = Chama::find($chama->id);
-        return view('admin.chama.show',compact('chama')) ;
+        return view('admin.chama.show', compact('chama'));
     }
 
     /**
@@ -279,28 +294,27 @@ class ChamaController extends Controller
      */
     public function update(Request $request, Chama $chama)
     {
-        $this->authorize('update',$chama) ;
+        $this->authorize('update', $chama);
         $chama = Chama::findOrFail($chama->id);
 
-        $this -> validate($request,[
-            'name'=>'required|string|max:150',
-            'amount'=>'required|numeric',
-            'description'=>'nullable|min:5'
+        $this->validate($request, [
+            'name' => 'required|string|max:150',
+            'amount' => 'required|numeric',
+            'description' => 'nullable|min:5'
         ]);
 
-        if ($chama->user_id == auth()->user()->id || auth()->user()->role == 'super' ) { //
-            $chama->name = $request->name ;
-            $chama->amount = $request->amount ;
-            $chama->description = $request->description ;
+        if ($chama->user_id == auth()->user()->id || auth()->user()->role == 'super') { //
+            $chama->name = $request->name;
+            $chama->amount = $request->amount;
+            $chama->description = $request->description;
 
-            if (  $chama->save()) {
-               return back()->with('success','Chama details updated successfully') ;
+            if ($chama->save()) {
+                return back()->with('success', 'Chama details updated successfully');
             }
-            return back()->with('error','Error occurred Please try again') ;
+            return back()->with('error', 'Error occurred Please try again');
         } else {
-            return back()->with('error','You cant updated other people chama') ;
+            return back()->with('error', 'You cant updated other people chama');
         }
-
     }
 
     /**
@@ -313,15 +327,13 @@ class ChamaController extends Controller
     {
 
         $chama = Chama::findOrFail($chama->id);
-         $this->authorize('delete',$chama) ;
+        $this->authorize('delete', $chama);
         if ($chama->user_id == auth()->user()->id || auth()->user()->role == 'super') {
-            if (  $chama->delete()) {
-            return redirect()->route('admin.allmychama') ->with('success','Chama details deleted successfully') ;
-
-     }
+            if ($chama->delete()) {
+                return redirect()->route('admin.allmychama')->with('success', 'Chama details deleted successfully');
+            }
+        } else {
+            return back()->with('error', 'Error occurred');
         }
-        else {
-         return back()->with('error','Error occurred') ;
-     }
     }
 }

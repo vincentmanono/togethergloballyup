@@ -82,7 +82,7 @@
             </div>
             <!-- /.card-body -->
             <div class="card-footer">
-                Footer
+                {{ "Time now is". now()->format("D d / M /Y H:i  ") }}
             </div>
             <!-- /.card-footer-->
         </div>

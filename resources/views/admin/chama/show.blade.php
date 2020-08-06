@@ -48,7 +48,8 @@
                                       <div class="text text-dark" >
                                           You are required to pay <span class="text text-success" >Ksh 150 only</span> to activate your account
                                       </div>
-                                      <form action="" method="post">
+                                      <form action="{{ route('admin.activate.chama',$chama->id) }}" method="post">
+                                          @csrf
                                           <div class="form-group">
                                             <label for="phone">Phone number</label>
                                             <input type="tel" name="phone" id="phone" class="form-control"  required placeholder="07********"
@@ -57,12 +58,13 @@
                                             <small id="helpPhone" class="text-muted">Enter your mobile number here</small>
                                           </div>
 
-                                   </div>
+
                                    <div class="modal-footer">
                                        <button type="button" class="btn btn-secondary pull-left" data-dismiss="modal">Close</button>
                                        <button type="submit" class="btn btn-primary pull-right">Pay</button>
                                    </div>
                                 </form>
+                            </div>
                                </div>
                            </div>
                        </div>
@@ -165,7 +167,7 @@
             </div>
             <!-- /.card-body -->
             <div class="card-footer">
-                Footer
+                {{ "Time now is". now()->format("D d / M /Y H:i  ") }}
             </div>
             <!-- /.card-footer-->
         </div>

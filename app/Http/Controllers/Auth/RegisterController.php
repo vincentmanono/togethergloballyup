@@ -7,6 +7,7 @@ use Illuminate\Support\Str;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use App\Providers\RouteServiceProvider;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
@@ -80,6 +81,7 @@ class RegisterController extends Controller
         ]);
 
         $user->slug = Str::slug($name);
+        $user->subscription_expiry = Carbon::now()->subDay(1) ;
         $user->save();
 
         return $user;

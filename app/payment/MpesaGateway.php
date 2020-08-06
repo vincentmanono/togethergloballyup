@@ -50,8 +50,8 @@ class MpesaGateway // extends AnotherClass implements Interface
         $access_token = $this->get_access_token();
         // $Shortcode = "600620";
         $time = date('YmdHis');
-        $shortcode = "174379";
-        $LipaNaMpesaOnlinePassKey = "bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919";
+        $shortcode = $this->shortcode ;
+        $LipaNaMpesaOnlinePassKey =   $this->LipaNaMpesaOnlinePassKey ;
         $SecurityCredential  = base64_encode($shortcode . $LipaNaMpesaOnlinePassKey . $time);
 
 
@@ -72,25 +72,16 @@ class MpesaGateway // extends AnotherClass implements Interface
             "PartyA" => $phoneNumber,
             "PartyB" => $shortcode,
             "PhoneNumber" => $phoneNumber,
-            // "CallBackURL" =>  "https://togethergloballyup.com/api/handle-result",
-            "CallBackURL" => "https://39df02514e52.ngrok.io/api/handle-result" ,
-            "QueueTimeOutURL" => "https://39df02514e52.ngrok.io/api/handle-timeout ",
+            "CallBackURL" =>  "https://togethergloballyup.com/api/handle-result",
+            "QueueTimeOutURL" => "https://togethergloballyup.com/api/handle-timeout ",
             "AccountReference" => "Subscription Payment",
             "TransactionDesc" => "Subscription Payment"
         ];
 
-        try {
-            $request = $client->request('POST', $api_url, [
-                'headers' => $headers,
-                'json' => $data,
-            ]);
-            $response = $request->getBody()->getContents();
-            $response = json_decode($response, true);
-            return  $response;
-        } catch (\Throwable $th) {
+       $response =  Http::withHeaders($headers)->post($api_url,$data )->json() ;
+        return $response ;
 
-            return back()->with('error', "error occurred");
-        }
+
     }
 
     public function wallet($phoneNumber, $amount )
@@ -104,8 +95,8 @@ class MpesaGateway // extends AnotherClass implements Interface
         $access_token = $this->get_access_token();
         // $Shortcode = "600620";
         $time = date('YmdHis');
-        $shortcode = "174379";
-        $LipaNaMpesaOnlinePassKey = "bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919";
+        $shortcode = $this->shortcode;
+        $LipaNaMpesaOnlinePassKey =   $this->LipaNaMpesaOnlinePassKey ;
         $SecurityCredential  = base64_encode($shortcode . $LipaNaMpesaOnlinePassKey . $time);
 
 
@@ -161,8 +152,8 @@ class MpesaGateway // extends AnotherClass implements Interface
         $access_token = $this->get_access_token();
         // $Shortcode = "600620";
         $time = date('YmdHis');
-        $shortcode = "174379";
-        $LipaNaMpesaOnlinePassKey = "bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919";
+        $shortcode =$this->shortcode;
+        $LipaNaMpesaOnlinePassKey =  $this->LipaNaMpesaOnlinePassKey ;
         $SecurityCredential  = base64_encode($shortcode . $LipaNaMpesaOnlinePassKey . $time);
 
 
@@ -216,7 +207,7 @@ class MpesaGateway // extends AnotherClass implements Interface
         $access_token = $this->get_access_token();
         $InitiatorName =  $this->InitiatorName ;
         $time = date('YmdHis');
-        $shortcode =$this->shortcode1 ;
+        $shortcode = $this->shortcode1 ;
         $LipaNaMpesaOnlinePassKey =  $this->LipaNaMpesaOnlinePassKey  ;
         $SecurityCredential  = base64_encode($shortcode . $LipaNaMpesaOnlinePassKey . $time);
 
@@ -236,8 +227,8 @@ class MpesaGateway // extends AnotherClass implements Interface
             "PartyA"=> $shortcode,
             "PartyB"=> $phoneNumber,
             "Remarks"=> "Withdraw from wallet",
-            "QueueTimeOutURL" => "https://39df02514e52.ngrok.io/api/handle-timeout",
-            "ResultURL"=> "https://39df02514e52.ngrok.io/api/handle-withdraw-result",
+            "QueueTimeOutURL" => "https://togethergloballyup.com/api/handle-timeout",
+            "ResultURL"=> "https://togethergloballyup.com/api/handle-withdraw-result",
             "Occasion"=> " "
 
         ];
