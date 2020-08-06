@@ -32,9 +32,9 @@ class CreateWithdrawsTable extends Migration
             $table->string('ReceiverPartyPublicName')->nullable();
             $table->dateTime('TransactionCompletedDateTime')->nullable();
             $table->string('balance')->nullable();
-
-
             $table->softDeletes();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+
 
             $table->timestamps();
         });
