@@ -43,7 +43,7 @@
                         <ul class="list-group list-group-unbordered ml-3 ">
 
                             <li class="list-group-item">
-                                <b>Name</b> <a class="pull-right">{{ $user->firstName .' '. $user->lastName }}</a>
+                                <b>Name</b> <a class="pull-right">{{ $user->name }}</a>
                             </li>
                             <li class="list-group-item">
                                 <b>Email</b> <a class="pull-right">{{ $user->email }}</a>
@@ -96,7 +96,7 @@
                                         </div>
                                         <div class="modal-body">
                                             <h4>Confirmation</h4>
-                                            <p>Are you sure you want to delete this account for {{ $user->firstName .' '. $user->lastName  }} ? This
+                                            <p>Are you sure you want to delete this account for {{ $user->name  }} ? This
                                                 action cannot be
                                                 undone once confirmed.</p>
 
@@ -123,11 +123,11 @@
                                 @csrf
                                 @method("put")
                                 <div class="form-group row">
-                                <label for="firstame" class="col-sm-2 col-form-label">First Name</label>
+                                <label for="name" class="col-sm-2 col-form-label">Full Name</label>
                                 <div class="col-sm-10">
-                                    <input type="text"   class="form-control @error('firstName') is-invalid @enderror"   id="firstame"  name="firstname"
-                                    value="{{ $user->firstName }}" placeholder="Your firstname">
-                                    @error('firstname')
+                                    <input type="text"   class="form-control @error('name') is-invalid @enderror"   id="name"  name="name"
+                                    value="{{ $user->name }}" placeholder="Your full name">
+                                    @error('name')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -135,18 +135,7 @@
 
                                 </div>
                                 </div>
-                                <div class="form-group row">
-                                    <label for="lastname" class="col-sm-2 col-form-label">User Names</label>
-                                    <div class="col-sm-10">
-                                    <input type="text" class="form-control @error('lastName') is-invalid @enderror"
-                                    id="lastname" value="{{ $user->lastName }}" name="lastname" placeholder="Your Lastname">
-                                    @error('lastname')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                                    </div>
-                                </div>
+
 
                                 <div class="form-group row">
                                 <label for="email" class="col-sm-2 col-form-label">Email</label>

@@ -16,7 +16,7 @@
             </div>
             <div class="info">
                 <a href="{{ route('profile.show', auth()->user()->email) }}" class="d-block">
-                    {{ auth()->user()->firstName . ' ' . auth()->user()->lastName }}</a>
+                    {{ auth()->user()->name }}</a>
             </div>
         </div>
 

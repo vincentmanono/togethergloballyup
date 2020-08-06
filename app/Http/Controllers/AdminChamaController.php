@@ -80,7 +80,7 @@ class AdminChamaController extends Controller
         $chama = Chama::find($request->chamaId) ;
 
         $user->chamaSubscribed()->detach([$chama->id]);
-        $request->session()->flash('success', "You have successfully removed ".$user->firstName." from   chama");
+        $request->session()->flash('success', "You have successfully removed ".$user->name." from   chama");
 
         return back();
 

@@ -45,7 +45,7 @@ class notifySubscriptionExpiredUser extends Notification
         $user =  $this->user ;
         return (new MailMessage)
                     ->error()
-                    ->greeting("Dear ". $user->firstName )
+                    ->greeting("Dear ". $user->name )
                     ->subject("Renew Subscription")
                     ->line('Your Previous Subscription to use our services as Ended')
                     ->line("Please renew your subscription again with KSH 100 Only to continue enjoying our services "  )

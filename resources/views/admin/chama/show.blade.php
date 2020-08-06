@@ -101,7 +101,7 @@
                                     <tr>
                                         <td>{{  $chama->name  }}</td>
                                         <td scope="row">Ksh {{ number_format( $chama->amount,2,'.',',')  }}</td>
-                                        <td>{{ $chama->admin->firstName . ' '. $chama->admin->lastName }}</td>
+                                        <td>{{ $chama->admin->name }}</td>
                                         <td>
                                             @if ($chama->activate)
                                                 <span class="text text-success text-bold " >Activated</span>

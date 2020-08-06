@@ -19,8 +19,7 @@ class UsersTableSeeder extends Seeder
 
         User::create(
             [
-            'firstName'=>'Info',
-            'lastName' =>'togethergloballyup',
+            'name' =>'togethergloballyup',
             'email' =>'info@togethergloballyup.com',
             'slug'=> Str::slug( 'togethergloballyup' ) ,
             'role'=>'super',
@@ -30,8 +29,7 @@ class UsersTableSeeder extends Seeder
         'remember_token' => Str::random(10),
         ] );
     User::create(  [
-            'firstName'=>'Abraham',
-            'lastName' =>'Kivondo',
+            'name'=>'Abraham Kivondo',
             'slug'=> Str::slug( 'Abraham Kivondo' ) ,
             'email' =>'abrahamkivosh@gmail.com',
             'role'=>'super',

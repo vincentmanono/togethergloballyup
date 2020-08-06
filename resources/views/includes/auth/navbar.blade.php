@@ -32,7 +32,7 @@
         <a class="nav-link" data-toggle="dropdown" href="#">
 
           <i class="fa fa-user" aria-hidden="true"></i>
-          <span class=" ml-3 text text-bold text-capitalize" >{{ auth()->user()->firstName .' ' .auth()->user()->lastName  }}</span>
+          <span class=" ml-3 text text-bold text-capitalize" >{{ auth()->user()->name  }}</span>
         </a>
         <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
           <span class="dropdown-item dropdown-header text text-bold text-dark ">{{ "Ksh" . number_format(auth()->user()->wallet->amount,2,".",",")  }} </span>

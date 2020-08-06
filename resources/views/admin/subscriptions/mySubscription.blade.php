@@ -55,7 +55,7 @@
                         <tbody>
                             @forelse ($subscriptions as $sub)
                                 <tr>
-                                    <td>{{ $sub->user->firstName . '  ' . $sub->user->lastName }}</td>
+                                    <td>{{ $sub->user->name }}</td>
                                     <td>{{ date('l jS M, h:i a', strtotime($sub->start_date)) }}</td>
                                     <td>{{ date('l jS M, h:i a', strtotime($sub->expiry_date)) }}</td>
 

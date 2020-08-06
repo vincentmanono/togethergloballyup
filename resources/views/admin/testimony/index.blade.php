@@ -60,7 +60,7 @@
                     <tbody>
                         @foreach ($testimonies as $testimony)
                             <tr>
-                    <td class="text text-capitalize text-bold" >{{$testimony->user->firstName . ' '.$testimony->user->lastName }}</td>
+                    <td class="text text-capitalize text-bold" >{{$testimony->user->name }}</td>
                     <td>{{ Str::limit($testimony->body , 60 , '...') }}</td>
                     <td class="row" >
                         <a name="" id="" class="btn btn-primary btn-sm mr-2" href="{{ route('testimonies.show',$testimony) }}" role="button">Read More</a>

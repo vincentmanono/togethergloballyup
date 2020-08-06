@@ -295,7 +295,7 @@
                                             <tbody>
                                                 @foreach ($chama->users as $user)
                                                     <tr>
-                                                        <td scope="row"> {{ $user->firstName . ' ' . $user->lastName }}</td>
+                                                        <td scope="row"> {{ $user->name }}</td>
                                                         <td> <a href="mailto:{{ $user->email }}">{{ $user->email }}</a>
                                                         </td>
                                                         <td> {{ $user->wallet->amount }} </td>

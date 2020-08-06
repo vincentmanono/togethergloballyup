@@ -57,7 +57,7 @@
                                        <tr>
                                            <td> {{ $chama->name }}</td>
                                            <td> {{ $chama->amount }}</td>
-                                           <td> {{ $chama->admin->firstName ." ".$chama->admin->lastName }}</td>
+                                           <td> {{ $chama->admin->name }}</td>
 
                                            <td> {{ $chama->users->count() }}</td>
                                            <td class="row" >

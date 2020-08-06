@@ -57,7 +57,7 @@
                             <tr>
                                 <td>
                                     @if ($transaction->user != null)
-                                        <a href="{{ route('profile.show', $transaction->user->email) }}" title="{{ $transaction->user != null? $transaction->user->email: '__' }}">{{ $transaction->user != null? $transaction->user->firstName: '__' }}</a>
+                                        <a href="{{ route('profile.show', $transaction->user->email) }}" title="{{ $transaction->user != null? $transaction->user->email: '__' }}">{{ $transaction->user != null? $transaction->user->name: '__' }}</a>
                                     @else
                                         <a href="javascript:void(0)">{{ $transaction->user != null? $transaction->user->name: '__' }}</a>
                                     @endif

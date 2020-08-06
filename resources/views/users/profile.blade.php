@@ -35,7 +35,7 @@
                                         src="{{ '/storage/users/' . $user->avatar }}" alt="User profile picture">
                                 </div>
 
-                                <h3 class="profile-username text-center">{{ $user->firstName . ' ' . $user->lastName }}</h3>
+                                <h3 class="profile-username text-center">{{ $user->name }}</h3>
 
                                 <p class="text-muted text-center">{{ $user->role }}</p>
 
@@ -53,7 +53,8 @@
                                     </li>
                                 </ul>
 
-                                {{-- <a href="#" class="btn btn-primary btn-block"><b>Follow</b></a> --}}
+                                {{-- <a href="#"
+                                    class="btn btn-primary btn-block"><b>Follow</b></a> --}}
                             </div>
                             <!-- /.card-body -->
                         </div>
@@ -73,8 +74,14 @@
                                 <p>
 
                                     {!! $user->subscription_expiry >= now()->format('Y-m-d H:i:s')
-                                    ? 'Your subscription expires on: ' . '<span style="color: green">' . date('l jS, M Y h:i
-                                        a', strtotime($user->subscription_expiry)) . '</span>'
+                                    ? 'Your subscription expires on: ' .
+                                    '<span style="color: green">' .
+                                        date(
+                                        'l jS, M Y h:i
+                                        a',
+                                        strtotime($user->subscription_expiry),
+                                        ) .
+                                        '</span>'
                                     : '<span style="color: red">Subscription Expired</span>' !!}
                                 </p>
 
@@ -114,8 +121,7 @@
                                             <br />
                                             <ul class="list-group list-group-unbordered">
                                                 <li class="list-group-item">
-                                                    <b>Name</b> <a
-                                                        class="pull-right">{{ $user->firstName . ' ' . $user->lastName }}</a>
+                                                    <b>Name</b> <a class="pull-right">{{ $user->name }}</a>
                                                 </li>
                                                 <li class="list-group-item">
                                                     <b>Email</b> <a class="pull-right">{{ $user->email }}</a>
@@ -129,19 +135,21 @@
                                                         class="pull-right">{{ $user->phone == '' ? 'Not available' : $user->phone }}</a>
                                                 </li>
 
-                                                @if($user->role == 'super')
-                                                    <li class="list-group-item {{ $user->role == 'super' ? '' : 'hidden' }}">
+                                                @if ($user->role == 'super')
+                                                    <li
+                                                        class="list-group-item {{ $user->role == 'super' ? '' : 'hidden' }}">
                                                         <b>Admin Status</b> <a class="pull-right">Super Admin</a>
                                                     </li>
 
 
                                                 @endif
-                                                @if($user->role == 'admin')
-                                                    <li class="list-group-item {{ $user->role == 'admin' ? '' : 'hidden' }}">
+                                                @if ($user->role == 'admin')
+                                                    <li
+                                                        class="list-group-item {{ $user->role == 'admin' ? '' : 'hidden' }}">
                                                         <b>Admin Status</b> <a class="pull-right">Ordinary Admin</a>
                                                     </li>
                                                 @endif
-                                                @if($user->role == 'user')
+                                                @if ($user->role == 'user')
                                                     <li class="list-group-item {{ $user->role == 'user' ? '' : 'hidden' }}">
                                                         <b>User Type</b> <a class="pull-right">Togethergloballyup User</a>
                                                     </li>
@@ -171,7 +179,7 @@
                                                                 <div class="modal-body">
                                                                     <h4>Confirmation</h4>
                                                                     <p>Are you sure you want to delete this account for
-                                                                        {{ $user->firstName . '' . $user->lastName }}? This
+                                                                        {{ $user->name }}? This
                                                                         action cannot be
                                                                         undone once confirmed.</p>
 
@@ -216,7 +224,7 @@
                                                         <td>{{ number_format($sub->amount, 2, '.', ',') }} </td>
                                                         <td>{{ $sub->user->phone }}</td>
                                                         <td>
-                                                            @if($sub->expiry_date >= now())
+                                                            @if ($sub->expiry_date >= now())
                                                                 <span class="text text-success">Active</span>
                                                             @else
                                                                 <span class="text text-danger">Domant</span>
@@ -250,29 +258,14 @@
                                             class="form-horizontal" enctype="multipart/form-data">
                                             @csrf
                                             @method("put")
-                                            <div class="form-group row">
-                                                <label for="firstame" class="col-sm-2 col-form-label">First Name</label>
-                                                <div class="col-sm-10">
-                                                    <input type="text"
-                                                        class="form-control @error('firstName') is-invalid @enderror"
-                                                        id="firstame" name="firstname" value="{{ $user->firstName }}"
-                                                        placeholder="Your firstname">
-                                                    @error('firstname')
-                                                    <span class="invalid-feedback" role="alert">
-                                                        <strong>{{ $message }}</strong>
-                                                    </span>
-                                                    @enderror
 
-                                                </div>
-                                            </div>
                                             <div class="form-group row">
-                                                <label for="lastname" class="col-sm-2 col-form-label">User Names</label>
+                                                <label for="name" class="col-sm-2 col-form-label">User Name</label>
                                                 <div class="col-sm-10">
                                                     <input type="text"
-                                                        class="form-control @error('lastName') is-invalid @enderror"
-                                                        id="lastname" value="{{ $user->lastName }}" name="lastname"
-                                                        placeholder="Your Lastname">
-                                                    @error('lastname')
+                                                        class="form-control @error('name') is-invalid @enderror" id="name"
+                                                        value="{{ $user->name }}" name="name" placeholder="Your name">
+                                                    @error('name')
                                                     <span class="invalid-feedback" role="alert">
                                                         <strong>{{ $message }}</strong>
                                                     </span>
@@ -325,11 +318,12 @@
 
 
                                             <hr>
-                                            @if(auth()->user()->role != 'super')
+                                            @if (auth()->user()->role != 'super')
 
                                                 <div class="form-group row">
                                                     <label for="old_password"
-                                                        class="col-sm-12 col-form-label text-capitalize ">Input your password To
+                                                        class="col-sm-12 col-form-label text-capitalize ">Input your
+                                                        password To
                                                         Update your account</label>
 
                                                     <div class="col-sm-10">
@@ -371,35 +365,35 @@
                                                 </div>
                                             </div>
 
-                                            @if(auth()->user()->role == 'super')
+                                            @if (auth()->user()->role == 'super')
                                                 <div class="form-check">
-                                                    <input type="checkbox" name="role" @if($user->type == 'super') checked
-                                                    @endif>
-                                                    <label for="role" class="form-check-label">Make Super Admin</label>
-                                                </div>
-                                            @endif
-
-
-                                            <div class="form-group row">
-                                                <div class="offset-sm-2 col-sm-8">
-                                                    <button type="submit" class="btn btn-danger btn-block">Submit</button>
-                                                </div>
-                                            </div>
-                                        </form>
+                                                    <input type="checkbox" name="role" @if ($user->type == 'super') checked
+                                            @endif>
+                                            <label for="role" class="form-check-label">Make Super Admin</label>
                                     </div>
-                                    <!-- /.tab-pane -->
+                                    @endif
+
+
+                                    <div class="form-group row">
+                                        <div class="offset-sm-2 col-sm-8">
+                                            <button type="submit" class="btn btn-danger btn-block">Submit</button>
+                                        </div>
+                                    </div>
+                                    </form>
                                 </div>
-                                <!-- /.tab-content -->
-                            </div><!-- /.card-body -->
-                        </div>
-                        <!-- /.nav-tabs-custom -->
+                                <!-- /.tab-pane -->
+                            </div>
+                            <!-- /.tab-content -->
+                        </div><!-- /.card-body -->
                     </div>
-                    <!-- /.col -->
+                    <!-- /.nav-tabs-custom -->
                 </div>
-                <!-- /.row -->
-            </div><!-- /.container-fluid -->
-        </section>
-        <!-- /.content -->
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
+    </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
     </div>
 
 @stop

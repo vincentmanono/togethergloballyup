@@ -49,7 +49,7 @@
                                         <i class="icon-coin"></i>
                                     </div>
                                     <div class="text">
-                                        <h5 class="text text-capitalize" >{{ $testimony->user->firstName . ' '. $testimony->user->lastName }}</h5>
+                                        <h5 class="text text-capitalize" >{{ $testimony->user->name }}</h5>
                                     <p class="text text-dark" >{{$testimony->body}}</p>
                                     <div class="text text-bold text-center" >
                                        posted  {{  ( $testimony->created_at)->diffForHumans() }}

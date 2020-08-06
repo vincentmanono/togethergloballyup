@@ -50,7 +50,7 @@
                             @foreach($users as $user)
                                 <tr>
                                     <td class="text text-capitalize text-bold">
-                                        {{ $user->firstName . ' ' . $user->lastName }}
+                                        {{ $user->name }}
                                     </td>
                                     <td> {{ $user->phone }}</td>
                                     <td> <a href="mailto:{{ $user->email }}"></a> {{ $user->email }}</td>

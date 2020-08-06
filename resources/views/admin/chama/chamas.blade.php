@@ -53,7 +53,7 @@
                       <td>{{ $chama->name }}</td>
                       <td> {{"Ksh ". $chama->amount }} </td>
                       <td> {{ $chama->users->count()}}</td>
-                     <td>{{ $chama->admin->firstName . ' '. $chama->admin->lastName }}</td>
+                     <td>{{ $chama->admin->name}}</td>
 
                       <td>
                           @if ($chama->activate)

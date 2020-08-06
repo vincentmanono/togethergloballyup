@@ -64,8 +64,7 @@ class UserController extends Controller
     {
         //
         $this->validate($request, [
-            'firstName' => 'required',
-            'lastName' => 'required',
+            'name' => 'required',
             'email' => 'required|email',
             'phone' => "required|numeric"
         ]);
@@ -75,12 +74,11 @@ class UserController extends Controller
             Session::flash('error', 'The email is already registered with us!');
             return redirect()->back();
         }
-        $name =  $data['firstName'] .' '.$data['lastName'] . now() ;
+        $name =  $data['name'] . now() ;
         $slug =  Str::slug($name) ;
         $check = User::withTrashed()->where('slug', $slug)->count();
         $user = User::create([
-            'firstName' => $data['firstName'],
-            'lastName' => $data['lastName'],
+            'name' => $data['name'],
             'slug' => Str::slug($name) ,
             'phone' => $data['phone'],
             'role' => 'user', //user , admin, super
@@ -146,8 +144,7 @@ class UserController extends Controller
             return redirect()->back()->with('error','Image not supported');
         }
         $this->validate($request, [
-            'firstname' => 'required|string',
-            'lastname' => 'required|string',
+            'name' => 'required|string',
             'email' => 'required|email',
             'phone' =>'required|numeric'
         ]);
@@ -176,8 +173,7 @@ class UserController extends Controller
 
 
 
-            $user->firstName = $request->input('firstname') ;
-            $user->lastName = $request->input('lastname') ;
+            $user->name = $request->input('name') ;
 
 
 
