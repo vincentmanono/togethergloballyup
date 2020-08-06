@@ -57,6 +57,12 @@ class ChamaController extends Controller
     {
         $user = auth()->user();
         $chama = Chama::find($request->input('chamaID'));
+        if ( $user->id == $chama->user_id ) {
+            $request->session()->flash('error', "You are  only Administrator  on " . $chama->name . " chama");
+
+            return back();
+
+        }
         $user->chamaSubscribed()->detach([$chama->id]);
         $request->session()->flash('success', "You have successfully exit from  " . $chama->name . " chama");
 
