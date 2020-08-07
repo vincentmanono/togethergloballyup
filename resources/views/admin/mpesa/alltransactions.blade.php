@@ -57,7 +57,7 @@
                             <tr>
                                 <td>
                                     @if ($transaction->user != null)
-                                        <a href="{{ route('profile.show', $transaction->user->email) }}" title="{{ $transaction->user != null? $transaction->user->email: '__' }}">{{ $transaction->user != null? $transaction->user->firstName: '__' }}</a>
+                                        <a href="{{ route('profile.show', $transaction->user->email) }}" title="{{ $transaction->user != null? $transaction->user->email: '__' }}">{{ $transaction->user != null? $transaction->user->name: '__' }}</a>
                                     @else
                                         <a href="javascript:void(0)">{{ $transaction->user != null? $transaction->user->name: '__' }}</a>
                                     @endif
@@ -88,7 +88,7 @@
             </div>
             <!-- /.card-body -->
             <div class="card-footer">
-                Footer
+                {{ "Time now is". now()->format("D d / M /Y H:i  ") }}
             </div>
             <!-- /.card-footer-->
         </div>

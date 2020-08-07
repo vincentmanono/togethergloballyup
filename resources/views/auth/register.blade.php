@@ -15,9 +15,9 @@
           <form method="POST" action="{{ route('register') }}">
             @csrf
             <div class="input-group mb-3">
-              <input id="name" type="text" placeholder="first Name" class="form-control  @error('firstName') is-invalid @enderror" name="firstName" value="{{ old('firstName') }}" required autocomplete="firstName" autofocus>
+              <input id="name" type="text" placeholder="Your full name" class="form-control  @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
 
-                                @error('firstName')
+                                @error('name')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -29,21 +29,7 @@
                 </div>
               </div>
             </div>
-            <div class="input-group mb-3">
-                <input id="name" type="text" placeholder="Last Name" class="form-control @error('lastName') is-invalid @enderror" name="lastName" value="{{ old('lastName') }}" required autocomplete="lastName" autofocus>
 
-                                  @error('lastName')
-                                      <span class="invalid-feedback" role="alert">
-                                          <strong>{{ $message }}</strong>
-                                      </span>
-                                  @enderror
-
-                <div class="input-group-append">
-                  <div class="input-group-text">
-                    <span class="fas fa-user"></span>
-                  </div>
-                </div>
-              </div>
             <div class="input-group mb-3">
                 <input id="email" type="email" placeholder="Email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
 
@@ -114,11 +100,11 @@
 
           <div class="social-auth-links text-center">
             <p>- OR -</p>
-            <a href="#" class="btn btn-block btn-primary">
+            <a href="{{ route('social.oauth', 'facebook') }}" class="btn btn-block btn-primary">
               <i class="fab fa-facebook mr-2"></i>
               Sign up using Facebook
             </a>
-            <a href="#" class="btn btn-block btn-danger">
+            <a href="{{ route('social.oauth', 'google') }}" class="btn btn-block btn-danger">
               <i class="fab fa-google-plus mr-2"></i>
               Sign up using Google+
             </a>

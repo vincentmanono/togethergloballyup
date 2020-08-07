@@ -53,7 +53,7 @@
                     <tbody>
                         @forelse ($subscriptions as $sub)
                             <tr>
-                      <td>{{ $sub->user->firstName . '  '.$sub->user->lastName }}</td>
+                      <td>{{ $sub->user->name }}</td>
                       <td>{{ date('l jS M, h:i a', strtotime($sub->start_date)) }}</td>
                       <td>{{ date('l jS M, h:i a', strtotime($sub->expiry_date)) }}</td>
 
@@ -89,7 +89,7 @@
             </div>
             <!-- /.card-body -->
             <div class="card-footer">
-                Footer
+                {{ "Time now is". now()->format("D d / M /Y H:i  ") }}
             </div>
             <!-- /.card-footer-->
         </div>

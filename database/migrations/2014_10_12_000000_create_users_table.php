@@ -15,8 +15,7 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('firstName');
-            $table->string('lastName');
+            $table->string('name');
             $table->string('slug')->nullable();
             $table->string('email')->unique();
             $table->string('role') ->default('user') ; //user , admin, super
@@ -24,7 +23,10 @@ class CreateUsersTable extends Migration
             $table->string('avatar', 100)->nullable()->default('avatar.png');
             $table->dateTime('subscription_expiry')->nullable();
             $table->timestamp('email_verified_at')->nullable() ;
-            $table->string('password');
+            $table->string('password')->nullable();
+            $table->string('provider', 20)->nullable();
+            $table->string('provider_id')->nullable();
+            $table->string('access_token')->nullable();
             $table->rememberToken();
             $table->softDeletes();
             $table->timestamps();

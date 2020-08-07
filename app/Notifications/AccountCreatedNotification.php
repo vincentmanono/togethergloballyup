@@ -43,7 +43,7 @@ class AccountCreatedNotification extends Notification
     {
         $user = $this->user ;
         return (new MailMessage)
-                    ->line('Thank you for signing up, '.$user->firstName)
+                    ->line('Thank you for signing up, '.$user->name)
                     ->line("We built Togetherbloballyup to help you increaase your earning and savings.")
                     ->line("We make sure your money is secured on our servers all the time")
                     ->line("Your login creditials are as follows")

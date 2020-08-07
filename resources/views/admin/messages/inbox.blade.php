@@ -86,7 +86,7 @@
                                                 </td>
                                                 <td class="mailbox-star"><a href="#"><i
                                                             class="fas fa-star text-warning"></i></a></td>
-                                                <td class="mailbox-name"><a href="{{ route('messages.show', $message->slug) }}">{{ $message->user->firstName . " ".$message->user->lastName  }}</a></td>
+                                                <td class="mailbox-name"><a href="{{ route('messages.show', $message->slug) }}">{{ $message->user->name }}</a></td>
                                                 <td class="mailbox-subject"><b>{{ $message->subject }}</b> - {{ Str::limit($message->body ,30,'...') }}
                                                 </td>
                                                 <td class="mailbox-attachment"></td>

@@ -48,9 +48,9 @@
                     <li class="list-group-item" style="overflow:auto">
                         <b>Users Name</b>
                         @if ($transaction->user != null)
-                        <a class=" text text-bold float-right mr-4"  href="{{ route('profile.show', $transaction->user->email) }}" title="{{ $transaction->user != null? $transaction->user->email: '__' }}">{{ $transaction->user != null? $transaction->user->firstName: '__' }}</a>
+                        <a class=" text text-bold float-right mr-4"  href="{{ route('profile.show', $transaction->user->email) }}" title="{{ $transaction->user != null? $transaction->user->email: '__' }}">{{ $transaction->user != null? $transaction->user->name: '__' }}</a>
                     @else
-                        <a class=" text text-bold float-right mr-4"  href="javascript:void(0)">{{ $transaction->user != null? $transaction->user->firstName: '__' }}</a>
+                        <a class=" text text-bold float-right mr-4"  href="javascript:void(0)">{{ $transaction->user != null? $transaction->user->name: '__' }}</a>
                     @endif
                     </li>
                     <li class="list-group-item" style="overflow:auto">

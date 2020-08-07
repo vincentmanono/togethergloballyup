@@ -20,6 +20,9 @@ class CreateTicketsTable extends Migration
             $table->boolean('pay')->nullable()->default(false);//will receive payment
             $table->boolean('given')->nullable()->default(false);//received money
             $table->boolean('as_vote')->nullable()->default(false); //determin if user voted on given duration
+
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+
             $table->timestamps();
         });
     }

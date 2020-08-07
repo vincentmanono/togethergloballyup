@@ -57,11 +57,11 @@
               </div>
               <!-- /.mailbox-controls -->
               <div class="mailbox-read-message">
-                <p>Hello {{ auth()->user()->firstName }},</p>
+                <p>Hello {{ auth()->user()->name }},</p>
 
                 <p>{{ $message->body }}</p>
 
-                <p>Thanks,<br>{{ auth()->user()->firstName }}</p>
+                <p>Thanks,<br>{{ auth()->user()->name }}</p>
               </div>
               <!-- /.mailbox-read-message -->
             </div>

@@ -26,6 +26,9 @@ Route::get('/faq','PageController@faq')->name('faq');
 Route::get('/testimonial','PageController@testimonial')->name('testimonial');
 Route::post('/subscribe', 'SubscribeController@subscribe')->name('subscribe');
 
+Route::get('oauth/{driver}', 'Auth\SocialiteController@redirectToProvider')->name('social.oauth');
+Route::get('oauth/{driver}/callback', 'Auth\SocialiteController@handleProviderCallback')->name('social.callback');
+
 Auth::routes(['verify' => true]);
 
 

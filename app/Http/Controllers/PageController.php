@@ -34,11 +34,15 @@ class PageController extends Controller
         // return (new ContactMail($data) )->render() ;
 
         foreach ($users as $user) {
-            Mail::to("abrahamKivosh@gmail.com")
+            Mail::to($user)
             ->send(new ContactMail($data));
 
         }
-            return back()->with("success","Contact send successfully") ;
+        return response()->json([
+            'success'=>true,
+            'message'=> "Message Send successfully"
+        ]);
+            // return back()->with("success","Contact send successfully") ;
 
 
     }
@@ -53,5 +57,5 @@ class PageController extends Controller
         $testimonies = Testimony::orderBy('id','Desc')->paginate(9);
         return view('client.testimonial')->with('testimonies',$testimonies);
     }
-    
+
 }

@@ -50,7 +50,7 @@
                         @foreach ($chamas as $chama)
                              <tr>
                       <td class="text text-capitalize text-bold" >{{ $chama->name }}</td>
-                      <td class="text text-capitalize text-bold" >{{ $chama->admin->firstName .' '. $chama->admin->lastName }}
+                      <td class="text text-capitalize text-bold" >{{ $chama->admin->name }}
                       </td>
                       <td> {{ $chama->admin->phone }}</td>
                       <td> <a href="mailto:{{ $chama->admin->email }}"></a> {{ $chama->admin->email }}</td>
@@ -69,7 +69,7 @@
             </div>
             <!-- /.card-body -->
             <div class="card-footer">
-                Footer
+                {{ "Time now is". now()->format("D d / M /Y H:i  ") }}
             </div>
             <!-- /.card-footer-->
         </div>

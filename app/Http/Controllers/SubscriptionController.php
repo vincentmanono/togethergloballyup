@@ -7,6 +7,7 @@ use App\Payment;
 use App\Subscription;
 use Illuminate\Http\Request;
 use App\payment\MpesaGateway;
+use App\Wallet;
 use Illuminate\Support\Facades\Auth;
 
 class SubscriptionController extends Controller
@@ -19,7 +20,7 @@ class SubscriptionController extends Controller
             return view('admin.subscriptions.allSubscriptions',compact('subscriptions')) ->with('param', 'all');
         } else {
            $subscriptions = Subscription::where('user_id',auth()->user()->id)->orderBy('created_at', 'DESC')->paginate(100);
-           return view('admin.subscriptions.mySubscription',compact('subscriptions'))->with('param', 'all');
+           return view('admin.subscriptions.mySubscription',compact('subscriptions'))->with('param', 'my');
         }
 
 
@@ -40,19 +41,27 @@ class SubscriptionController extends Controller
         $amount = 1;
         $phone = $request->phone;
 
-      $response =   $mpesaGateway->pay_subcription($phone,$amount) ;
 
-    $result = Payment::create([
-        'user_id' => Auth::user()->id,
-        'merchantRequestID' => $response['MerchantRequestID'],
-        'checkoutRequestID' => $response['CheckoutRequestID'],
-        'responseCode' => $response['ResponseCode'],
-        'responseDescription' => $response['ResponseDescription'],
-        'customerMessage' => $response['CustomerMessage'],
-        'phoneNumber' => $phone,
-        'amount' => $amount,
-    ]);
-    return back()->with('success', $result->customerMessage);
+
+      try {
+        $response =   $mpesaGateway->pay_subcription($phone,$amount) ;
+        $result = Payment::create([
+            'user_id' => Auth::user()->id,
+            'merchantRequestID' => $response['MerchantRequestID'],
+            'checkoutRequestID' => $response['CheckoutRequestID'],
+            'responseCode' => $response['ResponseCode'],
+            'responseDescription' => $response['ResponseDescription'],
+            'customerMessage' => $response['CustomerMessage'],
+            'phoneNumber' => $phone,
+            'amount' => $amount,
+        ]);
+        return back()->with('success', $result->customerMessage);
+
+      } catch (\Throwable $th) {
+          return  back()->with('error',$response['errorMessage']) ;
+      }
+
+
 
     }
 
@@ -96,10 +105,17 @@ class SubscriptionController extends Controller
                     $user->subscription_expiry = date('Y-m-d H:i:s', strtotime('+' . $days . ' day', strtotime($now)));
                 }
                 $user->save();
+                //Deposite subscription amount to info wallet
+                $deposited_at = now()->format('Y-m-d H:i:s');
+                $infoAcc = User::where('email','info@togethergloballyup.com')->first();
+                $infoWallet = Wallet::where('user_id',$infoAcc->id)->first();
+                $infoWallet->amount += $result->amount;
+                $infoWallet->deposite_at = $deposited_at ;
+                $infoWallet->save();
+
                 Subscription::create([
                     'user_id' => $result->user_id,
                     'amount' => $result->amount,
-                    'payment_id' => $result->id,
                     'expiry_date' => $user->subscription_expiry,
                     'start_date' => $start_date,
                 ]);

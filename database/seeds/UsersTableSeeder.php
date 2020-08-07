@@ -19,47 +19,26 @@ class UsersTableSeeder extends Seeder
 
         User::create(
             [
-            'firstName'=>'John',
-            'lastName' =>'Doe',
+            'name' =>'togethergloballyup',
             'email' =>'info@togethergloballyup.com',
-            'slug'=> Str::slug( 'John Doe' ) ,
+            'slug'=> Str::slug( 'togethergloballyup' ) ,
             'role'=>'super',
-            'phone'=>'0707585566',
+            'phone'=>'1234567890',
             'email_verified_at' => now(),
         'password' => Hash::make("password") ,
         'remember_token' => Str::random(10),
         ] );
     User::create(  [
-            'firstName'=>'test',
-            'lastName' =>'Yahoo',
-            'slug'=> Str::slug( 'test Yahoo' ) ,
-            'email' =>'test@togethergloballyup.com',
+            'name'=>'Abraham Kivondo',
+            'slug'=> Str::slug( 'Abraham Kivondo' ) ,
+            'email' =>'abrahamkivosh@gmail.com',
             'role'=>'super',
-            'phone'=>1234567890,
+            'phone'=>'0707585566',
             'email_verified_at' => now(),
         'password' => Hash::make("password") ,
         'remember_token' => Str::random(10),
         ]
     );
-
-    User::create(  [
-        'firstName'=>'user',
-        'lastName' =>'Normal',
-        'slug'=> Str::slug( 'user Normal' ) ,
-        'email' =>'user@togethergloballyup.com',
-        'role'=>'user',
-        'phone'=>1234567899,
-        'email_verified_at' => now(),
-    'password' => Hash::make("password") ,
-    'remember_token' => Str::random(10),
-    ]
-);
-
-
-
-// factory(App\User::class,3)->create()->each( function ($user){
-//     $user->wallet()->save(factory(App\Wallet::class)->make());
-// } ) ;
 
     }
 }

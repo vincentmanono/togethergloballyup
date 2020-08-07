@@ -15,10 +15,12 @@ class CreateWalletsTable extends Migration
     {
         Schema::create('wallets', function (Blueprint $table) {
             $table->id();
-            $table->integer('user_id')->unique();
+            $table->integer('user_id')->unsigned()->unique();
             $table->dateTime('deposite_at')->nullable();
             $table->dateTime('withdraw_at')->nullable();
             $table->double('amount', 15, 8)->nullable()->default(0.00);
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+
             $table->timestamps();
         });
     }

@@ -60,7 +60,7 @@
                                            <td>Ksh  {{ number_format($chama->amount,2,'.',',')  }}</td>
                                            <td>
                                             <a title="Email the chama Administrator" href="mailto:{{$chama->admin->email  }}" class="text text-info" >
-                                            {{ $chama->admin->firstName ." ".$chama->admin->lastName }}
+                                            {{ $chama->admin->name}}
                                             </a>
 
                                                 </td>
@@ -186,7 +186,7 @@
                                                     <tbody>
                                                         @forelse ($tickets as  $ticket)
                                                              <tr>
-                                                            <td>{{ $ticket->user->firstName . ' '.$ticket->user->lastName }}</td>
+                                                            <td>{{ $ticket->user->name }}</td>
                                                             <td>{{ $ticket->user->phone }}</td>
                                                             <td >
 

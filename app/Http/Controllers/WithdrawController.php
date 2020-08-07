@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 class WithdrawController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display a listing of the resource.first
      *
      * @return \Illuminate\Http\Response
      */

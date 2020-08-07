@@ -26,7 +26,7 @@
     <section class="content">
         <div class="jumbotron jumbotron-fluid">
             <div class="container">
-                <h4 class="display-4">{{ $single->user->firstName .''.$single->user->lastName }}
+                <h4 class="display-4">{{ $single->user->name }}
                     <span class="badge badge-success">Author</span> </h4>
                     <a name="" id="" class="btn btn-primary float-right mr-3" href="{{ route('testimonies.index') }}" role="button"> <i class="fa fa-backward" aria-hidden="true"></i> Back</a>
                 <p class="lead">Published on <span class="text text-dark" >  {{ date('l jS M Y, h:i a', strtotime($single->created_at)) }}</span></p>

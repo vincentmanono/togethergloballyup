@@ -256,7 +256,7 @@
                                                 <th>Amount</th>
                                                 <th>Start date</th>
                                                 <th>Expiry Date</th>
-                                                <th>Phone</th>
+                                                {{-- <th>Phone</th> --}}
                                                 <th>Status</th>
                                             </tr>
                                         </thead>
@@ -269,9 +269,9 @@
                                                     </td>
                                                     <td>{{ date('l jS M, h:i a', strtotime($sub->start_date)) }}</td>
                                                     <td>{{ date('l jS M, h:i a', strtotime($sub->expiry_date)) }}</td>
-                                                    <td>
+                                                    {{-- <td>
                                                         {{ $sub->payment->phoneNumber }}
-                                                    </td>
+                                                    </td> --}}
                                                     <td>
                                                         @if($sub->expiry_date >= now())
                                                             <span class="badge badge-success">Active</span>

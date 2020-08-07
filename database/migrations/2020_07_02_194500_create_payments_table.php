@@ -33,6 +33,9 @@ class CreatePaymentsTable extends Migration
             $table->boolean('active')->default(true);
             $table->dateTime('transactionDate')->nullable();
 
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+
+
             $table->timestamps();
 
 

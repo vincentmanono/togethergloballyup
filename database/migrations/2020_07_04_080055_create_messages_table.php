@@ -23,6 +23,8 @@ class CreateMessagesTable extends Migration
 
             $table->string('subject')->nullable();
             $table->string('body');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+
             $table->timestamps();
         });
     }
