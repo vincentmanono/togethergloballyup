@@ -56,25 +56,25 @@
         </button>
         <div class="collapse navbar-collapse" id="collapsibleNavId">
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-                <li class="nav-item {{ request()->is('/') ? 'active' : '' }} ">
-                    <a style="color: black" class="nav-link mynav " href="{{ route('index') }}">Home <span class="sr-only">(current)</span></a>
+                <li  style="padding-left: 15px" class="nav-item {{ request()->is('/') ? 'active' : '' }} ">
+                    <a style="color: #fff" class="nav-link mynav btn btn-xs btn-primary" href="{{ route('index') }}">Home <span class="sr-only">(current)</span></a>
                 </li>
 
-                <li class="nav-item {{ request()->is('about') ? 'active' : '' }} ">
-                    <a  style="color: black" class="nav-link mynav "
+                <li  style="padding-left: 10px" class="nav-item {{ request()->is('about') ? 'active' : '' }} ">
+                    <a  style="color: #fff" class="nav-link mynav btn btn-primary"
                         href="/about ">About</a></li>
 
-                <li class="nav-item {{ request()->is('services') ? 'active' : '' }} ">
-                    <a style="color: black"class="nav-link mynav "
+                <li  style="padding-left: 10px" class="nav-item {{ request()->is('services') ? 'active' : '' }} ">
+                    <a style="color: #fff"class="nav-link mynav btn btn-primary"
                         href="/services">Services</a></li>
-                <li class="nav-item {{ request()->is('testimonial') ? 'active' : '' }}">
-                    <a style="color: black" class="nav-link mynav "
+                <li  style="padding-left: 10px" class="nav-item {{ request()->is('testimonial') ? 'active' : '' }}">
+                    <a style="color: #fff" class="nav-link mynav btn btn-primary"
                         href="/testimonial">Testimonials</a></li>
-                <li class="nav-item {{ request()->is('contact') ? 'active' : '' }} ">
-                    <a   class="nav-link mynav "
-                    style="color: black" href="/contact">Contact</a></li>
-                <li class="nav-item {{ request()->is('faq') ? 'active' : '' }} ">
-                    <a style="color: black" class="nav-link mynav " href="/faq">FAQ</a>
+                <li  style="padding-left: 10px" class="nav-item {{ request()->is('contact') ? 'active' : '' }} ">
+                    <a   class="nav-link mynav  btn btn-primary"
+                    style="color: #fff" href="/contact">Contact</a></li>
+                <li  style="padding-left: 10px" class="nav-item {{ request()->is('faq') ? 'active' : '' }} ">
+                    <a style="color: #fff" class="nav-link mynav btn btn-primary  "  href="/faq">FAQ</a>
                 </li>
             </ul>
             <ul class=" credetials text text-info list-inline ">
