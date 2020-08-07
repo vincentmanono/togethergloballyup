@@ -621,6 +621,11 @@ img {
     color: white;
     font-size: 17px;
 }
+/* navbar btn-primary*/
+.navbarcontainer  ul li .btn-primary:hover{
+    background-color: yellow;
+
+}
 
 .navbarcontainer{
     background-color: whitesmoke;
