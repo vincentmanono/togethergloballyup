@@ -19,7 +19,7 @@ class CreateUsersTable extends Migration
             $table->string('slug')->nullable();
             $table->string('email')->unique();
             $table->string('role') ->default('user') ; //user , admin, super
-            $table->string('phone')->unique();
+            $table->string('phone')->unique()->nullable();
             $table->string('avatar', 100)->nullable()->default('avatar.png');
             $table->dateTime('subscription_expiry')->nullable();
             $table->timestamp('email_verified_at')->nullable() ;

@@ -2,23 +2,23 @@
 
 namespace App\Http\Controllers;
 
-use App\Notifications\AccountCreatedNotification;
-use File;
 use Image;
 use App\User;
 use App\Subscription;
-
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+
 use App\payment\MpesaGateway;
 use Illuminate\Support\Facades\Auth;
-// use Session;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Database\QueryException;
+// use Session;
 use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Facades\Notification;
+use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Notification;
+use App\Notifications\AccountCreatedNotification;
 
 class UserController extends Controller
 {
@@ -33,15 +33,13 @@ class UserController extends Controller
      */
     public function index()
     {
-        if ( Auth::user()->role == "super") {
-        $users = User::where('role', 'user')->get();
-        return view('admin.users.index')->with('users', $users)->with('user_type', 'User')->with('param', 'All');
+        if (Auth::user()->role == "super") {
+            $users = User::where('role', 'user')->get();
+            return view('admin.users.index')->with('users', $users)->with('user_type', 'User')->with('param', 'All');
         }
 
-        $user = User::where('email', Auth::user()->email)->first() ;
-        return view('users.profile',compact('user')) ;
-
-
+        $user = User::where('email', Auth::user()->email)->first();
+        return view('users.profile', compact('user'));
     }
 
     /**
@@ -51,7 +49,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        return  view('admin.users.create') ;
+        return  view('admin.users.create');
     }
 
     /**
@@ -70,16 +68,16 @@ class UserController extends Controller
         ]);
         $data = $request->all();
         $check_email = User::where('email', $request->email)->count();
-        if($check_email > 0){
+        if ($check_email > 0) {
             Session::flash('error', 'The email is already registered with us!');
             return redirect()->back();
         }
-        $name =  $data['name'] . now() ;
-        $slug =  Str::slug($name) ;
+        $name =  $data['name'] . now();
+        $slug =  Str::slug($name);
         $check = User::withTrashed()->where('slug', $slug)->count();
         $user = User::create([
             'name' => $data['name'],
-            'slug' => Str::slug($name) ,
+            'slug' => Str::slug($name),
             'phone' => $data['phone'],
             'role' => 'user', //user , admin, super
             'email' => $data['email'],
@@ -88,15 +86,14 @@ class UserController extends Controller
 
 
 
-            $user->slug = Str::slug($name) ;
-            $user->save();
+        $user->slug = Str::slug($name);
+        $user->save();
 
-            Notification::send($user,new AccountCreatedNotification($user) ) ;
+        Notification::send($user, new AccountCreatedNotification($user));
 
 
 
         return redirect()->route('admin.users.index')->with('success', 'You successfully added the user.');
-
     }
 
     /**
@@ -108,15 +105,13 @@ class UserController extends Controller
     public function show($email)
     {
 
-        if ( Auth::user()->role !== "super" && $email != Auth::user()->email  ) {
-            $user = User::where('email', Auth::user()->email)->first() ;
-            return redirect()->route('profile.index') ;
-
+        if (Auth::user()->role !== "super" && $email != Auth::user()->email) {
+            $user = User::where('email', Auth::user()->email)->first();
+            return redirect()->route('profile.index');
         }
 
-         $user = User::where('email',$email)->first() ;
-        return view('users.profile',compact('user')) ;
-
+        $user = User::where('email', $email)->first();
+        return view('users.profile', compact('user'));
     }
 
     /**
@@ -127,7 +122,6 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-
     }
 
     /**
@@ -140,145 +134,138 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
 
-        if(!$request->hasFile('avatar') && $request->has('avatar')){
-            return redirect()->back()->with('error','Image not supported');
+        if (!$request->hasFile('avatar') && $request->has('avatar')) {
+            return redirect()->back()->with('error', 'Image not supported');
         }
         $this->validate($request, [
             'name' => 'required|string',
             'email' => 'required|email',
-            'phone' =>'required|numeric'
+            'phone' => 'required|numeric'
         ]);
 
 
-        $user = User::find($id) ;
+        $user = User::find($id);
         $data = $request->all();
-        if ( auth()->user()->role == "super"  ) {
-            if ( $request->input('role') == "on") {
+        if (auth()->user()->role == "super") {
+            if ($request->input('role') == "on") {
                 # code...
-                $user->role = 'super' ;
+                $user->role = 'super';
             }
+        } else {
 
+            if ($user->password != null) {
+                $this->validate($request, [
+                    'old_password' => 'required',
+                ]);
 
-        }else{
-             $this->validate($request, [
-                'old_password' => 'required',
-            ]);
-
-            if( ! (Hash::check($request->old_password, $user->password))){
-                return redirect()->back()->with('error', 'Old password is wrong.');
+                if (!(Hash::check($request->old_password, $user->password))) {
+                    return redirect()->back()->with('error', 'Old password is wrong.');
+                }
             }
-
         }
 
 
 
 
-            $user->name = $request->input('name') ;
+        $user->name = $request->input('name');
 
 
 
-            if(User::where('phone', $request->phone)->where('phone','!=',$user->phone)->count() > 0){
-                return redirect()->back()->with('error','Sorry The phone record already exists');
-            }else{
-                 $user->phone = $request->input('phone') ;
-            }
+        if (User::where('phone', $request->phone)->where('phone', '!=', $user->phone)->count() > 0) {
+            return redirect()->back()->with('error', 'Sorry The phone record already exists');
+        } else {
+            $user->phone = $request->input('phone');
+        }
 
-            if(User::where('email', $request->email)->where('email','!=',$user->email)->count() > 0){
-                return redirect()->back()->with('error','Sorry The email record already exists');
-            }  else{
-                 $user->email = $request->input('email') ;
-            }
-
-
-
-            if($request->password != ''){
-                if($request->password == $request->password_confirmation){
-                    $user->password = bcrypt($request->password);
-                }
-                else{
-                    Session::flash('error', 'Confirmation password and the password do not match.');
-                    return redirect()->back();
-                }
-            }
+        if (User::where('email', $request->email)->where('email', '!=', $user->email)->count() > 0) {
+            return redirect()->back()->with('error', 'Sorry The email record already exists');
+        } else {
+            $user->email = $request->input('email');
+        }
 
 
 
-            if ( file_exists($request->file('avatar')) ) {
-
-                $old_avatar = $user->avatar;
-                $avatar = $request->avatar;
-                if($old_avatar != 'avatar.png'){
-                    Storage::delete('public/users'.'/'.$user->image);
-                }
-
-
-
-                // Get filename with extension
-                        $filenameWithExt = $request->file('avatar')->getClientOriginalName();
-
-                        // Get just the filename
-                        $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
-
-                        // Get extension
-                        $extension = $request->file('avatar')->getClientOriginalExtension();
-
-                        // Create new filename
-                        $filenameToStore = $filename.'_'.time().'.'.$extension;
-
-                        // Uplaod image
-                        $path= $request->file('avatar')->storeAs('public/users', $filenameToStore);
-
-                        // Upload image
-                        $user->avatar = $filenameToStore ;
-            }
-
-            if($user->role != 'user'){
-                if($request->role == 'on'){
-                    $type = 'super';
-                }
-                else{
-                    $type = 'admin';
-                }
-                if(Auth::user()->role == 'super'){
-
-                    if($request->super != 'on' && User::where('role', 'super')->count() == 1 && $user->role == 'super'){
-                        Session::flash('error', 'Sorry, you are the ONLY REMAINING super admin!');
-                        return redirect()->back();
-                    }
-
-                    $user->role = $type;
-
-                }
-                else if($user->role != $type){
-                    Session::flash('error', 'You cannot change your super-admin status since you are not a super admin!');
-                    return redirect()->back();
-                }
-            }
-
-            $result = $user->save();
-
-            // Require verification of new email and send EmailVerificationNotification.
-            if($user->email != $request->email){
-                $user->email_verified_at = null;
-                $result = $user->save();
-                $user->sendEmailVerificationNotification();
-            }
-
-            if($result){
-                Session::flash('success', 'You successifully updated the users profile.');
-                if(Auth::user()->role == 'user')
-                    return redirect()->back()->with('success', 'You successifully updated the users profile.');
+        if ($request->password != '') {
+            if ($request->password == $request->password_confirmation) {
+                $user->password = bcrypt($request->password);
+            } else {
+                Session::flash('error', 'Confirmation password and the password do not match.');
                 return redirect()->back();
             }
+        }
 
-            Session::flash('error', 'You could not update the users profile.');
+
+
+        if (file_exists($request->file('avatar'))) {
+
+
+
+            $old_avatar = $user->avatar;
+            $avatar = $request->avatar;
+            if ($old_avatar != 'avatar.png' && !Str::contains(auth()->user()->avatar, 'http')) {
+                $imagepath = public_path('/storage/users/') . '/' . $old_avatar;
+                File::delete($imagepath);
+            }
+
+
+
+            // Get filename with extension
+            $filenameWithExt = $request->file('avatar')->getClientOriginalName();
+
+            // Get just the filename
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+
+            // Get extension
+            $extension = $request->file('avatar')->getClientOriginalExtension();
+
+            // Create new filename
+            $filenameToStore = $filename . '_' . time() . '.' . $extension;
+
+            // Uplaod image
+            $path = $request->file('avatar')->storeAs('public/users', $filenameToStore);
+
+            // Upload image
+            $user->avatar = $filenameToStore;
+        }
+
+        if ($user->role != 'user') {
+            if ($request->role == 'on') {
+                $type = 'super';
+            } else {
+                $type = 'admin';
+            }
+            if (Auth::user()->role == 'super') {
+
+                if ($request->super != 'on' && User::where('role', 'super')->count() == 1 && $user->role == 'super') {
+                    Session::flash('error', 'Sorry, you are the ONLY REMAINING super admin!');
+                    return redirect()->back();
+                }
+
+                $user->role = $type;
+            } else if ($user->role != $type) {
+                Session::flash('error', 'You cannot change your super-admin status since you are not a super admin!');
+                return redirect()->back();
+            }
+        }
+
+        $result = $user->save();
+
+        // Require verification of new email and send EmailVerificationNotification.
+        if ($user->email != $request->email) {
+            $user->email_verified_at = null;
+            $result = $user->save();
+            $user->sendEmailVerificationNotification();
+        }
+
+        if ($result) {
+            Session::flash('success', 'You successifully updated the users profile.');
+            if (Auth::user()->role == 'user')
+                return redirect()->back()->with('success', 'You successifully updated the users profile.');
             return redirect()->back();
+        }
 
-
-
-
-
-
+        Session::flash('error', 'You could not update the users profile.');
+        return redirect()->back();
     }
 
     /**
@@ -290,29 +277,28 @@ class UserController extends Controller
     public function destroy($slug)
     {
         //
-        try{
+        try {
             $user = User::where('slug', $slug)->first();
-        }
-        catch(QueryException $ex){
+        } catch (QueryException $ex) {
             Session::flash('error', 'Admin/User could not be found!');
             return redirect()->back();
         }
 
-        if(Auth::user()->type == 'super' || Auth::user()->slug == $slug ||  (Auth::user()->is_admin && !$user->is_admin)){
-            if(User::where('type', 'super')->where('view', true)->count() == 1 && Auth::user()->type == 'super' && Auth::user()->slug == $user->slug){
+        if (Auth::user()->role == 'super' || Auth::user()->slug == $slug) {
+            if (User::where('role', 'super')->count() == 1 && Auth::user()->role == 'super' && Auth::user()->slug == $user->slug) {
                 Session::flash('error', 'Sorry, you are the ONLY REMAINING super admin! Make someone else a super admin then exit.');
                 return redirect()->back();
             }
-            $avatar = $user->avatar;
-            // if($avatar != 'uploads/users/avatar.png'){
-            //     File::delete($avatar);
-            // }
-            $type = $user->type;
+            $old_avatar = $user->avatar;
+            if ($old_avatar != 'avatar.png' && !Str::contains(auth()->user()->avatar, 'http')) {
+                $imagepath = public_path('/storage/users/') . '/' . $old_avatar;
+                File::delete($imagepath);
+            }
+
             $user->forceDelete();
             Session::flash('success', 'Admin/User removed successfully');
-            if($type == 'user')
-                return redirect()->route('users.index');
-            return redirect()->route('admin_index');
+
+            return redirect()->route('home');
         }
         Session::flash('error', 'Admin/User could not be removed! Task only allowed to Super Admin!');
         return redirect()->back();

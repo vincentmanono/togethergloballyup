@@ -27,12 +27,14 @@
                 <div class="row">
                     <div class="col-md-3">
 
+
+
                         <!-- Profile Image -->
                         <div class="card card-primary card-outline">
                             <div class="card-body box-profile">
                                 <div class="text-center">
                                     <img class="profile-user-img img-fluid img-circle"
-                                        src="{{ '/storage/users/' . $user->avatar }}" alt="User profile picture">
+                                        src="{{ (Str::contains($user->avatar,'http') ? $user->avatar:'/storage/users/' . $user->avatar ) }}" alt="User profile picture">
                                 </div>
 
                                 <h3 class="profile-username text-center">{{ $user->name }}</h3>
@@ -186,11 +188,16 @@
                                                                 </div>
 
                                                                 <div class="modal-footer">
-                                                                    <button type="button" class="btn btn-default"
+                                                                    <form action="{{ route('profile.destroy',$user->slug) }}" method="post">
+                                                                        @csrf
+                                                                        @method("DELETE")
+                                                                        <button type="button" class="btn btn-default"
                                                                         data-dismiss="modal">Cancel</button>
-                                                                    @csrf
+
                                                                     <button class="btn btn-xs btn-danger"
-                                                                        type="button">Delete</button>
+                                                                        type="submit">Delete</button>
+                                                                    </form>
+
 
                                                                 </div>
 
@@ -315,10 +322,8 @@
                                                 </div>
                                             </div>
 
-
-
                                             <hr>
-                                            @if (auth()->user()->role != 'super')
+                                            @if (auth()->user()->role != 'super' && auth()->user()->password != null )
 
                                                 <div class="form-group row">
                                                     <label for="old_password"
