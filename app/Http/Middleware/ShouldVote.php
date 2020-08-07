@@ -15,5 +15,11 @@ class ShouldVote
      */
     public function handle($request, Closure $next)
     {
+<<<<<<< HEAD
+
+        // $user->wallet->amount
+        // return $next($request);
+=======
+>>>>>>> 3b89c22fafbb86b445719ead3a5096a4d2ceb8c1
     }
 }

@@ -44,13 +44,25 @@ class SubscribeController extends Controller
         $email = $request->input('email') ;
        $check =  Subscribe::where('email',$email)->count();
        if ( $check > 0) {
-           $request->session()->flash('error', "You already regestered to our news letter");
+
+           return response()->json(
+            [
+              'success' => false,
+              'message' => 'You already regestered to our news letter'
+            ]
+          );
 
        } else {
            $subscribe = new Subscribe();
             $subscribe->email=$request->input('email');
             if($subscribe->save()){
-                $request->session()->flash('success','You have successfuly subscribed to our newsletters.') ;
+                return response()->json(
+                    [
+                      'success' => true,
+                      'message' => 'You have successfuly subscribed to our newsletters.'
+                    ]
+                  );
+
             }
        }
 
@@ -99,7 +111,7 @@ class SubscribeController extends Controller
      */
     public function destroy(Subscribe $subscribe)
     {
-        
+
         // $this->authorize('delete',$subscribe) ;
         // $data = Subscribe::findOrFail($subscribe->email )  ;
 

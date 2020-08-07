@@ -4,9 +4,10 @@
             <div class="col-12 col-sm-10 col-lg-8">
                 <div class="nl-content text-center">
                     <h2>Subscribe to our newsletter</h2>
-                <form action="{{ route('subscribe') }}" method="POST">
+                    <h2 id="response"  ></h2>
+                <form id="subscribe" action="{{ route('subscribe') }}" method="POST">
                     @csrf
-                        <input type="email" name="email" id="nlemail" placeholder="Your e-mail">
+                        <input type="email" name="email" id="subemail" placeholder="Your e-mail">
                         <button type="submit">Subscribe</button>
                     </form>
                     <p>Be the first to know when we introduce new offers</p>
@@ -15,3 +16,12 @@
         </div>
     </div>
 </section>
+
+
+@section('scripts')
+    <script src="/js/custome.js" >
+
+
+    </script>
+@stop
+

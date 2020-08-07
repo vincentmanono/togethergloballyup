@@ -14,7 +14,7 @@
     @include('layouts.auth/googleTag')
 
     <!-- Favicon -->
-    <link rel="icon" href="assets/img/core-img/favicon.ico">
+    <link rel="icon" href="/assets/img/logo/favicon.ico">
 
     <!-- Stylesheet -->
     <link rel="stylesheet" href="assets/style.css">
