@@ -50,7 +50,25 @@
                                 </div>
                                 <div id="section1ContentId" class="collapse in" role="tabpanel" aria-labelledby="section1HeaderId">
                                     <div class="card-body">
-                                        Section 1 content
+                                        <ul class="list-group">
+                                            <li class="list-group-item active">After Creating chama You will be redirected to page requesting you to Activate Your Chama</li>
+                                            <li class="list-group-item ">Your are required to Pay <span class="text text-info" >KES 150.00</span> only to Activate Your Chama</li>
+
+                                            <li class="list-group-item ">Click On the button  green button named <span class="text text-success" > (Activate Chama)  </span></li>
+                                            <li class="list-group-item ">
+                                                Enter mobile Number to Pay for Activation.
+                                            </li>
+                                            <li class="list-group-item ">
+                                                Popup menu will show on your mobile . requesting you to pay 150.00 To activate your chama
+                                            </li>
+                                            <li class="list-group-item ">
+                                               Enter your Mpesa PIN to authorize payment
+                                            </li>
+                                            <li class="list-group-item ">
+                                                Congradulation !! your chama is now activated ..
+                                            </li>
+
+                                        </ul>
                                     </div>
                                 </div>
                             </div>
