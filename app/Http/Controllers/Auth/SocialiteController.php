@@ -73,11 +73,12 @@ class SocialiteController extends Controller
         // check for already has account
         $user = User::where('email', $providerUser->getEmail())->first();
 
+
         // if user already found
         if ($user) {
 
             $old_avatar = $user->avatar;
-            if ($old_avatar != 'avatar.png' && ! Str::contains(auth()->user()->avatar, 'http')) {
+            if ($old_avatar != 'avatar.png' && ! Str::contains($old_avatar, 'http')) {
                 $imagepath = public_path('/storage/users/') . '/' . $old_avatar;
                 File::delete($imagepath);
             }

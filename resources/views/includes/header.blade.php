@@ -46,7 +46,7 @@
             </div>
         </div>
     </div> --}}
-    <nav class="navbar navbar-expand-lg navbar-dark navbarcontainer fixed-top  pt-4 pb-4 ">
+    <nav class="navbar navbar-expand-lg navbar-dark navbarcontainer  fixed-top  pt-4 pb-4 ">
         {{-- <a class="navbar-brand" href="{{ route('index') }}">{{ config('app.name') }}</a> --}}
         <img href="{{ route('index') }}" src="/assets/img/logo/together-logo.png" alt="Logo">
         <button class="navbar-toggler d-lg-none bg-dark " type="button" data-toggle="collapse"

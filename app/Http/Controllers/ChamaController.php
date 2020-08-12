@@ -135,7 +135,7 @@ class ChamaController extends Controller
         request()->validate(array( //|regex:/(^(\d+){1,10})/u
             'phone' => 'required|numeric',
         ));
-        $amount = 1;
+        $amount = 150;
         $phone = $request->phone;
 
         try {
