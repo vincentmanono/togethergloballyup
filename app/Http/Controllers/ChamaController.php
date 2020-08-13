@@ -55,7 +55,7 @@ class ChamaController extends Controller
     }
     public function exitChama(Request $request)
     {
-        $user = auth()->user();
+        $user = User::find( auth()->user()->id);
         $chama = Chama::find($request->input('chamaID'));
         if ( $user->id == $chama->user_id ) {
             $request->session()->flash('error', "You are  only Administrator  on " . $chama->name . " chama");

@@ -19,20 +19,25 @@ class WalletController extends Controller
         ));
         $phone = $request->phone;
         $amount = $request->amount;
-        $response =   $mpesa->wallet($phone, $amount);
 
-        $wallet = Wallet::where('user_id', auth()->user()->id)->first();
-        $wallet->payments()->create([
-            'user_id' => Auth::user()->id,
-            'merchantRequestID' => $response['MerchantRequestID'],
-            'checkoutRequestID' => $response['CheckoutRequestID'],
-            'responseCode' => $response['ResponseCode'],
-            'responseDescription' => $response['ResponseDescription'],
-            'customerMessage' => $response['CustomerMessage'],
-            'phoneNumber' => $phone,
-            'amount' => $amount,
-        ]);
-        return back()->with('success', $response['CustomerMessage']);
+
+        try {
+            $response =   $mpesa->wallet($phone, $amount);
+            $wallet = Wallet::where('user_id', auth()->user()->id)->first();
+            $wallet->payments()->create([
+                'user_id' => Auth::user()->id,
+                'merchantRequestID' => $response['MerchantRequestID'],
+                'checkoutRequestID' => $response['CheckoutRequestID'],
+                'responseCode' => $response['ResponseCode'],
+                'responseDescription' => $response['ResponseDescription'],
+                'customerMessage' => $response['CustomerMessage'],
+                'phoneNumber' => $phone,
+                'amount' => $amount,
+            ]);
+            return back()->with('success', $response['CustomerMessage']);
+        } catch (\Throwable $th) {
+            return  back()->with('error', $response['errorMessage']);
+        }
     }
 
     public function handle_result(Request $request)
@@ -108,12 +113,9 @@ class WalletController extends Controller
                 ]);
 
                 return back()->with('success', $response['ResponseDescription']);
-
             } catch (\Throwable $th) {
                 return  back()->with('error', $response['errorMessage']);
             }
-
-
         }
     }
 
