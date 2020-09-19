@@ -32,7 +32,7 @@
                 <!-- Single Blog Area -->
                 <div class="single-blog-area mb-70">
                     <div class="blog-thumbnail">
-                        <a href="#"><img src="assets/img/bg-img/22.jpg" alt=""></a>
+                        <a href="#"><img src="/assets/img/bg-img/20.jpg" alt=""></a>
                     </div>
                     <div class="blog-content">
                         <span>July 18, 2018</span>
@@ -48,7 +48,7 @@
                 <!-- Single Blog Area -->
                 <div class="single-blog-area mb-70">
                     <div class="blog-thumbnail">
-                        <a href="#"><img src="assets/img/bg-img/23.jpg" alt=""></a>
+                        <a href="#"><img src="/assets/img/bg-img/21.jpg" alt=""></a>
                     </div>
                     <div class="blog-content">
                         <span>July 18, 2018</span>
@@ -64,14 +64,14 @@
                 <!-- Single Blog Area -->
                 <div class="single-blog-area mb-70">
                     <div class="blog-thumbnail">
-                        <a href="#"><img src="assets/img/bg-img/24.jpg" alt=""></a>
+                        <a href="#"><img src="/assets/img/bg-img/4.jpg" alt=""></a>
                     </div>
                     <div class="blog-content">
                         <span>July 18, 2018</span>
                         <a href="#" class="post-title">10 tips to get the best loan for you</a>
                         <div class="blog-meta">
-                            <a href="#" class="post-author"><img src="assets/img/core-img/pencil.png" alt=""> Jane Smith</a>
-                            <a href="#" class="post-date"><img src="assets/img/core-img/calendar.png" alt=""> April 26</a>
+                            <a href="#" class="post-author"><img src="/assets/img/core-img/pencil.png" alt=""> Jane Smith</a>
+                            <a href="#" class="post-date"><img src="/assets/img/core-img/calendar.png" alt=""> April 26</a>
                         </div>
                         <p>Morbi ut dapibus dui. Sed ut iaculis elit, quis varius mauris. Integer ut ultricies orci, lobortis egestas sem. Tut dapibus dui. Sed ut iaculis elit, quis varius mauris. Integer ut ultricies orci, lobortis.</p>
                     </div>
@@ -145,7 +145,7 @@
                                         <!-- Single News Area -->
                                         <div class="single-news-area d-flex align-items-center">
                                             <div class="news-thumbnail">
-                                                <img src="assets/img/bg-img/10.jpg" alt="">
+                                                <img src="/assets/img/bg-img/10.jpg" alt="">
                                             </div>
                                             <div class="news-content">
                                                 <span>July 18, 2018</span>
@@ -160,14 +160,14 @@
                                         <!-- Single News Area -->
                                         <div class="single-news-area d-flex align-items-center">
                                             <div class="news-thumbnail">
-                                                <img src="assets/img/bg-img/11.jpg" alt="">
+                                                <img src="/assets/img/bg-img/11.jpg" alt="">
                                             </div>
                                             <div class="news-content">
                                                 <span>July 18, 2018</span>
                                                 <a href="#">A new way to finance your dream home</a>
                                                 <div class="news-meta">
-                                                    <a href="#" class="post-author"><img src="assets/img/core-img/pencil.png" alt=""> Jane Smith</a>
-                                                    <a href="#" class="post-date"><img src="assets/img/core-img/calendar.png" alt=""> April 26</a>
+                                                    <a href="#" class="post-author"><img src="/assets/img/core-img/pencil.png" alt=""> Jane Smith</a>
+                                                    <a href="#" class="post-date"><img src="/assets/img/core-img/calendar.png" alt=""> April 26</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -175,14 +175,14 @@
                                         <!-- Single News Area -->
                                         <div class="single-news-area d-flex align-items-center">
                                             <div class="news-thumbnail">
-                                                <img src="assets/img/bg-img/12.jpg" alt="">
+                                                <img src="/assets/img/bg-img/12.jpg" alt="">
                                             </div>
                                             <div class="news-content">
                                                 <span>July 18, 2018</span>
                                                 <a href="#">10 tips to get the best loan for you</a>
                                                 <div class="news-meta">
-                                                    <a href="#" class="post-author"><img src="assets/img/core-img/pencil.png" alt=""> Jane Smith</a>
-                                                    <a href="#" class="post-date"><img src="assets/img/core-img/calendar.png" alt=""> April 26</a>
+                                                    <a href="#" class="post-author"><img src="/assets/img/core-img/pencil.png" alt=""> Jane Smith</a>
+                                                    <a href="#" class="post-date"><img src="/assets/img/core-img/calendar.png" alt=""> April 26</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -194,7 +194,7 @@
                                         <!-- Single News Area -->
                                         <div class="single-news-area d-flex align-items-center">
                                             <div class="news-thumbnail">
-                                                <img src="assets/img/bg-img/10.jpg" alt="">
+                                                <img src="/assets/img/bg-img/10.jpg" alt="">
                                             </div>
                                             <div class="news-content">
                                                 <span>July 18, 2018</span>

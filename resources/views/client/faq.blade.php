@@ -78,7 +78,7 @@
                                 <span class="accor-close"><i class="fa fa-minus" aria-hidden="true"></i></span>
                                 </a></h6>
                         <div id="collapseFour" class="accordion-content collapse ">
-                            <p>You just need to provide your personal details as per the registration form and a membership payment of Ksh. 150/=. </p>
+                            <p>You just need to provide your personal details as per the registration form and a membership payment of Ksh. 100/=. </p>
                         </div>
                     </div>
                     <!-- single accordian area -->
@@ -102,7 +102,7 @@
                                 </a>
                         </h6>
                         <div id="collapseSix" class="accordion-content collapse">
-                            <p>The registration fee is Ksh 150/= which is paid during the process of joining a chama where you will be prompted via mpesa to pay the amount. </p>
+                            <p>The registration fee is Ksh 100/= which is paid during the process of joining a chama where you will be prompted via mpesa to pay the amount. </p>
                         </div>
                     </div>
                 </div>

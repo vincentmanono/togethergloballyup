@@ -9,11 +9,11 @@
                     <!-- Nav -->
                     <nav>
                         <ul>
-                            <li><a href="/">Home</a></li>
-                            <li><a href="/about">About Us</a></li>
-                            <li><a href="/services">Services &amp; Offers</a></li>
+                            <li><a href="{{ route('index') }}">Home</a></li>
+                            <li><a href="{{ route('about') }}">About Us</a></li>
+                            <li><a href="{{ route('services') }}">Services &amp; Offers</a></li>
 
-                            <li><a href="/news">The News</a></li>
+                            <li><a href="{{ route('blog') }}">The News</a></li>
                         </ul>
                     </nav>
                 </div>
@@ -26,9 +26,9 @@
                     <!-- Nav -->
                     <nav>
                         <ul>
-                            <li><a href="/services">Our Services</a></li>
-                            <li><a href="/testimonial">Testimonial</a></li>
-                            <li><a href="#">Portfolio Presentation</a></li>
+                            <li><a href="{{ route('services') }}">Our Services</a></li>
+                            <li><a href="{{ route('testimonial') }}">Testimonial</a></li>
+                            <li><a href="{{ route('blog') }}">Portfolio Presentation</a></li>
 
                         </ul>
                     </nav>
@@ -65,8 +65,8 @@
                         <div class="news-content">
                             <a href="#">Global Digitization of Chamas</a>
                             <div class="news-meta">
-                                <a href="about" class="post-author"><img src="assets/img/core-img/pencil.png" alt=""> Togethergloballyup</a>
-                                <a href="about" class="post-date"><img src="assets/img/core-img/calendar.png" alt=""></a>
+                                <a href="{{ route('about') }}" class="post-author"><img src="assets/img/core-img/pencil.png" alt=""> Togethergloballyup</a>
+                                <a href="{{ route('about') }}" class="post-date"><img src="assets/img/core-img/calendar.png" alt=""></a>
                             </div>
                         </div>
                     </div>
@@ -80,8 +80,8 @@
                         <div class="news-content">
                             <a href="#">Bring together chamas globally.</a>
                             <div class="news-meta">
-                                <a href="about" class="post-author"><img src="assets/img/core-img/pencil.png" alt=""> Togethergloballyup</a>
-                                <a href="about" class="post-date"><img src="assets/img/core-img/calendar.png" alt=""> </a>
+                                <a href="{{ route('about') }}" class="post-author"><img src="assets/img/core-img/pencil.png" alt=""> Togethergloballyup</a>
+                                <a href="{{ route('about') }}" class="post-date"><img src="assets/img/core-img/calendar.png" alt=""> </a>
                             </div>
                         </div>
                     </div>

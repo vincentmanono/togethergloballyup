@@ -31,7 +31,7 @@
                 <div class="col-12 col-lg-6">
                     <div class="single-contact-area text text-dark mb-100">
                         <!-- Logo -->
-                        <a href="#" class="d-block mb-50"><img src="assets/img/core-img/logo.png" alt=""></a>
+                        <a href="{{ route('index') }}" class="d-block mb-50"><img src="/assets/img/logo/togetherlogo.png" alt=""></a>
 
                         <p class="text text-dark h4" >TogetherGloballyUp has proven to be helpful to financial investment groups,
 
