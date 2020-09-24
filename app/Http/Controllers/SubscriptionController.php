@@ -94,7 +94,7 @@ class SubscriptionController extends Controller
             }
             if($result->save()){
                 $user = User::find($result->user_id);
-                $days = 10;
+                $days = 244;// 8 months
                 $now = now()->format('Y-m-d H:i:s');
                 if($user->subscription_expiry != null && $user->subscription_expiry > $now){
                     $start_date = $user->subscription_expiry;

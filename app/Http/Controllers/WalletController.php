@@ -7,6 +7,7 @@ use App\Wallet;
 use App\Payment;
 use Illuminate\Http\Request;
 use App\payment\MpesaGateway;
+use App\payment\WithdrawCharges;
 use App\Withdraw;
 use Illuminate\Support\Facades\Auth;
 
@@ -86,7 +87,7 @@ class WalletController extends Controller
         return view('users.wallet.index', compact('user'));
     }
 
-    public function withdraw(Request $request, MpesaGateway $mpesaGateway)
+    public function withdraw(Request $request, MpesaGateway $mpesaGateway, WithdrawCharges $withdrawCharges)
     {
         request()->validate(array(
             'amountW' => 'required|numeric|min:10|max:70000',
@@ -101,7 +102,10 @@ class WalletController extends Controller
         } else {
 
             try {
-                $response = $mpesaGateway->withdraw($phone, $amount);
+
+                //newamount =  amount - withdrawcharges
+                $newAmount = $amount - $withdrawCharges->MpesachargesAmount($amount);
+                $response = $mpesaGateway->withdraw($phone, $newAmount);
 
                 Withdraw::create([
                     'user_id' => Auth::user()->id,

@@ -48,7 +48,7 @@
                                     </a>
                         </h6>
                         <div id="collapseTwo" class="accordion-content collapse">
-                            <p>One of the benefits is that you can do be in a chama adnd transact wherever you are. It is convinient for record keeping as this shall be done by the
+                            <p>One of the benefits is that you can  be in a chama and transact securely wherever you are. It is convinient for record keeping as this shall be done by the
                                  system and all the details are backed up. </p>
                         </div>
                     </div>
