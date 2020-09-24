@@ -58,9 +58,9 @@
                                         alt="">
                                 </div>
                                 <div class="advisor-info">
-                                    Full Name here</h6>
+                                 <h6>   Elijah Makau</h6>
                                     <span>Advisor</span>
-                                    <p>++245 70 432 5455</p>
+                                    <p>+245 73 919 6466</p>
                                 </div>
                             </div>
                             <!-- Single Advisor -->
@@ -70,9 +70,9 @@
                                         alt="">
                                 </div>
                                 <div class="advisor-info">
-                                    <h6>Full Name here</h6>
+                                    <h6>Elijah Makau</h6>
                                     <span>Advisor</span>
-                                    <p>+245 70 432 5455</p>
+                                    <p>+245 73 919 6466</p>
                                 </div>
                             </div>
                         </div>

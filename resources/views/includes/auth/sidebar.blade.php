@@ -1,6 +1,6 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="index3.html" class="brand-link">
+    <a href="{{ route('home') }}" class="brand-link">
         <img src="{{ asset('logo.jpeg') }}" alt="Togethergloballyup"
             class="brand-image img-circle elevation-3" style="opacity: .8">
         <span class="brand-text font-weight-light text-capitalize "> {{ config('app.name') }} </span>
@@ -62,12 +62,7 @@
                                 <p>My Subscribed Chama</p>
                             </a>
                         </li>
-                        {{-- <li class="nav-item">
-                <a href="pages/charts/inline.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Inline</p>
-                </a>
-              </li>  --}}
+
                     </ul>
                 </li>
 
@@ -209,12 +204,7 @@
                                     <p>Mpesa Cancelled</p>
                                 </a>
                             </li>
-                            {{-- <li class="nav-item">
-                        <a href="pages/charts/inline.html" class="nav-link">
-                          <i class="far fa-circle nav-icon"></i>
-                          <p>Inline</p>
-                        </a>
-                      </li>  --}}
+
                         </ul>
                     </li>
                 @endif
@@ -318,30 +308,6 @@
                                 <p>Send</p>
                             </a>
                         </li>
-                    </ul>
-                </li>
-
-                <li class="nav-item has-treeview">
-                    <a href="#" class="nav-link">
-                        <i class="fa fa-book" aria-hidden="true"></i>
-                        <p>
-                            Logout
-                            <i class="fa fa-file-excel-o" aria-hidden="true"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="pages/examples/login.html" class="nav-link">
-
-                                <p>
-                                    <form action="{{ route('logout') }}" method="post">
-                                        @csrf
-                                        <button type="submit" class="btn btn-danger">Logout</button>
-                                    </form>
-                                </p>
-                            </a>
-                        </li>
-
                     </ul>
                 </li>
 

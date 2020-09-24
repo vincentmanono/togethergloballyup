@@ -13,7 +13,7 @@
                             <li><a href="{{ route('about') }}">About Us</a></li>
                             <li><a href="{{ route('services') }}">Services &amp; Offers</a></li>
 
-                            <li><a href="{{ route('blog') }}">The News</a></li>
+                            <li><a href="{{ route('services') }}">The News</a></li>
                         </ul>
                     </nav>
                 </div>
@@ -28,7 +28,7 @@
                         <ul>
                             <li><a href="{{ route('services') }}">Our Services</a></li>
                             <li><a href="{{ route('testimonial') }}">Testimonial</a></li>
-                            <li><a href="{{ route('blog') }}">Portfolio Presentation</a></li>
+                            {{--  <li><a href="{{ route('blog') }}">Portfolio Presentation</a></li>  --}}
 
                         </ul>
                     </nav>

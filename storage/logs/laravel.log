@@ -2391,3 +2391,39 @@ Did you mean one of these?
 #47 /var/www/html/work/togethergloballyup/server.php(21): require_once('/var/www/html/w...')
 #48 {main}
 "} 
+[2020-09-24 23:39:45] local.ERROR: Unable to write output. {"exception":"[object] (Symfony\\Component\\Console\\Exception\\RuntimeException(code: 0): Unable to write output. at /var/www/html/work/togethergloballyup/vendor/symfony/console/Output/StreamOutput.php:79)
+[stacktrace]
+#0 /var/www/html/work/togethergloballyup/vendor/symfony/console/Output/Output.php(166): Symfony\\Component\\Console\\Output\\StreamOutput->doWrite()
+#1 /var/www/html/work/togethergloballyup/vendor/symfony/console/Descriptor/Descriptor.php(67): Symfony\\Component\\Console\\Output\\Output->write()
+#2 /var/www/html/work/togethergloballyup/vendor/symfony/console/Descriptor/TextDescriptor.php(257): Symfony\\Component\\Console\\Descriptor\\Descriptor->write()
+#3 /var/www/html/work/togethergloballyup/vendor/symfony/console/Descriptor/TextDescriptor.php(191): Symfony\\Component\\Console\\Descriptor\\TextDescriptor->writeText()
+#4 /var/www/html/work/togethergloballyup/vendor/symfony/console/Descriptor/Descriptor.php(55): Symfony\\Component\\Console\\Descriptor\\TextDescriptor->describeApplication()
+#5 /var/www/html/work/togethergloballyup/vendor/symfony/console/Helper/DescriptorHelper.php(65): Symfony\\Component\\Console\\Descriptor\\Descriptor->describe()
+#6 /var/www/html/work/togethergloballyup/vendor/symfony/console/Command/ListCommand.php(75): Symfony\\Component\\Console\\Helper\\DescriptorHelper->describe()
+#7 /var/www/html/work/togethergloballyup/vendor/symfony/console/Command/Command.php(255): Symfony\\Component\\Console\\Command\\ListCommand->execute()
+#8 /var/www/html/work/togethergloballyup/vendor/symfony/console/Application.php(912): Symfony\\Component\\Console\\Command\\Command->run()
+#9 /var/www/html/work/togethergloballyup/vendor/symfony/console/Application.php(264): Symfony\\Component\\Console\\Application->doRunCommand()
+#10 /var/www/html/work/togethergloballyup/vendor/symfony/console/Application.php(140): Symfony\\Component\\Console\\Application->doRun()
+#11 /var/www/html/work/togethergloballyup/vendor/laravel/framework/src/Illuminate/Console/Application.php(93): Symfony\\Component\\Console\\Application->run()
+#12 /var/www/html/work/togethergloballyup/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(130): Illuminate\\Console\\Application->run()
+#13 Command line code(1): Illuminate\\Foundation\\Console\\Kernel->handle()
+#14 {main}
+"} 
+[2020-09-24 23:39:46] local.ERROR: Uncaught Symfony\Component\Console\Exception\RuntimeException: Unable to write output. in /var/www/html/work/togethergloballyup/vendor/symfony/console/Output/StreamOutput.php:79
+Stack trace:
+#0 /var/www/html/work/togethergloballyup/vendor/symfony/console/Output/Output.php(166): Symfony\Component\Console\Output\StreamOutput->doWrite()
+#1 /var/www/html/work/togethergloballyup/vendor/symfony/console/Output/Output.php(132): Symfony\Component\Console\Output\Output->write()
+#2 /var/www/html/work/togethergloballyup/vendor/symfony/console/Application.php(762): Symfony\Component\Console\Output\Output->writeln()
+#3 /var/www/html/work/togethergloballyup/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(508): Symfony\Component\Console\Application->renderThrowable()
+#4 /var/www/html/work/togethergloballyup/vendor/nunomaduro/collision/src/Adapters/Laravel/ExceptionHandler.php(77): Illuminate\Foundation\Exceptions\Handler->renderForConsole()
+#5 /var/www/html/work/togethergloballyup/vendor/laravel/fra {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Uncaught Symfony\\Component\\Console\\Exception\\RuntimeException: Unable to write output. in /var/www/html/work/togethergloballyup/vendor/symfony/console/Output/StreamOutput.php:79
+Stack trace:
+#0 /var/www/html/work/togethergloballyup/vendor/symfony/console/Output/Output.php(166): Symfony\\Component\\Console\\Output\\StreamOutput->doWrite()
+#1 /var/www/html/work/togethergloballyup/vendor/symfony/console/Output/Output.php(132): Symfony\\Component\\Console\\Output\\Output->write()
+#2 /var/www/html/work/togethergloballyup/vendor/symfony/console/Application.php(762): Symfony\\Component\\Console\\Output\\Output->writeln()
+#3 /var/www/html/work/togethergloballyup/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(508): Symfony\\Component\\Console\\Application->renderThrowable()
+#4 /var/www/html/work/togethergloballyup/vendor/nunomaduro/collision/src/Adapters/Laravel/ExceptionHandler.php(77): Illuminate\\Foundation\\Exceptions\\Handler->renderForConsole()
+#5 /var/www/html/work/togethergloballyup/vendor/laravel/fra at /var/www/html/work/togethergloballyup/vendor/symfony/console/Output/StreamOutput.php:79)
+[stacktrace]
+#0 {main}
+"} 
