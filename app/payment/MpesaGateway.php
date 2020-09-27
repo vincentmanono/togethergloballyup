@@ -73,7 +73,7 @@ class MpesaGateway // extends AnotherClass implements Interface
             "PartyB" => $shortcode,
             "PhoneNumber" => $phoneNumber,
             "CallBackURL" =>  "https://togethergloballyup.com/api/handle-result",
-            "QueueTimeOutURL" => "https://togethergloballyup.com/api/handle-timeout ",
+            "QueueTimeOutURL" => "https://togethergloballyup.com/api/handle-timeout",
             "AccountReference" => "Subscription Payment",
             "TransactionDesc" => "Subscription Payment"
         ];
@@ -117,29 +117,17 @@ class MpesaGateway // extends AnotherClass implements Interface
             "PartyA" => $phoneNumber,
             "PartyB" => $shortcode,
             "PhoneNumber" => $phoneNumber,
-            "CallBackURL" =>  route('handle_deposite_result_api'),
-            "QueueTimeOutURL" => route('handle_QueueTimeOutURL'),
 
             "CallBackURL" =>  "https://togethergloballyup.com/api/handle-deposite-result",
-            "QueueTimeOutURL" => "https://togethergloballyup.com/api/handle-timeout ",
+            "QueueTimeOutURL" => "https://togethergloballyup.com/api/handle-timeout",
 
 
             "AccountReference" => "Deposite to my wallet",
             "TransactionDesc" => "Deposite to my wallet"
         ];
 
-        try {
-            $request = $client->request('POST', $api_url, [
-                'headers' => $headers,
-                'json' => $data,
-            ]);
-            $response = $request->getBody()->getContents();
-            $response = json_decode($response, true);
-            return  $response;
-        } catch (\Throwable $th) {
-
-            return back()->with('error', "error occurred");
-        }
+        $response =  Http::withHeaders($headers)->post($api_url,$data )->json() ;
+        return $response ;
     }
     public function activate_chama($phoneNumber, $amount )
     {
@@ -176,7 +164,7 @@ class MpesaGateway // extends AnotherClass implements Interface
             "PhoneNumber" => $phoneNumber,
 
             "CallBackURL" =>  "https://togethergloballyup.com/api/handle-chama-activate-result",
-            "QueueTimeOutURL" => "https://togethergloballyup.com/api/handle-timeout ",
+            "QueueTimeOutURL" => "https://togethergloballyup.com/api/handle-timeout",
 
 
             "AccountReference" => "Chama Activation Payment",

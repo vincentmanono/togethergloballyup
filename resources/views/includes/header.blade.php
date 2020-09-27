@@ -62,7 +62,7 @@
 
                 <li  style="padding-left: 10px" class="nav-item {{ request()->is('about') ? 'active' : '' }} ">
                     <a  style="color: #fff" class="nav-link mynav btn btn-primary"
-                        href="/about ">About</a></li>
+                        href="{{ route('about') }}">About</a></li>
 
                 <li  style="padding-left: 10px" class="nav-item {{ request()->is('services') ? 'active' : '' }} ">
                     <a style="color: #fff"class="nav-link mynav btn btn-primary"

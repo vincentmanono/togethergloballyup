@@ -22,10 +22,10 @@
                                 <h2 data-animation="fadeInUp" data-delay="300ms"> Don’t hesitate Computerize your
                                     <span>merry-go-round</span> today. </h2>
                                 <p data-animation="fadeInUp" data-delay="500ms"> TogetherGloballyUp unites you with focused
-                                    peoble like you
+                                    people like you
                                     to add an extra coin in your pocket. We make sure we boost your investment goals to the
                                     next level.</p>
-                                <a href="/about" class="btn credit-btn mt-50" data-animation="fadeInUp"
+                                <a href="{{ route('about') }}" class="btn credit-btn mt-50" data-animation="fadeInUp"
                                     data-delay="700ms">Discover</a>
                             </div>
                         </div>
@@ -53,7 +53,7 @@
                                         them! Your Dreams Inspire And Give You Strength
                                         But You Will Never Know If You Are Strong Enough To Live Your Dreams
                                         Unless You Try!</p>
-                                    <a href="/about class=" btn credit-btn mt-50" data-animation="fadeInDown"
+                                    <a href="{{ route('about') }}" class=" btn credit-btn mt-50" data-animation="fadeInDown"
                                         data-delay="700ms">Discover</a>
                             </div>
                         </div>
@@ -416,14 +416,14 @@
                                                     @csrf
                                                     <div class="form-group">
                                                         <label for="email">Your Email</label>
-                                                        <input type="email" class="form-control" name="email" id="email"
+                                                        <input type="email" class="form-control" name="email" id="email1"
                                                             placeholder="Your email">
 
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="password">Password</label>
                                                         <input type="password" class="form-control" name="password"
-                                                            id="password" placeholder="Your password">
+                                                            id="password1" placeholder="Your password">
                                                     </div>
                                             </div>
                                             <div class="modal-footer">
