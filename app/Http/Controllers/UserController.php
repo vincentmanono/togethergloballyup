@@ -34,7 +34,7 @@ class UserController extends Controller
     public function index()
     {
         if (Auth::user()->role == "super") {
-            $users = User::where('role', 'user')->get();
+            $users = User::where('role', "!=" ,'super')->get();
             return view('admin.users.index')->with('users', $users)->with('user_type', 'User')->with('param', 'All');
         }
 
