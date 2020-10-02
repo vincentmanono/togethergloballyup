@@ -384,6 +384,12 @@
                                         members</small>
                                 </div>
                                 <div class="form-group">
+                                    <label for="duration">Duration</label>
+                                    <input type="number" name="duration" id="" value="{{ $chama->duration }}" class="form-control"
+                                        placeholder="Chama duration" aria-describedby="durationhelp">
+                                    <small id="durationhelp" class="text-muted">number of days</small>
+                                </div>
+                                <div class="form-group">
                                     <label for="description">Chama Description</label>
                                     <textarea class="form-control" name="description" id=""
                                         rows="3">{{ $chama->description }}</textarea>

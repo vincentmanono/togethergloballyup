@@ -13,6 +13,7 @@ use App\payment\MpesaGateway;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use App\Http\Requests\ChamaStoreRequest;
+use Illuminate\Support\Carbon;
 
 class ChamaController extends Controller
 {
@@ -240,9 +241,13 @@ class ChamaController extends Controller
         }
 
         $user = User::find(auth()->user()->id);
+        $days =$request->input('duration') ;
+        $now = now()->format('Y-m-d H:i:s');
         $chama = new Chama();
         $chama->name = $request->input('name');
         $chama->amount = $request->input('amount');
+        $chama->duration = $days ;
+        $chama->nextVote = date('Y-m-d H:i:s', strtotime('+' . $days . ' day', strtotime($now)));
         $chama->description = $request->input('description');
         $chama->user_id = $user->id;
         if ($chama->save()) {
@@ -312,6 +317,7 @@ class ChamaController extends Controller
         if ($chama->user_id == auth()->user()->id || auth()->user()->role == 'super') { //
             $chama->name = $request->name;
             $chama->amount = $request->amount;
+            $chama->duration = $request->duration;
             $chama->description = $request->description;
 
             if ($chama->save()) {
