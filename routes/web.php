@@ -34,13 +34,14 @@ Auth::routes(['verify' => true]);
 
 Route::group(['middleware' => ['auth','verified']], function () {
     Route::get('/home', 'HomeController@index')->name('home')->middleware('verified');
-    Route::get('search-chama',"ChamaController@searchChama")->name('chama.search');
+    Route::post('search-chama',"ChamaController@searchChama")->name('chama.search');
+    Route::get('auth-chama-search/{code}',"ChamaController@authchama")->name('auth.chama.search');
     Route::get('/chamas', 'ChamaController@index')->name('admin.chama');
     Route::get('/chamas/{chama}', 'ChamaController@show')->name('admin.chama.show');
     Route::put('/chamas/{chama}', 'ChamaController@update')->name('admin.chama.update');
     Route::get('/chama/create', 'ChamaController@create')->name('user.chama.create');
     Route::post('/chama/store', 'ChamaController@store')->name('user.chama.store');
-    Route::post('join-chama', 'ChamaController@chamaJoin')->name('user.chama.join');
+    Route::post('join-chama', 'ChamaController@authjoinchama')->name('user.chama.join');
     Route::post('exit-chama', 'ChamaController@exitChama')->name('user.chama.exit');
     Route::get('/subscribed-chama', 'ChamaController@subscribedChama')->name('user.chama.subscribed');
     Route::get('/subscribed-chama/{chama}', 'ChamaController@singleSubscribedChama')->name('user.chama.subscribed.single');
