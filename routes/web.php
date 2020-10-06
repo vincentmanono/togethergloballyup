@@ -34,6 +34,7 @@ Auth::routes(['verify' => true]);
 
 Route::group(['middleware' => ['auth','verified']], function () {
     Route::get('/home', 'HomeController@index')->name('home')->middleware('verified');
+    Route::get('search-chama',"ChamaController@searchChama")->name('chama.search');
     Route::get('/chamas', 'ChamaController@index')->name('admin.chama');
     Route::get('/chamas/{chama}', 'ChamaController@show')->name('admin.chama.show');
     Route::put('/chamas/{chama}', 'ChamaController@update')->name('admin.chama.update');
@@ -64,6 +65,8 @@ Route::group(['middleware' => ['auth','verified']], function () {
     Route::post('activate-chama/{chama}', 'ChamaController@activateChama')->name('admin.activate.chama');
 
     Route::group(['prefix' => 'admin','middleware'=>['admin']], function () {
+
+
 
         Route::get('my-chamas', 'AdminChamaController@allmychama')->name('admin.allmychama');
         Route::get('my-chamas/{chama}', 'AdminChamaController@show')->name('admin.allmychama.show');

@@ -23,7 +23,14 @@ class CreateChamasTable extends Migration
             $table->dateTime('nextVote')->nullable();
             $table->longText("description")->nullable() ;
             $table->boolean('activate') ->default(false) ;
+
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+
+            $table->string('chamacode', 100)->nullable();
+            $table->string('authorizationcode', 100)->nullable();
+
+            $table->boolean('confirmedjoining')->nullable()->default(false);
+
 
             $table->timestamps();
         });

@@ -10,10 +10,10 @@ class MpesaGateway // extends AnotherClass implements Interface
     public function __construct()
     {
         $this->shortcode1 = "600231";
-        $this->InitiatorName = "testapi0231" ;
+        $this->InitiatorName = "testapi0231" ; //makauelijah
         $this->SecurityCredential  = "Safcom231!"; //shortcode1
-        $this->TestMSISDN = "254708374149";
-        $this->shortcode = "174379"; //Lipa Na Mpesa Online Shortcode:
+        $this->TestMSISDN = "254708374149"; //254757868051
+        $this->shortcode = "174379"; //Lipa Na Mpesa Online Shortcode://4037673
         $this->LipaNaMpesaOnlinePassKey = "bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919";
 
     }

@@ -23,6 +23,14 @@ class ChamaController extends Controller
      * @return \Illuminate\Http\Response
      */
 
+     public function searchChama(Request $request){
+        request()->validate(array(
+            'chamacode' => 'required|string',
+        ));
+        $chamaCode = $request->input('code');
+        $chama = Chama::where('chamacode')->first();
+
+     }
 
 
     public function chamaJoin(Request $request)
@@ -203,13 +211,14 @@ class ChamaController extends Controller
         $user = auth()->user()->role == "super";
         if ($user) {
             $chamas = Chama::all();
+            return view('admin.chama.chamas')->with('chamas', $chamas);
         } else {
-            $chamas = Chama::where('activate', true)->get();
+            return view('admin.chama.chamas') ;
         }
 
 
 
-        return view('admin.chama.chamas')->with('chamas', $chamas);
+
     }
 
     /**
