@@ -85,10 +85,10 @@
                                                 </div>
 
 
-                                                    <button type="button" class="btn btn-secondary"
-                                                        data-dismiss="modal">Close</button>
+                                                <button type="button" class="btn btn-secondary"
+                                                    data-dismiss="modal">Close</button>
 
-                                                    <button type="submit" class="btn btn-primary">Pay now</button>
+                                                <button type="submit" class="btn btn-primary">Pay now</button>
 
                                             </form>
                                         </div>
@@ -268,13 +268,62 @@
                                 </tbody>
                             </table>
                         </div>
+                        <div class="col-md-12">
+                            <table class="table table-bordered table-inverse table-responsive">
+                                <thead class="thead-inverse">
+                                    <tr>
+                                        <th>Chama Code</th>
+                                        <th>Authorization Code</th>
+                                        <th>Status</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td scope="row">{{ $chama->chamacode }}</td>
+
+                                            <td>{{ $chama->authorizationcode }}</td>
+                                            <td>
+
+                                                @if ($chama->confirmedjoining)
+                                                    <span class="badge badge-pill badge-success">Activated to join</span>
+                                                @else
+                                                <span class="badge badge-pill badge-danger">Deactivated</span>
+
+                                                @endif
+                                            </td>
+                                            <td class="row" >
+                                                @if ($chama->confirmedjoining)
+                                                    <form class="mr-2" action="{{ route('deactivate.join',$chama) }}" method="post">
+                                                        @csrf
+                                                        <button type="submit" class="btn btn-danger">Deactivated now</button>
+                                                    </form>
+                                                @else
+                                                <form class="mr-2" action="{{ route('activate.join',$chama) }}" method="post">
+                                                    @csrf
+                                                    <button type="submit" class="btn btn-primary">Activated now</button>
+                                                </form>
+                                                @endif
+                                                <form class="ml-2" action="{{ route('chama.code.modify',$chama) }}" method="post">
+                                                    @csrf
+                                                    <button type="submit" class="btn btn-primary"> <i class="fa fa-arrow-circle-up" aria-hidden="true"></i> Change codes</button>
+                                                </form>
+                                                <a name="" id="" class="btn btn-primary ml-2" href="{{ route('share.code.compose',$chama) }}" role="button"> <i class="fa fa-share" aria-hidden="true"></i> Share</a>
+                                            </td>
+
+                                        </tr>
+
+                                    </tbody>
+                            </table>
+                        </div>
 
                         <div id="accordianId" role="tablist" aria-multiselectable="true">
                             <div class="card">
                                 <div class="card-header" role="tab" id="section1HeaderId">
                                     <h5 class="mb-0">
-                                        <a data-toggle="collapse" class="btn btn-secondary" data-parent="#accordianId" href="#section1ContentId"
-                                            aria-expanded="true" aria-controls="section1ContentId">
+                                        <a data-toggle="collapse" class="btn btn-secondary" data-parent="#accordianId"
+                                            href="#section1ContentId" aria-expanded="true"
+                                            aria-controls="section1ContentId">
                                             Monitor Chama users
                                         </a>
                                     </h5>
@@ -370,8 +419,8 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="duration">Duration</label>
-                                    <input type="number" name="duration" id="" value="{{ $chama->duration }}" class="form-control"
-                                        placeholder="Chama duration" aria-describedby="durationhelp">
+                                    <input type="number" name="duration" id="" value="{{ $chama->duration }}"
+                                        class="form-control" placeholder="Chama duration" aria-describedby="durationhelp">
                                     <small id="durationhelp" class="text-muted">number of days</small>
                                 </div>
                                 <div class="form-group">

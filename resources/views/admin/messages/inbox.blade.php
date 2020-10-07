@@ -87,7 +87,9 @@
                                                 <td class="mailbox-star"><a href="#"><i
                                                             class="fas fa-star text-warning"></i></a></td>
                                                 <td class="mailbox-name"><a href="{{ route('messages.show', $message->slug) }}">{{ $message->user->name }}</a></td>
-                                                <td class="mailbox-subject"><b>{{ $message->subject }}</b> - {{ Str::limit($message->body ,30,'...') }}
+                                                <td class="mailbox-subject"><b>{{ $message->subject }}</b> - @php
+                                                    echo  Str::limit($message->body ,30,'...');
+                                                @endphp
                                                 </td>
                                                 <td class="mailbox-attachment"></td>
                                                 <td class="mailbox-date"> {{ $message->created_at ->diffForHumans() }}</td>

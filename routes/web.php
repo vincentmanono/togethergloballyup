@@ -68,7 +68,10 @@ Route::group(['middleware' => ['auth','verified']], function () {
     Route::group(['prefix' => 'admin','middleware'=>['admin']], function () {
 
 
-
+        Route::post('activate-join/{chama}','AdminChamaController@activateJoin')->name('activate.join');
+        Route::post('deactivate-join/{chama}','AdminChamaController@deactivateJoin')->name('deactivate.join');
+        Route::post('chama-code-modify/{chama}','AdminChamaController@chamaCodeModify')->name('chama.code.modify');
+        Route::get('share-codes/{chama}','AdminChamaController@sharecode')->name('share.code.compose');
         Route::get('my-chamas', 'AdminChamaController@allmychama')->name('admin.allmychama');
         Route::get('my-chamas/{chama}', 'AdminChamaController@show')->name('admin.allmychama.show');
         Route::put('my-chamas/{chama}', 'AdminChamaController@openvoting')->name('admin.allmychama.openvoting');

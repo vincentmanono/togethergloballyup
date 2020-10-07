@@ -60,7 +60,7 @@
 
                                 <div class="form-group">
                                     <input class="form-control  @error('subject') is-invalid @enderror" type="text"
-                                        name="subject" value="{{ old('subject') }}" placeholder="Subject:">
+                                        name="subject" value="{{ (old('subject')) ? old('subject') : 'sharing chama codes'  }}" placeholder="Subject:">
                                     @error('subject')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -70,6 +70,14 @@
                                 <div class="form-group">
                                     <textarea id="editor" name="body" value="{{ old('body') }}"
                                         class="form-control  @error('body') is-invalid @enderror" style="height: 300px">
+                                        @php
+                                            echo '<p>You can join my chama using the folloing  chama credetials codes </p>';
+                                            echo " <div> Chama Code <strong> ". $chama->chamacode ." </strong></div>";
+                                            echo "<div>Chama authorization Code : <strong> ".  $chama->authorizationcode ."</strong> </div>" ;
+                                        @endphp
+
+
+
 
                         </textarea>
                                     @error('body')

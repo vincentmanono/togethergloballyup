@@ -95,6 +95,10 @@ class ChamaController extends Controller
             Session::flash('error', "This Chama as already maximum number of members !!");
             return back();
         }
+        if ( ! $chama->confirmedjoining ) {
+            Session::flash('error', "Registration for chama as been deactivated please contact chama administrator !!");
+            return back();
+        }
         $user->chamaSubscribed()->attach([$chama->id]);
         $user->tickets()->create([
             'chama_id' => $chama->id,
