@@ -104,8 +104,26 @@ class WalletController extends Controller
             try {
 
                 //newamount =  amount - withdrawcharges
-                $newAmount = $amount - $withdrawCharges->MpesachargesAmount($amount);
-                $response = $mpesaGateway->withdraw($phone, $newAmount);
+                $wcharges =  $withdrawCharges->MpesachargesAmount($amount);
+
+                if ( $wallet->amount < ($amount + $wcharges) ) {
+                    $request->session()->flash('error', "You have insufficient balance in your wallet to cater transaction fee of ". $wcharges ."  Your current balance is KES " . $user->wallet->amount);
+                    return back();
+                }
+                //deduct withdraw charges from user wallect acc
+                $wallet->amount -= $wcharges ;
+                $wallet->save();
+
+                //sending withdraw changes amount to info@togethergloballyup.com wallet
+                $deposited_at = now()->format('Y-m-d H:i:s');
+                $infoAcc = User::where('email','info@togethergloballyup.com')->first();
+                $infoWallet = Wallet::where('user_id',$infoAcc->id)->first();
+                $infoWallet->amount += $wcharges;
+                $infoWallet->deposite_at = $deposited_at ;
+                $infoWallet->save();
+
+
+                $response = $mpesaGateway->withdraw($phone, $amount);
 
                 Withdraw::create([
                     'user_id' => Auth::user()->id,
