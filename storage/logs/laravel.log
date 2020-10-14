@@ -2496,3 +2496,13 @@ Stack trace:
 #32 /var/www/html/chama/togethergloballyup/artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #33 {main}
 "} 
+[2020-09-27 17:20:46] local.ERROR: There are no commands defined in the "serve" namespace. {"exception":"[object] (Symfony\\Component\\Console\\Exception\\NamespaceNotFoundException(code: 0): There are no commands defined in the \"serve\" namespace. at /var/www/html/chama/togethergloballyup/vendor/symfony/console/Application.php:574)
+[stacktrace]
+#0 /var/www/html/chama/togethergloballyup/vendor/symfony/console/Application.php(625): Symfony\\Component\\Console\\Application->findNamespace('serve')
+#1 /var/www/html/chama/togethergloballyup/vendor/symfony/console/Application.php(228): Symfony\\Component\\Console\\Application->find('serve:')
+#2 /var/www/html/chama/togethergloballyup/vendor/symfony/console/Application.php(140): Symfony\\Component\\Console\\Application->doRun(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#3 /var/www/html/chama/togethergloballyup/vendor/laravel/framework/src/Illuminate/Console/Application.php(93): Symfony\\Component\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#4 /var/www/html/chama/togethergloballyup/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(130): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#5 /var/www/html/chama/togethergloballyup/artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#6 {main}
+"} 
