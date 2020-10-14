@@ -44,12 +44,24 @@
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
-                        <li class="nav-item">
+
+                        @if ( auth()->user()->role == 'super')
+                             <li class="nav-item">
                             <a href="{{ route('admin.chama') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>All Chamas</p>
                             </a>
                         </li>
+                        @else
+                        <li class="nav-item">
+                            <a href="{{ route('admin.chama') }}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Join Chama</p>
+                            </a>
+                        </li>
+                        @endif
+
+
                         <li class="nav-item">
                             <a href="{{ route('user.chama.create') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>

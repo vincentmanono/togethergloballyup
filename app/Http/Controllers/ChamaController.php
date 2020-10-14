@@ -13,6 +13,7 @@ use App\payment\MpesaGateway;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use App\Http\Requests\ChamaStoreRequest;
+use Illuminate\Support\Carbon;
 
 class ChamaController extends Controller
 {
@@ -22,16 +23,68 @@ class ChamaController extends Controller
      * @return \Illuminate\Http\Response
      */
 
+     public function searchChama(Request $request){
+        request()->validate(array(
+            'code' => 'required|string',
+        ));
+        $chamaCode = $request->input('code');
+        $chama = Chama::where('chamacode',$chamaCode)->first();
+
+        if (  $chama) {
+            return redirect()->route('auth.chama.search',$chama->chamacode);
+        }else{
+
+            $request->session()->flash('error', "Your chama code is wrong please try again");
+            return back() ;
+
+        }
+
+     }
+
+     public function authchama($chamaCode)
+     {
+
+        $chama = Chama::where('chamacode',$chamaCode)->first();
+
+        if (  $chama) {
+
+            return  view('admin.chama.authorizationCode',compact('chama')) ;
+        }else{
+
+            Session::flash('error', "Your chama code is wrong please try again");
+            return back() ;
+
+        }
+
+     }
+
+     public function authjoinchama(request $request)
+     {
+         request()->validate(array(
+             'authorize' => 'required',
+         ));
+         $authcode = request()->input('authorize');
+         $chama = Chama::where('authorizationcode',$authcode)->first();
+         if ( $chama) {
+          return   $this->chamaJoin($chama);
+
+         } else {
+            $request->session()->flash('error', "Your authorization code is wrong");
+            return back()->withInput() ;
+         }
 
 
-    public function chamaJoin(Request $request)
+     }
+
+
+    public function chamaJoin($chama)
     {
         $user = User::find(auth()->user()->id);
-        $chama = Chama::find($request->input('chamaID'));
+
         $asthischama = ChamaUser::where('user_id', $user->id)->where('chama_id', $chama->id)->count();
         if ($asthischama) {
-            $request->session()->flash('error', "You are member in this chama");
-            return back();
+            Session::flash('error', "You are member in this chama");
+            return redirect()->route('admin.chama.show',$chama->id);
         }
         if (auth()->user()->subscription_expiry < now() && auth()->user()->role != "super") {
             Session::flash('error', "Please renew your subscription !!!");
@@ -39,7 +92,11 @@ class ChamaController extends Controller
         }
         $members = ChamaUser::where('chama_id', $chama->id)->count();
         if ($members >= 20) {
-            $request->session()->flash('error', "This Chama as already maximum number of members !!");
+            Session::flash('error', "This Chama as already maximum number of members !!");
+            return back();
+        }
+        if ( ! $chama->confirmedjoining ) {
+            Session::flash('error', "Registration for chama as been deactivated please contact chama administrator !!");
             return back();
         }
         $user->chamaSubscribed()->attach([$chama->id]);
@@ -49,9 +106,9 @@ class ChamaController extends Controller
             'as_vote' => false
 
         ]);
-        $request->session()->flash('success', "You have successfully subscribed to " . $chama->name);
+        Session::flash('success', "You have successfully subscribed to " . $chama->name);
 
-        return back();
+        return redirect()->route('admin.chama.show',$chama->id);
     }
     public function exitChama(Request $request)
     {
@@ -202,13 +259,14 @@ class ChamaController extends Controller
         $user = auth()->user()->role == "super";
         if ($user) {
             $chamas = Chama::all();
+            return view('admin.chama.chamas')->with('chamas', $chamas);
         } else {
-            $chamas = Chama::where('activate', true)->get();
+            return view('admin.chama.chamas') ;
         }
 
 
 
-        return view('admin.chama.chamas')->with('chamas', $chamas);
+
     }
 
     /**
@@ -240,9 +298,13 @@ class ChamaController extends Controller
         }
 
         $user = User::find(auth()->user()->id);
+        $days =$request->input('duration') ;
+        $now = now()->format('Y-m-d H:i:s');
         $chama = new Chama();
         $chama->name = $request->input('name');
         $chama->amount = $request->input('amount');
+        $chama->duration = $days ;
+        $chama->nextVote = date('Y-m-d H:i:s', strtotime('+' . $days . ' day', strtotime($now)));
         $chama->description = $request->input('description');
         $chama->user_id = $user->id;
         if ($chama->save()) {
@@ -312,6 +374,7 @@ class ChamaController extends Controller
         if ($chama->user_id == auth()->user()->id || auth()->user()->role == 'super') { //
             $chama->name = $request->name;
             $chama->amount = $request->amount;
+            $chama->duration = $request->duration;
             $chama->description = $request->description;
 
             if ($chama->save()) {

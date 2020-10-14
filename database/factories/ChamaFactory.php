@@ -2,8 +2,9 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
-use App\Chama;
 use App\User;
+use App\Chama;
+use Illuminate\Support\Str;
 use Faker\Generator as Faker;
 
 $factory->define(Chama::class, function (Faker $faker) {
@@ -14,6 +15,9 @@ $factory->define(Chama::class, function (Faker $faker) {
         'duration'=> $faker->numberBetween(30,90),
         'description'=>$faker->realText(100,4),
         'nextVote'=> $faker->dateTimeBetween('-30 days', '+30 days'),
+        'chamacode'=> Str::random(4),
+        'authorizationcode'=> Str::random(4),
+        'confirmedjoining'=>$faker->boolean(),
         'activate'=>$faker->boolean()
     ];
 });

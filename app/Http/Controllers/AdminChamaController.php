@@ -2,16 +2,81 @@
 
 namespace App\Http\Controllers;
 
-use App\Chama;
-use App\Notifications\VotingNotification;
-use App\Ticket;
 use App\User;
+use App\Chama;
+use App\Ticket;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Session;
+use App\Notifications\VotingNotification;
+use Illuminate\Support\Facades\Notification;
 
 class AdminChamaController extends Controller
-{
+ {
+    public function activateJoin($chama)
+    {
+
+        $chama = Chama::where('id',$chama)->first();
+
+        if ( $chama ) {
+            # code...
+            $chama->confirmedjoining  = 1 ;
+            $chama->save();
+            Session::flash('success',"New members can join");
+            return back();
+        } else {
+            Session::flash('error','Please contact system admin for more info');
+            return back() ;
+        }
+
+
+
+    }
+    public function deactivateJoin($chama)
+    {
+
+        $chama = Chama::where('id',$chama)->first();
+        if ( $chama ) {
+            # code...
+            $chama->confirmedjoining  = 0;
+            $chama->save();
+            Session::flash('success',"Chama joining deactivated");
+            return back();
+        } else {
+            Session::flash('error','Please contact system admin for more info');
+            return back() ;
+        }
+
+    }
+    public function chamaCodeModify($chama)
+    {
+        $chama = Chama::where('id',$chama)->first();
+        if ( $chama ) {
+
+            $chama->chamacode  = Str::random(6) ;
+            $chama->authorizationcode  = Str::random(6);
+            $chama->save();
+            Session::flash('success',"Chama codes modified");
+            return back();
+        } else {
+            Session::flash('error','Please contact system admin for more info');
+            return back() ;
+        }
+
+
+    }
+    public function sharecode($chama)
+    {
+        $chama = Chama::where('id',$chama)->first();
+        $emails = User::pluck('email') ;
+        if ( $chama ) {
+            return view('admin.chama.AdminChama.composeShare',compact('chama','emails'));
+        } else {
+            Session::flash('error','Please contact system admin for more info');
+            return back() ;
+        }
+
+    }
     public function allmychama()
     {
 

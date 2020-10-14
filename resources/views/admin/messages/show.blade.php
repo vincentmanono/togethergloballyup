@@ -56,10 +56,13 @@
                   <i class="fas fa-print"></i></button>
               </div>
               <!-- /.mailbox-controls -->
-              <div class="mailbox-read-message">
+              <div  class="mailbox-read-message">
                 <p>Hello {{ auth()->user()->name }},</p>
+                @php
+                    echo $message->body ;
+                @endphp
 
-                <p>{{ $message->body }}</p>
+
 
                 <p>Thanks,<br>{{ auth()->user()->name }}</p>
               </div>
