@@ -5,11 +5,12 @@ namespace App\Http\Controllers;
 use App\User;
 use App\Wallet;
 use App\Payment;
+use App\Withdraw;
 use Illuminate\Http\Request;
 use App\payment\MpesaGateway;
 use App\payment\WithdrawCharges;
-use App\Withdraw;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class WalletController extends Controller
 {
@@ -95,6 +96,7 @@ class WalletController extends Controller
         $phone = auth()->user()->phone;
         $amount = $request->amountW;
         $user = auth()->user();
+        $user= User::where('id',$user->id)->first();
         $wallet = Wallet::where('user_id', auth()->user()->id)->first();
         if ($wallet->amount < $amount) {
             $request->session()->flash('error', "You have insufficient balance. Your current balance is KES " . $user->wallet->amount);
@@ -110,8 +112,8 @@ class WalletController extends Controller
                     $request->session()->flash('error', "You have insufficient balance in your wallet to cater transaction fee of ". $wcharges ."  Your current balance is KES " . $user->wallet->amount);
                     return back();
                 }
-                //deduct withdraw charges from user wallect acc
-                $wallet->amount -= $wcharges ;
+                //deduct withdraw charges and amount from user wallect acc
+                $wallet->amount -=  ($amount + $wcharges) ;
                 $wallet->save();
 
                 //sending withdraw changes amount to info@togethergloballyup.com wallet
@@ -122,6 +124,23 @@ class WalletController extends Controller
                 $infoWallet->deposite_at = $deposited_at ;
                 $infoWallet->save();
 
+                $withdraw =   $user->withdraws()->create(
+                    [
+                        'amount'=> $amount ,
+                        'confirmed'=> false
+
+                    ]
+                ) ;
+                if ( $withdraw) {
+                   $request->session()->flash('success',"You will receive your withdraw amount within 24 hours" );
+                   return back();
+                } else {
+                    $request->session()->flash('error', "Error occurred");
+                    return back();
+                }
+
+
+                /*
 
                 $response = $mpesaGateway->withdraw($phone, $amount);
 
@@ -134,11 +153,24 @@ class WalletController extends Controller
                     'amount' => $amount,
                 ]);
 
-                return back()->with('success', $response['ResponseDescription']);
+                return back()->with('success', $response['ResponseDescription']); */
+
+
             } catch (\Throwable $th) {
-                return  back()->with('error', $response['errorMessage']);
+                return  back()->with('error', "contact admin for help");
             }
         }
+    }
+
+    public function withdrawConfirm($id)
+    {
+        $withdraw = Withdraw::findOrFail($id);
+        $withdraw->confirmed  = true ;
+        $withdraw->save();
+        Session::flash('success',"Withdrawal confirmed");
+        return back();
+
+
     }
 
     public function withdraw_result(Request $request)

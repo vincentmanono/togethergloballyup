@@ -113,6 +113,9 @@ Route::group(['middleware' => ['auth','super']], function () {
         Route::get('/user/{email}', 'UserController@show')->name('admin.users.show');
         Route::get('/users/create', 'UserController@create')->name('admin.users.create');
         Route::post('/user/store', 'UserController@store')->name('admin.users.store');
+
+        Route::post('/withdraw/{id}', 'WalletController@withdrawConfirm')->name('user.withdraw.confirm');
+
     });
 
 });
