@@ -145,7 +145,9 @@ class UserController extends Controller
 
 
         $user = User::find($id);
+
         $data = $request->all();
+
         if (auth()->user()->role == "super") {
             if ($request->input('role') == "on") {
                 # code...
@@ -228,15 +230,15 @@ class UserController extends Controller
             $user->avatar = $filenameToStore;
         }
 
-        if ($user->role != 'user') {
+        if ($user->role != 'user' ) {
             if ($request->role == 'on') {
                 $type = 'super';
             } else {
-                $type = 'admin';
+                $type = 'user';
             }
             if (Auth::user()->role == 'super') {
 
-                if ($request->super != 'on' && User::where('role', 'super')->count() == 1 && $user->role == 'super') {
+                if ($request->role != 'on' && User::where('role', 'super')->count() == 1 && $user->role == 'super') {
                     Session::flash('error', 'Sorry, you are the ONLY REMAINING super admin!');
                     return redirect()->back();
                 }
@@ -265,7 +267,7 @@ class UserController extends Controller
         }
 
         Session::flash('error', 'You could not update the users profile.');
-        return redirect()->back();
+        return redirect()->route('profile.index') ;
     }
 
     /**

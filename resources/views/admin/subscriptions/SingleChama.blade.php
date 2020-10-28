@@ -29,7 +29,7 @@
                 <h3 class="card-title"> View my Subscribed  Chama Details
                     <a name="" id="" class="btn btn-primary" href="{{ route('user.chama.subscribed') }}" role="button">Back</a>
                     <button type="button" class="btn btn-dark pull-right" data-toggle="modal" data-target="#deposite">
-                        Deposite To wallet
+                        Deposit To wallet
                       </button>
                 </h3>
 
@@ -87,14 +87,14 @@
                                                                    </button>
                                                            </div>
                                                            <div class="modal-body">
-                                                               <form action="{{ route('deposte.to.wallet') }}" method="post">
+                                                               <form action="{{ route('deposit.to.wallet') }}" method="post">
                                                                    @csrf
 
                                                                    <div class="form-group">
-                                                                     <label for="amount">Amount to deposite</label>
+                                                                     <label for="amount">Amount to deposit</label>
                                                                      <input type="number" name="amount" id="amount"
                                                                      class="form-control @error('phone') is-invalid @enderror"
-                                                                      placeholder="Amount to deposite"
+                                                                      placeholder="Amount to deposit"
                                                                       value="{{ old('amount') }}"
                                                                       autocomplete="amount" autofocus>
 
@@ -123,13 +123,14 @@
                                                                             @enderror
 
                                                                 </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                    <button type="submit" class="btn btn-primary">Deposit</button>
+                                                                </div>
+                                                             </form>
 
                                                            </div>
-                                                           <div class="modal-footer">
-                                                               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                               <button type="submit" class="btn btn-primary">Deposite</button>
-                                                           </div>
-                                                        </form>
+
                                                        </div>
                                                    </div>
                                                </div>

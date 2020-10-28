@@ -372,8 +372,8 @@
 
                                             @if (auth()->user()->role == 'super')
                                                 <div class="form-check">
-                                                    <input type="checkbox" name="role" @if ($user->type == 'super') checked
-                                            @endif>
+
+                                                    <input type="checkbox" name="role"   @if ($user->role == 'super') checked  @endif>
                                             <label for="role" class="form-check-label">Make Super Admin</label>
                                     </div>
                                     @endif

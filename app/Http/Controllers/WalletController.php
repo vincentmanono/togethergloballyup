@@ -23,7 +23,7 @@ class WalletController extends Controller
 
 
         try {
-            $response =   $mpesa->wallet($phone, $amount);
+            $response =   $mpesa->wallet($phone, $amount,"Deposit Wallet","https://togethergloballyup.com/api/handle-deposite-result");
             $wallet = Wallet::where('user_id', auth()->user()->id)->first();
             $wallet->payments()->create([
                 'user_id' => Auth::user()->id,

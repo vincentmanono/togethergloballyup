@@ -26,7 +26,7 @@
         <!-- Default box -->
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title mr-3">Deposite or withdraw from wallet</h3>
+                <h3 class="card-title mr-3">Deposit or withdraw from wallet</h3>
                 <div class="card-tools">
                     <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
       <i class="fas fa-minus"></i></button>
@@ -38,10 +38,10 @@
                 <div class="row" >
                     <div class="col-md-6 col-sm-12 col-lg-6   " style="background-color: #0cca ; color:black ; " >
                         <div class="text text-capitalize text-center text-bold h2 " >
-                            Deposite To Wallet
+                            Deposit To Wallet
                         </div>
                         <div>Enter amount below, 'use' your <span class="text text-dark" >MPESA PIN </span>  to authorize the transaction</div>
-                        <form action="{{ route('deposte.to.wallet') }}" method="post">
+                        <form action="{{ route('deposit.to.wallet') }}" method="post">
                             @csrf
                             <div class="input-group mb-3">
                                 <input id="phone" type="number" placeholder="phone" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone') }}" required autocomplete="phone">
@@ -71,7 +71,7 @@
                                 </div>
                               </div>
                             </div>
-                              <button type="submit" class="btn btn-success">Deposite now</button>
+                              <button type="submit" class="btn btn-success">Deposit now</button>
                         </form>
 
                     </div>

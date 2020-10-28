@@ -197,7 +197,7 @@ class ChamaController extends Controller
 
         try {
 
-            $response =   $mpesaGateway->activate_chama($phone, $amount);
+            $response =   $mpesaGateway->wallet($phone, $amount,'Activate Chama');
             $chama = Chama::find($chama_id);
             $chama->payments()->create([
                 'user_id' => Auth::user()->id,

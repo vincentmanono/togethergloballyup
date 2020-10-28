@@ -104,11 +104,11 @@
                     </button>
             </div>
             <div class="modal-body">
-                <form action="{{ route('deposte.to.wallet') }}" method="post">
+                <form action="{{ route('deposit.to.wallet') }}" method="post">
                     @csrf
 
                     <div class="form-group">
-                      <label for="amount">Amount to deposite</label>
+                      <label for="amount">Amount to deposit</label>
                       <input type="number" name="amount" id="amount"
                       class="form-control @error('phone') is-invalid @enderror"
                        placeholder="Amount to deposite"
@@ -141,12 +141,14 @@
 
                  </div>
 
+                 <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Deposit</button>
+                </div>
+             </form>
+
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary">Deposite</button>
-            </div>
-         </form>
+
         </div>
     </div>
 </div>

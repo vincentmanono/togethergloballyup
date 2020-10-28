@@ -55,7 +55,7 @@ Route::group(['middleware' => ['auth','verified']], function () {
 
     Route::get('all-subscription','SubscriptionController@index')->name('user.all.subscription') ;
     Route::post('renew-subscription','SubscriptionController@renew')->name('user.renew.subscription') ;
-    Route::post('deposite-to-wallet', 'WalletController@deposite')->name('deposte.to.wallet');
+    Route::post('deposite-to-wallet', 'WalletController@deposite')->name('deposit.to.wallet');
 
     Route::resource('profile', 'UserController');
 
