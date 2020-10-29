@@ -41,7 +41,6 @@ class SubscriptionController extends Controller
         $amount = 100;
         $phone = $request->phone;
 
-        return $phone ;
 
 
 

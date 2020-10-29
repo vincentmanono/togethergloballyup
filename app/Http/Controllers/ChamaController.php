@@ -194,10 +194,13 @@ class ChamaController extends Controller
         ));
         $amount = 150;
         $phone = $request->phone;
+       
 
         try {
 
-            $response =   $mpesaGateway->wallet($phone, $amount,'Activate Chama');
+            $response =   $mpesaGateway->wallet($phone, $amount,'Activate Chama','https://togethergloballyup.com/handle-chama-activate-result');
+         
+            return $response ;
             $chama = Chama::find($chama_id);
             $chama->payments()->create([
                 'user_id' => Auth::user()->id,
