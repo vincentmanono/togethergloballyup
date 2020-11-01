@@ -76,7 +76,7 @@ export default {
 
     voteone(result){
 
-        let url = `http://localhost:8000/api/subscribed-chama/${this.chama.id}/vote`;
+        let url = `https://togethergloballyup.com/api/subscribed-chama/${this.chama.id}/vote`;
 
         let data = {
             pay:result,

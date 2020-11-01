@@ -45,7 +45,7 @@ class SubscriptionController extends Controller
 
 
       try {
-        $response = $mpesaGateway->wallet($phone, $amount,"Renew Subscription","https://togethergloballyup.com/api/handle-result");
+        $response = $mpesaGateway->wallet($phone, $amount,"Subscription","https://togethergloballyup.com/api/handle-result");
         $result = Payment::create([
             'user_id' => Auth::user()->id,
             'merchantRequestID' => $response['MerchantRequestID'],
