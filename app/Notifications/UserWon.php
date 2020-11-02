@@ -51,8 +51,7 @@ class UserWon extends Notification
             ->line('Voting panel is now closed')
             ->line("Next Voting will take place on ".  date('l jS M Y, h:i a', strtotime($chama->nextVote)))
             ->greeting('Dear ' . $user->name)
-            ->line('The introduction to the notification.')
-            ->action('Notification Action', url('/'))
+            ->action('Confirm the Winner', url(route('admin.chama.show',$chama->id)))
             ->line('Thank you for using our application!');
     }
 

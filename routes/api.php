@@ -18,7 +18,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('/subscribed-chama/{chama}/vote', 'TicketController@voted')->name('user.chama.subscribed.voted');
+Route::post('/subscribed-chama/{chama}', 'TicketController@voted')->name('user.chama.subscribed.voted');
 
 
 Route::any('/handle-result', 'SubscriptionController@handle_result')->name('handle_subscription_result_api');

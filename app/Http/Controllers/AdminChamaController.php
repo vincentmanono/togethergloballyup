@@ -129,7 +129,7 @@ class AdminChamaController extends Controller
             $users = $chama->users ;
             foreach ($users as $key => $user) {
 
-               // Notification::send($user , new VotingNotification($chama,$user)) ;
+               Notification::send($user , new VotingNotification($chama,$user)) ;
             }
 
         }else{

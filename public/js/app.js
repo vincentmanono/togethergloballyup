@@ -1991,7 +1991,7 @@ __webpack_require__.r(__webpack_exports__);
     voteone: function voteone(result) {
       var _this = this;
 
-      var url = "http://localhost:8000/api/subscribed-chama/".concat(this.chama.id, "/vote");
+      var url = "https://togethergloballyup.com/api/subscribed-chama/" + this.chama.id;
       var data = {
         pay: result,
         chama_id: this.chama.id,
@@ -2018,8 +2018,7 @@ __webpack_require__.r(__webpack_exports__);
       });
     }
   },
-  mounted: function mounted() {// console.log(this.Tickets);
-  }
+  created: function created() {}
 });
 
 /***/ }),
@@ -32698,31 +32697,11 @@ module.exports = function(module) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-/**
- * First we will load all of this project's JavaScript dependencies which
- * includes Vue and other libraries. It is a great starting point when
- * building robust, powerful web applications using Vue and Laravel.
- */
 // require('./bootstrap');
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
-/**
- * The following block of code may be used to automatically register your
- * Vue components. It will recursively scan this directory for the Vue
- * components and automatically register them with their "basename".
- *
- * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
- */
-// const files = require.context('./', true, /\.vue$/i)
-// files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
-
 Vue.component('tickets', __webpack_require__(/*! ./components/Tickets.vue */ "./resources/js/components/Tickets.vue")["default"]);
 Vue.component('tikect-component', __webpack_require__(/*! ./components/tikects/Tikect.vue */ "./resources/js/components/tikects/Tikect.vue")["default"]);
-/**
- * Next, we will create a fresh Vue application instance and attach it to
- * the page. Then, you may begin adding components to this application
- * or customize the JavaScript scaffolding to fit your unique needs.
- */
-
+Vue.component('chama-search', './components/chama/ChamaSerch.vue');
 var app = new Vue({
   el: '#app'
 });
@@ -32921,8 +32900,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /var/www/html/work/togethergloballyup/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /var/www/html/work/togethergloballyup/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /var/www/html/trial/togethergloballyup/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /var/www/html/trial/togethergloballyup/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

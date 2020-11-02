@@ -20,16 +20,20 @@ class TicketController extends Controller
     public function voted(Request $request)
     {
 
+
+
         $user = User::find($request->user_id);
         $chama = Chama::find($request->chama_id);
+
+
+
         $getAmount  = 0;
         // $ticket = Ticket::where('chama_id',$chama->id)->where('user_id',$user->id)->get();
 
         if ($request->pay == 'yes') {
 
-
             //closing voting on chama
-            $chama->openVote = false;
+            $chama->openVote = 0;
             $chama->save();
             //sent notify chama members  user picked win ticket
             $users = $chama->users;
@@ -65,14 +69,14 @@ class TicketController extends Controller
             if ($wallet->save()) {
                 Ticket::where('chama_id', $chama->id)
                     ->where('user_id', $user->id)
-                    ->update(['pay' => true, 'given' => true, 'as_vote' => true]);
+                    ->update(['pay' => 1, 'given' => 1, 'as_vote' => 1]);
             }
 
             //PayUser::dispatch($user);
         } else {
             Ticket::where('chama_id', $chama->id)
                 ->where('user_id', $user->id)
-                ->update(['pay' => 0, 'as_vote' => true]);
+                ->update(['pay' => 0, 'as_vote' => 1]);
         }
 
         return response()->json(

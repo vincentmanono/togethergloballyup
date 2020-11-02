@@ -76,9 +76,9 @@ export default {
 
     voteone(result){
 
-        let url = `https://togethergloballyup.com/api/subscribed-chama/${this.chama.id}/vote`;
+       var url  = "https://togethergloballyup.com/api/subscribed-chama/" + this.chama.id ;
 
-        let data = {
+        var data = {
             pay:result,
             chama_id:this.chama.id,
             'user_id':this.user.id
@@ -94,7 +94,6 @@ export default {
         Axios.post(url,data).then((response)=>{
            console.log(response.message)
             this.response = response.data.message;
-
             this.show = false ;
             this.result = result ;
 
@@ -118,10 +117,8 @@ export default {
     }
 
   },
+  created () {
 
-
-  mounted() {
-    // console.log(this.Tickets);
   }
 };
 </script>
