@@ -40,8 +40,7 @@
             </div>
             <div class="card-body">
 
-
-               <tickets  :chama="{{ $chama }}" :user= "{{ auth()->user() }}" :tickets="{{ $chama->tickets }}" ></tickets>
+               <tickets  :chama="{{ $chama }}" :cards={{ json_encode( $chama->ticketsno) }} :user= "{{ auth()->user() }}" :tickets="{{ $chama->tickets }}" ></tickets>
             </div>
             <!-- /.card-body -->
             <div class="card-footer">

@@ -2,7 +2,7 @@
   'app' => 
   array (
     'name' => 'togethergloballyup',
-    'env' => 'production',
+    'env' => 'local',
     'debug' => true,
     'url' => 'https://togethergloballyup.com',
     'asset_url' => NULL,
@@ -10,7 +10,7 @@
     'locale' => 'en',
     'fallback_locale' => 'en',
     'faker_locale' => 'en_US',
-    'key' => 'base64:IfEQFKaBEuTXWDlTyTqbHW+xMyr8f/dwKhlwr4+07fs=',
+    'key' => 'base64:zs6GrAAke9WzbUa/qSP37HAzIcIxrhk35ZbsFQAAWRI=',
     'cipher' => 'AES-256-CBC',
     'providers' => 
     array (
@@ -180,7 +180,7 @@
       'file' => 
       array (
         'driver' => 'file',
-        'path' => '/var/www/html/trial/togethergloballyup/storage/framework/cache/data',
+        'path' => 'C:\\xampp\\htdocs\\work\\lagaster\\togethergloballyup\\storage\\framework/cache/data',
       ),
       'memcached' => 
       array (
@@ -255,7 +255,7 @@
       array (
         'driver' => 'sqlite',
         'url' => NULL,
-        'database' => '/var/www/html/trial/togethergloballyup/database/database.sqlite',
+        'database' => 'C:\\xampp\\htdocs\\work\\lagaster\\togethergloballyup\\database\\database.sqlite',
         'prefix' => '',
         'foreign_key_constraints' => true,
       ),
@@ -344,12 +344,12 @@
       'local' => 
       array (
         'driver' => 'local',
-        'root' => '/var/www/html/trial/togethergloballyup/storage/app',
+        'root' => 'C:\\xampp\\htdocs\\work\\lagaster\\togethergloballyup\\storage\\app',
       ),
       'public' => 
       array (
         'driver' => 'local',
-        'root' => '/var/www/html/trial/togethergloballyup/storage/app/public',
+        'root' => 'C:\\xampp\\htdocs\\work\\lagaster\\togethergloballyup\\storage\\app/public',
         'url' => 'https://togethergloballyup.com/storage',
         'visibility' => 'public',
       ),
@@ -365,7 +365,7 @@
     ),
     'links' => 
     array (
-      '/var/www/html/trial/togethergloballyup/public/storage' => '/var/www/html/trial/togethergloballyup/storage/app/public',
+      'C:\\xampp\\htdocs\\work\\lagaster\\togethergloballyup\\public\\storage' => 'C:\\xampp\\htdocs\\work\\lagaster\\togethergloballyup\\storage\\app/public',
     ),
   ),
   'flare' => 
@@ -433,13 +433,13 @@
       'single' => 
       array (
         'driver' => 'single',
-        'path' => '/var/www/html/trial/togethergloballyup/storage/logs/laravel.log',
+        'path' => 'C:\\xampp\\htdocs\\work\\lagaster\\togethergloballyup\\storage\\logs/laravel.log',
         'level' => 'debug',
       ),
       'daily' => 
       array (
         'driver' => 'daily',
-        'path' => '/var/www/html/trial/togethergloballyup/storage/logs/laravel.log',
+        'path' => 'C:\\xampp\\htdocs\\work\\lagaster\\togethergloballyup\\storage\\logs/laravel.log',
         'level' => 'debug',
         'days' => 14,
       ),
@@ -489,7 +489,7 @@
       ),
       'emergency' => 
       array (
-        'path' => '/var/www/html/trial/togethergloballyup/storage/logs/laravel.log',
+        'path' => 'C:\\xampp\\htdocs\\work\\lagaster\\togethergloballyup\\storage\\logs/laravel.log',
       ),
     ),
   ),
@@ -501,11 +501,11 @@
       'smtp' => 
       array (
         'transport' => 'smtp',
-        'host' => 'mail.togethergloballyup.com',
-        'port' => '465',
-        'encryption' => 'ssl',
-        'username' => 'info@togethergloballyup.com',
-        'password' => '@Kivosh99@',
+        'host' => 'smtp.mailtrap.io',
+        'port' => '2525',
+        'encryption' => 'tls',
+        'username' => 'c708f99f0d1599',
+        'password' => '0caa8ab3698e89',
       ),
       'ses' => 
       array (
@@ -528,7 +528,7 @@
     ),
     'from' => 
     array (
-      'address' => 'info@togethergloballyup.com',
+      'address' => 'togethergloballyup@gmail.com',
       'name' => 'togethergloballyup',
     ),
     'markdown' => 
@@ -536,7 +536,7 @@
       'theme' => 'default',
       'paths' => 
       array (
-        0 => '/var/www/html/trial/togethergloballyup/resources/views/vendor/mail',
+        0 => 'C:\\xampp\\htdocs\\work\\lagaster\\togethergloballyup\\resources\\views/vendor/mail',
       ),
     ),
   ),
@@ -626,7 +626,7 @@
     'lifetime' => '120',
     'expire_on_close' => false,
     'encrypt' => false,
-    'files' => '/var/www/html/trial/togethergloballyup/storage/framework/sessions',
+    'files' => 'C:\\xampp\\htdocs\\work\\lagaster\\togethergloballyup\\storage\\framework/sessions',
     'connection' => NULL,
     'table' => 'sessions',
     'store' => NULL,
@@ -664,9 +664,9 @@
   array (
     'paths' => 
     array (
-      0 => '/var/www/html/trial/togethergloballyup/resources/views',
+      0 => 'C:\\xampp\\htdocs\\work\\lagaster\\togethergloballyup\\resources\\views',
     ),
-    'compiled' => '/var/www/html/trial/togethergloballyup/storage/framework/views',
+    'compiled' => 'C:\\xampp\\htdocs\\work\\lagaster\\togethergloballyup\\storage\\framework\\views',
     'expires' => true,
   ),
 );

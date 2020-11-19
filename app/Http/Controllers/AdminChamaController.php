@@ -113,24 +113,33 @@ class AdminChamaController extends Controller
         //     $chama->nextVote = date('Y-m-d H:i:s', strtotime('+' . $days . ' day', strtotime($now)));
         // }
 
-
         if($chama->save()){
 
-            $tickets = Ticket::where('chama_id',$chama->id)->get() ;
-           foreach ($tickets as $key => $ti) {
-               $ticket = Ticket::find($ti->id) ;
-               $ticket->pay = false ;
-               $ticket->given = false ;
-               $ticket->as_vote = false ;
-               $ticket->save();
-           }
 
-            Session::flash('success',"Now members can start to vote successfully");
-            $users = $chama->users ;
-            foreach ($users as $key => $user) {
+            $ticketsAllCount = Ticket::where('chama_id',$chama->id)->count();
+            $ticketsGiventCount = Ticket::where('chama_id',$chama->id)->where('given',true)->count();
+            if ( $ticketsAllCount ==  $ticketsGiventCount  ) {
+                $tickets = Ticket::where('chama_id',$chama->id)->get() ;
+                foreach ($tickets as $key => $ti) {
+                    $ticket = Ticket::find($ti->id) ;
+                    $ticket->pay = false ;
+                    $ticket->given = false ;
+                    $ticket->as_vote = false ;
+                    $this->notifyUserToVote($ticket->user,$ticket->chama);
+                    $ticket->save();
+                }
+            } else {
+                $tickets = Ticket::where('chama_id',$chama->id)->where('given',false)->get() ;
+                foreach ($tickets as $key => $ti) {
+                    $ticket = Ticket::find($ti->id) ;
+                    $ticket->pay = false ;
+                    $ticket->as_vote = false ;
+                    $this->notifyUserToVote($ticket->user,$ticket->chama);
+                    $ticket->save();
+                }
 
-               Notification::send($user , new VotingNotification($chama,$user)) ;
             }
+            Session::flash('success',"Now members can start to vote successfully");
 
         }else{
             Session::flash('error',"Error occurred try again");
@@ -148,6 +157,13 @@ class AdminChamaController extends Controller
         $request->session()->flash('success', "You have successfully removed ".$user->name." from   chama");
 
         return back();
+
+    }
+
+    public function notifyUserToVote($user,$chama){
+
+            Notification::send($user , new VotingNotification($chama,$user)) ;
+
 
     }
 }
